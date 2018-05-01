@@ -18,14 +18,6 @@ public class GameControl {
         this.fileDirectory = fileDirectory;
     }
 
-    public void startGame(){
-
-    }
-
-    public String getFileDirectory() {
-        return fileDirectory;
-    }
-
     public ArrayList<Card> getCards() {
         return cards;
     }
@@ -40,5 +32,21 @@ public class GameControl {
 
     public User getUser() {
         return user;
+    }
+
+    public void startGame(){
+
+    }
+
+    public void help(){
+
+    }
+
+    public void saveGame(){
+
+    }
+
+    public void endGame(){
+
     }
 }

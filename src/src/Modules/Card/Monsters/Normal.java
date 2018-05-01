@@ -1,8 +1,8 @@
 package Modules.Card.Monsters;
 
 public class Normal extends Monster {
-    public Normal(String name, int AP, int HP, boolean offenseType,
-                  boolean isNimble, MonsterKind monsterKind, MonsterTribe tribe) {
+    public Normal(String name, int AP, int HP, boolean isNimble,boolean offenseType,
+                   MonsterKind monsterKind, MonsterTribe tribe) {
         this.name = name;
         this.AP = AP;
         this.initialAP = AP;
@@ -11,6 +11,6 @@ public class Normal extends Monster {
         this.offenseType = offenseType;
         this.isNimble = isNimble;
         this.monsterKind = monsterKind;
-        this.monsterTribe = monsterTribe;
+        this.monsterTribe = tribe;
     }
 }

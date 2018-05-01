@@ -1,0 +1,22 @@
+Elven Ranger 300 400 1 false true ELVEN
+Elven Hunter 800 600 3 false true ELVEN
+Elven Guardsman 1500 500 5 false false ELVEN
+Elven Assassin 800 1200 5 true true ELVEN
+Lesser Whelp 500 300 1 false true DRAGON
+Dragonling 700 700 3 false true DRAGON
+Armored Dragon 2000 400 5 false false DRAGON
+Yellow Drake 800 1000 5 true true DRAGON
+Murloc Crawler 200 500 1 false true ATLANTIAN
+Murloc Warrior 600 600 2 false true ATLANTIAN
+Giant Crab 1500 300 4 false false ATLANTIAN
+Shark Man 900 1200 5 true true ATLANTIAN
+Goblin Smuggler 600 400 2 false true DEMONIC
+Ogre Warrior 800 500 3 false true DEMONIC
+Ogre Frontliner 1800 600 5 false false DEMONIC
+Undead 200 400 1 false true DEMONIC
+Giant Bat 500 900 3 true true DEMONIC
+Stout Undead 1200 600 4 false false DEMONIC
+Imp 300 500 2 false true DEMONIC
+Shade 500 800 3 false true DEMONIC
+Living Armor 1500 400 5 false false DEMONIC
+Hellhound 800 1000 5 true true DEMONIC

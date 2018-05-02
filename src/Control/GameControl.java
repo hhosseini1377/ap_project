@@ -6,6 +6,7 @@ import Modules.Card.Monsters.Normal;
 import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
 import Modules.User.User;
+import com.sun.xml.internal.bind.v2.TODO;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -46,6 +47,13 @@ public class GameControl {
             Card monster = new Normal(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), Boolean.parseBoolean(parts[4]),Boolean.parseBoolean(parts[5]), parts[6]);
             cards.add(monster);
         }
+
+        //TODO instantiate other types of monster cards
+        //TODO instantiate spells
+        //TODO instantiate commanders
+        //TODO instantiate items
+        //TODO instantiate amulets
+
 
     }
 

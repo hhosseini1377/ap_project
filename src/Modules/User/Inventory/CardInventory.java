@@ -9,7 +9,7 @@ import Modules.Warrior.BackPack;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CardInventory {
+public class CardInventory{
     private ArrayList<Card> cards;
     private Deck deck;
     private HashMap<String, Card> cardMap;

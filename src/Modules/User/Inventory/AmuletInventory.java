@@ -48,5 +48,5 @@ public class AmuletInventory {
         backPack.remove(amuletMap.get(name));
         amuletMap.remove(name);
     }
-    
+
 }

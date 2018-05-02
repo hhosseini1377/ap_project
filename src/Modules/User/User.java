@@ -1,21 +1,35 @@
 package Modules.User;
 
 import Modules.BattleGround.Deck;
+import Modules.User.Inventory.AmuletInventory;
 import Modules.User.Inventory.CardInventory;
+import Modules.User.Inventory.ItemInventory;
 
 public class User {
     private CardInventory cardInventory;
+    private ItemInventory itemInventory;
+    private AmuletInventory amuletInventory;
     private int gills;
     private int level;
     private String name;
     private Deck deck;
 
-    public User(CardInventory cardInventory, Deck deck, int gills, int level, String name) {
+    public User(CardInventory cardInventory, ItemInventory itemInventory, AmuletInventory amuletInventory, Deck deck, int gills, int level, String name) {
         this.deck = deck;
         this.cardInventory = cardInventory;
         this.gills = gills;
         this.level = level;
         this.name = name;
+        this.itemInventory = itemInventory;
+        this.amuletInventory = amuletInventory;
+    }
+
+    public ItemInventory getItemInventory() {
+        return itemInventory;
+    }
+
+    public AmuletInventory getAmuletInventory() {
+        return amuletInventory;
     }
 
     public CardInventory getCardInventory() {

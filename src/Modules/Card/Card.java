@@ -2,33 +2,30 @@ package Modules.Card;
 
 public class Card {
     protected String name;
-    protected int manaCost;
     protected int gillCost;
+    protected int manaPoint;
 
-    public Card() {
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setManaCost(int manaCost) {
-        this.manaCost = manaCost;
+    public int getGillCost() {
+        return gillCost;
     }
 
     public void setGillCost(int gillCost) {
         this.gillCost = gillCost;
     }
 
-    public String getName() {
-        return name;
+    public int getManaPoint() {
+        return manaPoint;
     }
 
-    public int getManaCost() {
-        return manaCost;
-    }
-
-    public int getGillCost() {
-        return gillCost;
+    public void setManaPoint(int manaPoint) {
+        this.manaPoint = manaPoint;
     }
 }

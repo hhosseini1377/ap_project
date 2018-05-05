@@ -1,0 +1,3 @@
+itemShop:
+amuletShop:
+cardShop:

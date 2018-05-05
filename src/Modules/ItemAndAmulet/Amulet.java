@@ -21,4 +21,12 @@ public abstract class Amulet {
     }
 
     public abstract void castSpell();
+
+    public String toString(){
+        return name;
+    }
+
+    public boolean equals(Amulet other){
+        return other.getName().equals(this.getName());
+    }
 }

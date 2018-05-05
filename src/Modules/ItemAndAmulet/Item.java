@@ -30,4 +30,12 @@ public abstract class Item {
     }
 
     public abstract void castSpell();
+
+    public String toString(){
+        return name;
+    }
+
+    public boolean equals(Item other){
+        return other.getName().equals(this.getName());
+    }
 }

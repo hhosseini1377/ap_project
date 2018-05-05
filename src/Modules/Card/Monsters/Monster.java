@@ -105,4 +105,11 @@ public abstract class Monster extends Card{
     public boolean isDead(){
         return (this.HP <= 0);
     }
+
+    public String toString(){
+        return name + " " + AP + " " + HP
+                + " " + manaPoint + " "
+                + isNimble + " " + offenseType
+                + " " + monsterKind + " " + monsterTribe;
+    }
 }

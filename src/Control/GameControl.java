@@ -14,11 +14,10 @@ import Modules.User.Inventory.ItemInventory;
 import Modules.User.User;
 import Modules.Warrior.BackPack;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class GameControl {
     private String fileDirectory;
@@ -31,6 +30,15 @@ public class GameControl {
     private Deck deck;
     private BackPack backPack;
     private User user;
+    private ItemInventory itemInventory;
+    private CardInventory cardInventory;
+    private AmuletInventory amuletInventory;
+    private ItemShop itemShop;
+    private CardShop cardShop;
+    private AmuletShop amuletShop;
+    private ShopControl shopControl;
+    private BattleControl battleControl;
+
 
     public GameControl(String fileDirectory){
         //initializing the lists
@@ -73,6 +81,14 @@ public class GameControl {
         deckStart();
         inventoryStart();
         shopStart();
+        //starting the user object
+        int gills;
+        int level;
+        fileReader = new BufferedReader(new FileReader(fileDirectory + "userInfo.txt"));
+        level = Integer.parseInt(fileReader.readLine().split(":")[1]);
+        gills = Integer.parseInt(fileReader.readLine().split(":")[1]);
+        user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, "player1");
+        fileReader.close();
     }
     //readying the backPack
     private void backPackStart() throws IOException{
@@ -80,7 +96,7 @@ public class GameControl {
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "backPack.txt"));
         this.backPack = new BackPack();
         while((line = fileReader.readLine()) != null){
-            String parts[] = line.split(" +");
+            String parts[] = line.split(" -");
             for (int i = 0; i < Integer.parseInt(parts[1]); i++) {
                 if (itemHashMap.containsKey(parts[0]))
                     this.backPack.add(itemHashMap.get(parts[0]));
@@ -95,7 +111,7 @@ public class GameControl {
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "deck.txt"));
         this.deck = new Deck();
         while((line = fileReader.readLine()) != null){
-            String parts[] = line.split(" +");
+            String parts[] = line.split(" -");
             for (int i = 0; i < Integer.parseInt(parts[1]); i++){
                 this.deck.add(cardHashMap.get(parts[0]));
             }
@@ -103,14 +119,14 @@ public class GameControl {
     }
     //readying the inventory
     private void inventoryStart()throws IOException{
-        ItemInventory itemInventory = new ItemInventory(backPack);
-        AmuletInventory amuletInventory = new AmuletInventory(backPack);
-        CardInventory cardInventory = new CardInventory(deck);
+        itemInventory = new ItemInventory(backPack);
+        amuletInventory = new AmuletInventory(backPack);
+        cardInventory = new CardInventory(deck);
         String inventoryName = "items:";
         String line;
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "inventory.txt"));
         while((line = fileReader.readLine()) != null){
-            String parts[] = line.split(" +");
+            String parts[] = line.split(" -");
             if (parts.length != 1){
                 if (inventoryName.equals("items:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
@@ -132,14 +148,14 @@ public class GameControl {
     }
     //readying the shops
     private void shopStart()throws IOException{
-        ItemShop itemShop = new ItemShop();
-        AmuletShop amuletShop = new AmuletShop();
-        CardShop cardShop = new CardShop();
+        itemShop = new ItemShop();
+        amuletShop = new AmuletShop();
+        cardShop = new CardShop();
         String shopName = "items:";
         String line;
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "shop.txt"));
         while((line = fileReader.readLine()) != null){
-            String parts[] = line.split(" +");
+            String parts[] = line.split(" -");
             if (parts.length != 1){
                 if (shopName.equals("items:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
@@ -157,6 +173,108 @@ public class GameControl {
                 shopName = line;
             }
         }
+    }
+
+    public void game(){
+
+        Scanner scan = new Scanner(System.in);
+        String action;
+        String previousAction = null;
+        while (true) {
+            action = scan.next();
+            availableAction(action, previousAction);
+            if (!action.equals("Again"))
+                previousAction = action;
+        }
+    }
+
+    private void availableAction(String action, String previousAction){
+        switch (action){
+            case "Help":
+                help();
+                break;
+            case "Again":
+                if (previousAction == null){
+                    System.out.println("no previous action selected");
+                    break;
+                }
+                availableAction(previousAction, null);
+                break;
+            case "Exit":
+                endGame();
+                return;
+            case "Enter Shop":
+                // TODO needs to be completed
+                break;
+            case "Battle":
+                battleControl.startBattle(user);
+                break;
+            default:
+                System.out.println("invalid input");
+                break;
+        }
+
+    }
+
+    /**
+     * prints available options for user
+     */
+    private void help(){
+        System.out.println("1. Enter Shop:To enter shop and buy or sell cards and items");
+        System.out.println("2. Battle:To enter the next battle");
+        System.out.println("3. Exit: save and exit the game");
+//        System.out.println("2. Edit Inventory: To edit your amulet or deck");
+//        System.out.println("3. Next: To go to deck and amulet customization");
+    }
+
+    /**
+     * saves the game when endGame() method is called
+     * @throws IOException
+     */
+    // TODO needs to be completed
+    public void saveGame() throws IOException{
+        FileWriter fileWriter = new FileWriter(fileDirectory + "backPack.txt", false);
+        Item lastItem = backPack.getItems().get(0);
+        int count = 0;
+        for(Item item:backPack.getItems()) {
+            if (!lastItem.equals(item)) {
+                fileWriter.write(lastItem.toString() + count);
+                count = 1;
+            }
+            else{
+                count++;
+            }
+            lastItem = item;
+        }
+
+        Amulet lastAmulet = backPack.getAmulets().get(0);
+        count = 0;
+        for (Amulet amulet:backPack.getAmulets()){
+            if (!lastAmulet.equals(amulet)) {
+                fileWriter.write(lastAmulet.toString() + count);
+                count = 1;
+            }
+            else{
+                count++;
+            }
+            lastAmulet = amulet;
+        }
+        fileWriter.close();
+    }
+
+    /**
+     * ends the game
+     * checks if file data needs to be reset cause of completing the game
+     * saves the necessary data
+     */
+    // TODO needs to be completed
+    public void endGame(){
+        try{
+            saveGame();
+        }catch (IOException e){
+            System.out.println("file output problem");
+        }
+        System.exit(0);
     }
 
     public String getFileDirectory() {

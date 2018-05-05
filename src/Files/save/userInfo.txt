@@ -1,2 +1,2 @@
-level:
-gills:
+level:1
+gills:10000

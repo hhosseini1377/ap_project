@@ -45,4 +45,8 @@ public class BackPack {
     public void useItem(){
 
     }
+
+    public String toString(){
+        return "";
+    }
 }

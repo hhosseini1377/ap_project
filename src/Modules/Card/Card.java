@@ -28,4 +28,12 @@ public class Card {
     public void setManaPoint(int manaPoint) {
         this.manaPoint = manaPoint;
     }
+
+    public String toString(){
+        return name;
+    }
+
+    public boolean equals(Card other){
+        return other.getName().equals(this.getName());
+    }
 }

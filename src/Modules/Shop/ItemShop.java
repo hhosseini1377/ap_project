@@ -19,7 +19,15 @@ public class ItemShop {
         itemsHashMap.put(item.getName(), item);
     }
 
-    public int gillCost(String itemName){
+    public int GetgillCost(String itemName){
         return itemsHashMap.get(itemName).getGillCost();
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public Item GetItem(String ItemName){
+        return itemsHashMap.get(ItemName);
     }
 }

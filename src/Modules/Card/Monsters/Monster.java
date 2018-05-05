@@ -1,19 +1,7 @@
 package Modules.Card.Monsters;
 
 import Modules.Card.Card;
-enum MonsterKind{
-    NORMAL,
-    GENERAL,
-    SPELL_CASTER,
-    HERO
-}
 
-enum MonsterTribe{
-    ELVEN,
-    DRAGON_BREED,
-    ATLANTIAN,
-    DEMONIC
-}
 
 public abstract class Monster extends Card{
     protected int initialAP;

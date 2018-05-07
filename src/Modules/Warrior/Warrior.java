@@ -12,6 +12,7 @@ public class Warrior {
     private GraveYard graveYard;
     private MonsterField monsterField;
     private SpellField spellField;
+    private BackPack backPack;
 
     public Warrior(Deck deck) {
         this.deck = deck;
@@ -48,6 +49,10 @@ public class Warrior {
         return spellField;
     }
 
+    public BackPack getBackPack() {
+        return backPack;
+    }
+
     public void setHand(Hand hand) {
         this.hand = hand;
     }
@@ -62,5 +67,9 @@ public class Warrior {
 
     public void setSpellField(SpellField spellField) {
         this.spellField = spellField;
+    }
+
+    public void setBackPack(BackPack backPack) {
+        this.backPack = backPack;
     }
 }

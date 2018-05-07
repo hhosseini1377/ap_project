@@ -48,6 +48,13 @@ public class ItemInventory {
         return 0;
     }
 
+    public int getNumberOfItem(String itemName){
+        if(numberOfItem.containsKey(itemName))
+            return numberOfItem.get(itemName);
+        return 0;
+
+    }
+
     public void equip(String name){
         backPack.add(itemMap.get(name));
     }
@@ -58,7 +65,6 @@ public class ItemInventory {
 
     public void remove(String name){
         numberOfItem.replace(itemMap.get(name).getName(), numberOfItem.get(itemMap.get(name).getName()) + 1);
-        backPack.remove(itemMap.get(name));
         itemMap.remove(name);
     }
 }

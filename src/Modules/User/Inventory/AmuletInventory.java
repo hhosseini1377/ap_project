@@ -49,17 +49,23 @@ public class AmuletInventory {
         return 0;
     }
 
+    public int getNumberOfAmulets(String AmuletName){
+        if(numberOfAmulet.containsKey(AmuletName)){
+            return numberOfAmulet.get(AmuletName);
+        }
+        return 0;
+    }
+
     public void equip(String name){
         backPack.add(amuletMap.get(name));
     }
 
     public void disequip(String name){
-        backPack.remove(amuletMap.get(name));
+        backPack.remove();
     }
 
     public void remove(String name){
         numberOfAmulet.replace(amuletMap.get(name).getName(), numberOfAmulet.get(amuletMap.get(name).getName()) + 1);
-        backPack.remove(amuletMap.get(name));
         amuletMap.remove(name);
     }
 

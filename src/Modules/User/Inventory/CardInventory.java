@@ -49,6 +49,13 @@ public class CardInventory{
             return numberOfCards.get(card.getName());
         return 0;
     }
+
+    public int getNumberOfCards(String cardName){
+        if (numberOfCards.containsKey(cardName))
+            return numberOfCards.get(cardName);
+        return 0;
+    }
+
     public void equip(String name){
         deck.add(cardMap.get(name));
     }

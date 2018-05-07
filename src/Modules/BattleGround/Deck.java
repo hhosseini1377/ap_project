@@ -37,7 +37,7 @@ public class Deck {
                 numberOfCards.put(card.getName(), 1);
             cards.add(card);
         }else {
-            System.out.println("deck is fulled");
+            System.out.println("deck is full");
         }
     }
 
@@ -47,9 +47,18 @@ public class Deck {
         return 0;
     }
 
+    public int getNumberOfCards(String cardName){
+        if (numberOfCards.containsKey(cardName))
+            return numberOfCards.get(cardName);
+        return 0;
+    }
+
     public void remove(Card card){
         cards.remove(card);
-        numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) - 1);
+        if (numberOfCards.get(card.getName()) - 1 == 0)
+            numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) - 1);
+        else
+            numberOfCards.remove(card.getName());
     }
 
     public Card takeCard(){
@@ -58,5 +67,9 @@ public class Deck {
         cards.remove(random);
         numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) - 1);
         return card;
+    }
+
+    public boolean contains(String Name){
+        return numberOfCards.containsKey(Name);
     }
 }

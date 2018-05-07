@@ -4,6 +4,7 @@ import Modules.BattleGround.Deck;
 import Modules.User.Inventory.AmuletInventory;
 import Modules.User.Inventory.CardInventory;
 import Modules.User.Inventory.ItemInventory;
+import Modules.Warrior.BackPack;
 
 public class User {
     private CardInventory cardInventory;
@@ -13,8 +14,10 @@ public class User {
     private int level;
     private String name;
     private Deck deck;
+    private BackPack backPack;
 
-    public User(CardInventory cardInventory, ItemInventory itemInventory, AmuletInventory amuletInventory, Deck deck, int gills, int level, String name) {
+    public User(CardInventory cardInventory, ItemInventory itemInventory, AmuletInventory amuletInventory, Deck deck, int gills, int level, String name,BackPack backPack) {
+        this.backPack = backPack;
         this.deck = deck;
         this.cardInventory = cardInventory;
         this.gills = gills;
@@ -46,6 +49,10 @@ public class User {
 
     public int getLevel() {
         return level;
+    }
+
+    public BackPack getBackPack() {
+        return backPack;
     }
 
     public void setLevel(int level) {

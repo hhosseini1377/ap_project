@@ -2,33 +2,39 @@ package Modules.Shop;
 
 import Modules.Card.Card;
 import Modules.Card.Monsters.Monster;
+import Modules.Card.Spell.Spell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CardShop {
     private ArrayList<Card> availableCards;
-    private HashMap<String,Card> CardsHashMap;
+    private HashMap<String,Card> cardsHashMap;
+
+    public CardShop() {
+        availableCards = new ArrayList<>();
+        cardsHashMap = new HashMap<>();
+    }
 
     public ArrayList<Card> getCards() {
         return availableCards;
     }
 
-    public void AddCard(Card card){
+    public void addCard(Card card){
         availableCards.add(card);
-        CardsHashMap.put(card.getName(),card);
+        cardsHashMap.put(card.getName(),card);
     }
 
-    public void RemoveCard(String CardName){
-        availableCards.remove(CardsHashMap.get(CardName));
-        CardsHashMap.remove(CardName);
+    public void removeCard(String CardName){
+        availableCards.remove(cardsHashMap.get(CardName));
+        cardsHashMap.remove(CardName);
     }
 
-    public int GetGillCost(String CardName){
-        return CardsHashMap.get(CardName).getGillCost();
-    }
+    public int getGillCost(String CardName){
+        return cardsHashMap.get(CardName).getGillCost();
+    } // not necessary method
 
-    public Card GetCard(String CardName){
-        return CardsHashMap.get(CardName);
+    public Card getCard(String CardName){
+        return cardsHashMap.get(CardName);
     }
 }

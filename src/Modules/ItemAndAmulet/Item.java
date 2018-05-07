@@ -38,4 +38,8 @@ public abstract class Item {
     public boolean equals(Item other){
         return other.getName().equals(this.getName());
     }
+
+    public String spelldetail(){
+        return "nothing special";
+    }
 }

@@ -8,8 +8,12 @@ public class ItemShop {
     private ArrayList<Item> items;
     private HashMap<String, Item> itemsHashMap;
 
+    public ItemShop() {
+        itemsHashMap = new HashMap<>();
+        items = new ArrayList<>();
+    }
 
-    public void RemoveItem(String itemName){
+    public void removeItem(String itemName){
         items.remove(itemsHashMap.get(itemName));
         itemsHashMap.remove(itemName);
     }
@@ -19,15 +23,11 @@ public class ItemShop {
         itemsHashMap.put(item.getName(), item);
     }
 
-    public int GetgillCost(String itemName){
+    public int gillCost(String itemName){
         return itemsHashMap.get(itemName).getGillCost();
-    }
+    } // not necessary method
 
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
-    public Item GetItem(String ItemName){
-        return itemsHashMap.get(ItemName);
+    public Item getItem(String name){
+        return itemsHashMap.get(name);
     }
 }

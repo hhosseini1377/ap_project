@@ -8,7 +8,8 @@ public class Main {
         try {
             gameControl.startGame();
         }catch (IOException e){
-            System.out.println("something");
+            System.out.println("problem in input of files");
         }
+        gameControl.game();
     }
 }

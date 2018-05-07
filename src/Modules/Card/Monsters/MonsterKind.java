@@ -1,8 +1,8 @@
 package Modules.Card.Monsters;
 
 public enum MonsterKind {
-    NORMAL,
-    GENERAL,
-    SPELL_CASTER,
-    HERO
+        NORMAL,
+        GENERAL,
+        SPELL_CASTER,
+        HERO
 }

@@ -2,7 +2,6 @@ package Modules.Card.Monsters;
 
 import Modules.Card.Card;
 
-
 public abstract class Monster extends Card{
     protected int initialAP;
     protected int initialHP;

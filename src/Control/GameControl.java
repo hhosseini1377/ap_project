@@ -69,6 +69,7 @@ public class GameControl {
             String parts[] = line.split(" ");
             Card monster = new Normal(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), Boolean.parseBoolean(parts[4]),Boolean.parseBoolean(parts[5]), parts[6]);
             cards.add(monster);
+            cardHashMap.put(monster.getName(), monster);
         }
 
         //TODO instantiate other types of monster cards
@@ -87,7 +88,7 @@ public class GameControl {
         fileReader = new BufferedReader(new FileReader(fileDirectory + "userInfo.txt"));
         level = Integer.parseInt(fileReader.readLine().split(":")[1]);
         gills = Integer.parseInt(fileReader.readLine().split(":")[1]);
-        user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, "player1");
+        user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, "player1", backPack);
         fileReader.close();
     }
     //readying the backPack
@@ -176,34 +177,33 @@ public class GameControl {
     }
 
     public void game(){
-
         Scanner scan = new Scanner(System.in);
         String action;
-        String previousAction = null;
+        String previousResult = null;
         while (true) {
             action = scan.next();
-            availableAction(action, previousAction);
-            if (!action.equals("Again"))
-                previousAction = action;
+            previousResult = availableAction(action, previousResult);
         }
     }
 
-    private void availableAction(String action, String previousAction){
+    private String availableAction(String action, String previousResult){
         switch (action){
             case "Help":
-                help();
+                previousResult = help();
                 break;
             case "Again":
-                if (previousAction == null){
-                    System.out.println("no previous action selected");
+                if (previousResult == null){
+                    System.out.println("no previous instruction available");
                     break;
+                }else {
+                    System.out.println(previousResult);
                 }
-                availableAction(previousAction, null);
                 break;
             case "Exit":
                 endGame();
-                return;
+                return "";
             case "Enter Shop":
+                shopControl.mainController();
                 // TODO needs to be completed
                 break;
             case "Battle":
@@ -211,18 +211,22 @@ public class GameControl {
                 break;
             default:
                 System.out.println("invalid input");
+                previousResult = "invalid input";
                 break;
         }
-
+        return previousResult;
     }
 
     /**
      * prints available options for user
      */
-    private void help(){
-        System.out.println("1. Enter Shop:To enter shop and buy or sell cards and items");
-        System.out.println("2. Battle:To enter the next battle");
-        System.out.println("3. Exit: save and exit the game");
+    private String  help(){
+        System.out.println("1. Enter Shop:To enter shop and buy or sell cards and items\n" +
+                "2. Battle:To enter the next battle\n" +
+                "3. Exit: save and exit the game");
+        return "1. Enter Shop:To enter shop and buy or sell cards and items\n" +
+                "2. Battle:To enter the next battle\n" +
+                "3. Exit: save and exit the game";
 //        System.out.println("2. Edit Inventory: To edit your amulet or deck");
 //        System.out.println("3. Next: To go to deck and amulet customization");
     }
@@ -232,7 +236,7 @@ public class GameControl {
      * @throws IOException
      */
     // TODO needs to be completed
-    public void saveGame() throws IOException{
+    private void saveGame() throws IOException{
         FileWriter fileWriter = new FileWriter(fileDirectory + "backPack.txt", false);
         Item lastItem = backPack.getItems().get(0);
         int count = 0;
@@ -246,19 +250,8 @@ public class GameControl {
             }
             lastItem = item;
         }
-
-        Amulet lastAmulet = backPack.getAmulets().get(0);
-        count = 0;
-        for (Amulet amulet:backPack.getAmulets()){
-            if (!lastAmulet.equals(amulet)) {
-                fileWriter.write(lastAmulet.toString() + count);
-                count = 1;
-            }
-            else{
-                count++;
-            }
-            lastAmulet = amulet;
-        }
+        Amulet amulet = backPack.getAmulet();
+        fileWriter.write(amulet.toString());
         fileWriter.close();
     }
 

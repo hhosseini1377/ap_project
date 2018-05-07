@@ -33,6 +33,23 @@ public class Card {
         return name;
     }
 
+    public String[] detail(){
+        String[] details = {""};
+        return details;
+    }
+
+    private String spellDetail(){
+        return "nothing special";
+    }
+
+    private String willDetail(){
+        return "nothing special";
+    }
+
+    private String battleCryDetail(){
+        return "nothing special";
+    }
+
     public boolean equals(Card other){
         return other.getName().equals(this.getName());
     }

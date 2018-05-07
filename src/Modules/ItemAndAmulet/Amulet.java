@@ -29,4 +29,8 @@ public abstract class Amulet {
     public boolean equals(Amulet other){
         return other.getName().equals(this.getName());
     }
+
+    public String detail(){
+        return "nothing special";
+    }
 }

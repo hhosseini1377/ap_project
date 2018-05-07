@@ -7,20 +7,15 @@ import java.util.HashMap;
 
 public class AmuletShop {
     private ArrayList<Amulet> amulets;
-    private HashMap<String,Amulet> AmuletsHashMap;
+    private HashMap<String, Amulet> amuletHashMap;
 
-    public void AddAmulet(Amulet amulet){
-        amulets.add(amulet);
-        AmuletsHashMap.put(amulet.getName(),amulet);
+    public AmuletShop() {
+        amuletHashMap = new HashMap<>();
+        amulets = new ArrayList<>();
     }
 
-    public void RemoveAmulet(String amuletName){
-        amulets.remove(AmuletsHashMap.get(amuletName));
-        AmuletsHashMap.remove(amuletName);
-    }
+    public void addAmulet(Amulet amulet){
 
-    public int GetGillCost(String AmuletName){
-        return AmuletsHashMap.get(AmuletName).getGillCost();
     }
 
     public ArrayList<Amulet> GetAmulets(){
@@ -28,9 +23,11 @@ public class AmuletShop {
     }
 
     public Amulet getAmulet(String AmuletName){
-        return AmuletsHashMap.get(AmuletName);
+        return amuletHashMap.get(AmuletName);
     }
 
-
-
+    public void removeAmulet(String name){
+        amulets.remove(amuletHashMap.get(name));
+        amuletHashMap.remove(name);
+    }
 }

@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class SpellField {
     private HashMap<String,Integer> numberOfCards;
+    private HashMap<Integer, Spell> slots;//a map of every card and its slot number
     private ArrayList<Spell> spellCards;
     private int availablePlaces=3;
 
@@ -30,6 +31,14 @@ public class SpellField {
         else{
             numberOfCards.replace(spell.getName(),numberOfCards.get(spell)-1);
         }
+    }
+
+    public int getAvailablePlaces() {
+        return availablePlaces;
+    }
+
+    public Spell getSlot(int slotNum){
+        return slots.get(slotNum);
     }
 
     public ArrayList<Spell> getSpellCards() {

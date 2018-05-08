@@ -7,6 +7,7 @@ import Modules.BattleGround.GraveYard;
 import Modules.BattleGround.Hand;
 
 public class Warrior {
+    protected String name;
     private Deck deck;
     private Hand hand;
     private GraveYard graveYard;
@@ -27,6 +28,10 @@ public class Warrior {
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Deck getDeck() {

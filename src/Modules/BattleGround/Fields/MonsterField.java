@@ -22,7 +22,7 @@ public class MonsterField {
 
     public void remove(Monster monster){
         monsterCards.remove(monster);
-        availablePlaces--;
+        availablePlaces++;
         if(numberOfCards.get(monster.getName()) ==1){
             numberOfCards.remove(monster);
         }

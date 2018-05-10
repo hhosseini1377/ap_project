@@ -238,20 +238,24 @@ public class GameControl {
     // TODO needs to be completed
     private void saveGame() throws IOException{
         FileWriter fileWriter = new FileWriter(fileDirectory + "backPack.txt", false);
-        Item lastItem = backPack.getItems().get(0);
-        int count = 0;
-        for(Item item:backPack.getItems()) {
-            if (!lastItem.equals(item)) {
-                fileWriter.write(lastItem.toString() + count);
-                count = 1;
-            }
-            else{
-                count++;
-            }
-            lastItem = item;
-        }
-        Amulet amulet = backPack.getAmulet();
-        fileWriter.write(amulet.toString());
+
+        
+////        for (Item item:backPack.)
+//        Item lastItem = backPack.getItems().get(0);
+//        int count = 0;
+//        for(Item item:backPack.getItems()) {
+//            if (!lastItem.equals(item)) {
+//                fileWriter.write(lastItem.toString() + count);
+//                count = 1;
+//            }
+//            else{
+//                count++;
+//            }
+//            lastItem = item;
+//        }
+//        Amulet amulet = backPack.getAmulet();
+//        fileWriter.write(amulet.toString());
+
         fileWriter.close();
     }
 

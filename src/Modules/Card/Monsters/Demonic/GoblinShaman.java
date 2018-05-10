@@ -25,9 +25,9 @@ public class GoblinShaman extends SpellCaster{
         monsterTribe = MonsterTribe.DEMONIC;
     }
 
-    public void castSpell(ArrayList<Monster> monsters){
-        int randomNumber = (int)(Math.random() * monsters.size());
-        monsters.get(randomNumber).increaseHP(400);
+    public void castSpell(ArrayList<Monster> enemyCards, ArrayList<Monster> friendlyCards){
+        int randomNumber = (int)(Math.random() * enemyCards.size());
+        enemyCards.get(randomNumber).increaseHP(400);
     }
 
     public String getSpellName() {

@@ -42,4 +42,8 @@ public abstract class Item {
     public String spelldetail(){
         return "nothing special";
     }
+
+    public int hashCode(){
+        return super.hashCode();
+    }
 }

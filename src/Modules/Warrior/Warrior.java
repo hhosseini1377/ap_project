@@ -5,8 +5,10 @@ import Modules.BattleGround.Fields.MonsterField;
 import Modules.BattleGround.Fields.SpellField;
 import Modules.BattleGround.GraveYard;
 import Modules.BattleGround.Hand;
+import Modules.Card.Commanders.Commander;
 
 public class Warrior {
+    protected Commander commander;
     protected String name;
     private Deck deck;
     private Hand hand;
@@ -28,6 +30,14 @@ public class Warrior {
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
+    }
+
+    public Commander getCommander() {
+        return commander;
+    }
+
+    public void setCommander(Commander commander) {
+        this.commander = commander;
     }
 
     public String getName() {

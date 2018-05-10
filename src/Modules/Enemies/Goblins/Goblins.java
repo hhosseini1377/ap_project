@@ -38,6 +38,6 @@ public class Goblins extends Warrior {
     }
 
     public Card decideMove(MonsterField OpponentMonsterField, SpellField OpponentSpellField){
-
+        return new Card();
     }
 }

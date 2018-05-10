@@ -1,5 +1,7 @@
 package Modules.Card;
 
+import com.sun.org.apache.bcel.internal.classfile.Code;
+
 public class Card {
     protected String name;
     protected int gillCost;
@@ -52,5 +54,9 @@ public class Card {
 
     public boolean equals(Card other){
         return other.getName().equals(this.getName());
+    }
+
+    public int hashCode(){
+        return super.hashCode();
     }
 }

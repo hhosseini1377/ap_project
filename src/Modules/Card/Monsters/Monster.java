@@ -11,6 +11,16 @@ public abstract class Monster extends Card{
     protected boolean isNimble;
     protected MonsterKind monsterKind;
     protected MonsterTribe monsterTribe;
+    protected boolean isSleeping = true;
+    protected boolean canAttack = true;
+
+    public boolean canAttack() {
+        return canAttack;
+    }
+
+    public void setCanAttack(boolean canAttack) {
+        this.canAttack = canAttack;
+    }
 
     public int getInitialAP() {
         return initialAP;
@@ -60,6 +70,14 @@ public abstract class Monster extends Card{
         isNimble = nimble;
     }
 
+    public boolean isSleeping() {
+        return isSleeping;
+    }
+
+    public void setSleeping(boolean sleeping) {
+        isSleeping = sleeping;
+    }
+
     public MonsterKind getMonsterKind() {
         return monsterKind;
     }
@@ -85,6 +103,10 @@ public abstract class Monster extends Card{
     }
 
     public void attack(Monster other){
+        if (!this.canAttack()){
+            System.out.println("this monster cannot attack the opponent!!");
+            return;
+        }
         other.decreaseHP(this.AP);
         this.decreaseHP(other.getAP());
     }

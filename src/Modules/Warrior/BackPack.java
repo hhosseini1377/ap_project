@@ -11,7 +11,6 @@ public class BackPack {
     private Amulet amulet;
     private HashMap<String, Integer> numberOfItems;
 
-
     public BackPack() {
         items = new ArrayList<>();
     }

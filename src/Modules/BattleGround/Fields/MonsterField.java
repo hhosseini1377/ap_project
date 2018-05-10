@@ -1,39 +1,27 @@
 package Modules.BattleGround.Fields;
 
+        import Modules.Card.Card;
         import Modules.Card.Monsters.Monster;
 
         import java.util.ArrayList;
         import java.util.HashMap;
 
 public class MonsterField {
-    private HashMap<String,Integer> numberOfCards;
-    private HashMap<Integer, Monster> slots;//a map of every card and its slot number
-    private ArrayList<Monster> monsterCards;
+    private HashMap<String,Integer> numberOfCards = new HashMap<>();
+    private HashMap<Integer, Monster> slots = new HashMap<>();//a map of every card and its slot number
+    private ArrayList<Monster> monsterCards = new ArrayList<>();
+    private ArrayList<Monster> defensiveCards = new ArrayList<>();
     private int availablePlaces=5;
 
-    public void add(Monster monster){
-        if(availablePlaces>=0){
-            monsterCards.add(monster);
-            numberOfCards.replace(monster.getName(),numberOfCards.get(monster.getName())-1);
-            availablePlaces--;
-        }
-        else
-            System.out.println("MonsterField is full");
-    }
-
-    public void remove(Monster monster){
-        monsterCards.remove(monster);
-        availablePlaces++;
-        if(numberOfCards.get(monster.getName()) == 1){
-            numberOfCards.remove(monster.getName());
-        }
-        else{
-            numberOfCards.replace(monster.getName(),numberOfCards.get(monster.getName())-1);
-        }
-    }
 
     public Monster getSlot(int slotNum) {
-        return slots.get(slotNum);
+        Monster monster = null;
+        try {
+             monster = slots.get(slotNum);
+        }catch (NullPointerException e){
+            System.out.println("this slot is full");
+        }
+        return monster;
     }
 
     public int getAvailablePlaces() {
@@ -50,5 +38,52 @@ public class MonsterField {
 
     public int getNumberOfMonsters(Monster monster){
         return numberOfCards.get(monster.getName());
+    }
+
+    public void add(Monster monster){
+        if(availablePlaces>=0){
+            monsterCards.add(monster);
+            if (numberOfCards.containsKey(monster.getName()))
+                numberOfCards.replace(monster.getName(),numberOfCards.get(monster.getName()) + 1);
+            else
+                numberOfCards.put(monster.getName(), 1);
+            availablePlaces--;
+            for (int i = 0; i < 5; i++){
+                if (slots.get(i) == null) {
+                    slots.replace(i, monster);
+                    break;
+                }
+            }
+            if (!monster.isOffenseType())
+                defensiveCards.add(monster);
+        }
+        else
+            System.out.println("MonsterField is full");
+    }
+
+    public void remove(Monster monster){
+        monsterCards.remove(monster);
+        if (defensiveCards.contains(monster))
+            defensiveCards.remove(monster);
+        availablePlaces++;
+        if(numberOfCards.get(monster.getName()) == 1){
+            numberOfCards.remove(monster.getName());
+        }
+        else{
+            numberOfCards.replace(monster.getName(),numberOfCards.get(monster.getName()) - 1);
+        }
+    }
+
+    public boolean containDefensiveCard(){
+        return (defensiveCards.size() > 0);
+    }
+
+    public Monster getDefensiveCard(){
+        Monster strongestDefender = defensiveCards.get(0);
+        for (Monster monster:defensiveCards){
+            if (strongestDefender.getHP() < monster.getHP())
+                strongestDefender = monster;
+        }
+        return strongestDefender;
     }
 }

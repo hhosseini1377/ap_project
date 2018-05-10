@@ -61,6 +61,6 @@ public class Vampires extends Warrior {
     }
 
     public Card decideMove(MonsterField OpponentMonsterField, SpellField OpponentSpellField){
-
+        return new Card();
     }
 }

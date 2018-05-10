@@ -33,4 +33,8 @@ public abstract class Amulet {
     public String detail(){
         return "nothing special";
     }
+
+    public int hashCode(){
+        return super.hashCode();
+    }
 }

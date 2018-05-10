@@ -15,7 +15,7 @@ public class VampirePrince extends General{
     private String battleCryName = "Darkness";
 
     public VampirePrince(){
-        name = "Vampire Prince";
+        name = "VampirePrince";
         initialHP = 2000;
         initialAP = 2200;
         HP = 2000;

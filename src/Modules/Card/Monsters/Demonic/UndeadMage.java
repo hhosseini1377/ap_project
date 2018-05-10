@@ -29,7 +29,7 @@ public class UndeadMage extends SpellCaster{
     }
 
     @Override
-    public void castSpell(ArrayList<Monster> cards) {
-        cards.get((int)(Math.random() * cards.size())).decreaseAP(500);
+    public void castSpell(ArrayList<Monster> enemyCards, ArrayList<Monster> friendlyCards) {
+        enemyCards.get((int)(Math.random() * enemyCards.size())).decreaseAP(500);
     }
 }

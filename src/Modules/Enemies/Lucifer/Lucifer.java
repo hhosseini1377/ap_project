@@ -30,6 +30,6 @@ public class Lucifer extends Warrior{
     }
 
     public Card decideMove(MonsterField OpponentMonsterField, SpellField OpponentSpellField){
-
+        return new Card();
     }
 }

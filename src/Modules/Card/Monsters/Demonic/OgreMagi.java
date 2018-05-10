@@ -1,5 +1,6 @@
 package Modules.Card.Monsters.Demonic;
 
+import Modules.Card.Card;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
@@ -28,7 +29,7 @@ public class OgreMagi extends SpellCaster{
         return spellName;
     }
 
-    public void castSpell(ArrayList<Monster> monsters){
-        monsters.get((int)(Math.random() * monsters.size())).increaseAP(400);
+    public void castSpell(ArrayList<Monster> enemyCards, ArrayList<Monster> friendlyCards){
+        enemyCards.get((int)(Math.random() * enemyCards.size())).increaseAP(400);
     }
 }

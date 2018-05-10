@@ -12,7 +12,7 @@ public class GoblinShaman extends SpellCaster{
     private String spellName = "mend";
 
     public GoblinShaman(){
-        this.name = "GoblinShaman";
+        this.name = "Goblin Shaman";
         this.initialHP = 1000;
         this.HP = 1000;
         this.initialAP = 700;

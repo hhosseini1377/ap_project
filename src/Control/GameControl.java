@@ -66,7 +66,7 @@ public class GameControl {
         String line;
         //reading line by line to create normal monsters
         while((line = fileReader.readLine()) != null) {
-            String parts[] = line.split(" ");
+            String parts[] = line.split("-");
             Card monster = new Normal(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), Boolean.parseBoolean(parts[4]),Boolean.parseBoolean(parts[5]), parts[6]);
             cards.add(monster);
             cardHashMap.put(monster.getName(), monster);
@@ -159,11 +159,11 @@ public class GameControl {
             String parts[] = line.split(" -");
             if (parts.length != 1){
                 if (shopName.equals("items:")){
-                    for (int i = 0; i < Integer.parseInt(parts[1]); i++)
+                    //we have indefinite numbers of items in shop
                         itemShop.addItem(itemHashMap.get(parts[0]));
                 }
                 if (shopName.equals("amulets:")){
-                    for (int i = 0; i < Integer.parseInt(parts[1]); i++)
+                    //from every amulet we have one
                         amuletShop.addAmulet(amuletHashMap.get(parts[0]));
                 }
                 if (shopName.equals("cards:")){

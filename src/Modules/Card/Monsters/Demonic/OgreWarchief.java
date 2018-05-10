@@ -13,7 +13,7 @@ public class OgreWarchief extends General{
     private String battleCryName = "Last Order";
 
     public OgreWarchief(){
-        name = "OgreWarchief";
+        name = "Ogre Warchief";
         initialAP = 1500;
         initialHP = 2500;
         HP = 2500;

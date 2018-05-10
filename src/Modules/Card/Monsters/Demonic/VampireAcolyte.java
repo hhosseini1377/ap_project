@@ -11,7 +11,7 @@ public class VampireAcolyte extends SpellCaster{
     private String spellName = "Black Wave";
 
     public VampireAcolyte(){
-        name = "VampireAcolyte";
+        name = "Vampire Acolyte";
         HP = 1500;
         initialHP = 1500;
         AP = 1500;

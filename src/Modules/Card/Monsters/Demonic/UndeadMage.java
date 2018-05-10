@@ -11,7 +11,7 @@ public class UndeadMage extends SpellCaster{
     private String spellName = "Curse";
 
     public UndeadMage(){
-        name = "UndeadMage";
+        name = "Undead Mage";
         HP = 800;
         initialHP = 800;
         AP = 1000;

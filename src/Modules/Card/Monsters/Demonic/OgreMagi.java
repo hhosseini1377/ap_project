@@ -11,7 +11,7 @@ public class OgreMagi extends SpellCaster{
     private String spellName = "Enrage";
 
     public OgreMagi(){
-        name = "OgreMagi";
+        name = "Ogre Magi";
         HP = 1500;
         initialHP = 1500;
         AP = 800;

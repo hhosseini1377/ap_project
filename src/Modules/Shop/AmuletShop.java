@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AmuletShop {
-    private ArrayList<Amulet> amulets;
+    private ArrayList<Amulet> amulets;  //TODO is it really needed?
     private HashMap<String, Amulet> amuletHashMap;
 
     public AmuletShop() {

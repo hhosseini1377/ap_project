@@ -29,12 +29,12 @@ public class Goblins extends Warrior {
         Normal goblinSumggler = new Normal("GoblinSmuggler",600, 400,2, false, true, "DEMONIC");
         GoblinShaman goblinShaman = new GoblinShaman();
         ThrowingKnives throwingKnives = new ThrowingKnives();
-        for (int i = 0; i < 10; i++)
-            deck.add(goblinSumggler);
-        for (int i = 0; i < 5; i++)
-            deck.add(goblinShaman);
-        for (int i = 0; i < 5; i++)
-            deck.add(throwingKnives);
+//        for (int i = 0; i < 10; i++)
+            deck.add(goblinSumggler, 10);
+//        for (int i = 0; i < 5; i++)
+            deck.add(goblinShaman, 5);
+//        for (int i = 0; i < 5; i++)
+            deck.add(throwingKnives, 5);
     }
 
     public Card decideMove(MonsterField OpponentMonsterField, SpellField OpponentSpellField){

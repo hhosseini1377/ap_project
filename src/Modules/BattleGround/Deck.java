@@ -25,17 +25,22 @@ public class Deck {
         return (cards.size() < 30);
     }
 
+    public boolean hasPlace(int number){
+        return (cards.size() <= 30 - number);
+    }
+
     public boolean isAcceptable(){
         return (cards.size() >= 25 && cards.size() <= 30);
     }
 
-    public void add(Card card){
-        if (this.hasPlace()) {
+    public void add(Card card, int cardNum){
+        if (this.hasPlace(cardNum)) {
             if (numberOfCards.containsKey(card.getName()))
-                numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + 1);
-            else
-                numberOfCards.put(card.getName(), 1);
-            cards.add(card);
+                numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + cardNum);
+            else {
+                numberOfCards.put(card.getName(), cardNum);
+                cards.add(card);
+            }
         }else {
             System.out.println("deck is full");
         }
@@ -54,9 +59,10 @@ public class Deck {
     }
 
     public void remove(Card card){
-        cards.remove(card);
-        if (numberOfCards.get(card.getName()) - 1 == 0)
+        if (numberOfCards.get(card.getName()) - 1 == 0) {
+            cards.remove(card);
             numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) - 1);
+        }
         else
             numberOfCards.remove(card.getName());
     }

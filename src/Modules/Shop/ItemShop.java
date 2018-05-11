@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ItemShop {
-//    private ArrayList<Item> items;
+    private ArrayList<Item> items;
     private HashMap<String, Item> itemsHashMap;
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
 
     public ItemShop() {
         itemsHashMap = new HashMap<>();
@@ -19,7 +23,10 @@ public class ItemShop {
 
     public void addItem(Item item){
 //        items.add(item);
-        itemsHashMap.put(item.getName(), item);
+        if (!itemsHashMap.containsKey(item.getName())) {
+            itemsHashMap.put(item.getName(), item);
+            items.add(item);
+        }
     }
 
     public int gillCost(String itemName){

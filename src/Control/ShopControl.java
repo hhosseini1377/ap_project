@@ -76,7 +76,7 @@ public class ShopControl {
             for(int counter =0;counter<numberToBuy;counter++) {
                 User.buy(ItemShop.getItem(itemName).getGillCost());
                 User.getItemInventory().add(ItemShop.getItem(itemName));
-                ItemShop.removeItem(itemName);
+//                ItemShop.RemoveItem(itemName);
             }
             return true;
         }
@@ -117,26 +117,11 @@ public class ShopControl {
     }
 
     public boolean sellAmulet(String amuletName,int numberToSell){
-        if(User.getBackPack().getAmulet().getName().equals(amuletName)) {
-            if (User.getAmuletInventory().getNumberOfAmulets(amuletName) - 1 >= numberToSell) {
-                for (int counter = 0; counter < numberToSell; counter++)
-                    User.getAmuletInventory().remove(amuletName);
-                return true;
-            }
-            else{
-                return false;
-            }
+        if (User.getAmuletInventory().hasAmulet(amuletName) && !User.getBackPack().getAmulet().getName().equals(amuletName)) {
+            User.getAmuletInventory().remove(amuletName);
+            return true;
         }
-        else{
-            if(User.getAmuletInventory().getNumberOfAmulets(amuletName) >= numberToSell){
-                for(int counter=0;counter<numberToSell;counter++)
-                    User.getAmuletInventory().remove(amuletName);
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
+        return false;
     }
 
 

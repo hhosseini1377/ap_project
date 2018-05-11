@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AmuletShop {
-    private ArrayList<Amulet> amulets;  //TODO is it really needed?
+    private ArrayList<Amulet> amulets;
     private HashMap<String, Amulet> amuletHashMap;
 
     public AmuletShop() {
@@ -14,12 +14,15 @@ public class AmuletShop {
         amulets = new ArrayList<>();
     }
 
-    public void addAmulet(Amulet amulet){
-
+    public ArrayList<Amulet> getAmulets() {
+        return amulets;
     }
 
-    public ArrayList<Amulet> GetAmulets(){
-        return amulets;
+    public void addAmulet(Amulet amulet){
+        if (amulets.contains(amulet)){
+            amulets.add(amulet);
+            amuletHashMap.put(amulet.getName(), amulet);
+        }
     }
 
     public Amulet getAmulet(String AmuletName){

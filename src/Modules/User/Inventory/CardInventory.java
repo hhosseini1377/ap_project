@@ -57,7 +57,7 @@ public class CardInventory{
     }
 
     public void equip(String name){
-        deck.add(cardMap.get(name));
+        deck.add(cardMap.get(name), 1);
     }
 
     public void disequip(String name){

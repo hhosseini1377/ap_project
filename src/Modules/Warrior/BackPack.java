@@ -23,12 +23,13 @@ public class BackPack {
         return amulet;
     }
 
-    public void add(Item item){
+    public void add(Item item, int itemNumber){
         if (numberOfItems.containsKey(item.getName()))
-            numberOfItems.replace(item.getName(), numberOfItems.get(item.getName() + 1));
-        else
-            numberOfItems.put(item.getName(), 1);
-        items.add(item);
+            numberOfItems.replace(item.getName(), numberOfItems.get(item.getName() + itemNumber));
+        else {
+            numberOfItems.put(item.getName(), itemNumber);
+            items.add(item);
+        }
     }
 
     public void add(Amulet amulet){
@@ -39,9 +40,10 @@ public class BackPack {
     }
 
     public void remove(Item item){
-        items.remove(item);
-        if (numberOfItems.get(item.getName()) - 1 == 0)
+        if (numberOfItems.get(item.getName()) - 1 == 0) {
+            items.remove(item);
             numberOfItems.remove(item.getName());
+        }
         else
             numberOfItems.replace(item.getName(), numberOfItems.get(item.getName()) - 1);
     }

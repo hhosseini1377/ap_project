@@ -36,18 +36,18 @@ public class Ogres extends Warrior {
         ThrowingKnives throwingKnives = new ThrowingKnives();
         PoisonousCauldron poisonousCauldron = new PoisonousCauldron();
         FirstAidKit firstAidKit = new FirstAidKit();
-        for (int i = 0; i < 4; i++)
-            deck.add(ogreFrontliner);
-        for (int i = 0; i < 6; i++)
-            deck.add(ogreWarrior);
-        for (int i = 0; i < 5; i++)
-            deck.add(throwingKnives);
-        for (int i = 0; i < 2; i++)
-            deck.add(ogreMagi);
-        for (int i = 0; i < 3; i++)
-            deck.add(firstAidKit);
-        deck.add(ogreWarchief);
-        deck.add(poisonousCauldron);
+//        for (int i = 0; i < 4; i++)
+        deck.add(ogreFrontliner,4);
+//        for (int i = 0; i < 6; i++)
+        deck.add(ogreWarrior,6);
+//        for (int i = 0; i < 5; i++)
+        deck.add(throwingKnives, 5);
+//        for (int i = 0; i < 2; i++)
+        deck.add(ogreMagi, 2);
+//        for (int i = 0; i < 3; i++)
+        deck.add(firstAidKit, 3);
+        deck.add(ogreWarchief, 1);
+        deck.add(poisonousCauldron, 1);
     }
 
     public Card decideMove(MonsterField OpponentMonsterField, SpellField OpponentSpellField){

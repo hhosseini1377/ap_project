@@ -103,6 +103,7 @@ public class BattleControl {
             System.out.println("Can Cast: " + ((Hero) monster).CanCast());
         }
         Scanner scan = new Scanner(System.in);
+
         while(true){
             switch (scan.next()){
                 case "Help":
@@ -115,44 +116,48 @@ public class BattleControl {
                 case "Exit":
                     return;
                 case "Attack":
-                    attack(warrior[0], monster, scan);
+                    monster.attack(warrior[0], scan);
                     return;
                 case "Cast":
                     if (monster instanceof SpellCaster) {
                         ((SpellCaster) monster).castSpell(warrior[0].getMonsterField().getMonsterCards(),
                                 warrior[1].getMonsterField().getMonsterCards());
-                    }
-
-                    if (monster instanceof Hero)
-                        ((Hero)monster).castSpell(warrior[0].getMonsterField().getMonsterCards(),
+                    }else if (monster instanceof Hero) {
+                        ((Hero) monster).castSpell(warrior[0].getMonsterField().getMonsterCards(),
                                 warrior[1].getMonsterField().getMonsterCards());
-
+                    }else{
+                        System.out.println("this warrior is neither a spell caster nor a hero");
+                    }
+                    break;
+                default:
+                    System.out.println("invalid input");
+                    break;
             }
         }
     }
 
-    /**
-     * attacks the targeted monster
-     */
-    public void attack(Warrior enemy, Monster monster, Scanner scan){
-        Monster targeted;
-        //checks if there are any defensive cards in the enemy field and if there was the defender will stop the combatant
-        if (enemy.getMonsterField().containDefensiveCard()){
-            targeted = enemy.getMonsterField().getDefensiveCard();
-            monster.attack(targeted);
-            return;
-        }
-        String target = scan.next();
-        if ((target.equals("Commander"))) {
-            targeted = enemy.getCommander();
-            monster.attack(enemy.getCommander());
-        }
-        else{
-            targeted = enemy.getMonsterField().getSlot(Integer.parseInt(target));
-            monster.attack(targeted);
-        }
-        System.out.println(monster.getName() + " clashed with " + targeted.getName());
-    }
+//    /**
+//     * attacks the targeted monster
+//     */
+//    public void attack(Warrior enemy, Monster monster, Scanner scan){
+//        Monster targeted;
+//        //checks if there are any defensive cards in the enemy field and if there was the defender will stop the combatant
+//        if (enemy.getMonsterField().containDefensiveCard()){
+//            targeted = enemy.getMonsterField().getDefensiveCard();
+//            monster.attack(targeted);
+//            return;
+//        }
+//        String target = scan.next();
+//        if ((target.equals("Commander"))) {
+//            targeted = enemy.getCommander();
+//            monster.attack(enemy.getCommander());
+//        }
+//        else{
+//            targeted = enemy.getMonsterField().getSlot(Integer.parseInt(target));
+//            monster.attack(targeted);
+//        }
+//        System.out.println(monster.getName() + " clashed with " + targeted.getName());
+//    }
 
     private void help(){
         System.out.println("1.\n" +

@@ -40,24 +40,18 @@ public class Vampires extends Warrior {
         GreaterPurge greaterPurge = new GreaterPurge();
         HealingWard healingWard = new HealingWard();
         WarDrum warDrum = new WarDrum();
-        for (int i = 0; i < 4; i++)
-            deck.add(undead);
-        for (int i = 0; i < 3; i++)
-            deck.add(giantBat);
-        for (int i = 0; i < 3; i++)
-            deck.add(stoutUndead);
-        for (int i = 0; i < 2; i++)
-            deck.add(undeadMage);
-        for (int i = 0; i < 3; i++)
-            deck.add(bloodFeast);
-        for (int i = 0; i < 2; i++)
-            deck.add(firstAidKit);
-        deck.add(vampireAcolyte);
-        deck.add(vampirePrince);
-        deck.add(warDrum);
-        deck.add(poisonousCauldron);
-        deck.add(healingWard);
-        deck.add(greaterPurge);
+        deck.add(undead, 4);
+        deck.add(giantBat, 3);
+        deck.add(stoutUndead, 3);
+        deck.add(undeadMage, 2);
+        deck.add(bloodFeast, 3);
+        deck.add(firstAidKit, 2);
+        deck.add(vampireAcolyte, 1);
+        deck.add(vampirePrince, 1);
+        deck.add(warDrum, 1);
+        deck.add(poisonousCauldron, 1);
+        deck.add(healingWard, 1);
+        deck.add(greaterPurge, 1);
     }
 
     public Card decideMove(MonsterField OpponentMonsterField, SpellField OpponentSpellField){

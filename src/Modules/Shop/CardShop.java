@@ -10,10 +10,15 @@ import java.util.HashMap;
 public class CardShop {
     private ArrayList<Card> availableCards;
     private HashMap<String,Card> cardsHashMap;
+    private HashMap<String, Integer> numberOfCards;
 
     public CardShop() {
         availableCards = new ArrayList<>();
         cardsHashMap = new HashMap<>();
+    }
+
+    public int getNumberOfCard(String name) {
+        return numberOfCards.get(name);
     }
 
     public ArrayList<Card> getCards() {

@@ -3,6 +3,7 @@ package Control;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Normal;
+import Modules.Card.Spell.*;
 import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
 import Modules.Shop.AmuletShop;
@@ -13,8 +14,12 @@ import Modules.User.Inventory.CardInventory;
 import Modules.User.Inventory.ItemInventory;
 import Modules.User.User;
 import Modules.Warrior.BackPack;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
+import javax.imageio.IIOException;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -74,6 +79,13 @@ public class GameControl {
 
         //TODO instantiate other types of monster cards
         //TODO instantiate spells
+        cardHashMap.put("Blood Feast", new BloodFeast());
+        cardHashMap.put("First Aid Kit", new FirstAidKit());
+        cardHashMap.put("Healing War", new HealingWard());
+        cardHashMap.put("Greater Purge", new GreaterPurge());
+        cardHashMap.put("Poisonous Cauldron", new PoisonousCauldron());
+        cardHashMap.put("Throwing Knives", new ThrowingKnives());
+        cardHashMap.put("War Drum", new WarDrum());
         //TODO instantiate commanders
         //TODO instantiate items
         //TODO instantiate amulets
@@ -98,12 +110,10 @@ public class GameControl {
         this.backPack = new BackPack();
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
-            for (int i = 0; i < Integer.parseInt(parts[1]); i++) {
-                if (itemHashMap.containsKey(parts[0]))
-                    this.backPack.add(itemHashMap.get(parts[0]));
-                else
-                    this.backPack.add(amuletHashMap.get(parts[0]));
-            }
+            if (itemHashMap.containsKey(parts[0]))
+                this.backPack.add(itemHashMap.get(parts[0]), Integer.parseInt(parts[1]));
+            else
+                this.backPack.add(amuletHashMap.get(parts[0]));
         }
     }
     //readying the deck
@@ -113,8 +123,12 @@ public class GameControl {
         this.deck = new Deck();
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
-            for (int i = 0; i < Integer.parseInt(parts[1]); i++){
-                this.deck.add(cardHashMap.get(parts[0]));
+            try {
+                if (!cardHashMap.containsKey(parts[0]))
+                    throw new CardException("card not available");
+                this.deck.add(cardHashMap.get(parts[0]), Integer.parseInt(parts[1]));
+            }catch (CardException e){
+                System.out.println("");
             }
         }
     }
@@ -237,25 +251,72 @@ public class GameControl {
      */
     // TODO needs to be completed
     private void saveGame() throws IOException{
-        FileWriter fileWriter = new FileWriter(fileDirectory + "backPack.txt", false);
+        FileWriter fileWriter = null;
+        saveBackPack(fileWriter);
+        saveDeck(fileWriter);
+        saveInventory(fileWriter);
+        saveShop(fileWriter);
+        fileWriter = new FileWriter(fileDirectory + "userInfo.txt", false);
+        fileWriter.write("level:" + user.getLevel());
+        fileWriter.write("gills:" + user.getGills());
+    }
 
-        
-////        for (Item item:backPack.)
-//        Item lastItem = backPack.getItems().get(0);
-//        int count = 0;
-//        for(Item item:backPack.getItems()) {
-//            if (!lastItem.equals(item)) {
-//                fileWriter.write(lastItem.toString() + count);
-//                count = 1;
-//            }
-//            else{
-//                count++;
-//            }
-//            lastItem = item;
-//        }
-//        Amulet amulet = backPack.getAmulet();
-//        fileWriter.write(amulet.toString());
+    private void saveBackPack(FileWriter fileWriter) throws IOException{
+        fileWriter = new FileWriter(fileDirectory + "backPack.txt", false);
+        for (Item item:backPack.getItems()) {
+            fileWriter.write(item.getName() + " -" + backPack.getNumberOfItems(item.getName()) + "\n");
+        }
+        if (backPack.getAmulet() != null) {
+            fileWriter.write(backPack.getAmulet().getName());
+        }
+        fileWriter.close();
+    }
 
+    private void saveDeck(FileWriter fileWriter) throws IOException{
+        fileWriter = new FileWriter(fileDirectory + "deck.txt", false);
+        for (Card card:deck.getCards()) {
+            fileWriter.write(card.getName() + " -" + deck.getNumberOfCards(card.getName()) + "\n");
+        }
+        fileWriter.close();
+    }
+
+    private void saveInventory(FileWriter fileWriter) throws IOException{
+        fileWriter = new FileWriter(fileDirectory + "inventory.txt", false);
+
+        fileWriter.write("items:\n");
+        for (Item item:itemInventory.getItems()){
+            fileWriter.write(item.getName() + " -" + itemInventory.getNumberOfItem(item.getName()) + "\n");
+        }
+
+        fileWriter.write("amulets:\n");
+        for (Amulet amulet:amuletInventory.getAmulets()){
+            fileWriter.write(amulet.getName() +  "\n");
+        }
+
+        fileWriter.write("cards:\n");
+        for (Card card:cardInventory.getCards()){
+            fileWriter.write(card.getName() + " -" + cardInventory.getNumberOfCards(card.getName()) + "\n");
+        }
+        fileWriter.close();
+    }
+
+    private void saveShop(FileWriter fileWriter) throws IOException{
+        fileWriter = new FileWriter(fileDirectory + "shop.txt");
+
+        fileWriter.write("items:\n");
+        for (Item item:itemShop.getItems()){
+            fileWriter.write(item.getName() +  "\n");
+        }
+
+        fileWriter.write("amulets:\n");
+        for (Amulet amulet:amuletShop.getAmulets()){
+            fileWriter.write(amulet.getName() + "\n");
+        }
+
+        fileWriter.write("cards:\n");
+        for (Card card:cardShop.getCards()){
+            fileWriter.write(card.getName() + " -" + cardShop.getNumberOfCard(card.getName()) + "\n");
+        }
         fileWriter.close();
     }
 
@@ -266,12 +327,44 @@ public class GameControl {
      */
     // TODO needs to be completed
     public void endGame(){
-        try{
-            saveGame();
-        }catch (IOException e){
-            System.out.println("file output problem");
+        System.out.println("Do you want to save the game?(Yes, No)");
+        Scanner scan = new Scanner(System.in);
+        switch (scan.next()){
+            case "Yes":
+                try{
+                    saveGame();
+                }catch (IOException e){
+                    System.out.println("file output problem");
+                }
+                break;
+            case "No":
+                break;
+            case "reset":
+                resetGame();
+            default:
+                System.out.println("invalid input");
+                break;
         }
         System.exit(0);
+    }
+
+    /**
+     * restarting the data of the game via copying the initial game data which is saved in "initial" folder
+     * in "save" folder which is the source of the data in our game
+     */
+    private void resetGame(){
+        String path1 = "/home/gilgamesh/Desktop/Programs/Java/Project/projectAp/src/Files/initial/";
+        String path2 = "/home/gilgamesh/Desktop/Programs/Java/Project/projectAp/src/Files/save/";
+        try {
+            Files.copy(Paths.get(path1 + "backPack.txt"), new FileOutputStream(path2 + "backPack.txt"));
+            Files.copy(Paths.get(path1 + "deck.txt"), new FileOutputStream(path2 + "deck.txt"));
+            Files.copy(Paths.get(path1 + "inventory.txt"), new FileOutputStream(path2 + "inventory.txt"));
+            Files.copy(Paths.get(path1 + "shop.txt"), new FileOutputStream(path2 + "shop.txt"));
+            Files.copy(Paths.get(path1 + "UserInfo.txt"), new FileOutputStream(path2 + "UserInfo.txt"));
+            System.out.println("the data of the game has been reset,\nrestart the game to notice the change.");
+        }catch (IOException e){
+            System.out.println("File not found!");
+        }
     }
 
     public String getFileDirectory() {
@@ -292,5 +385,11 @@ public class GameControl {
 
     public User getUser() {
         return user;
+    }
+}
+
+class CardException extends Exception{
+    CardException(String detail){
+        System.out.println(detail);
     }
 }

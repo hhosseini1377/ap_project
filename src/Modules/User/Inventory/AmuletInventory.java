@@ -11,14 +11,14 @@ import java.util.List;
 public class AmuletInventory {
     private BackPack backPack;
     private HashMap<String, Amulet> amuletMap;
-    private HashMap<String, Integer> numberOfAmulet;
+//    private HashMap<String, Integer> numberOfAmulet;
     private ArrayList<Amulet> amulets;
 
     public AmuletInventory(BackPack backPack) {
         this.backPack = backPack;
         amuletMap = new HashMap<>();
         amulets = new ArrayList<>();
-        numberOfAmulet = new HashMap<>();
+//        numberOfAmulet = new HashMap<>();
     }
 
     public ArrayList<Amulet> getAmulets() {
@@ -34,26 +34,14 @@ public class AmuletInventory {
     }
 
     public void add(Amulet amulet){
-        if (numberOfAmulet.containsKey(amulet.getName())){
-            numberOfAmulet.replace(amulet.getName(), numberOfAmulet.get(amulet.getName()) + 1);
-        }else{
-            numberOfAmulet.put(amulet.getName(), 1);
+        if (!amulets.contains(amulet)) {
+            this.amulets.add(amulet);
+            this.amuletMap.put(amulet.getName(), amulet);
         }
-        this.amulets.add(amulet);
-        this.amuletMap.put(amulet.getName(), amulet);
     }
 
-    public int getNumberOfAmulet(Amulet amulet){
-        if (numberOfAmulet.containsKey(amulet.getName()))
-            return numberOfAmulet.get(amulet.getName());
-        return 0;
-    }
-
-    public int getNumberOfAmulets(String AmuletName){
-        if(numberOfAmulet.containsKey(AmuletName)){
-            return numberOfAmulet.get(AmuletName);
-        }
-        return 0;
+    public boolean hasAmulet(String amuletName){
+        return amuletMap.containsKey(amuletName);
     }
 
     public void equip(String name){
@@ -65,7 +53,8 @@ public class AmuletInventory {
     }
 
     public void remove(String name){
-        numberOfAmulet.replace(amuletMap.get(name).getName(), numberOfAmulet.get(amuletMap.get(name).getName()) + 1);
+//        numberOfAmulet.replace(amuletMap.get(name).getName(), numberOfAmulet.get(amuletMap.get(name).getName()) + 1);
+        amulets.remove(amuletMap.get(name));
         amuletMap.remove(name);
     }
 

@@ -56,7 +56,7 @@ public class ItemInventory {
     }
 
     public void equip(String name){
-        backPack.add(itemMap.get(name));
+        backPack.add(itemMap.get(name), 1);
     }
 
     public void disequip(String name){

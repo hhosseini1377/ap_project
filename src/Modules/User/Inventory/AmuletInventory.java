@@ -11,7 +11,7 @@ import java.util.List;
 public class AmuletInventory {
     private BackPack backPack;
     private HashMap<String, Amulet> amuletMap;
-//    private HashMap<String, Integer> numberOfAmulet;
+    private HashMap<String, Integer> numberOfAmulet;
     private ArrayList<Amulet> amulets;
 
     public AmuletInventory(BackPack backPack) {
@@ -58,4 +58,7 @@ public class AmuletInventory {
         amuletMap.remove(name);
     }
 
+    public HashMap<String, Integer> getNumberOfAmulet() {
+        return numberOfAmulet;
+    }
 }

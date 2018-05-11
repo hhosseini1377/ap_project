@@ -27,6 +27,7 @@ public class CardInventory{
     }
 
 
+
     public Deck getDeck() {
         return deck;
     }
@@ -48,6 +49,10 @@ public class CardInventory{
         if (numberOfCards.containsKey(card.getName()))
             return numberOfCards.get(card.getName());
         return 0;
+    }
+
+    public HashMap<String, Integer> getNumberOfCards() {
+        return numberOfCards;
     }
 
     public int getNumberOfCards(String cardName){

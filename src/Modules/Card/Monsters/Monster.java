@@ -90,6 +90,10 @@ public abstract class Monster extends Card{
         this.monsterKind = monsterKind;
     }
 
+    public MonsterTribe getMonsterTribe() {
+        return monsterTribe;
+    }
+
     public void increaseHP(int points){
         this.HP += points;
     }

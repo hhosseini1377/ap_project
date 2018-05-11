@@ -24,6 +24,10 @@ public class ItemInventory {
         return items;
     }
 
+    public Item getItem(String itemName){
+        return itemMap.get(itemName);
+    }
+
     public BackPack getBackPack() {
         return backPack;
     }
@@ -52,7 +56,10 @@ public class ItemInventory {
         if(numberOfItem.containsKey(itemName))
             return numberOfItem.get(itemName);
         return 0;
+    }
 
+    public HashMap<String, Integer> getNumberOfItem() {
+        return numberOfItem;
     }
 
     public void equip(String name){

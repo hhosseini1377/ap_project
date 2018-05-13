@@ -1,4 +1,4 @@
 package Modules.Card.Spell;
 
-public class LunarBlessing {
+public class LunarBlessing extends Spell {
 }

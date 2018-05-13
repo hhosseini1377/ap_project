@@ -1,4 +1,4 @@
 package Modules.Card.Spell;
 
-public class StrategicRetreat {
+public class StrategicRetreat extends Spell {
 }

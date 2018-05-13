@@ -1,4 +1,4 @@
 package Modules.Card.Spell;
 
-public class MeteorShower {
+public class MeteorShower extends Spell {
 }

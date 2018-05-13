@@ -1,4 +1,4 @@
 package Modules.Card.Spell;
 
-public class Tsunami {
+public class Tsunami extends Spell {
 }

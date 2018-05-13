@@ -1,4 +1,4 @@
 package Modules.Card.Spell;
 
-public class ArcaneBolt {
+public class ArcaneBolt extends Spell {
 }

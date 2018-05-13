@@ -84,7 +84,28 @@ public class GameControl {
             cards.add(monster);
             cardHashMap.put(monster.getName(), monster);
         }
+        monsterStart();
+        spellStart();
+        itemStart();
+        //TODO instantiate amulets
+        //TODO instantiate commanders
+        backPackStart();
+        deckStart();
+        inventoryStart();
+        shopStart();
+        //starting the user object
+        int gills;
+        int level;
+        fileReader = new BufferedReader(new FileReader(fileDirectory + "userInfo.txt"));
+        level = Integer.parseInt(fileReader.readLine().split(":")[1]);
+        gills = Integer.parseInt(fileReader.readLine().split(":")[1]);
+        user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, "player1", backPack);
+        fileReader.close();
+        shopControl = new ShopControl(cardShop, itemShop, amuletShop, user);
+    }
 
+    //initializing the monster cards and thus the maps
+    private void monsterStart(){
         //TODO instantiate other types of monster cards
         cardHashMap.put("Kraken", new Kraken());
         cardHashMap.put("Naga Siren", new NagaSiren());
@@ -100,7 +121,10 @@ public class GameControl {
         cardHashMap.put("Elven Druid", new ElvenDruid());
         cardHashMap.put("Elven Sorceress", new ElvenSorceress());
         cardHashMap.put("Noble Elf", new NobleElf());
-        //TODO instantiate spells
+    }
+
+    //initializing the spell cards and thus the maps
+    private void spellStart(){
         cardHashMap.put("Blood Feast", new BloodFeast());
         cardHashMap.put("First Aid Kit", new FirstAidKit());
         cardHashMap.put("Healing Ward", new HealingWard());
@@ -108,7 +132,18 @@ public class GameControl {
         cardHashMap.put("Poisonous Cauldron", new PoisonousCauldron());
         cardHashMap.put("Throwing Knives", new ThrowingKnives());
         cardHashMap.put("War Drum", new WarDrum());
-        //TODO instantiate commanders
+        cardHashMap.put("Reaper's Scythe", new ReaperScythe());
+        cardHashMap.put("Meteor Shower", new MeteorShower());
+        cardHashMap.put("Lunar Blessing", new LunarBlessing());
+        cardHashMap.put("Strategic Retreat", new StrategicRetreat());
+        cardHashMap.put("Tsunami", new Tsunami());
+        cardHashMap.put("Take All You Can", new TakeAllYouCan());
+        cardHashMap.put("Arcane Bolt", new ArcaneBolt());
+        cardHashMap.put("Magic Seal", new MagicSeal());
+    }
+
+    //initializing the items and thus the maps
+    private void itemStart(){
         GreaterRestorative greaterRestorative= new GreaterRestorative();
         itemHashMap.put(greaterRestorative.getName(), greaterRestorative);
         LargeHPPotion largeHPPotion = new LargeHPPotion();
@@ -126,22 +161,8 @@ public class GameControl {
         SmallMPPotion smallMPPotion = new SmallMPPotion();
         itemHashMap.put(smallMPPotion.getName(), smallMPPotion);
         itemHashMap.put("Mystic Hourglass", new MysticHourglass());
-        //TODO instantiate amulets
-
-        backPackStart();
-        deckStart();
-        inventoryStart();
-        shopStart();
-        //starting the user object
-        int gills;
-        int level;
-        fileReader = new BufferedReader(new FileReader(fileDirectory + "userInfo.txt"));
-        level = Integer.parseInt(fileReader.readLine().split(":")[1]);
-        gills = Integer.parseInt(fileReader.readLine().split(":")[1]);
-        user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, "player1", backPack);
-        fileReader.close();
-        shopControl = new ShopControl(cardShop, itemShop, amuletShop, user);
     }
+
     //readying the backPack
     private void backPackStart() throws IOException{
         String line;
@@ -155,6 +176,7 @@ public class GameControl {
                 this.backPack.add(amuletHashMap.get(parts[0]));
         }
     }
+
     //readying the deck
     private void deckStart()throws IOException{
         String line;
@@ -171,6 +193,7 @@ public class GameControl {
             }
         }
     }
+
     //readying the inventory
     private void inventoryStart()throws IOException{
         itemInventory = new ItemInventory(backPack);
@@ -200,6 +223,7 @@ public class GameControl {
         }
 
     }
+
     //readying the shops
     private void shopStart()throws IOException{
         itemShop = new ItemShop();

@@ -1,4 +1,4 @@
 package Modules.Card.Spell;
 
-public class MagicSeal {
+public class MagicSeal extends Spell {
 }

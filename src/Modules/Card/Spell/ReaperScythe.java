@@ -1,4 +1,4 @@
 package Modules.Card.Spell;
 
-public class ReaperScythe {
+public class ReaperScythe extends Spell {
 }

@@ -12,11 +12,13 @@ import Modules.Warrior.Warrior;
 import java.util.ArrayList;
 
 public class VampirePrince extends General{
-    private String willName = "Fear";
-    private String battleCryName = "Darkness";
+    private String willName = "Darkness";
+    private String willDetail = "Reduce all enemy monsters' AP by 200 and increase all friendly monsters' AP by 200";
+    private String battleCryName = "Fear";
+    private String battleCryDetail = "Return two random enemy cards from field to hand";
 
     public VampirePrince(){
-        name = "VampirePrince";
+        name = "Vampire Prince";
         initialHP = 2000;
         initialAP = 2200;
         HP = 2000;
@@ -55,5 +57,15 @@ public class VampirePrince extends General{
     public void battleCry(Warrior enemy, Warrior friend) {
         enemy.getMonsterField().getMonsterCards().forEach(card -> ((Monster) card).decreaseAP(200));
         friend.getMonsterField().getMonsterCards().forEach(card -> ((Monster) card).increaseAP(200));
+    }
+
+    @Override
+    public String willDetail() {
+        return this.willDetail;
+    }
+
+    @Override
+    public String battleCryDetail() {
+        return this.battleCryDetail;
     }
 }

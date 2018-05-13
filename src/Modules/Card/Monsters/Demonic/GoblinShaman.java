@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class GoblinShaman extends SpellCaster{
     private String spellName = "mend";
+    private String spellDetail = "Increase a friendly monster card or player's HP by 400";
 
     public GoblinShaman(){
         this.name = "Goblin Shaman";
@@ -38,5 +39,10 @@ public class GoblinShaman extends SpellCaster{
 
     public String getSpellName() {
         return spellName;
+    }
+
+    @Override
+    public String spellDetail() {
+        return spellDetail;
     }
 }

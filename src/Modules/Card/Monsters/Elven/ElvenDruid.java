@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class ElvenDruid extends SpellCaster{
     private String spellName = "Rejuvenation";
+    private String spellDetail = " Increase a selected friendly monster card’s HP by 500 and AP by 300";
 
     public ElvenDruid(){
         name = "Elven Druid";
@@ -77,5 +78,10 @@ public class ElvenDruid extends SpellCaster{
                     break;
             }
         }
+    }
+
+    @Override
+    public String spellDetail() {
+        return spellDetail;
     }
 }

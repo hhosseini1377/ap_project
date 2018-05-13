@@ -10,8 +10,10 @@ import Modules.Warrior.Warrior;
 import java.util.ArrayList;
 
 public class OgreWarchief extends General{
-    private String willName = "War Stomp";
-    private String battleCryName = "Last Order";
+    private String willName = "Last Order";
+    private String willDetail = "Increase all friendly monsters by 300";
+    private String battleCryName = "War Stomp";
+    private String battleCryDetail = "Deal 400 damage to all enemy monsters and player";
 
     public OgreWarchief(){
         name = "Ogre Warchief";
@@ -45,5 +47,16 @@ public class OgreWarchief extends General{
     public void battleCry(Warrior enemy, Warrior friend) {
         enemy.getMonsterField().getMonsterCards().
                 forEach(card -> ((Monster) card).decreaseHP(400));
+        enemy.getCommander().decreaseHP(400);
+    }
+
+    @Override
+    public String willDetail() {
+        return this.willDetail;
+    }
+
+    @Override
+    public String battleCryDetail() {
+        return this.battleCryDetail;
     }
 }

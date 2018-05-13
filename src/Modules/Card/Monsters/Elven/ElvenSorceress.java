@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class ElvenSorceress extends SpellCaster{
     private String spellName = "Arcane Explosion";
+    private String spellDetail = " Increase a selected friendly monster card’s HP by 500 and AP by 300";
 
     public ElvenSorceress(){
         name = "Elven Sorceress";
@@ -31,10 +32,6 @@ public class ElvenSorceress extends SpellCaster{
         return spellName;
     }
 
-    protected void cast(Card card){
-        ((Monster) card).increaseAP(400);
-    }
-
     public void castSpell(Warrior enemy, Warrior friend){
         if (!CanCast()) {
             System.out.println("this monster cannot cast now");
@@ -49,5 +46,10 @@ public class ElvenSorceress extends SpellCaster{
         }catch (Exception e){
             System.out.println("Spell field empty!" + e.toString());
         }
+    }
+
+    @Override
+    public String spellDetail() {
+        return spellDetail;
     }
 }

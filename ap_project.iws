@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a5eb11-0777-456e-bd3d-86da228e18b2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/ap_project.ipr" afterPath="$PROJECT_DIR$/ap_project.ipr" />
       <change beforePath="$PROJECT_DIR$/ap_project.iws" afterPath="$PROJECT_DIR$/ap_project.iws" />
+      <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,7 +86,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -109,6 +108,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView" />
@@ -241,11 +241,13 @@
       <workItem from="1525198905644" duration="99000" />
       <workItem from="1525797489026" duration="38000" />
       <workItem from="1525797532047" duration="3000" />
+      <workItem from="1526040271749" duration="2000" />
+      <workItem from="1526040302921" duration="1000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11158000" />
+    <option name="totallyTimeSpent" value="11161000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="814" extended-state="0" />

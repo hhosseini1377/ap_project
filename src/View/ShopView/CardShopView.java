@@ -10,17 +10,16 @@ public class CardShopView {
     /**
      * entrance Print
      * @param availableShopCards Comes from shopcontroller
-     * @param inventoryCards Comes from shopcontroller
      */
-    public void PrintCardShopDetails(ArrayList<Card> availableShopCards, ArrayList<Card> inventoryCards) {
-        int CardNumber = 0;
+    public void PrintCardShopDetails(ArrayList<Card> availableShopCards,HashMap<String,Integer> numberOfCards) {
+        int CardNumber = 1;
         for (Card card : availableShopCards) {
-            System.out.println(CardNumber++ + card.getName() + card.getGillCost());
+            System.out.println(CardNumber++ + ". " +  card.getName() + " " +card.getGillCost());
         }
-        CardNumber = 0;
-        for (Card card : inventoryCards) {
-            System.out.println(CardNumber++ + card.getName());
-        }
+        numberOfCards.forEach((key,value) -> {
+            System.out.println(value + " " + key);
+        });
+
     }
 
     public void PrintCardShopHelpDetails() {
@@ -48,8 +47,8 @@ public class CardShopView {
         }
     }
 
-    public void printInfoOfGeneralMonsterCard(String cardName,int defaultHP,int defaultAP,int MPcost,MonsterKind monsterKind,MonsterTribe monsterTribe,boolean isDefencive,boolean isNimble,String Details){
-        System.out.println(cardName + " info:");
+    public void printInfoOfMonsterCard(String cardName,int defaultHP,int defaultAP,int MPcost,MonsterKind monsterKind,MonsterTribe monsterTribe,boolean isDefencive,boolean isNimble,String Details){
+        System.out.println(cardName + " Info:");
         System.out.println("Name: " + cardName);
         System.out.println("HP: " + defaultHP);
         System.out.println("AP: " + defaultAP);
@@ -59,20 +58,25 @@ public class CardShopView {
     }
 
 
-    public void printInfoOfSpellCard(String Cardname,int MPCost){
-
+    public void printInfoOfSpellCard(String cardName,int MPCost,String details){
+        System.out.println(cardName + "Info: ");
+        System.out.println("Name: " + cardName);
+        System.out.println("MPCost: " + MPCost);
+        System.out.println(details);
     }
 
-    public void printEditDeckDetails(HashMap<String,Integer> numberOfCardsInInventory,ArrayList<String> deckCards){
+    public void printEditDeckDetails(HashMap<String,Integer> numberOfCardsInInventory,ArrayList<Card> deckCards){
         //prints deck cards
+        int numberOfCards =0;
         System.out.println("Deck: ");
-        for (String CardName:deckCards)
-            System.out.println(CardName);
+        for (Card card:deckCards)
+            System.out.println("Slot " + numberOfCards++ +": " + card.getName());
         //prints inventory cards
-        System.out.println("other Cards:");
+        System.out.println("Inventory Cards:");
         numberOfCardsInInventory.forEach((key,value) -> {
             System.out.println("Card name:" + key + " Number of Cards: " + value);
         });
+        //TODO its incomplete
     }
 
 }

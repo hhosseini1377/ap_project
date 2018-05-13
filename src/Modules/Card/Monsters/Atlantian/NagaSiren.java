@@ -35,6 +35,7 @@ public class NagaSiren extends SpellCaster{
         }
         friend.getMonsterField().getMonsterCards().forEach(card -> card.increaseHP(300));
         friend.getMonsterField().getMonsterCards().forEach(card -> card.increaseAP(200));
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     @Override

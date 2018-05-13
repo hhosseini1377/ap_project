@@ -42,6 +42,7 @@ public class SeaSerpent extends SpellCaster{
         }catch (Exception e){
             enemy.getCommander().decreaseHP(1000);
         }
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     @Override

@@ -12,8 +12,19 @@ public class SpellField {
     private ArrayList<Spell> spellCards;
     private int availablePlaces=3;
 
-    public void add(Spell spell){
+
+    public SpellField(){
+        for (int i = 0; i < 3; i++)
+            slots.put(i, null);
+    }
+
+    public void add(Spell spell, int slotNum){
+        if (slots.get(slotNum) != null){
+            System.out.println("the slot is full");
+            return;
+        }
         if(availablePlaces>=0){
+            slots.replace(slotNum, spell);
             spellCards.add(spell);
             numberOfCards.replace(spell.getName(),numberOfCards.get(spell.getName())-1);
             availablePlaces--;
@@ -23,6 +34,12 @@ public class SpellField {
     }
 
     public void remove(Spell spell){
+        for (int i = 0; i < 3; i++) {
+            if (slots.get(i).equals(spell)){
+                slots.replace(i, null);
+                break;
+            }
+        }
         spellCards.remove(spell);
         availablePlaces++;
         if(numberOfCards.get(spell.getName()) ==1){

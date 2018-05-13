@@ -33,6 +33,7 @@ public class OgreMagi extends SpellCaster{
 
     protected void cast(Card card){
         ((Monster) card).increaseAP(400);
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     public void castSpell(Warrior enemy, Warrior friend){

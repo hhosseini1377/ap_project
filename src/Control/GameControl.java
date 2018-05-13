@@ -2,10 +2,18 @@ package Control;
 
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
+import Modules.Card.Monsters.Atlantian.Kraken;
+import Modules.Card.Monsters.Atlantian.NagaSiren;
+import Modules.Card.Monsters.Atlantian.SeaSerpent;
+import Modules.Card.Monsters.Demonic.*;
+import Modules.Card.Monsters.Elven.ElvenDruid;
+import Modules.Card.Monsters.Elven.ElvenSorceress;
+import Modules.Card.Monsters.Elven.NobleElf;
 import Modules.Card.Monsters.Normal;
 import Modules.Card.Spell.*;
 import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
+import Modules.ItemAndAmulet.Items.*;
 import Modules.Shop.AmuletShop;
 import Modules.Shop.CardShop;
 import Modules.Shop.ItemShop;
@@ -78,16 +86,46 @@ public class GameControl {
         }
 
         //TODO instantiate other types of monster cards
+        cardHashMap.put("Kraken", new Kraken());
+        cardHashMap.put("Naga Siren", new NagaSiren());
+        cardHashMap.put("Sea Serpent", new SeaSerpent());
+        cardHashMap.put("Evil Eye", new EvilEye());
+        cardHashMap.put("Goblin Shaman", new GoblinShaman());
+        cardHashMap.put("Necromancer", new Necromancer());
+        cardHashMap.put("Ogre Magi", new OgreMagi());
+        cardHashMap.put("Ogre Warchief", new OgreWarchief());
+        cardHashMap.put("Undead Mage", new UndeadMage());
+        cardHashMap.put("Vampire Acolyte", new VampireAcolyte());
+        cardHashMap.put("Vampire Prince", new VampirePrince());
+        cardHashMap.put("Elven Druid", new ElvenDruid());
+        cardHashMap.put("Elven Sorceress", new ElvenSorceress());
+        cardHashMap.put("Noble Elf", new NobleElf());
         //TODO instantiate spells
         cardHashMap.put("Blood Feast", new BloodFeast());
         cardHashMap.put("First Aid Kit", new FirstAidKit());
-        cardHashMap.put("Healing War", new HealingWard());
+        cardHashMap.put("Healing Ward", new HealingWard());
         cardHashMap.put("Greater Purge", new GreaterPurge());
         cardHashMap.put("Poisonous Cauldron", new PoisonousCauldron());
         cardHashMap.put("Throwing Knives", new ThrowingKnives());
         cardHashMap.put("War Drum", new WarDrum());
         //TODO instantiate commanders
-        //TODO instantiate items
+        GreaterRestorative greaterRestorative= new GreaterRestorative();
+        itemHashMap.put(greaterRestorative.getName(), greaterRestorative);
+        LargeHPPotion largeHPPotion = new LargeHPPotion();
+        itemHashMap.put(largeHPPotion.getName(), largeHPPotion);
+        LargeMPPotion largeMPPotion = new LargeMPPotion();
+        itemHashMap.put(largeMPPotion.getName(), largeMPPotion);
+        LesserRestorative lesserRestorative = new LesserRestorative();
+        itemHashMap.put(lesserRestorative.getName(), lesserRestorative);
+        MediumHPPotion mediumHPPotion = new MediumHPPotion();
+        itemHashMap.put(mediumHPPotion.getName(), mediumHPPotion);
+        MediumMPPotion mediumMPPotion = new MediumMPPotion();
+        itemHashMap.put(mediumMPPotion.getName(), mediumMPPotion);
+        SmallHPPotion smallHPPotion = new SmallHPPotion();
+        itemHashMap.put(smallHPPotion.getName(), smallHPPotion);
+        SmallMPPotion smallMPPotion = new SmallMPPotion();
+        itemHashMap.put(smallMPPotion.getName(), smallMPPotion);
+        itemHashMap.put("Mystic Hourglass", new MysticHourglass());
         //TODO instantiate amulets
 
         backPackStart();
@@ -102,6 +140,7 @@ public class GameControl {
         gills = Integer.parseInt(fileReader.readLine().split(":")[1]);
         user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, "player1", backPack);
         fileReader.close();
+        shopControl = new ShopControl(cardShop, itemShop, amuletShop, user);
     }
     //readying the backPack
     private void backPackStart() throws IOException{
@@ -142,7 +181,7 @@ public class GameControl {
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "inventory.txt"));
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
-            if (parts.length != 1){
+            if (!line.contains(":")){
                 if (inventoryName.equals("items:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
                         itemInventory.add(itemHashMap.get(parts[0]));
@@ -171,7 +210,7 @@ public class GameControl {
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "shop.txt"));
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
-            if (parts.length != 1){
+            if (!line.contains(":")){
                 if (shopName.equals("items:")){
                     //we have indefinite numbers of items in shop
                         itemShop.addItem(itemHashMap.get(parts[0]));
@@ -195,7 +234,7 @@ public class GameControl {
         String action;
         String previousResult = null;
         while (true) {
-            action = scan.next();
+            action = scan.nextLine();
             previousResult = availableAction(action, previousResult);
         }
     }
@@ -222,6 +261,11 @@ public class GameControl {
                 break;
             case "Battle":
                 battleControl.startBattle(user);
+                try {
+                    saveGame();
+                }catch (IOException e){
+                    System.out.println(e.toString());
+                }
                 break;
             default:
                 System.out.println("invalid input");

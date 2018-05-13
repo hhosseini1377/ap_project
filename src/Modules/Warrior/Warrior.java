@@ -6,8 +6,10 @@ import Modules.BattleGround.Fields.SpellField;
 import Modules.BattleGround.GraveYard;
 import Modules.BattleGround.Hand;
 import Modules.Card.Commanders.Commander;
+import Modules.User.User;
 
 public class Warrior {
+    private User user;
     protected Commander commander;
     protected String name;
     private Deck deck;
@@ -106,5 +108,13 @@ public class Warrior {
 
     public void setBackPack(BackPack backPack) {
         this.backPack = backPack;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

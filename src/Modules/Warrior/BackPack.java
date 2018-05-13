@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BackPack {
-    private ArrayList<Item> items;
-    private Amulet amulet;
-    private HashMap<String, Integer> numberOfItems;
+    private ArrayList<Item> items = new ArrayList<>();
+    private Amulet amulet ;
+    private HashMap<String, Integer> numberOfItems = new HashMap<>();
 
     public BackPack() {
         items = new ArrayList<>();

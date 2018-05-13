@@ -30,6 +30,10 @@ public class Hand {
 			numberOfCards.put(card.getName(), 1);
 	}
 
+	public Card getCard(int index){
+		return cards.get(index);
+	}
+
 	public Card getCard(String name){
 		return cardHashMap.get(name);
 	}

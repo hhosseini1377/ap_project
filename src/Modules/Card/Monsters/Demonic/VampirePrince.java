@@ -43,6 +43,7 @@ public class VampirePrince extends General{
                 System.out.println("Monster field does not have 2 cards");
             }
         }
+        System.out.println(this.getName() + " has cast a spell:\n" + this.willDetail());
     }
 
     public String getWillName() {
@@ -57,6 +58,7 @@ public class VampirePrince extends General{
     public void battleCry(Warrior enemy, Warrior friend) {
         enemy.getMonsterField().getMonsterCards().forEach(card -> ((Monster) card).decreaseAP(200));
         friend.getMonsterField().getMonsterCards().forEach(card -> ((Monster) card).increaseAP(200));
+        System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
     }
 
     @Override

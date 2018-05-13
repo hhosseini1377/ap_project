@@ -27,6 +27,9 @@ public class ShopControl {
         this.itemShop = ItemShop;
         this.amuletShop = AmuletShop;
         this.User = User;
+        cardShopView = new CardShopView();
+        itemShopView = new ItemShopView();
+        amuletShopView = new AmuletShopView();
     }
 
     private void cardShopController(){
@@ -118,25 +121,31 @@ public class ShopControl {
 
     public void mainController() {
         Scanner scanner = new Scanner(System.in);
-        String request = scanner.nextLine();
-        if(request.equals("Help")){
-            System.out.println("Remaining Gill:" + User.getGills() + "Gill");
-            System.out.println("1. Card Shop");
-            System.out.println("2. Item Shop");
-            System.out.println("3. Amulet Shop");
-            System.out.println("4. Exit");
-        }
-        if(request.equals("Card Shop")){
-            cardShopController();
-        }
-        else if(request.equals("Amulet Shop")) {
-            amuletShopController();
-        }
-        else if(request.equals("Item Shop")){
-            itemShopController();
-        }
-        else if(request.equals("Exit")){
-            //TODO should be completed when edit deck added
+        while(true) {
+            String request = scanner.nextLine();
+            switch (request) {
+                case "Help":
+                    System.out.println("Remaining Gill:" + User.getGills() + "Gill");
+                    System.out.println("1. Card Shop");
+                    System.out.println("2. Item Shop");
+                    System.out.println("3. Amulet Shop");
+                    System.out.println("4. Exit");
+                    break;
+                case "Card Shop":
+                    cardShopController();
+                    break;
+                case "Amulet Shop":
+                    amuletShopController();
+                    break;
+                case "Item Shop":
+                    itemShopController();
+                    break;
+                case "Exit":
+                    return;
+                default:
+                    System.out.println("invalid input");
+                    break;
+            }
         }
     }
 

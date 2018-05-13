@@ -41,6 +41,7 @@ public class OgreWarchief extends General{
     public void will(Warrior enemy, Warrior friend) {
         enemy.getMonsterField().getMonsterCards().
                 forEach(card -> ((Monster) card).increaseAP(300));
+        System.out.println(this.getName() + " has cast a spell:\n" + this.willDetail());
     }
 
     @Override
@@ -48,6 +49,8 @@ public class OgreWarchief extends General{
         enemy.getMonsterField().getMonsterCards().
                 forEach(card -> ((Monster) card).decreaseHP(400));
         enemy.getCommander().decreaseHP(400);
+        System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
+
     }
 
     @Override

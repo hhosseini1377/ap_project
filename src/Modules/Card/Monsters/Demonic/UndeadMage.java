@@ -34,6 +34,7 @@ public class UndeadMage extends SpellCaster{
     @Override
     protected void cast(Card card) {
         ((Monster)card).decreaseAP(500);
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     @Override

@@ -13,13 +13,17 @@ public class MonsterField {
     private ArrayList<Monster> defensiveCards = new ArrayList<>();
     private int availablePlaces=5;
 
+    public MonsterField(){
+        for (int i = 0; i < 5; i++)
+            slots.put(i, null);
+    }
 
     public Monster getSlot(int slotNum) {
         Monster monster = null;
         try {
              monster = slots.get(slotNum);
         }catch (NullPointerException e){
-            System.out.println("this slot is full");
+            System.out.println("this slot is empty");
         }
         return monster;
     }
@@ -40,7 +44,11 @@ public class MonsterField {
         return numberOfCards.get(monster.getName());
     }
 
-    public void add(Monster monster){
+    public void add(Monster monster, int slotNum){
+        if (slots.get(slotNum) != null){
+            System.out.println("the slot is full!!");
+            return;
+        }
         if(availablePlaces>=0){
             monsterCards.add(monster);
             if (numberOfCards.containsKey(monster.getName()))
@@ -48,12 +56,7 @@ public class MonsterField {
             else
                 numberOfCards.put(monster.getName(), 1);
             availablePlaces--;
-            for (int i = 0; i < 5; i++){
-                if (slots.get(i) == null) {
-                    slots.replace(i, monster);
-                    break;
-                }
-            }
+            slots.replace(slotNum, monster);
             if (!monster.isOffenseType())
                 defensiveCards.add(monster);
         }
@@ -62,6 +65,12 @@ public class MonsterField {
     }
 
     public void remove(Monster monster){
+        for (int i = 0; i < 5; i++) {
+            if (slots.get(i).equals(monster)){
+                slots.replace(i, null);
+                break;
+            }
+        }
         monsterCards.remove(monster);
         if (defensiveCards.contains(monster))
             defensiveCards.remove(monster);

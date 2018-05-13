@@ -1,4 +1,4 @@
-itemShop:
+items:
 Small HP Potion
 Medium HP Potion
 Large HP Potion
@@ -7,7 +7,7 @@ Medium MP Potion
 Large MP Potion
 Lesser Restorative
 Greater Restorative
-amuletShop:
+amulets:
 Iron Pendant
 Gold Pendant
 Diamond Pendant
@@ -15,7 +15,7 @@ Iron Ring
 Gold Ring
 Diamond Ring
 Demon King’s Crown
-cardShop:
+cards:
 Throwing Knives -3
 Poisonous Cauldron -3
 First Aid Kit -3

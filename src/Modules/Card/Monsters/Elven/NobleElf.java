@@ -37,6 +37,7 @@ public class NobleElf extends General{
                 friend.getMonsterField().getMonsterCards().get(i).increaseAP(600);
             }
         }
+        System.out.println(this.getName() + " has cast a spell:\n" + this.willDetail());
     }
 
     @Override
@@ -45,6 +46,7 @@ public class NobleElf extends General{
             enemy.getHand().add(card);
             enemy.getSpellField().remove((Spell)card);
         }
+        System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
     }
 
     @Override

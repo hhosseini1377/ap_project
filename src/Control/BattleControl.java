@@ -2,6 +2,7 @@ package Control;
 
 import Modules.Card.Card;
 import Modules.Card.Monsters.*;
+import Modules.Card.Spell.Spell;
 import Modules.Enemies.Goblins.Goblins;
 import Modules.Enemies.Lucifer.Lucifer;
 import Modules.Enemies.Ogres.Ogres;
@@ -40,6 +41,7 @@ public class BattleControl {
                 warrior[0] = new Lucifer();
                 break;
         }
+        warrior[1].setUser(user);
         turn = 0;
         System.out.println("Battle against" + warrior[0].getName() + "started!");
         battle();
@@ -52,7 +54,7 @@ public class BattleControl {
     private void battle(){
         //randomly starting the game
         int player = (int)(Math.random() * 2);
-        String action;
+        String action[];
         Scanner scan = new Scanner(System.in);
         System.out.println(warrior[player].getName() + "starts the battle");
 
@@ -67,15 +69,17 @@ public class BattleControl {
         System.out.println(warrior[1].getHand().getCards().get(4));
 
         while (true){
-            checkEndOfTheGame();
-            action = scan.next();
+            if (checkEndOfTheGame()){
+                return;
+            }
+            action = scan.nextLine().split(" ");
 
             //this has to be written every time we enter this menu
             if (turn % 2 == 1)
                 System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
                         + warrior[turn % 2].getMaxManaPoint() + "]");
 
-            switch (action){
+            switch (action[0]){
                 case "Help":
                     help();
                     break;
@@ -89,7 +93,7 @@ public class BattleControl {
                     }catch (TurnException e){
                         break;
                     }
-                    useCard(scan.nextInt());
+                    useCard(Integer.parseInt(action[1]));
                     break;
                 case "Done":
                     turn++;
@@ -103,6 +107,27 @@ public class BattleControl {
                         System.out.println(drawnCard.getName());
                     }
                     break;
+                case "Set":
+
+                    //TODO if it cannot understand that card is instance of monster or spell we need to add an enum
+
+                    Card card = warrior[1].getHand().getCard(Integer.parseInt(action[1]));
+                    if (warrior[1].getManaPoint() >= card.getManaPoint()) {
+                        if (card instanceof Monster) {
+                                warrior[1].getMonsterField().add(((Monster) card), Integer.parseInt(action[3]));
+                                System.out.println(card.getName() + "was set in MonsterField slot "
+                                        + Integer.parseInt(action[3]) + " . "  + card.getManaPoint() + "MP was used.\n");
+                                warrior[1].getHand().remove(card);
+                        }
+                        if (card instanceof Spell){
+                            warrior[1].getSpellField().add(((Spell)card), Integer.parseInt(action[3]));
+                            System.out.println(card.getName() + "was set in SpellField slot "
+                                    + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + "MP was used.\n");
+                            warrior[1].getHand().remove(card);
+                            ((Spell)card).castSpell(warrior[0], warrior[1]);
+                        }
+                    }else
+                        System.out.println("You do not have enough MP to do this act");
             }
         }
     }
@@ -170,11 +195,16 @@ public class BattleControl {
                 " Done: To end your turn\n");
     }
 
-    private void checkEndOfTheGame(){
-        if (warrior[0].getCommander().isDead())
+    private boolean checkEndOfTheGame(){
+        if (warrior[0].getCommander().isDead()) {
             win();
-        if (warrior[1].getCommander().isDead())
+            return true;
+        }
+        if (warrior[1].getCommander().isDead()) {
             lose();
+            return true;
+        }
+        return false;
     }
 
     private void endBattle(){
@@ -184,9 +214,12 @@ public class BattleControl {
     private void lose(){
         System.out.println("Unfortunately the demons were too strong!!" +
                 "\nRegain power and challenge them again brave hero!");
+
     }
 
     private void win(){
+        warrior[1].getUser().setLevel(warrior[1].getUser().getLevel() + 1);
+
         System.out.println("Congratulations\n" +
                 "With your skills and bravery " + warrior[0].getName() + " has been utterly defeated!!" +
                 "\nIt was right to request help from you brave warrior!");

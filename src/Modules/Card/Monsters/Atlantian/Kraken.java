@@ -33,6 +33,7 @@ public class Kraken extends General{
     public void will(Warrior enemy, Warrior friend) {
         enemy.getMonsterField().getMonsterCards().forEach(card -> card.decreaseHP(400));
         enemy.getCommander().decreaseHP(400);
+        System.out.println(this.getName() + " has cast a spell:\n" + this.willDetail());
     }
 
     @Override
@@ -45,6 +46,7 @@ public class Kraken extends General{
             System.out.println("there was no monster in the field");
         }
         enemy.getMonsterField().getMonsterCards().forEach(card -> card.decreaseAP(200));
+        System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
     }
 
     @Override

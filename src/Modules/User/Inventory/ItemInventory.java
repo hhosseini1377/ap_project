@@ -34,12 +34,16 @@ public class ItemInventory {
 
 
     public void add(Item item){
-        if (numberOfItem.containsKey(item.getName()))
-            numberOfItem.replace(item.getName(), numberOfItem.get(item.getName()) + 1);
-        else
-            numberOfItem.put(item.getName(), 1);
-        this.items.add(item);
-        this.itemMap.put(item.getName(), item);
+        try {
+            if (numberOfItem.containsKey(item.getName()))
+                numberOfItem.replace(item.getName(), numberOfItem.get(item.getName()) + 1);
+            else
+                numberOfItem.put(item.getName(), 1);
+            this.items.add(item);
+            this.itemMap.put(item.getName(), item);
+        }catch (NullPointerException e){
+            System.out.println("no such item available");
+        }
     }
 
     public int getNumberOfItem(Item item){

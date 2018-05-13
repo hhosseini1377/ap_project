@@ -29,7 +29,16 @@ public class VampireAcolyte extends SpellCaster{
     }
 
     public void castSpell(ArrayList<Monster> enemyCards, ArrayList<Monster> friendlyCards) {
+        if (!CanCast()) {
+            System.out.println("this monster cannot cast now");
+            return;
+        }
         enemyCards.forEach(monster -> monster.decreaseHP(300));
         friendlyCards.forEach(monster -> monster.increaseHP(300));
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
+    }
+
+    public String spellDetail(){
+        return "Deal 300 damage to all enemy monster cards and heal all friendly monster cards for 300 HP";
     }
 }

@@ -16,6 +16,8 @@ public class Warrior {
     private MonsterField monsterField;
     private SpellField spellField;
     private BackPack backPack;
+    protected int manaPoint = 0;
+    protected int maxManaPoint;
 
     public Warrior(Deck deck) {
         this.deck = deck;
@@ -30,6 +32,24 @@ public class Warrior {
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
+    }
+
+    public int getManaPoint() {
+        return manaPoint;
+    }
+
+    public int getMaxManaPoint() {
+        return maxManaPoint;
+    }
+
+    public void setManaPoint(int manaPoint) {
+        if (manaPoint <= 12) {
+            this.manaPoint = manaPoint;
+            this.maxManaPoint = manaPoint;
+        }else {
+            this.maxManaPoint = 12;
+            this.manaPoint = maxManaPoint;
+        }
     }
 
     public Commander getCommander() {

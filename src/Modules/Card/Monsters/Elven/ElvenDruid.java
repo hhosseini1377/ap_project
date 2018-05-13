@@ -1,4 +1,4 @@
-package Modules.Card.Monsters.Demonic;
+package Modules.Card.Monsters.Elven;
 
 import Modules.Card.Card;
 import Modules.Card.Monsters.Monster;
@@ -7,22 +7,21 @@ import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UndeadMage extends SpellCaster{
-    private String spellName = "Curse";
+public class ElvenDruid extends SpellCaster{
+    private String spellName = "Rejuvenation";
 
-    public UndeadMage(){
-        name = "Undead Mage";
-        HP = 800;
-        initialHP = 800;
-        AP = 1000;
-        initialAP = 1000;
-        manaPoint = 6;
-        gillCost = manaPoint * 500 ;
+    public ElvenDruid(){
+        name = "Elven Druid";
+        HP = 1200;
+        initialHP = 1200;
+        AP = 600;
+        initialAP = 600;
+        manaPoint = 5;
+        gillCost = manaPoint * 500;
         monsterKind = MonsterKind.SPELL_CASTER;
-        monsterTribe = MonsterTribe.DEMONIC;
+        monsterTribe = MonsterTribe.ELVEN;
         isNimble = false;
         offenseType = true;
     }
@@ -31,12 +30,11 @@ public class UndeadMage extends SpellCaster{
         return spellName;
     }
 
-    @Override
-    protected void cast(Card card) {
-        ((Monster)card).decreaseAP(500);
+    protected void cast(Card card){
+        ((Monster) card).increaseAP(300);
+        ((Monster) card).increaseHP(500);
     }
 
-    @Override
     public void castSpell(Warrior enemy, Warrior friend){
         if (!CanCast()) {
             System.out.println("this monster cannot cast now");
@@ -44,12 +42,12 @@ public class UndeadMage extends SpellCaster{
         }
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
         System.out.println("\nList of targets:");
-        System.out.println("1. Enemy commander\nMonster field:");
+//        System.out.println("1. Enemy commander\nMonster field:");
         for (int i = 1; i <= 5; i++){
-            if(enemy.getMonsterField().getMonsterCards().get(i-1) == null){
+            if(friend.getMonsterField().getMonsterCards().get(i-1) == null){
                 System.out.println(i + ". slot" + i + ": Empty");
             }else
-                System.out.println(i + ". slot" + i + ": " + enemy.getMonsterField().getMonsterCards().get(i-1).getName());
+                System.out.println(i + ". slot" + i + ": " + friend.getMonsterField().getMonsterCards().get(i-1).getName());
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -65,10 +63,10 @@ public class UndeadMage extends SpellCaster{
                 case "Target":
                     int target = scanner.nextInt();
 //                    if (target == 1){
-//                        cast(enemy.getCommander());
+//                        cast(friend.getCommander());
 //                    }else{
                     try{
-                        cast(enemy.getMonsterField().getMonsterCards().get(target));
+                        cast(friend.getMonsterField().getMonsterCards().get(target));
                     }catch (Exception e){
                         System.out.println("invalid target");
                     }
@@ -79,10 +77,5 @@ public class UndeadMage extends SpellCaster{
                     break;
             }
         }
-    }
-
-
-    public String spellDetail(){
-        return "Reduce an enemy monster card's AP by 500";
     }
 }

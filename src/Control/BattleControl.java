@@ -53,7 +53,6 @@ public class BattleControl {
         //randomly starting the game
         int player = (int)(Math.random() * 2);
         String action;
-//        String previousAction = null;
         Scanner scan = new Scanner(System.in);
         System.out.println(warrior[player].getName() + "starts the battle");
 
@@ -70,6 +69,12 @@ public class BattleControl {
         while (true){
             checkEndOfTheGame();
             action = scan.next();
+
+            //this has to be written every time we enter this menu
+            if (turn % 2 == 1)
+                System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
+                        + warrior[turn % 2].getMaxManaPoint() + "]");
+
             switch (action){
                 case "Help":
                     help();
@@ -79,12 +84,24 @@ public class BattleControl {
                     break;
                 case "Use":
                     try{
-                        if (turn != 1)
+                        if (turn % 2 != 1)
                             throw new TurnException();
                     }catch (TurnException e){
                         break;
                     }
                     useCard(scan.nextInt());
+                    break;
+                case "Done":
+                    turn++;
+                    warrior[turn % 2].setManaPoint(warrior[turn % 2].getManaPoint() + 1);
+                    //drawing a card from deck to hand
+                    Card drawnCard = warrior[turn % 2].getDeck().takeCard();
+                    warrior[turn % 2].getHand().add(drawnCard);
+
+                    System.out.println("Turn " + turn + "started!\n" + warrior[turn % 2].getName() + "'s turn");
+                    if (turn % 2 == 1){
+                        System.out.println(drawnCard.getName());
+                    }
                     break;
             }
         }
@@ -120,11 +137,9 @@ public class BattleControl {
                     return;
                 case "Cast":
                     if (monster instanceof SpellCaster) {
-                        ((SpellCaster) monster).castSpell(warrior[0].getMonsterField().getMonsterCards(),
-                                warrior[1].getMonsterField().getMonsterCards());
+                        ((SpellCaster) monster).castSpell(warrior[0], warrior[1]);
                     }else if (monster instanceof Hero) {
-                        ((Hero) monster).castSpell(warrior[0].getMonsterField().getMonsterCards(),
-                                warrior[1].getMonsterField().getMonsterCards());
+                        ((Hero) monster).castSpell(warrior[0], warrior[1]);
                     }else{
                         System.out.println("this warrior is neither a spell caster nor a hero");
                     }
@@ -135,29 +150,6 @@ public class BattleControl {
             }
         }
     }
-
-//    /**
-//     * attacks the targeted monster
-//     */
-//    public void attack(Warrior enemy, Monster monster, Scanner scan){
-//        Monster targeted;
-//        //checks if there are any defensive cards in the enemy field and if there was the defender will stop the combatant
-//        if (enemy.getMonsterField().containDefensiveCard()){
-//            targeted = enemy.getMonsterField().getDefensiveCard();
-//            monster.attack(targeted);
-//            return;
-//        }
-//        String target = scan.next();
-//        if ((target.equals("Commander"))) {
-//            targeted = enemy.getCommander();
-//            monster.attack(enemy.getCommander());
-//        }
-//        else{
-//            targeted = enemy.getMonsterField().getSlot(Integer.parseInt(target));
-//            monster.attack(targeted);
-//        }
-//        System.out.println(monster.getName() + " clashed with " + targeted.getName());
-//    }
 
     private void help(){
         System.out.println("1.\n" +
@@ -176,7 +168,6 @@ public class BattleControl {
                 " Info \"Card Name\": To view full information about a card\n" +
                 "8.\n" +
                 " Done: To end your turn\n");
-
     }
 
     private void checkEndOfTheGame(){

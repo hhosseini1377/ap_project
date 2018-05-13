@@ -1,6 +1,7 @@
 package Modules.Card.Monsters;
 
 import Modules.Card.Card;
+import Modules.Warrior.Warrior;
 
 import java.util.ArrayList;
 
@@ -15,9 +16,23 @@ public abstract class Hero extends Monster {
         this.canCast = canCast;
     }
 
-    public void castSpell(ArrayList<Monster> enemyCards, ArrayList<Monster> friendlyCards){
+    public void castSpell(Warrior enemy, Warrior friend){
 
     }
+
     public abstract void will(ArrayList<Card> cards);
+
     public abstract void battleCry(ArrayList<Card> cards);
+
+    public String spellDetail(){
+        return "spell details";
+    }
+
+    public String willDetail(){
+        return "will detail";
+    }
+
+    public String battleCryDetail(){
+        return "battle cry detail";
+    }
 }

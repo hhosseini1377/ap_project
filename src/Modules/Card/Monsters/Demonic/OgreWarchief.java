@@ -5,6 +5,7 @@ import Modules.Card.Monsters.General;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Warrior.Warrior;
 
 import java.util.ArrayList;
 
@@ -35,12 +36,14 @@ public class OgreWarchief extends General{
     }
 
     @Override
-    public void will(ArrayList<Card> cards) {
-        cards.forEach(card -> ((Monster) card).increaseAP(300));
+    public void will(Warrior enemy, Warrior friend) {
+        enemy.getMonsterField().getMonsterCards().
+                forEach(card -> ((Monster) card).increaseAP(300));
     }
 
     @Override
-    public void battleCry(ArrayList<Card> cards) {
-        cards.forEach(card -> ((Monster) card).decreaseHP(400));
+    public void battleCry(Warrior enemy, Warrior friend) {
+        enemy.getMonsterField().getMonsterCards().
+                forEach(card -> ((Monster) card).decreaseHP(400));
     }
 }

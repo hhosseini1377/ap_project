@@ -7,6 +7,7 @@ import Modules.Card.Monsters.General;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Warrior.Warrior;
 
 import java.util.ArrayList;
 
@@ -28,13 +29,17 @@ public class VampirePrince extends General{
         monsterTribe = MonsterTribe.DEMONIC;
     }
 
-    public void will(ArrayList<Card> cards, MonsterField monsterField, Hand hand) {
+    @Override
+    public void will(Warrior enemy, Warrior friend) {
         int random;
         for (int i = 0; i < 2; i++) {
-            random = (int) (Math.random() * cards.size());
-            monsterField.remove((Monster) cards.get(random));
-            hand.add(cards.get(random));
-            cards.remove(random);
+            try {
+                random = (int) (Math.random() * enemy.getMonsterField().getMonsterCards().size());
+                enemy.getHand().add(enemy.getMonsterField().getMonsterCards().get(random));
+                enemy.getMonsterField().remove((Monster) enemy.getMonsterField().getMonsterCards().get(random));
+            }catch (Exception e){
+                System.out.println("Monster field does not have 2 cards");
+            }
         }
     }
 
@@ -46,8 +51,9 @@ public class VampirePrince extends General{
         return battleCryName;
     }
 
-    public void battleCry(ArrayList<Card> enemyCards, ArrayList<Card> friendlyCards) {
-        enemyCards.forEach(card -> ((Monster) card).decreaseAP(200));
-        friendlyCards.forEach(card -> ((Monster) card).increaseAP(200));
+    @Override
+    public void battleCry(Warrior enemy, Warrior friend) {
+        enemy.getMonsterField().getMonsterCards().forEach(card -> ((Monster) card).decreaseAP(200));
+        friend.getMonsterField().getMonsterCards().forEach(card -> ((Monster) card).increaseAP(200));
     }
 }

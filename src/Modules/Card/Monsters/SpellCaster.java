@@ -1,8 +1,10 @@
 package Modules.Card.Monsters;
 
 import Modules.Card.Card;
+import Modules.Warrior.Warrior;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class SpellCaster extends Monster {
     protected boolean canCast = true;
@@ -15,7 +17,12 @@ public abstract class SpellCaster extends Monster {
         this.canCast = canCast;
     }
 
-    public void castSpell(ArrayList<Monster> enemyCards, ArrayList<Monster> friendlyCards){
+    protected void cast(Card card){}
 
+    public void castSpell(Warrior enemy, Warrior friend){
+    }
+
+    public String spellDetail(){
+        return "spell details";
     }
 }

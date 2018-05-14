@@ -8,14 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CardShop {
-    private ArrayList<Card> availableCards;
-    private HashMap<String,Card> cardsHashMap;
-    private HashMap<String, Integer> numberOfCards;
-
-    public CardShop() {
-        availableCards = new ArrayList<>();
-        cardsHashMap = new HashMap<>();
-    }
+    private ArrayList<Card> availableCards = new ArrayList<>();
+    private HashMap<String,Card> cardsHashMap = new HashMap<>();
+    private HashMap<String, Integer> numberOfCards = new HashMap<>();
 
     public int getNumberOfCard(String name) {
         return numberOfCards.get(name);
@@ -27,7 +22,11 @@ public class CardShop {
 
     public void addCard(Card card){
         availableCards.add(card);
-        cardsHashMap.put(card.getName(),card);
+        try {
+            cardsHashMap.put(card.getName(), card);
+        }catch (NullPointerException e){
+            System.out.println("card is null");
+        }
     }
 
     public void removeCard(String CardName){

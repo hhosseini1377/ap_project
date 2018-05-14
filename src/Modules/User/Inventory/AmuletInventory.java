@@ -25,6 +25,10 @@ public class AmuletInventory {
         return amulets;
     }
 
+    public Amulet getAmulet(String name){
+        return amuletMap.get(name);
+    }
+
     public BackPack getBackPack() {
         return backPack;
     }

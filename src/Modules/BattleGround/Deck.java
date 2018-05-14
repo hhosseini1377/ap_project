@@ -39,8 +39,8 @@ public class Deck {
                 numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + cardNum);
             else {
                 numberOfCards.put(card.getName(), cardNum);
-                cards.add(card);
             }
+            cards.add(card);
         }else {
             System.out.println("deck is full");
         }
@@ -60,18 +60,18 @@ public class Deck {
 
     public void remove(Card card){
         if (numberOfCards.get(card.getName()) - 1 == 0) {
-            cards.remove(card);
             numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) - 1);
         }
-        else
+        else {
             numberOfCards.remove(card.getName());
+        }
+        cards.remove(card);
     }
 
     public Card takeCard(){
         int random = (int)(Math.random() * (cards.size() - 1));
         Card card = cards.get(random);
-        cards.remove(random);
-        numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) - 1);
+        this.remove(card);
         return card;
     }
 

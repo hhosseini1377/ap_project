@@ -14,7 +14,7 @@ public class ItemShop {
 
     public ItemShop() {
         itemsHashMap = new HashMap<>();
-//        items = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
 //    public void removeItem(String itemName){

@@ -41,10 +41,11 @@ public class ItemInventory {
         try {
             if (numberOfItem.containsKey(item.getName()))
                 numberOfItem.replace(item.getName(), numberOfItem.get(item.getName()) + 1);
-            else
+            else {
                 numberOfItem.put(item.getName(), 1);
-            this.items.add(item);
-            this.itemMap.put(item.getName(), item);
+                this.items.add(item);
+                this.itemMap.put(item.getName(), item);
+            }
         }catch (NullPointerException e){
             System.out.println("no such item available");
         }
@@ -75,7 +76,11 @@ public class ItemInventory {
     }
 
     public void remove(String name){
-        numberOfItem.replace(itemMap.get(name).getName(), numberOfItem.get(itemMap.get(name).getName()) + 1);
-        itemMap.remove(name);
+        if (numberOfItem.get(name) == 1){
+            numberOfItem.remove(name);
+            items.remove(itemMap.get(name));
+            itemMap.remove(name);
+        }else
+            numberOfItem.replace(itemMap.get(name).getName(), numberOfItem.get(itemMap.get(name).getName()) - 1);
     }
 }

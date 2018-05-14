@@ -7,6 +7,12 @@ import java.util.ArrayList;
 
 public abstract class Hero extends Monster {
     protected boolean canCast = true;
+    protected String spellName;
+    protected String willName;
+    protected String battleCryName;
+    protected String spellDetail;
+    protected String willDetail;
+    protected String battleCryDetail;
 
     public boolean CanCast() {
         return canCast;
@@ -17,22 +23,33 @@ public abstract class Hero extends Monster {
     }
 
     public void castSpell(Warrior enemy, Warrior friend){
-
     }
 
-    public abstract void will(ArrayList<Card> cards);
+    public abstract void will(Warrior enemy, Warrior friend);
 
-    public abstract void battleCry(ArrayList<Card> cards);
+    public abstract void battleCry(Warrior enemy, Warrior friend);
 
     public String spellDetail(){
-        return "spell details";
+        return this.spellDetail;
     }
 
     public String willDetail(){
-        return "will detail";
+        return this.willDetail;
     }
 
     public String battleCryDetail(){
-        return "battle cry detail";
+        return this.battleCryDetail;
+    }
+
+    public String getBattleCryName() {
+        return battleCryName;
+    }
+
+    public String getWillName() {
+        return willName;
+    }
+
+    public String getSpellName() {
+        return spellName;
     }
 }

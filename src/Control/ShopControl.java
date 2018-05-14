@@ -38,27 +38,30 @@ public class ShopControl {
         String request = scanner.nextLine();
         while(!request.equals("Exit")){
             String[] resreq = request.split(" ");
-            if(resreq[0].equals("Buy")){
-                int numberToBuy = Integer.parseInt(resreq[2]);
-                cardShopView.printBuyCardsDetails(buyCard(resreq[1],numberToBuy),numberToBuy,resreq[1]);
-            }
-            else if(resreq[0].equals("Help")){
-                cardShopView.PrintCardShopHelpDetails();
-            }
-            else if(resreq[0].equals("Sell")){
-                int numberToSell = Integer.parseInt(resreq[2]);
-                cardShopView.printSellCardDetails(sellCard(resreq[1],numberToSell),numberToSell,resreq[1]);
-            }
-            else if(resreq[0].equals("Info")){
-                if(cardShop.getCard(resreq[1]) instanceof Monster){
-                    cardShopView.printInfoOfMonsterCard(resreq[1],((Monster) cardShop.getCard(resreq[1])).getInitialHP(),((Monster) cardShop.getCard(resreq[1])).getInitialAP(),cardShop.getCard(resreq[1]).getManaPoint(),((Monster) cardShop.getCard(resreq[1])).getMonsterKind(),((Monster) cardShop.getCard(resreq[1])).getMonsterTribe(),((Monster) cardShop.getCard(resreq[1])).isOffenseType(),((Monster) cardShop.getCard(resreq[1])).isNimble(),((Monster) cardShop.getCard(resreq[1])).toString());
-                }
-                else
-                    cardShopView.printInfoOfSpellCard(resreq[1],((Spell) cardShop.getCard(resreq[1])).getManaPoint(),((Spell) cardShop.getCard(resreq[1])).toString());
-            }
-            else if(resreq[0].equals("Edit")){
-                cardShopView.printEditDeckDetails(User.getCardInventory().getNumberOfCards(),User.getDeck().getCards());
-                //TODO should be completed when editDeck added
+            switch (resreq[0]) {
+                case "Buy":
+                    int numberToBuy = Integer.parseInt(resreq[2]);
+                    cardShopView.printBuyCardsDetails(buyCard(resreq[1], numberToBuy), numberToBuy, resreq[1]);
+                    break;
+                case "Help":
+                    cardShopView.PrintCardShopHelpDetails();
+                    break;
+                case "Sell":
+                    int numberToSell = Integer.parseInt(resreq[2]);
+                    cardShopView.printSellCardDetails(sellCard(resreq[1], numberToSell), numberToSell, resreq[1]);
+                    break;
+                case "Info":
+                    if (cardShop.getCard(resreq[1]) instanceof Monster) {
+                        cardShopView.printInfoOfMonsterCard(resreq[1], ((Monster) cardShop.getCard(resreq[1])).getInitialHP(), ((Monster) cardShop.getCard(resreq[1])).getInitialAP(), cardShop.getCard(resreq[1]).getManaPoint(), ((Monster) cardShop.getCard(resreq[1])).getMonsterKind(), ((Monster) cardShop.getCard(resreq[1])).getMonsterTribe(), ((Monster) cardShop.getCard(resreq[1])).isOffenseType(), ((Monster) cardShop.getCard(resreq[1])).isNimble(), ((Monster) cardShop.getCard(resreq[1])).toString());
+                    } else
+                        cardShopView.printInfoOfSpellCard(resreq[1], ((Spell) cardShop.getCard(resreq[1])).getManaPoint(), ((Spell) cardShop.getCard(resreq[1])).toString());
+                    break;
+                case "Edit":
+                    cardShopView.printEditDeckDetails(User.getCardInventory().getNumberOfCards(), User.getDeck().getCards());
+                    //TODO should be completed when editDeck added
+                    break;
+                default:
+                    System.out.println("invalid input");
             }
             request=scanner.nextLine();
         }
@@ -71,23 +74,27 @@ public class ShopControl {
         String request = scanner.nextLine();
         while(!request.equals("Exit")){
             String[] resreq = request.split(" ");
-            if(resreq[0].equals("Buy")){
-                int numberToBuy = Integer.parseInt(resreq[2]);
-                amuletShopView.printBuyAmuletDetails(buyAmulet(resreq[1],numberToBuy),numberToBuy,resreq[1]);
-            }
-            else if(resreq[0].equals("Help")){
-                amuletShopView.printHelpDetails();
-            }
-            else if(resreq[0].equals("Sell")){
-                int numberToSell = Integer.parseInt(resreq[2]);
-                amuletShopView.printSellAmuletDetails(sellAmulet(resreq[1],numberToSell),numberToSell,resreq[1]);
-            }
-            else if(resreq[0].equals("Info")){
-                amuletShopView.printInfoOfAnAmulet(resreq[1],amuletShop.getAmulet(resreq[1]).toString());
-            }
-            else if(resreq[0].equals("Edit")){
-                amuletShopView.PrintEditAmuletDetails(User.getAmuletInventory().getAmulets(),User.getBackPack().getAmulet(),User.getBackPack().isAmuletEquipped());
-                //TODO should be completed when edit amulets added
+            switch (resreq[0]) {
+                case "Buy":
+                    int numberToBuy = Integer.parseInt(resreq[2]);
+                    amuletShopView.printBuyAmuletDetails(buyAmulet(resreq[1], numberToBuy), numberToBuy, resreq[1]);
+                    break;
+                case "Help":
+                    amuletShopView.printHelpDetails();
+                    break;
+                case "Sell":
+                    int numberToSell = Integer.parseInt(resreq[2]);
+                    amuletShopView.printSellAmuletDetails(sellAmulet(resreq[1], numberToSell), numberToSell, resreq[1]);
+                    break;
+                case "Info":
+                    amuletShopView.printInfoOfAnAmulet(resreq[1], amuletShop.getAmulet(resreq[1]).toString());
+                    break;
+                case "Edit":
+                    amuletShopView.PrintEditAmuletDetails(User.getAmuletInventory().getAmulets(), User.getBackPack().getAmulet(), User.getBackPack().isAmuletEquipped());
+                    //TODO should be completed when edit amulets added
+                    break;
+                default:
+                    System.out.println("invalid input");
             }
             request=scanner.nextLine();
         }
@@ -100,19 +107,23 @@ public class ShopControl {
         String request = scanner.nextLine();
         while(!request.equals("Exit")){
             String[] resreq = request.split(" ");
-            if(resreq[0].equals("Buy")){
-                int numberToBuy = Integer.parseInt(resreq[2]);
-                itemShopView.printBuyItemDetails(sellItem(resreq[1],numberToBuy),numberToBuy,resreq[1]);
-            }
-            else if(resreq[0].equals("Help")){
-                itemShopView.printHelpDetails();
-            }
-            else if(resreq[0].equals("Sell")){
-                int numberToSell = Integer.parseInt(resreq[2]);
-                itemShopView.printSellItemDetails(sellItem(resreq[1],numberToSell),numberToSell,resreq[1]);
-            }
-            else if(resreq[0].equals("Info")){
-                itemShopView.printInfoOfItem(resreq[1],User.getItemInventory().getItem(resreq[1]).toString());
+            switch (resreq[0]) {
+                case "Buy":
+                    int numberToBuy = Integer.parseInt(resreq[2]);
+                    itemShopView.printBuyItemDetails(sellItem(resreq[1], numberToBuy), numberToBuy, resreq[1]);
+                    break;
+                case "Help":
+                    itemShopView.printHelpDetails();
+                    break;
+                case "Sell":
+                    int numberToSell = Integer.parseInt(resreq[2]);
+                    itemShopView.printSellItemDetails(sellItem(resreq[1], numberToSell), numberToSell, resreq[1]);
+                    break;
+                case "Info":
+                    itemShopView.printInfoOfItem(resreq[1], User.getItemInventory().getItem(resreq[1]).toString());
+                    break;
+                default:
+                    System.out.println("invalid input");
             }
             request=scanner.nextLine();
         }

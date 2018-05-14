@@ -29,13 +29,12 @@ public class GraveYard {
 
     public void add(Card card){
         if (cardMap.containsKey(card.getName())) {
-            destroyedCards.add(card);
             cardMap.put(card.getName(), card);
             numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + 1);
         }else {
-            destroyedCards.add(card);
             numberOfCards.replace(card.getName(), 1);
         }
+        destroyedCards.add(card);
     }
 
     public void remove(String name){

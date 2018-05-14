@@ -1,4 +1,4 @@
-import Control.GameControl;
+import Control.GameControll.GameControl;
 
 import java.io.IOException;
 

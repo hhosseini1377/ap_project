@@ -45,11 +45,30 @@ public class MonsterField {
     }
 
     public void add(Monster monster, int slotNum){
+        if (slotNum == -1){
+            if (availablePlaces <= 0){
+                System.out.println("not enough space in the field");
+            }
+            for (int i = 0; i < 5; i++){
+                if (slots.get(slotNum) == null){
+                    monsterCards.add(monster);
+                    if (numberOfCards.containsKey(monster.getName()))
+                        numberOfCards.replace(monster.getName(),numberOfCards.get(monster.getName()) + 1);
+                    else
+                        numberOfCards.put(monster.getName(), 1);
+                    availablePlaces--;
+                    slots.replace(slotNum, monster);
+                    if (!monster.isOffenseType())
+                        defensiveCards.add(monster);
+                }
+            }
+            return;
+        }
         if (slots.get(slotNum) != null){
             System.out.println("the slot is full!!");
             return;
         }
-        if(availablePlaces>=0){
+        if(availablePlaces>0){
             monsterCards.add(monster);
             if (numberOfCards.containsKey(monster.getName()))
                 numberOfCards.replace(monster.getName(),numberOfCards.get(monster.getName()) + 1);

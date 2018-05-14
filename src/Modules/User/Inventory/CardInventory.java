@@ -26,7 +26,9 @@ public class CardInventory{
         return cards;
     }
 
-
+    public Card getCard(String name){
+        return cardMap.get(name);
+    }
 
     public Deck getDeck() {
         return deck;
@@ -39,10 +41,11 @@ public class CardInventory{
     public void add(Card card){
         if (numberOfCards.containsKey(card.getName()))
             numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + 1);
-        else
+        else {
             numberOfCards.put(card.getName(), 1);
-        this.cards.add(card);
-        this.cardMap.put(card.getName(), card);
+            this.cards.add(card);
+            this.cardMap.put(card.getName(), card);
+        }
     }
 
     public int getNumberOfCards(Card card){
@@ -70,8 +73,11 @@ public class CardInventory{
     }
 
     public void remove(String name){
-        cards.remove(cardMap.get(name));
-        numberOfCards.replace(cardMap.get(name).getName(), numberOfCards.get(cardMap.get(name).getName()) - 1);
-        cardMap.remove(name);
+        if (numberOfCards.get(name) == 1){
+            cards.remove(cardMap.get(name));
+            cardMap.remove(name);
+            numberOfCards.remove(name);
+        }else
+            numberOfCards.replace(cardMap.get(name).getName(), numberOfCards.get(cardMap.get(name).getName()) - 1);
     }
 }

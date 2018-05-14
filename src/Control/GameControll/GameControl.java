@@ -2,6 +2,7 @@ package Control.GameControll;
 
 import Control.BattleControl;
 import Control.GameControll.GameDetailController;
+import Control.InventoryControl;
 import Control.ShopControl;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
@@ -55,6 +56,7 @@ public class GameControl {
     private ShopControl shopControl;
     private BattleControl battleControl;
     private GameDetailController gameDetailController;
+    private InventoryControl inventoryControl;
 
 
     public GameControl(String fileDirectory){
@@ -107,7 +109,9 @@ public class GameControl {
         gills = Integer.parseInt(fileReader.readLine().split(":")[1]);
         user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, "player1", backPack);
         fileReader.close();
-        shopControl = new ShopControl(cardShop, itemShop, amuletShop, user);
+        inventoryControl = new InventoryControl(user);
+        shopControl = new ShopControl(cardShop, itemShop, amuletShop, user, inventoryControl);
+        battleControl = new BattleControl();
     }
 
     public void game(){
@@ -136,17 +140,19 @@ public class GameControl {
             case "Exit":
                 endGame();
                 return "";
+            case "Edit Inventory":
+                inventoryControl.mainThread();
+                break;
             case "Enter Shop":
                 shopControl.mainController();
-                // TODO needs to be completed
                 break;
             case "Battle":
                 battleControl.startBattle(user);
-                try {
-                    gameDetailController.saveGame();
-                }catch (IOException e){
-                    System.out.println(e.toString());
-                }
+//                try {
+//                    gameDetailController.saveGame();
+//                }catch (IOException e){
+//                    System.out.println(e.toString());
+//                }
                 break;
             default:
                 System.out.println("invalid input");
@@ -162,12 +168,12 @@ public class GameControl {
     private String  help(){
         System.out.println("1. Enter Shop:To enter shop and buy or sell cards and items\n" +
                 "2. Battle:To enter the next battle\n" +
-                "3. Exit: save and exit the game");
+                "3. Edit Inventory:To edit your cards and amulets\n" +
+                "4. Exit: save and exit the game");
         return "1. Enter Shop:To enter shop and buy or sell cards and items\n" +
                 "2. Battle:To enter the next battle\n" +
-                "3. Exit: save and exit the game";
-//        System.out.println("2. Edit Inventory: To edit your amulet or deck");
-//        System.out.println("3. Next: To go to deck and amulet customization");
+                "3. Edit Inventory:To edit your cards and amulets\n" +
+                "4. Exit: save and exit the game";
     }
 
     /**

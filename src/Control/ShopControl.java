@@ -21,8 +21,10 @@ public class ShopControl {
     private ItemShopView itemShopView;
     private CardShopView cardShopView;
     private User User;
+    private InventoryControl inventoryControl;
 
-    public ShopControl(CardShop CardShop,ItemShop ItemShop,AmuletShop AmuletShop,User User){
+    public ShopControl(CardShop CardShop,ItemShop ItemShop,AmuletShop AmuletShop,User User, InventoryControl inventoryControl){
+        this.inventoryControl = inventoryControl;
         this.cardShop = CardShop;
         this.itemShop = ItemShop;
         this.amuletShop = AmuletShop;
@@ -57,8 +59,8 @@ public class ShopControl {
                         cardShopView.printInfoOfSpellCard(resreq[1], ((Spell) cardShop.getCard(resreq[1])).getManaPoint(), ((Spell) cardShop.getCard(resreq[1])).toString());
                     break;
                 case "Edit":
-                    cardShopView.printEditDeckDetails(User.getCardInventory().getNumberOfCards(), User.getDeck().getCards());
-                    //TODO should be completed when editDeck added
+//                    cardShopView.printEditDeckDetails(User.getCardInventory().getNumberOfCards(), User.getDeck().getCards());
+                    inventoryControl.editDeck();
                     break;
                 default:
                     System.out.println("invalid input");
@@ -90,8 +92,8 @@ public class ShopControl {
                     amuletShopView.printInfoOfAnAmulet(resreq[1], amuletShop.getAmulet(resreq[1]).toString());
                     break;
                 case "Edit":
-                    amuletShopView.PrintEditAmuletDetails(User.getAmuletInventory().getAmulets(), User.getBackPack().getAmulet(), User.getBackPack().isAmuletEquipped());
-                    //TODO should be completed when edit amulets added
+//                    amuletShopView.PrintEditAmuletDetails(User.getAmuletInventory().getAmulets(), User.getBackPack().getAmulet(), User.getBackPack().isAmuletEquipped());
+                    inventoryControl.editBackPack();
                     break;
                 default:
                     System.out.println("invalid input");

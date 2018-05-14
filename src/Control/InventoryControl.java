@@ -40,9 +40,11 @@ public class InventoryControl {
                 case "Edit Deck":
                     editDeck();
                     break;
-                case "Edit Amulet":
+                case "Edit Amulets":
                     editBackPack();
                     break;
+                default:
+                    System.out.println("invalid input");
             }
         }
     }
@@ -77,7 +79,7 @@ public class InventoryControl {
         index = 1;
         System.out.println("Your Inventory:");
         for (Card card: user.getCardInventory().getCards()){
-            System.out.println(index + ". " + card.getName() + user.getCardInventory().getNumberOfCards(card) + "/"
+            System.out.println(index + ". " + card.getName() + " -> " + user.getCardInventory().getNumberOfCards(card) + " / "
             + user.getDeck().getNumberOfCards(card));
             index++;
         }

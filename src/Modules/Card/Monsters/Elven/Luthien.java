@@ -18,6 +18,7 @@ public class Luthien extends Hero{
         initialAP = AP;
         initialHP = HP;
         manaPoint = 9;
+        gillCost = 1000 * manaPoint;
         isNimble = false;
         offenseType = true;
     }

@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Neptun extends Hero {
     public Neptun() {
-        name = "Neptun, King of Atlantis";
+        name = "Neptune, King of Atlantis";
         battleCryName = "Call to Arms";
         spellName = "Trident Beam";
         willName = "Ocean's Cry";
@@ -23,6 +23,7 @@ public class Neptun extends Hero {
         initialAP = AP;
         initialHP = HP;
         manaPoint = 10;
+        gillCost = 1000 * manaPoint;
         isNimble = true;
         offenseType = true;
     }

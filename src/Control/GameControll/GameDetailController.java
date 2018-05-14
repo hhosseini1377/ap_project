@@ -6,10 +6,16 @@ import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Atlantian.Kraken;
 import Modules.Card.Monsters.Atlantian.NagaSiren;
+import Modules.Card.Monsters.Atlantian.Neptun;
 import Modules.Card.Monsters.Atlantian.SeaSerpent;
 import Modules.Card.Monsters.Demonic.*;
+import Modules.Card.Monsters.DragonBreed.BlueDragon;
+import Modules.Card.Monsters.DragonBreed.GreaterDragon;
+import Modules.Card.Monsters.DragonBreed.Igneel;
+import Modules.Card.Monsters.DragonBreed.VolcanicDragon;
 import Modules.Card.Monsters.Elven.ElvenDruid;
 import Modules.Card.Monsters.Elven.ElvenSorceress;
+import Modules.Card.Monsters.Elven.Luthien;
 import Modules.Card.Monsters.Elven.NobleElf;
 import Modules.Card.Spell.*;
 import Modules.ItemAndAmulet.Amulet;
@@ -41,6 +47,12 @@ class GameDetailController {
     void monsterStart(){
         //TODO instantiate other types of monster cards
         gameControl.cardHashMap.put("Kraken", new Kraken());
+        gameControl.cardHashMap.put("Neptune, King of Atlantis", new Neptun());
+        gameControl.cardHashMap.put("Blue Dragon", new BlueDragon());
+        gameControl.cardHashMap.put("Greater Dragon", new GreaterDragon());
+        gameControl.cardHashMap.put("Volcanic Dragon", new VolcanicDragon());
+        gameControl.cardHashMap.put("Igneel, The Dragon King", new Igneel());
+        gameControl.cardHashMap.put("Luthien, The High Priestess", new Luthien());
         gameControl.cardHashMap.put("Naga Siren", new NagaSiren());
         gameControl.cardHashMap.put("Sea Serpent", new SeaSerpent());
         gameControl.cardHashMap.put("Evil Eye", new EvilEye());

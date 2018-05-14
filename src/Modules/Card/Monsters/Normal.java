@@ -20,5 +20,6 @@ public class Normal extends Monster {
             this.monsterTribe = MonsterTribe.ATLANTIAN;
         if (tribe.equals("DEMONIC"))
             this.monsterTribe = MonsterTribe.DEMONIC;
+        this.gillCost = manaPoint * 300;
     }
 }

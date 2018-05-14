@@ -13,13 +13,14 @@ public class CardShopView {
      */
     public void PrintCardShopDetails(ArrayList<Card> availableShopCards,HashMap<String,Integer> numberOfCards) {
         int CardNumber = 1;
+        System.out.println("\nAvailable Cards:");
         for (Card card : availableShopCards) {
             System.out.println(CardNumber++ + ". " +  card.getName() + " " +card.getGillCost());
         }
+        System.out.println("\nInventory Cards:");
         numberOfCards.forEach((key,value) -> {
-            System.out.println(value + " " + key);
+            System.out.println(key + " " + value);
         });
-
     }
 
     public void PrintCardShopHelpDetails() {

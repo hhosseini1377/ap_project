@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        GameControl gameControl = new GameControl("/home/gilgamesh/Desktop/Programs/Java/Project/projectAp/src/Files/save/");
+        GameControl gameControl = new GameControl("/Users/macbook/Desktop/ap_fuckingproject/ap_project/src/Files/save/");
         try {
             gameControl.startGame();
         }catch (IOException e){

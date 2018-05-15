@@ -4,20 +4,20 @@ Small HP Potion -2
 Small MP Potion -2
 amulets:
 cards:
-First Aid Kit -3
-Throwing Knives -3
-Poisonous Cauldron -1
-Healing Ward -1
-War Drum -1
-Elven Ranger -2
-Elven Hunter -2
-Elven Guardsman -1
-Elven Assassin -1
-Lesser Whelp -2
+FirstAidKit -3
+ThrowingKnives -3
+PoisonousCauldron -1
+HealingWard -1
+WarDrum -1
+ElvenRanger -2
+ElvenHunter -2
+ElvenGuardsman -1
+ElvenAssassin -1
+LesserWhelp -2
 Dragonling -2
-Armored Dragon -1
-Yellow Drake -1
-Murloc Crawler -2
-Murloc Warrior -2
-Giant Crab -1
-Shark Man -1
+ArmoredDragon -1
+YellowDrake -1
+MurlocCrawler -2
+MurlocWarrior -2
+GiantCrab -1
+SharkMan -1

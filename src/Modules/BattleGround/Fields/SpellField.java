@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SpellField {
-    private HashMap<String,Integer> numberOfCards;
-    private HashMap<Integer, Spell> slots;//a map of every card and its slot number
-    private ArrayList<Spell> spellCards;
+    private HashMap<String,Integer> numberOfCards = new HashMap<>();
+    private HashMap<Integer, Spell> slots = new HashMap<>();//a map of every card and its slot number
+    private ArrayList<Spell> spellCards = new ArrayList<>();
     private int availablePlaces=3;
 
 

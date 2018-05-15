@@ -107,7 +107,9 @@ public class GameControl {
         fileReader = new BufferedReader(new FileReader(fileDirectory + "userInfo.txt"));
         level = Integer.parseInt(fileReader.readLine().split(":")[1]);
         gills = Integer.parseInt(fileReader.readLine().split(":")[1]);
-        user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, "player1", backPack);
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter your preferable name to continue...");
+        user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, scan.nextLine(), backPack);
         fileReader.close();
         inventoryControl = new InventoryControl(user);
         shopControl = new ShopControl(cardShop, itemShop, amuletShop, user, inventoryControl);

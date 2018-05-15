@@ -26,7 +26,7 @@ public class BattleControl {
             return;
         }
 
-        warrior[1] = new Warrior(user.getDeck());
+        warrior[1] = new Warrior(user.getDeck(), user.getName());
         switch (user.getLevel()){
             case 1:
                 warrior[0] = new Goblins();
@@ -43,7 +43,7 @@ public class BattleControl {
         }
         warrior[1].setUser(user);
         turn = 0;
-        System.out.println("Battle against" + warrior[0].getName() + "started!");
+        System.out.println("Battle against " + warrior[0].getName() + " started!");
         battle();
     }
 
@@ -56,12 +56,12 @@ public class BattleControl {
         int player = (int)(Math.random() * 2);
         String action[];
         Scanner scan = new Scanner(System.in);
-        System.out.println(warrior[player].getName() + "starts the battle");
+        System.out.println(warrior[player].getName() + " starts the battle");
 
         //giving 5 cards to each combatant
         for (int i = 0; i < 5; i++) {
             warrior[player].getHand().add(warrior[player].getDeck().takeCard());
-            warrior[(player + 1) % 2].getHand().add(warrior[player].getDeck().takeCard());
+            warrior[(player + 1) % 2].getHand().add(warrior[(player+1) % 2].getDeck().takeCard());
         }
         System.out.print("player drew ");
         for (int i = 0; i < 4; i++)

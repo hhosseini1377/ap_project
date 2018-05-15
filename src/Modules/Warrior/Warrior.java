@@ -21,12 +21,13 @@ public class Warrior {
     protected int manaPoint = 0;
     protected int maxManaPoint;
 
-    public Warrior(Deck deck) {
+    public Warrior(Deck deck, String name) {
         this.deck = deck;
         hand = new Hand();
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
+        this.name = name;
     }
 
     public Warrior(){

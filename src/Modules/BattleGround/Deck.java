@@ -40,7 +40,8 @@ public class Deck {
             else {
                 numberOfCards.put(card.getName(), cardNum);
             }
-            cards.add(card);
+            for (int i = 0; i < cardNum; i++)
+                cards.add(card);
         }else {
             System.out.println("deck is full");
         }

@@ -40,9 +40,11 @@ public class BattleControl {
             case 4:
                 warrior[0] = new Lucifer();
                 break;
+                default:
+                    System.out.println("shitshit");
         }
         warrior[1].setUser(user);
-        turn = 0;
+        turn = 1;
         System.out.println("Battle against " + warrior[0].getName() + " started!");
         battle();
     }
@@ -65,19 +67,14 @@ public class BattleControl {
         }
         System.out.print("player drew ");
         for (int i = 0; i < 4; i++)
-            System.out.print(warrior[1].getHand().getCards().get(i) + ", ");
-        System.out.println(warrior[1].getHand().getCards().get(4));
+            System.out.print(warrior[1].getHand().getCards().get(i).getName() + ", ");
+        System.out.println(warrior[1].getHand().getCards().get(4).getName());
 
         while (true){
             if (checkEndOfTheGame()){
                 return;
             }
             action = scan.nextLine().split(" ");
-
-            //this has to be written every time we enter this menu
-            if (turn % 2 == 1)
-                System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
-                        + warrior[turn % 2].getMaxManaPoint() + "]");
 
             switch (action[0]){
                 case "Help":
@@ -96,21 +93,13 @@ public class BattleControl {
                     useCard(Integer.parseInt(action[1]));
                     break;
                 case "Done":
-                    turn++;
-                    warrior[turn % 2].setManaPoint(warrior[turn % 2].getManaPoint() + 1);
-                    //drawing a card from deck to hand
-                    Card drawnCard = warrior[turn % 2].getDeck().takeCard();
-                    warrior[turn % 2].getHand().add(drawnCard);
-
-                    System.out.println("Turn " + turn + "started!\n" + warrior[turn % 2].getName() + "'s turn");
-                    if (turn % 2 == 1){
-                        System.out.println(drawnCard.getName());
+                    if (turn % 2 == 1) {
+                        changeTurn();
+                    }else{
+                        System.out.println("What the hell do you think you are doing little shit???");
                     }
                     break;
                 case "Set":
-
-                    //TODO if it cannot understand that card is instance of monster or spell we need to add an enum
-
                     Card card = warrior[1].getHand().getCard(Integer.parseInt(action[1]));
                     if (warrior[1].getManaPoint() >= card.getManaPoint()) {
                         if (card instanceof Monster) {
@@ -130,6 +119,34 @@ public class BattleControl {
                         System.out.println("You do not have enough MP to do this act");
             }
         }
+    }
+
+    /**
+     * to do the necessary changes in warriors status when Done is clicked
+     */
+    private void changeTurn(){
+        turn++;
+        warrior[turn % 2].setManaPoint(warrior[turn % 2].getManaPoint() + 1);
+        //drawing a card from deck to hand
+        Card drawnCard = warrior[turn % 2].getDeck().takeCard();
+        warrior[turn % 2].getHand().add(drawnCard);
+
+        System.out.println("Turn " + turn + "started!\n" + warrior[turn % 2].getName() + "'s turn");
+        if (turn % 2 == 1){
+            System.out.println(drawnCard.getName());
+        }
+        //this has to be written every time we enter this menu
+        if (turn % 2 == 1)
+            System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
+                    + warrior[turn % 2].getMaxManaPoint() + "]");
+    }
+
+    private void enterField(Card card) {
+        //TODO
+    }
+
+    private void die(Card card) {
+        //TODO
     }
 
     private void useCard(int slotNum){
@@ -177,21 +194,21 @@ public class BattleControl {
     }
 
     private void help(){
-        System.out.println("1.\n" +
+        System.out.println("1." +
                 " Use #SlotNum : To use a specific card which is on the Monster Field\n" +
-                "2.\n" +
-                " Set HandIndex to #SlotNum : To set a card which is on the hand , in the field\n" +
-                "3.\n" +
+                "2." +
+                " Set #HandIndex to #SlotNum : To set a card which is on the hand , in the field\n" +
+                "3." +
                 " View Hand: To view the cards in your hand\n" +
-                "4.\n" +
+                "4." +
                 " View Graveyard : To view the cards in your graveyard\n" +
-                "5.\n" +
+                "5." +
                 " View SpellField : To view the cards in both ’players spell fields\n" +
-                "6.\n" +
+                "6." +
                 " View MonsterField : To view the cards in both ’players monster fields\n" +
-                "7.\n" +
+                "7." +
                 " Info \"Card Name\": To view full information about a card\n" +
-                "8.\n" +
+                "8." +
                 " Done: To end your turn\n");
     }
 
@@ -212,6 +229,12 @@ public class BattleControl {
     }
 
     private void lose(){
+//        if (warrior[1].getBackPack().ContainsItem("Mystic HourGlass")){
+        //TODO
+//            warrior[1].getBackPack().getItem("Mystic HourGlass");
+//            warrior[1].getBackPack().remove()
+//        }
+
         System.out.println("Unfortunately the demons were too strong!!" +
                 "\nRegain power and challenge them again brave hero!");
 
@@ -219,7 +242,6 @@ public class BattleControl {
 
     private void win(){
         warrior[1].getUser().setLevel(warrior[1].getUser().getLevel() + 1);
-
         System.out.println("Congratulations\n" +
                 "With your skills and bravery " + warrior[0].getName() + " has been utterly defeated!!" +
                 "\nIt was right to request help from you brave warrior!");

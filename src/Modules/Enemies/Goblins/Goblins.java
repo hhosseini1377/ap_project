@@ -12,11 +12,6 @@ import Modules.Card.Spell.ThrowingKnives;
 import Modules.Warrior.Warrior;
 
 public class Goblins extends Warrior {
-    private Deck deck = new Deck();
-    private Hand hand = new Hand();
-    private GraveYard graveYard = new GraveYard();
-    private MonsterField monsterField = new MonsterField();
-    private SpellField spellField = new SpellField();
     private int prize = 10000;
 
     public int getPrize() {
@@ -26,7 +21,8 @@ public class Goblins extends Warrior {
     public Goblins(){
         super();
         name = "Goblins";
-        Normal goblinSumggler = new Normal("GoblinSmuggler",600, 400,2, false, true, "DEMONIC");
+        Normal goblinSumggler = new Normal("Goblin Smuggler",600, 400,2, false, true, "DEMONIC");
+        hand.add(goblinSumggler);
         GoblinShaman goblinShaman = new GoblinShaman();
         ThrowingKnives throwingKnives = new ThrowingKnives();
 //        for (int i = 0; i < 10; i++)

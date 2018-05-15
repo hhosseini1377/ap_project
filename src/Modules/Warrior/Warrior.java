@@ -12,12 +12,12 @@ public class Warrior {
     private User user;
     protected Commander commander;
     protected String name;
-    private Deck deck;
-    private Hand hand;
-    private GraveYard graveYard;
-    private MonsterField monsterField;
-    private SpellField spellField;
-    private BackPack backPack;
+    protected Deck deck;
+    protected Hand hand;
+    protected GraveYard graveYard;
+    protected MonsterField monsterField;
+    protected SpellField spellField;
+    protected BackPack backPack;
     protected int manaPoint = 0;
     protected int maxManaPoint;
 
@@ -28,13 +28,17 @@ public class Warrior {
         monsterField = new MonsterField();
         spellField = new SpellField();
         this.name = name;
+        commander = new Commander();
     }
 
     public Warrior(){
+        deck = new Deck();
+        backPack = new BackPack();
         hand = new Hand();
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
+        commander = new Commander();
     }
 
     public int getManaPoint() {

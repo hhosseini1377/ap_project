@@ -60,11 +60,14 @@ public class Deck {
     }
 
     public void remove(Card card){
-        if (numberOfCards.get(card.getName()) - 1 == 0) {
-            numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) - 1);
-        }
-        else {
-            numberOfCards.remove(card.getName());
+        try {
+            if (numberOfCards.get(card.getName()) - 1 != 0) {
+                numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) - 1);
+            } else {
+                numberOfCards.remove(card.getName());
+            }
+        }catch (NullPointerException e){
+            System.out.println("card is not available in hashmap");
         }
         cards.remove(card);
     }

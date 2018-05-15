@@ -4,10 +4,11 @@
     <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
       <change beforePath="$PROJECT_DIR$/src/Control/BattleControl.java" afterPath="$PROJECT_DIR$/src/Control/BattleControl.java" />
-      <change beforePath="$PROJECT_DIR$/src/Control/GameControll/GameControl.java" afterPath="$PROJECT_DIR$/src/Control/GameControll/GameControl.java" />
+      <change beforePath="$PROJECT_DIR$/src/Files/save/MonsterCard" afterPath="$PROJECT_DIR$/src/Files/save/MonsterCard" />
       <change beforePath="$PROJECT_DIR$/src/Modules/BattleGround/Deck.java" afterPath="$PROJECT_DIR$/src/Modules/BattleGround/Deck.java" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/BattleGround/Fields/SpellField.java" afterPath="$PROJECT_DIR$/src/Modules/BattleGround/Fields/SpellField.java" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Card/Commanders/Commander.java" afterPath="$PROJECT_DIR$/src/Modules/Card/Commanders/Commander.java" />
       <change beforePath="$PROJECT_DIR$/src/Modules/Enemies/Goblins/Goblins.java" afterPath="$PROJECT_DIR$/src/Modules/Enemies/Goblins/Goblins.java" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Warrior/BackPack.java" afterPath="$PROJECT_DIR$/src/Modules/Warrior/BackPack.java" />
       <change beforePath="$PROJECT_DIR$/src/Modules/Warrior/Warrior.java" afterPath="$PROJECT_DIR$/src/Modules/Warrior/Warrior.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,7 +23,7 @@
     <SUITE FILE_PATH="coverage/projectAp$Main.coverage" NAME="Main Coverage Results" MODIFIED="1526308788008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -56,9 +57,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Modules/Card/Monsters/Elven/NobleElf.java" />
-        <option value="$PROJECT_DIR$/src/Modules/Card/Spell/FirstAidKit.java" />
-        <option value="$PROJECT_DIR$/src/Modules/Card/Spell/BloodFeast.java" />
         <option value="$PROJECT_DIR$/src/Modules/Shop/ItemShop.java" />
         <option value="$PROJECT_DIR$/src/Modules/Shop/CardShop.java" />
         <option value="$PROJECT_DIR$/src/Modules/Card/Monsters/Hero.java" />
@@ -101,11 +99,14 @@
         <option value="$PROJECT_DIR$/src/Files/initial/shop.txt" />
         <option value="$PROJECT_DIR$/src/Control/GameControll/GameDetailController.java" />
         <option value="$PROJECT_DIR$/src/Modules/Card/Monsters/Normal.java" />
-        <option value="$PROJECT_DIR$/src/Modules/BattleGround/Deck.java" />
         <option value="$PROJECT_DIR$/src/Modules/BattleGround/Fields/SpellField.java" />
         <option value="$PROJECT_DIR$/src/Control/GameControll/GameControl.java" />
-        <option value="$PROJECT_DIR$/src/Modules/Warrior/Warrior.java" />
         <option value="$PROJECT_DIR$/src/Modules/Enemies/Goblins/Goblins.java" />
+        <option value="$PROJECT_DIR$/src/Modules/BattleGround/Deck.java" />
+        <option value="$PROJECT_DIR$/src/Files/save/MonsterCard" />
+        <option value="$PROJECT_DIR$/src/Modules/Card/Commanders/Commander.java" />
+        <option value="$PROJECT_DIR$/src/Modules/Warrior/Warrior.java" />
+        <option value="$PROJECT_DIR$/src/Modules/Warrior/BackPack.java" />
         <option value="$PROJECT_DIR$/src/Control/BattleControl.java" />
       </list>
     </option>
@@ -135,6 +136,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -147,133 +149,13 @@
               <item name="projectAp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Control" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Control" type="462c0819:PsiDirectoryNode" />
-              <item name="GameControll" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Control" type="462c0819:PsiDirectoryNode" />
-              <item name="GameControll" type="462c0819:PsiDirectoryNode" />
-              <item name="GameControl.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Files" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Files" type="462c0819:PsiDirectoryNode" />
-              <item name="initial" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Files" type="462c0819:PsiDirectoryNode" />
-              <item name="save" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="BattleGround" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="BattleGround" type="462c0819:PsiDirectoryNode" />
-              <item name="Fields" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Enemies" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Enemies" type="462c0819:PsiDirectoryNode" />
-              <item name="Goblins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Shop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="User" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="User" type="462c0819:PsiDirectoryNode" />
-              <item name="Inventory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Warrior" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="View" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectAp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="View" type="462c0819:PsiDirectoryNode" />
-              <item name="ShopView" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -281,6 +163,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ReGexTutorial" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -425,7 +308,9 @@
       <workItem from="1526294867670" duration="6099000" />
       <workItem from="1526307173567" duration="2277000" />
       <workItem from="1526313704043" duration="8440000" />
-      <workItem from="1526382852416" duration="42000" />
+      <workItem from="1526382852416" duration="2734000" />
+      <workItem from="1526386276135" duration="1449000" />
+      <workItem from="1526412561815" duration="2529000" />
     </task>
     <task id="LOCAL-00001" summary="progressed in controllers, Hand, fields, and completed some Monster cards">
       <created>1525816472673</created>
@@ -504,13 +389,20 @@
       <option name="project" value="LOCAL" />
       <updated>1526322219637</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added new spells and fixed some bugs">
+      <created>1526382930511</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1526382930511</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77929000" />
+    <option name="totallyTimeSpent" value="84599000" />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -524,6 +416,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -534,9 +427,10 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18712121" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19318181" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -549,10 +443,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,13 +498,33 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Control/BattleControl.java</url>
-          <line>62</line>
+          <url>file://$PROJECT_DIR$/src/Modules/BattleGround/Deck.java</url>
+          <line>78</line>
           <properties />
-          <option name="timeStamp" value="50" />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Modules/BattleGround/Deck.java</url>
+          <line>63</line>
+          <properties />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Modules/BattleGround/Deck.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Modules/BattleGround/Deck.java</url>
+          <line>74</line>
+          <properties class="Modules.BattleGround.Deck" method="takeCard">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="51" />
+      <option name="time" value="58" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -621,27 +533,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Files/initial/deck.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="12" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Files/save/deck.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Files/initial/inventory.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="22" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Files/save/inventory.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
@@ -866,24 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Control/ShopControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="37" column="105" lean-forward="false" selection-start-line="37" selection-start-column="105" selection-end-line="37" selection-end-column="105" />
-          <folding>
-            <element signature="method#buyAmulet#0;class#ShopControl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/ShopView/CardShopView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="15" column="46" lean-forward="false" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Modules/Card/Monsters/Atlantian/Neptun.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -905,21 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Modules/Card/Monsters/Normal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="39" lean-forward="false" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Control/GameControll/GameDetailController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="192" column="0" lean-forward="false" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Modules/Shop/CardShop.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
@@ -931,29 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Modules/Enemies/Goblins/Goblins.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Control/BattleControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Modules/Warrior/Warrior.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -971,17 +806,115 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Files/save/MonsterCard">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="4" column="46" lean-forward="false" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Control/ShopControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="82" column="26" lean-forward="false" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
+          <folding>
+            <element signature="method#buyAmulet#0;class#ShopControl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/Card/Monsters/Normal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="55" lean-forward="true" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Modules/BattleGround/Deck.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="63" column="55" lean-forward="false" selection-start-line="63" selection-start-column="55" selection-end-line="63" selection-end-column="55" />
+          <folding>
+            <element signature="e#2270#2271#0" expanded="false" />
+            <element signature="e#2324#2325#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Control/BattleControl.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <caret line="148" column="10" lean-forward="false" selection-start-line="148" selection-start-column="10" selection-end-line="148" selection-end-column="10" />
+          <folding>
+            <element signature="e#9494#9495#0" expanded="true" />
+            <element signature="e#9575#9576#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/Warrior/BackPack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="91" column="2" lean-forward="false" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
+          <folding>
+            <element signature="e#1944#1945#0" expanded="true" />
+            <element signature="e#1973#1974#0" expanded="true" />
+            <element signature="e#2004#2005#0" expanded="true" />
+            <element signature="e#2029#2030#0" expanded="true" />
+            <element signature="e#2084#2085#0" expanded="true" />
+            <element signature="e#2142#2143#0" expanded="true" />
+            <element signature="e#2193#2194#0" expanded="true" />
+            <element signature="e#2251#2252#0" expanded="true" />
+            <element signature="e#2302#2303#0" expanded="true" />
+            <element signature="e#2352#2353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ShopView/CardShopView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="79" column="10" lean-forward="false" selection-start-line="79" selection-start-column="10" selection-end-line="79" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/Card/Commanders/Commander.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/Enemies/Goblins/Goblins.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="23" column="51" lean-forward="false" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/Warrior/Warrior.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="40" column="36" lean-forward="false" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Control/GameControll/GameControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="110" column="76" lean-forward="false" selection-start-line="110" selection-start-column="76" selection-end-line="110" selection-end-column="76" />
+        <state relative-caret-position="132">
+          <caret line="97" column="10" lean-forward="false" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Control/GameControll/GameDetailController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
           <folding />
         </state>
       </provider>

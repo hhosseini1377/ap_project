@@ -2,10 +2,10 @@ Elven Ranger-300-400-1-false-true-ELVEN
 Elven Hunter-800-600-3-false-true-ELVEN
 Elven Guardsman-1500-500-5-false-false-ELVEN
 Elven Assassin-800-1200-5-true-true-ELVEN
-Lesser Whelp-500-300-1-false-true-DRAGON
-Dragonling-700-700-3-false-true-DRAGON
-Armored Dragon-2000-400-5-false-false-DRAGON
-Yellow Drake-800-1000-5-true-true-DRAGON
+Lesser Whelp-500-300-1-false-true-DRAGON_BREED
+Dragonling-700-700-3-false-true-DRAGON_BREED
+Armored Dragon-2000-400-5-false-false-DRAGON_BREED
+Yellow Drake-800-1000-5-true-true-DRAGON_BREED
 Murloc Crawler-200-500-1-false-true-ATLANTIAN
 Murloc Warrior-600-600-2-false-true-ATLANTIAN
 Giant Crab-1500-300-4-false-false-ATLANTIAN

@@ -1,7 +1,5 @@
 package Modules.Card;
 
-import com.sun.org.apache.bcel.internal.classfile.Code;
-
 public class Card {
     protected String name;
     protected int gillCost;

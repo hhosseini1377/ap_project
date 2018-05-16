@@ -44,7 +44,7 @@ public class CardShopView {
             System.out.println("Successfully sold" + NumberOfSell + " of " + cardName);
         }
         else{
-            System.out.println("Not enough Gill!");
+            System.out.println("Not enough Cards!");
         }
     }
 

@@ -7,14 +7,23 @@ public class Card {
     protected String name;
     protected int gillCost;
     protected int manaPoint;
-    protected Warrior warrior;
+    protected Warrior enemy;
+    protected Warrior friend;
 
-    public Warrior getWarrior() {
-        return warrior;
+    public Warrior getEnemy() {
+        return enemy;
     }
 
-    public void setWarrior(Warrior warrior) {
-        this.warrior = warrior;
+    public void setEnemy(Warrior enemy) {
+        this.enemy = enemy;
+    }
+
+    public Warrior getFriend() {
+        return friend;
+    }
+
+    public void setFriend(Warrior friend) {
+        this.friend = friend;
     }
 
     public String getName() {

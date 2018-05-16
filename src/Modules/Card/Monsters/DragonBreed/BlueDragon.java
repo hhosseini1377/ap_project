@@ -64,6 +64,7 @@ public class BlueDragon extends SpellCaster{
                     try{
                         Card card = enemy.getMonsterField().getMonsterCards().get(target);
                         enemy.getGraveYard().add(card);
+                        ((Monster)card).die(enemy, friend);
                         enemy.getMonsterField().remove((Monster) card);
                         canCast = false;
                     }catch (Exception e){

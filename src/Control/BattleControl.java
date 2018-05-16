@@ -10,12 +10,12 @@ import Modules.Enemies.Vampires.Vampires;
 import Modules.User.User;
 import Modules.Warrior.Warrior;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class BattleControl {
     private int turn;
     private Warrior[] warrior;
-    // TODO needs to add computer playing warrior as well
 
     public void startBattle(User user){
         warrior = new Warrior[2];
@@ -44,6 +44,18 @@ public class BattleControl {
                     System.out.println("You've already completed the game...\ngo somewhere else kido!!");
         }
         warrior[1].setUser(user);
+        Iterator<Card> itr = warrior[1].getDeck().getCards().iterator();
+        while (itr.hasNext()){
+            Card card = itr.next();
+            card.setEnemy(warrior[0]);
+            card.setFriend(warrior[1]);
+        }
+        itr = warrior[0].getDeck().getCards().iterator();
+        while (itr.hasNext()){
+            Card card = itr.next();
+            card.setEnemy(warrior[1]);
+            card.setFriend(warrior[0]);
+        }
         turn = 1;
         System.out.println("Battle against " + warrior[0].getName() + " started!");
         battle();
@@ -103,10 +115,12 @@ public class BattleControl {
                     Card card = warrior[1].getHand().getCard(Integer.parseInt(action[1]));
                     if (warrior[1].getManaPoint() >= card.getManaPoint()) {
                         if (card instanceof Monster) {
-                                warrior[1].getMonsterField().add(((Monster) card), Integer.parseInt(action[3]));
-                                System.out.println(card.getName() + "was set in MonsterField slot "
-                                        + Integer.parseInt(action[3]) + " . "  + card.getManaPoint() + "MP was used.\n");
-                                warrior[1].getHand().remove(card);
+                            ((Monster) card).enterField(warrior[0], warrior[1]);
+
+                            warrior[1].getMonsterField().add(((Monster) card), Integer.parseInt(action[3]));
+                            System.out.println(card.getName() + "was set in MonsterField slot "
+                                    + Integer.parseInt(action[3]) + " . "  + card.getManaPoint() + "MP was used.\n");
+                            warrior[1].getHand().remove(card);
                         }
                         if (card instanceof Spell){
                             warrior[1].getSpellField().add(((Spell)card), Integer.parseInt(action[3]));

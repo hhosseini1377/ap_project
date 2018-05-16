@@ -104,6 +104,11 @@ public abstract class Monster extends Card{
 
     public void decreaseHP(int points){
         this.HP -= points;
+        if (isDead()){
+            friend.getHand().remove(this);
+            friend.getGraveYard().add(this);
+            die(enemy, friend);
+        }
     }
 
     public void increaseAP(int points){

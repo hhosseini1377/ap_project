@@ -110,6 +110,7 @@ public class GameControl {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter your preferable name to continue...");
         user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, scan.nextLine(), backPack);
+        System.out.println("Welcome " + user.getName() + ", my man!");
         fileReader.close();
         inventoryControl = new InventoryControl(user);
         shopControl = new ShopControl(cardShop, itemShop, amuletShop, user, inventoryControl);

@@ -1,9 +1,21 @@
 package Modules.Card;
 
+import Modules.Warrior.Warrior;
+import com.sun.org.apache.bcel.internal.classfile.Code;
+
 public class Card {
     protected String name;
     protected int gillCost;
     protected int manaPoint;
+    protected Warrior warrior;
+
+    public Warrior getWarrior() {
+        return warrior;
+    }
+
+    public void setWarrior(Warrior warrior) {
+        this.warrior = warrior;
+    }
 
     public String getName() {
         return name;

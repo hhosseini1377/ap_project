@@ -38,6 +38,16 @@ public class EvilEye extends SpellCaster{
             return spellName;
         }
 
+    @Override
+    public void enterField(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has entered the field proudly!");
+    }
+
+    @Override
+    public void die(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has died mercilessly");
+    }
+
         public String spellDetail(){
             return "Deal 800 damage to all enemy monster cards and player";
         }

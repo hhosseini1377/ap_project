@@ -44,6 +44,18 @@ public class GreaterDragon extends General{
     }
 
     @Override
+    public void enterField(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has entered the field proudly!");
+        battleCry(enemy, friend);
+    }
+
+    @Override
+    public void die(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has died mercilessly");
+        will(enemy, friend);
+    }
+
+    @Override
     public String willDetail() {
         return willDetail;
     }

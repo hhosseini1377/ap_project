@@ -39,6 +39,16 @@ public class NagaSiren extends SpellCaster{
     }
 
     @Override
+    public void enterField(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has entered the field proudly!");
+    }
+
+    @Override
+    public void die(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has died mercilessly");
+    }
+
+    @Override
     public String spellDetail() {
         return spellDetail;
     }

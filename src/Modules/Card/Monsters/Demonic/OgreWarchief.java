@@ -50,7 +50,18 @@ public class OgreWarchief extends General{
                 forEach(card -> ((Monster) card).decreaseHP(400));
         enemy.getCommander().decreaseHP(400);
         System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
+    }
 
+    @Override
+    public void enterField(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has entered the field proudly!");
+        battleCry(enemy, friend);
+    }
+
+    @Override
+    public void die(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has died mercilessly");
+        will(enemy, friend);
     }
 
     @Override

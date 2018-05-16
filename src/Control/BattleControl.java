@@ -41,7 +41,7 @@ public class BattleControl {
                 warrior[0] = new Lucifer();
                 break;
                 default:
-                    System.out.println("shitshit");
+                    System.out.println("You've already completed the game...\ngo somewhere else kido!!");
         }
         warrior[1].setUser(user);
         turn = 1;
@@ -82,7 +82,7 @@ public class BattleControl {
                     break;
                 case "Exit":
                     endBattle();
-                    break;
+                    return;
                 case "Use":
                     try{
                         if (turn % 2 != 1)
@@ -139,14 +139,6 @@ public class BattleControl {
         if (turn % 2 == 1)
             System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
                     + warrior[turn % 2].getMaxManaPoint() + "]");
-    }
-
-    private void enterField(Card card) {
-        //TODO
-    }
-
-    private void die(Card card) {
-        //TODO
     }
 
     private void useCard(int slotNum){

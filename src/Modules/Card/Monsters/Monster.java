@@ -1,7 +1,11 @@
 package Modules.Card.Monsters;
 
+import Modules.BattleGround.Deck;
 import Modules.BattleGround.Fields.MonsterField;
+import Modules.BattleGround.GraveYard;
+import Modules.BattleGround.Hand;
 import Modules.Card.Card;
+import Modules.Card.Spell.WarDrum;
 import Modules.Warrior.Warrior;
 
 import java.util.Scanner;
@@ -141,6 +145,14 @@ public abstract class Monster extends Card{
 
     public boolean isDead(){
         return (this.HP <= 0);
+    }
+
+    public void enterField(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has entered the field proudly!");
+    }
+
+    public void die(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has entered the field proudly!");
     }
 
     public String toString(){

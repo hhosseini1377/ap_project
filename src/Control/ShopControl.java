@@ -12,8 +12,6 @@ import View.ShopView.CardShopView;
 import View.ShopView.ItemShopView;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ShopControl {
     private CardShop cardShop;
@@ -40,30 +38,25 @@ public class ShopControl {
         cardShopView.PrintCardShopDetails(cardShop.getCards(),User.getCardInventory().getNumberOfCards());
         Scanner scanner = new Scanner(System.in);
         String request = scanner.nextLine();
-        Matcher tradeMatcher  = Pattern.compile("([^ ]*) (.*) - (\\d*)").matcher(request);
-        Matcher infoMatcher = Pattern.compile("(Info) (.*)").matcher(request);
         while(!request.equals("Exit")){
             String[] resreq = request.split(" ");
-            switch (resreq[1]) {
+            switch (resreq[0]) {
                 case "Buy":
-                    tradeMatcher.matches();
-                    int numberToBuy = Integer.parseInt(tradeMatcher.group(3));
-                    cardShopView.printBuyCardsDetails(buyCard(tradeMatcher.group(2), numberToBuy), numberToBuy, tradeMatcher.group(2));
+                    int numberToBuy = Integer.parseInt(resreq[2]);
+                    cardShopView.printBuyCardsDetails(buyCard(resreq[1], numberToBuy), numberToBuy, resreq[1]);
                     break;
                 case "Help":
                     cardShopView.PrintCardShopHelpDetails();
                     break;
                 case "Sell":
-                    tradeMatcher.matches();
-                    int numberToSell = Integer.parseInt(tradeMatcher.group(3));
-                    cardShopView.printSellCardDetails(sellCard(tradeMatcher.group(2), numberToSell), numberToSell,tradeMatcher.group(2));
+                    int numberToSell = Integer.parseInt(resreq[2]);
+                    cardShopView.printSellCardDetails(sellCard(resreq[1], numberToSell), numberToSell, resreq[1]);
                     break;
                 case "Info":
-                    infoMatcher.matches();
-                    if (cardShop.getCard(infoMatcher.group(2)) instanceof Monster) {
-                        cardShopView.printInfoOfMonsterCard(infoMatcher.group(2), ((Monster) cardShop.getCard(infoMatcher.group(2))).getInitialHP(), ((Monster) cardShop.getCard(infoMatcher.group(2))).getInitialAP(), cardShop.getCard(infoMatcher.group(2)).getManaPoint(), ((Monster) cardShop.getCard(infoMatcher.group(2))).getMonsterKind(), ((Monster) cardShop.getCard(infoMatcher.group(2))).getMonsterTribe(), ((Monster) cardShop.getCard(infoMatcher.group(2))).isOffenseType(), ((Monster) cardShop.getCard(infoMatcher.group(2))).isNimble(), ((Monster) cardShop.getCard(infoMatcher.group(2))).toString());
+                    if (cardShop.getCard(resreq[1]) instanceof Monster) {
+                        cardShopView.printInfoOfMonsterCard(resreq[1], ((Monster) cardShop.getCard(resreq[1])).getInitialHP(), ((Monster) cardShop.getCard(resreq[1])).getInitialAP(), cardShop.getCard(resreq[1]).getManaPoint(), ((Monster) cardShop.getCard(resreq[1])).getMonsterKind(), ((Monster) cardShop.getCard(resreq[1])).getMonsterTribe(), ((Monster) cardShop.getCard(resreq[1])).isOffenseType(), ((Monster) cardShop.getCard(resreq[1])).isNimble(), ((Monster) cardShop.getCard(resreq[1])).toString());
                     } else
-                        cardShopView.printInfoOfSpellCard(infoMatcher.group(2), ((Spell) cardShop.getCard(infoMatcher.group(2))).getManaPoint(), ((Spell) cardShop.getCard(infoMatcher.group(2))).toString());
+                        cardShopView.printInfoOfSpellCard(resreq[1], ((Spell) cardShop.getCard(resreq[1])).getManaPoint(), ((Spell) cardShop.getCard(resreq[1])).toString());
                     break;
                 case "Edit":
 //                    cardShopView.printEditDeckDetails(User.getCardInventory().getNumberOfCards(), User.getDeck().getCards());
@@ -81,27 +74,22 @@ public class ShopControl {
         amuletShopView.printAmuletShopDetails(amuletShop.getAmulets(),User.getBackPack().getAmulet(),User.getAmuletInventory().getNumberOfAmulet());
         Scanner scanner = new Scanner(System.in);
         String request = scanner.nextLine();
-        Matcher tradeMatcher  = Pattern.compile("([^ ]*) (.*) - (\\d*)").matcher(request);
-        Matcher infoMatcher = Pattern.compile("(Info) (.*)").matcher(request);
         while(!request.equals("Exit")){
             String[] resreq = request.split(" ");
             switch (resreq[0]) {
                 case "Buy":
-                    tradeMatcher.matches();
-                    int numberToBuy = Integer.parseInt(tradeMatcher.group(3));
-                    amuletShopView.printBuyAmuletDetails(buyAmulet(tradeMatcher.group(2), numberToBuy), numberToBuy, tradeMatcher.group(2));
+                    int numberToBuy = Integer.parseInt(resreq[2]);
+                    amuletShopView.printBuyAmuletDetails(buyAmulet(resreq[1], numberToBuy), numberToBuy, resreq[1]);
                     break;
                 case "Help":
                     amuletShopView.printHelpDetails();
                     break;
                 case "Sell":
-                    tradeMatcher.matches();
-                    int numberToSell = Integer.parseInt(tradeMatcher.group(3));
-                    amuletShopView.printSellAmuletDetails(sellAmulet(tradeMatcher.group(2), numberToSell), numberToSell, tradeMatcher.group(2));
+                    int numberToSell = Integer.parseInt(resreq[2]);
+                    amuletShopView.printSellAmuletDetails(sellAmulet(resreq[1], numberToSell), numberToSell, resreq[1]);
                     break;
                 case "Info":
-                    tradeMatcher.matches();
-                    amuletShopView.printInfoOfAnAmulet(tradeMatcher.group(2), amuletShop.getAmulet(tradeMatcher.group(2)).toString());
+                    amuletShopView.printInfoOfAnAmulet(resreq[1], amuletShop.getAmulet(resreq[1]).toString());
                     break;
                 case "Edit":
 //                    amuletShopView.PrintEditAmuletDetails(User.getAmuletInventory().getAmulets(), User.getBackPack().getAmulet(), User.getBackPack().isAmuletEquipped());
@@ -119,27 +107,22 @@ public class ShopControl {
         itemShopView.printItemShopdetails(User.getItemInventory().getNumberOfItem(),itemShop.getItems());
         Scanner scanner = new Scanner(System.in);
         String request = scanner.nextLine();
-        Matcher tradeMatcher  = Pattern.compile("([^ ]*) (.*) - (\\d*)").matcher(request);
-        Matcher infoMatcher = Pattern.compile("(Info) (.*)").matcher(request);
         while(!request.equals("Exit")){
             String[] resreq = request.split(" ");
             switch (resreq[0]) {
                 case "Buy":
-                    tradeMatcher.matches();
-                    int numberToBuy = Integer.parseInt(tradeMatcher.group(3));
-                    itemShopView.printBuyItemDetails(sellItem(tradeMatcher.group(2), numberToBuy), numberToBuy,tradeMatcher.group(2));
+                    int numberToBuy = Integer.parseInt(resreq[2]);
+                    itemShopView.printBuyItemDetails(sellItem(resreq[1], numberToBuy), numberToBuy, resreq[1]);
                     break;
                 case "Help":
                     itemShopView.printHelpDetails();
                     break;
                 case "Sell":
-                    tradeMatcher.matches();
-                    int numberToSell = Integer.parseInt(tradeMatcher.group(3));
-                    itemShopView.printSellItemDetails(sellItem(tradeMatcher.group(2), numberToSell), numberToSell,tradeMatcher.group(2));
+                    int numberToSell = Integer.parseInt(resreq[2]);
+                    itemShopView.printSellItemDetails(sellItem(resreq[1], numberToSell), numberToSell, resreq[1]);
                     break;
                 case "Info":
-                    infoMatcher.matches();
-                    itemShopView.printInfoOfItem(infoMatcher.group(2), User.getItemInventory().getItem(infoMatcher.group(2)).toString());
+                    itemShopView.printInfoOfItem(resreq[1], User.getItemInventory().getItem(resreq[1]).toString());
                     break;
                 default:
                     System.out.println("invalid input");

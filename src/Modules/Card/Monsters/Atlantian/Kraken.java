@@ -50,6 +50,18 @@ public class Kraken extends General{
     }
 
     @Override
+    public void enterField(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has entered the field proudly!");
+        battleCry(enemy, friend);
+    }
+
+    @Override
+    public void die(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has been murdered mercilessly");
+        will(enemy, friend);
+    }
+
+    @Override
     public String willDetail() {
         return willDetail;
     }

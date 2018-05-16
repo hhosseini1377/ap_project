@@ -61,4 +61,46 @@ public class Igneel extends Hero {
         }
         System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
     }
+
+    @Override
+    public String spellDetail() {
+        return spellDetail;
+    }
+
+    @Override
+    public String willDetail() {
+        return willDetail;
+    }
+
+    @Override
+    public String battleCryDetail() {
+        return battleCryDetail;
+    }
+
+    @Override
+    public String getSpellName() {
+        return spellName;
+    }
+
+    @Override
+    public String getWillName() {
+        return willName;
+    }
+
+    @Override
+    public String getBattleCryName() {
+        return battleCryName;
+    }
+
+    @Override
+    public void enterField(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has entered the field proudly!");
+        battleCry(enemy, friend);
+    }
+
+    @Override
+    public void die(Warrior enemy, Warrior friend) {
+        System.out.println(this.getName() + " has died mercilessly");
+        will(enemy, friend);
+    }
 }

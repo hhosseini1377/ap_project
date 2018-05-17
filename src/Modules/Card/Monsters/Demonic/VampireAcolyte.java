@@ -35,6 +35,7 @@ public class VampireAcolyte extends SpellCaster{
         }
         enemyCards.forEach(monster -> monster.decreaseHP(300));
         friendlyCards.forEach(monster -> monster.increaseHP(300));
+        canCast = false;
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 

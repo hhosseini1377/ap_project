@@ -43,6 +43,7 @@ public class ElvenSorceress extends SpellCaster{
                     enemy.getSpellField().getSpellCards().size()));
             enemy.getSpellField().remove(spell);
             enemy.getGraveYard().add(spell);
+            canCast = false;
             System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
         }catch (Exception e){
             System.out.println("Spell field empty!" + e.toString());

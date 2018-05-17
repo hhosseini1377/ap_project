@@ -44,6 +44,8 @@ public class BattleControl {
                     System.out.println("You've already completed the game...\ngo somewhere else kido!!");
         }
         warrior[1].setUser(user);
+        warrior[0].setManaPoint(1);
+        warrior[1].setManaPoint(1);
         Iterator<Card> itr = warrior[1].getDeck().getCards().iterator();
         while (itr.hasNext()){
             Card card = itr.next();
@@ -56,7 +58,6 @@ public class BattleControl {
             card.setEnemy(warrior[1]);
             card.setFriend(warrior[0]);
         }
-        turn = 1;
         System.out.println("Battle against " + warrior[0].getName() + " started!");
         battle();
     }
@@ -71,7 +72,7 @@ public class BattleControl {
         String action[];
         Scanner scan = new Scanner(System.in);
         System.out.println(warrior[player].getName() + " starts the battle");
-
+        turn = player;
         //giving 5 cards to each combatant
         for (int i = 0; i < 5; i++) {
             warrior[player].getHand().add(warrior[player].getDeck().takeCard());
@@ -82,7 +83,11 @@ public class BattleControl {
             System.out.print(warrior[1].getHand().getCards().get(i).getName() + ", ");
         System.out.println(warrior[1].getHand().getCards().get(4).getName());
 
+        help();
+        if (turn % 2 == -0)
+            changeTurn();
         while (true){
+
             if (checkEndOfTheGame()){
                 return;
             }
@@ -140,7 +145,7 @@ public class BattleControl {
      */
     private void changeTurn(){
         turn++;
-        warrior[turn % 2].setManaPoint(warrior[turn % 2].getManaPoint() + 1);
+        warrior[turn % 2].setMaxManaPoint(warrior[turn % 2].getMaxManaPoint() + 1);
         //drawing a card from deck to hand
         Card drawnCard = warrior[turn % 2].getDeck().takeCard();
         warrior[turn % 2].getHand().add(drawnCard);
@@ -153,6 +158,10 @@ public class BattleControl {
         if (turn % 2 == 1)
             System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
                     + warrior[turn % 2].getMaxManaPoint() + "]");
+        if (turn % 2 == 0){
+            warrior[0].makeMove(warrior[1]);
+            changeTurn();
+        }
     }
 
     private void useCard(int slotNum){

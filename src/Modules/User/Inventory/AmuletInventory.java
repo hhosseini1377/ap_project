@@ -26,7 +26,12 @@ public class AmuletInventory {
     }
 
     public Amulet getAmulet(String name){
-        return amuletMap.get(name);
+        try {
+            return amuletMap.get(name);
+        }catch (NullPointerException e){
+            System.out.println("There is no such amulet named " + name + " in the inventory...");
+        }
+        return null;
     }
 
     public BackPack getBackPack() {

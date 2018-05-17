@@ -30,9 +30,10 @@ public class GoblinShaman extends SpellCaster{
     @Override
     public void castSpell(Warrior enemy, Warrior friend){
         if (CanCast()){
-        int randomNumber = (int)(Math.random() * enemy.getMonsterField().getMonsterCards().size());
-        enemy.getMonsterField().getMonsterCards().get(randomNumber).increaseHP(400);
-        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
+            int randomNumber = (int)(Math.random() * enemy.getMonsterField().getMonsterCards().size());
+            enemy.getMonsterField().getMonsterCards().get(randomNumber).increaseHP(400);
+            canCast = false;
+            System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
         }else
             System.out.println("this monster cannot cast now");
     }

@@ -35,6 +35,7 @@ public class VolcanicDragon extends SpellCaster {
     private void cast(Monster monster) {
         monster.decreaseAP(500);
         monster.decreaseHP(500);
+        canCast = false;
     }
 
     public void castSpell(Warrior enemy, Warrior friend) {

@@ -27,7 +27,12 @@ public class CardInventory{
     }
 
     public Card getCard(String name){
-        return cardMap.get(name);
+        try {
+            return cardMap.get(name);
+        }catch (NullPointerException e){
+        System.out.println("there is no such card named " + name + " in inventory...");
+        }
+        return null;
     }
 
     public Deck getDeck() {

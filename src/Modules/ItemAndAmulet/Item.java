@@ -34,7 +34,7 @@ public abstract class Item {
     public abstract void castSpell(Warrior player);
 
     public String toString(){
-        return name;
+        return "Name: " + name + "\ndetail: " + spelldetail();
     }
 
     public boolean equals(Item other){

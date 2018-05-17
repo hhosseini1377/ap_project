@@ -8,6 +8,7 @@ import Modules.BattleGround.Hand;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Demonic.OgreMagi;
 import Modules.Card.Monsters.Demonic.OgreWarchief;
+import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.Normal;
 import Modules.Card.Spell.FirstAidKit;
 import Modules.Card.Spell.PoisonousCauldron;
@@ -51,6 +52,21 @@ public class Ogres extends Warrior {
     }
 
     public Card decideMove(MonsterField OpponentMonsterField, SpellField OpponentSpellField){
-        return new Card();
+        Card bestCard = null;
+        for (Card card : hand.getCards()){
+            if (manaPoint >= card.getManaPoint()) {
+                if (card instanceof Monster){
+                    if(!((Monster)card).isOffenseType()){
+                        bestCard = card;
+                        break;
+                    }else{
+                        bestCard = card;
+                    }
+                }else{
+                    bestCard = card;
+                }
+            }
+        }
+        return bestCard;
     }
 }

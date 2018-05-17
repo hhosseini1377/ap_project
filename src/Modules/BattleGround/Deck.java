@@ -73,10 +73,15 @@ public class Deck {
     }
 
     public Card takeCard(){
-        int random = (int)(Math.random() * (cards.size() - 1));
-        Card card = cards.get(random);
-        this.remove(card);
-        return card;
+        int random = (int)(Math.random() * (cards.size()));
+        try {
+            Card card = cards.get(random);
+            this.remove(card);
+            return card;
+        }catch (Exception e){
+            System.out.println("no more cards on deck");
+        }
+        return null;
     }
 
     public boolean contains(String Name){

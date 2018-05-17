@@ -13,6 +13,7 @@ import java.util.Scanner;
 public abstract class Monster extends Card{
     protected int initialAP;
     protected int initialHP;
+    protected boolean isCommander = false;
     protected int AP;
     protected int HP;
     protected boolean offenseType;
@@ -21,6 +22,11 @@ public abstract class Monster extends Card{
     protected MonsterTribe monsterTribe;
     protected boolean isSleeping = true;
     protected boolean canAttack = true;
+    protected boolean canCast;
+
+    public boolean canCast() {
+        return canCast;
+    }
 
     public boolean canAttack() {
         return canAttack;
@@ -105,9 +111,11 @@ public abstract class Monster extends Card{
     public void decreaseHP(int points){
         this.HP -= points;
         if (isDead()){
-            friend.getHand().remove(this);
-            friend.getGraveYard().add(this);
-            die(enemy, friend);
+            if (!isCommander) {
+                friend.getMonsterField().remove(this);
+                friend.getGraveYard().add(this);
+                die(enemy, friend);
+            }
         }
     }
 
@@ -157,13 +165,17 @@ public abstract class Monster extends Card{
     }
 
     public void die(Warrior enemy, Warrior friend) {
-        System.out.println(this.getName() + " has entered the field proudly!");
+        System.out.println(this.getName() + " has been murdered with cruelty!");
+    }
+
+    public void castSpell(Warrior enemy, Warrior friend){
+
     }
 
     public String toString(){
-        return name + " " + AP + " " + HP
-                + " " + manaPoint + " "
-                + isNimble + " " + offenseType
-                + " " + monsterKind + " " + monsterTribe;
+        return "Name: " + name + "\nHP: " + HP + "\nAP: " + AP +
+                "\nMP cost: " + manaPoint +
+                "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType +
+                "\nMonster Kind: " + monsterKind + "\nTribe: " + monsterTribe;
     }
 }

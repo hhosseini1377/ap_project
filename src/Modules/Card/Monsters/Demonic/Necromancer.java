@@ -33,11 +33,13 @@ public class Necromancer extends SpellCaster{
     @Override
     public void castSpell(Warrior enemy, Warrior friend){
         if (CanCast()) {
-        int random = (int)(Math.random() * friend.getGraveYard().getDestroyedCards().size());
-        Card card = friend.getGraveYard().getDestroyedCards().get(random);
-        friend.getGraveYard().remove(card.getName());
-        friend.getHand().add(card);
-        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
+            int random = (int)(Math.random() * friend.getGraveYard().getDestroyedCards().size());
+            Card card = friend.getGraveYard().getDestroyedCards().get(random);
+            friend.getGraveYard().remove(card.getName());
+            friend.getHand().add(card);
+            canCast = false;
+
+            System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
         }else
             System.out.println("this monster cannot cast now");
     }

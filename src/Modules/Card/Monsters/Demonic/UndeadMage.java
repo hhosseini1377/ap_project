@@ -32,7 +32,7 @@ public class UndeadMage extends SpellCaster{
     }
 
     @Override
-    protected void cast(Card card) {
+    public void castSpell(Card card) {
         ((Monster)card).decreaseAP(500);
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
@@ -43,43 +43,8 @@ public class UndeadMage extends SpellCaster{
             System.out.println("this monster cannot cast now");
             return;
         }
-        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
-        System.out.println("\nList of targets:");
-        System.out.println("1. Enemy commander\nMonster field:");
-        for (int i = 1; i <= 5; i++){
-            if(enemy.getMonsterField().getMonsterCards().get(i-1) == null){
-                System.out.println(i + ". slot" + i + ": Empty");
-            }else
-                System.out.println(i + ". slot" + i + ": " + enemy.getMonsterField().getMonsterCards().get(i-1).getName());
-        }
-
-        Scanner scanner = new Scanner(System.in);
-        while(true) {
-            switch (scanner.next()) {
-                case "Exit":
-                    System.out.println("no target was decided...");
-                    return;
-                case "Help":
-                    System.out.println("1. Target #TargetNum : To cast the spell on the specified target\n" +
-                            "2. Exit: To skip spell casting");
-                    break;
-                case "Target":
-                    int target = scanner.nextInt();
-//                    if (target == 1){
-//                        cast(enemy.getCommander());
-//                    }else{
-                    try{
-                        cast(enemy.getMonsterField().getMonsterCards().get(target));
-                    }catch (Exception e){
-                        System.out.println("invalid target");
-                    }
-//                    }
-                    break;
-                default:
-                    System.out.println("invalid input");
-                    break;
-            }
-        }
+        int random = (int)(Math.random() * enemy.getMonsterField().getMonsterCards().size());
+        castSpell(enemy.getMonsterField().getMonsterCards().get(random));
     }
 
 

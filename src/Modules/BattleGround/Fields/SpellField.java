@@ -25,10 +25,14 @@ public class SpellField {
             }
             for (int i = 0; i < 5; i++){
                 if (slots.get(slotNum) == null){
-                    slots.replace(slotNum, spell);
+                    slots.replace(i, spell);
                     spellCards.add(spell);
-                    numberOfCards.replace(spell.getName(),numberOfCards.get(spell.getName())-1);
+                    if (numberOfCards.containsKey(spell.getName())) {
+                        numberOfCards.replace(spell.getName(), numberOfCards.get(spell.getName()) + 1);
+                    }else
+                        numberOfCards.put(spell.getName(), 1);
                     availablePlaces--;
+                    break;
                 }
             }
             return;
@@ -40,7 +44,10 @@ public class SpellField {
         if(availablePlaces>0){
             slots.replace(slotNum, spell);
             spellCards.add(spell);
-            numberOfCards.replace(spell.getName(),numberOfCards.get(spell.getName())-1);
+            if (!numberOfCards.containsKey(spell.getName()))
+                numberOfCards.put(spell.getName(), 1);
+            else
+                numberOfCards.replace(spell.getName(),numberOfCards.get(spell.getName()) + 1);
             availablePlaces--;
         }
         else
@@ -56,11 +63,11 @@ public class SpellField {
         }
         spellCards.remove(spell);
         availablePlaces++;
-        if(numberOfCards.get(spell.getName()) ==1){
-            numberOfCards.remove(spell);
+        if(numberOfCards.get(spell.getName()) == 1){
+            numberOfCards.remove(spell.getName());
         }
         else{
-            numberOfCards.replace(spell.getName(),numberOfCards.get(spell)-1);
+            numberOfCards.replace(spell.getName(),numberOfCards.get(spell.getName()) - 1);
         }
     }
 

@@ -29,6 +29,7 @@ public class EvilEye extends SpellCaster{
         public void castSpell(Warrior enemy, Warrior friend){
             if (CanCast()) {
                 enemy.getMonsterField().getMonsterCards().forEach(card -> card.decreaseHP(800));
+                canCast = false;
                 System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
             }else
                 System.out.println("this monster cannot cast now");

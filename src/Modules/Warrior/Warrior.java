@@ -50,13 +50,15 @@ public class Warrior {
     }
 
     public void setManaPoint(int manaPoint) {
-        if (manaPoint <= 12) {
             this.manaPoint = manaPoint;
-            this.maxManaPoint = manaPoint;
-        }else {
+    }
+
+    public void setMaxManaPoint(int maxManaPoint){
+        if (maxManaPoint <= 12)
+            this.maxManaPoint = maxManaPoint;
+        else
             this.maxManaPoint = 12;
-            this.manaPoint = maxManaPoint;
-        }
+        this.manaPoint = this.maxManaPoint;
     }
 
     public Commander getCommander() {
@@ -121,5 +123,9 @@ public class Warrior {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void makeMove(Warrior enemy){
+
     }
 }

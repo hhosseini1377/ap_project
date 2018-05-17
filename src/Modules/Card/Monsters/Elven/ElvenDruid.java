@@ -34,6 +34,7 @@ public class ElvenDruid extends SpellCaster{
     protected void cast(Card card){
         ((Monster) card).increaseAP(300);
         ((Monster) card).increaseHP(500);
+        canCast = false;
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 

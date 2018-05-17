@@ -151,6 +151,13 @@ public class ShopControl {
 
     public void mainController() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("You've entered to shops");
+        System.out.println("Remaining Gill:" + User.getGills() + "Gill");
+        System.out.println("1. Card Shop");
+        System.out.println("2. Item Shop");
+        System.out.println("3. Amulet Shop");
+        System.out.println("4. Exit");
+
         while(true) {
             String request = scanner.nextLine();
             switch (request) {

@@ -11,7 +11,16 @@ public class Spell extends Card {
     public String spellDetail(){
         return spellDetail;
     }
-    public void castSpell(Warrior enemy, Warrior friend){
 
+    public void castSpell(Warrior enemy, Warrior friend){
+    }
+
+    public void castSpell(Card card){
+    }
+
+    public String toString(){
+        return "Name: " + this.name + "\nMP cost: " + this.manaPoint +
+                "\nCard Type: " + this.spellType + "\n" + this.spellDetail +
+                "Card Story: ";//TODO card story
     }
 }

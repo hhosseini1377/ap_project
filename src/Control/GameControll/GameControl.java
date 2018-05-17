@@ -121,6 +121,8 @@ public class GameControl {
         Scanner scan = new Scanner(System.in);
         String action;
         String previousResult = null;
+        help();
+
         while (true) {
             action = scan.nextLine();
             previousResult = availableAction(action, previousResult);

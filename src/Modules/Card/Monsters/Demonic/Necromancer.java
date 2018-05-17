@@ -1,16 +1,12 @@
 package Modules.Card.Monsters.Demonic;
 
 import Modules.Card.Card;
-import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
-
 public class Necromancer extends SpellCaster{
-    private String spellName = "Raise Dead";
 
     public Necromancer(){
         name = "Necromancer";
@@ -27,6 +23,7 @@ public class Necromancer extends SpellCaster{
     }
 
     public String getSpellName() {
+        String spellName = "Raise Dead";
         return spellName;
     }
 

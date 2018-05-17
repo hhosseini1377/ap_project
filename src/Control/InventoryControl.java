@@ -1,21 +1,16 @@
 package Control;
 
-import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
-import Modules.User.Inventory.AmuletInventory;
-import Modules.User.Inventory.CardInventory;
-import Modules.User.Inventory.ItemInventory;
 import Modules.User.User;
-import Modules.Warrior.BackPack;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InventoryControl {
-    private User user;
+    private final User user;
 
     public InventoryControl(User user){
         this.user = user;

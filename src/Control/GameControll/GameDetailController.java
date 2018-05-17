@@ -1,7 +1,5 @@
 package Control.GameControll;
 
-import Control.GameControll.CardException;
-import Control.GameControll.GameControl;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Atlantian.Kraken;
@@ -35,8 +33,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 class GameDetailController {
-     private String fileDirectory;
-     private GameControl gameControl;
+     private final String fileDirectory;
+     private final GameControl gameControl;
 
     GameDetailController(String fileDirectory, GameControl gameControl){
         this.fileDirectory = fileDirectory;
@@ -131,7 +129,7 @@ class GameDetailController {
             String parts[] = line.split(" -");
             try {
                 if (!gameControl.cardHashMap.containsKey(parts[0]))
-                    throw new CardException("card not available");
+                    throw new CardException();
                 this.gameControl.deck.add(gameControl.cardHashMap.get(parts[0]), Integer.parseInt(parts[1]));
             }catch (CardException e){
                 System.out.println("");
@@ -205,17 +203,17 @@ class GameDetailController {
     // TODO needs to be completed
      void saveGame() throws IOException{
         FileWriter fileWriter = null;
-        saveBackPack(fileWriter);
-        saveDeck(fileWriter);
-        saveInventory(fileWriter);
-        saveShop(fileWriter);
+        saveBackPack();
+        saveDeck();
+        saveInventory();
+        saveShop();
         fileWriter = new FileWriter(fileDirectory + "userInfo.txt", false);
         fileWriter.write("level:" + gameControl.user.getLevel());
         fileWriter.write("gills:" + gameControl.user.getGills());
     }
 
-     private void saveBackPack(FileWriter fileWriter) throws IOException{
-        fileWriter = new FileWriter(fileDirectory + "backPack.txt", false);
+     private void saveBackPack () throws IOException{
+         FileWriter fileWriter = new FileWriter (fileDirectory + "backPack.txt", false);
         for (Item item:gameControl.backPack.getItems()) {
             fileWriter.write(item.getName() + " -" + gameControl.backPack.getNumberOfItems(item.getName()) + "\n");
         }
@@ -225,16 +223,16 @@ class GameDetailController {
         fileWriter.close();
     }
 
-     private void saveDeck(FileWriter fileWriter) throws IOException{
-        fileWriter = new FileWriter(fileDirectory + "deck.txt", false);
+     private void saveDeck () throws IOException{
+         FileWriter fileWriter = new FileWriter (fileDirectory + "deck.txt", false);
         for (Card card:gameControl.deck.getCards()) {
             fileWriter.write(card.getName() + " -" + gameControl.deck.getNumberOfCards(card.getName()) + "\n");
         }
         fileWriter.close();
     }
 
-     private void saveInventory(FileWriter fileWriter) throws IOException{
-        fileWriter = new FileWriter(fileDirectory + "inventory.txt", false);
+     private void saveInventory () throws IOException{
+         FileWriter fileWriter = new FileWriter (fileDirectory + "inventory.txt", false);
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemInventory.getItems()){
@@ -253,8 +251,8 @@ class GameDetailController {
         fileWriter.close();
     }
 
-     private void saveShop(FileWriter fileWriter) throws IOException{
-        fileWriter = new FileWriter(fileDirectory + "shop.txt");
+     private void saveShop () throws IOException{
+         FileWriter fileWriter = new FileWriter (fileDirectory + "shop.txt");
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemShop.getItems()){

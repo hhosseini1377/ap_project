@@ -1,18 +1,12 @@
 package Modules.Card.Monsters.Elven;
 
-import Modules.Card.Card;
-import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
 import Modules.Card.Spell.Spell;
 import Modules.Warrior.Warrior;
 
-import java.util.Scanner;
-
 public class ElvenSorceress extends SpellCaster{
-    private String spellName = "Arcane Explosion";
-    private String spellDetail = " Increase a selected friendly monster card’s HP by 500 and AP by 300";
 
     public ElvenSorceress(){
         name = "Elven Sorceress";
@@ -29,6 +23,7 @@ public class ElvenSorceress extends SpellCaster{
     }
 
     public String getSpellName() {
+        String spellName = "Arcane Explosion";
         return spellName;
     }
 
@@ -52,6 +47,7 @@ public class ElvenSorceress extends SpellCaster{
 
     @Override
     public String spellDetail() {
+        String spellDetail = " Increase a selected friendly monster card’s HP by 500 and AP by 300";
         return spellDetail;
     }
 }

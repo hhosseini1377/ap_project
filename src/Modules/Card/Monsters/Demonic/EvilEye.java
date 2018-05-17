@@ -1,17 +1,13 @@
 package Modules.Card.Monsters.Demonic;
 
-import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
-
 public class EvilEye extends SpellCaster{
-        private String spellName = "Evil Gaze";
 
-        public EvilEye(){
+    public EvilEye(){
             this.name = "Evil Eye";
             this.initialHP = 400;
             this.HP = 400;
@@ -36,6 +32,7 @@ public class EvilEye extends SpellCaster{
         }
 
         public String getSpellName() {
+            String spellName = "Evil Gaze";
             return spellName;
         }
 

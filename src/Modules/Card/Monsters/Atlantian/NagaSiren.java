@@ -3,12 +3,9 @@ package Modules.Card.Monsters.Atlantian;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
-import Modules.Card.Spell.Spell;
 import Modules.Warrior.Warrior;
 
 public class NagaSiren extends SpellCaster{
-    private String spellName = "Song of Siren";
-    private String spellDetail = "Increase HP of all friendly monster cards by 300 and their AP by 200";
 
     public NagaSiren(){
         name = "Naga Siren";
@@ -25,6 +22,7 @@ public class NagaSiren extends SpellCaster{
     }
 
     public String getSpellName() {
+        String spellName = "Song of Siren";
         return spellName;
     }
 
@@ -51,6 +49,7 @@ public class NagaSiren extends SpellCaster{
 
     @Override
     public String spellDetail() {
+        String spellDetail = "Increase HP of all friendly monster cards by 300 and their AP by 200";
         return spellDetail;
     }
 }

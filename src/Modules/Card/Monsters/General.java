@@ -3,8 +3,6 @@ package Modules.Card.Monsters;
 import Modules.Card.Card;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
-
 public abstract class General extends Monster{
     private String willName;
     private String battleCryName;
@@ -20,7 +18,7 @@ public abstract class General extends Monster{
 
     }
 
-    public String willDetail(){
+    protected String willDetail (){
         return "will detail";
     }
 

@@ -1,7 +1,6 @@
 package Modules.Card;
 
 import Modules.Warrior.Warrior;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 
 public class Card {
     protected String name;
@@ -55,8 +54,7 @@ public class Card {
     }
 
     public String[] detail(){
-        String[] details = {""};
-        return details;
+        return new String[]{""};
     }
 
     private String spellDetail(){

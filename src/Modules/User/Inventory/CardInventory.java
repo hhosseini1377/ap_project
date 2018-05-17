@@ -2,9 +2,6 @@ package Modules.User.Inventory;
 
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
-import Modules.ItemAndAmulet.Amulet;
-import Modules.ItemAndAmulet.Item;
-import Modules.Warrior.BackPack;
 
 import java.util.ArrayList;
 import java.util.HashMap;

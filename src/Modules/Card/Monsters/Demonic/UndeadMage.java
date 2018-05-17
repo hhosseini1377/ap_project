@@ -7,11 +7,7 @@ import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class UndeadMage extends SpellCaster{
-    private String spellName = "Curse";
 
     public UndeadMage(){
         name = "Undead Mage";
@@ -28,6 +24,7 @@ public class UndeadMage extends SpellCaster{
     }
 
     public String getSpellName() {
+        String spellName = "Curse";
         return spellName;
     }
 

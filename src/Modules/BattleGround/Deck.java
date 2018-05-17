@@ -4,7 +4,6 @@ import Modules.Card.Card;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 public class Deck {
     private int maxNumber = 30;

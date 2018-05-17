@@ -9,7 +9,7 @@ public class AmuletShopView {
     /**
      * entrance print
      */
-    public void printAmuletShopDetails(ArrayList<Amulet> availableShopAmulets,Amulet equipedAmulet,HashMap<String,Integer> numberOfAmuletsInInventory){
+    public void printAmuletShopDetails(ArrayList<Amulet> availableShopAmulets,Amulet equipedAmulet){
         System.out.println("Shop List: ");
         int numberOfCards=1;
         //prints Amulets available in shop and their costs
@@ -19,9 +19,6 @@ public class AmuletShopView {
         //prints equipped Amulet
         System.out.println("Equipped Amulet" + equipedAmulet.getName());
         //prints Inventory Amulets and number of each Amulet
-        numberOfAmuletsInInventory.forEach((key,value) -> {
-            System.out.println(value + " " + key);
-        });
     }
     public void printHelpDetails(){
         System.out.println("1. Buy \"Amulet Name\" - #NumberToBuy: To buy a certain number of an Amulet from shop");

@@ -18,9 +18,7 @@ public class CardShopView {
             System.out.println(CardNumber++ + ". " +  card.getName() + " " +card.getGillCost());
         }
         System.out.println("\nInventory Cards:");
-        numberOfCards.forEach((key,value) -> {
-            System.out.println(key + " " + value);
-        });
+        numberOfCards.forEach((key,value) -> System.out.println(key + " " + value));
     }
 
     public void PrintCardShopHelpDetails() {
@@ -74,9 +72,7 @@ public class CardShopView {
             System.out.println("Slot " + numberOfCards++ +": " + card.getName());
         //prints inventory cards
         System.out.println("Inventory Cards:");
-        numberOfCardsInInventory.forEach((key,value) -> {
-            System.out.println("Card name:" + key + " Number of Cards: " + value);
-        });
+        numberOfCardsInInventory.forEach((key,value) -> System.out.println("Card name:" + key + " Number of Cards: " + value));
         //TODO its incomplete
     }
 

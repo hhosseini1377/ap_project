@@ -3,8 +3,6 @@ package Modules.Card.Monsters;
 import Modules.Card.Card;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
-
 public abstract class Hero extends Monster {
     protected boolean canCast = true;
     protected String spellName;

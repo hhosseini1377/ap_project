@@ -1,8 +1,6 @@
 package Modules.Shop;
 
 import Modules.Card.Card;
-import Modules.Card.Monsters.Monster;
-import Modules.Card.Spell.Spell;
 
 import java.util.ArrayList;
 import java.util.HashMap;

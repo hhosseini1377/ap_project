@@ -3,8 +3,6 @@ package Modules.Card.Spell;
 import Modules.Card.Monsters.Monster;
 import Modules.Warrior.Warrior;
 
-import java.util.Scanner;
-
 public class ArcaneBolt extends Spell {
     public ArcaneBolt(){
         name = "Arcane Bolt";

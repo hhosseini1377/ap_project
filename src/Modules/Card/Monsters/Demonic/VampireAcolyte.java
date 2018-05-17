@@ -8,7 +8,6 @@ import Modules.Card.Monsters.SpellCaster;
 import java.util.ArrayList;
 
 public class VampireAcolyte extends SpellCaster{
-    private String spellName = "Black Wave";
 
     public VampireAcolyte(){
         name = "Vampire Acolyte";
@@ -25,6 +24,7 @@ public class VampireAcolyte extends SpellCaster{
     }
 
     public String getSpellName() {
+        String spellName = "Black Wave";
         return spellName;
     }
 

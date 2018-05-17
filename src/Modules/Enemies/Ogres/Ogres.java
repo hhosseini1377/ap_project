@@ -16,20 +16,19 @@ import Modules.Card.Spell.ThrowingKnives;
 import Modules.Warrior.Warrior;
 
 public class Ogres extends Warrior {
-    private Deck deck;
     private Hand hand;
     private GraveYard graveYard;
     private MonsterField monsterField;
     private SpellField spellField;
-    private int prize = 20000;
 
     public int getPrize() {
+        int prize = 20000;
         return prize;
     }
 
     public Ogres(){
         super();
-        deck = new Deck();
+        Deck deck = new Deck ();
         Normal ogreWarrior =  new Normal("OgreWarrior", 800, 500, 3, false, true, "DEMONIC");
         Normal ogreFrontliner = new Normal("OgreFrontliner", 1800, 600, 5, false, false, "DEMONIC");
         OgreMagi ogreMagi = new OgreMagi();

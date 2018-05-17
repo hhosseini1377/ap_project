@@ -1,6 +1,6 @@
 package Modules.BattleGround.Fields;
 
-import Modules.Card.Monsters.Monster;
+import Modules.Card.Card;
 import Modules.Card.Spell.Spell;
 
 import java.util.ArrayList;
@@ -69,6 +69,18 @@ public class SpellField {
         else{
             numberOfCards.replace(spell.getName(),numberOfCards.get(spell.getName()) - 1);
         }
+    }
+
+    public Card getCard(String name){
+        for (Spell spell:spellCards){
+            if (spell.getName ().equals (name))
+                return spell;
+        }
+        return null;
+    }
+
+    public boolean hasCard(String name){
+        return this.numberOfCards.containsKey(name);
     }
 
     public int getAvailablePlaces() {

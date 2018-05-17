@@ -2,7 +2,7 @@ import Control.GameControll.GameControl;
 
 import java.io.IOException;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         GameControl gameControl = new GameControl("/home/gilgamesh/Desktop/Programs/Java/Project/projectAp/src/Files/save/");
         try {

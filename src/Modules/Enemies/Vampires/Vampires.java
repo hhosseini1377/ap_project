@@ -15,20 +15,19 @@ import Modules.Card.Spell.*;
 import Modules.Warrior.Warrior;
 
 public class Vampires extends Warrior {
-    private Deck deck;
     private Hand hand;
     private GraveYard graveYard;
     private MonsterField monsterField;
     private SpellField spellField;
-    private int prize = 30000;
 
     public int getPrize() {
+        int prize = 30000;
         return prize;
     }
 
     public Vampires(){
         super();
-        deck = new Deck();
+        Deck deck = new Deck ();
         PoisonousCauldron poisonousCauldron = new PoisonousCauldron();
         FirstAidKit firstAidKit = new FirstAidKit();
         Normal stoutUndead = new Normal("StoutUndead", 1200, 600, 4, false, false, "DEMONIC");

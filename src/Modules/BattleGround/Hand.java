@@ -34,6 +34,10 @@ public class Hand {
 		}
 	}
 
+	public boolean hasCard(String name){
+        return this.cardHashMap.containsKey(name);
+    }
+
 	public Card getCard(int index){
 		return cards.get(index);
 	}

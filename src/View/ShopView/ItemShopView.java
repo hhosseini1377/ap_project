@@ -1,6 +1,5 @@
 package View.ShopView;
 
-import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
 
 import java.util.ArrayList;
@@ -19,9 +18,7 @@ public class ItemShopView {
             System.out.println(numberOfCards + ". " + item.getName() +  " " + item.getGillCost());
         //prints Inventory amulets
         System.out.println("Item Inventory: ");
-        numberOfItemsInInventory.forEach((key,value) -> {
-            System.out.println(value + " " + key);
-        });
+        numberOfItemsInInventory.forEach((key,value) -> System.out.println(value + " " + key));
     }
 
     public void printHelpDetails(){

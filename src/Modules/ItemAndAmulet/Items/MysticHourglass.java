@@ -4,7 +4,6 @@ import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
 
 public class MysticHourglass extends Item{
-    private String detail = "returns the time to before the battle started";
 
     public MysticHourglass(){
         gillCost = 10000;
@@ -23,6 +22,7 @@ public class MysticHourglass extends Item{
 
     @Override
     public String spelldetail() {
+        String detail = "returns the time to before the battle started";
         return detail;
     }
 

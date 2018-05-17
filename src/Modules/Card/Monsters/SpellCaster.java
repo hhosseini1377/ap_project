@@ -3,9 +3,6 @@ package Modules.Card.Monsters;
 import Modules.Card.Card;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public abstract class SpellCaster extends Monster {
     protected boolean canCast = true;
     private String spellName;
@@ -23,7 +20,7 @@ public abstract class SpellCaster extends Monster {
     public void castSpell(Warrior enemy, Warrior friend){
     }
 
-    public String spellDetail(){
+    protected String spellDetail (){
         return "spell details";
     }
 

@@ -1,10 +1,5 @@
 package Modules.Enemies.Goblins;
 
-import Modules.BattleGround.Deck;
-import Modules.BattleGround.Fields.MonsterField;
-import Modules.BattleGround.Fields.SpellField;
-import Modules.BattleGround.GraveYard;
-import Modules.BattleGround.Hand;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Demonic.GoblinShaman;
 import Modules.Card.Monsters.Monster;
@@ -13,10 +8,12 @@ import Modules.Card.Spell.Spell;
 import Modules.Card.Spell.ThrowingKnives;
 import Modules.Warrior.Warrior;
 
+import java.util.Objects;
+
 public class Goblins extends Warrior {
-    private int prize = 10000;
 
     public int getPrize() {
+        int prize = 10000;
         return prize;
     }
 
@@ -35,7 +32,7 @@ public class Goblins extends Warrior {
     private Card decideHandCard(Warrior enemy) {
         if (hand.getCards().size() == 0)
             return null;
-        Card bestCard = null;
+        Card bestCard = hand.getCards().get(0);
         for (Card card : hand.getCards()) {
             if (manaPoint >= card.getManaPoint()) {
                 if (card instanceof Monster) {
@@ -61,13 +58,18 @@ public class Goblins extends Warrior {
         //first you will decide to bring a monster to the field
         Card decidedCard = decideHandCard(enemy);
         while (manaPoint > 0 && decideHandCard(enemy) != null) {
-            setManaPoint(getMaxManaPoint() - decidedCard.getManaPoint());
+            try {
+                setManaPoint (getMaxManaPoint () - Objects.requireNonNull (decidedCard).getManaPoint ());
+            }catch (NullPointerException e){
+                System.out.println ("the chosen card is empty");
+            }
             this.getHand().remove(decidedCard);
             if (decidedCard instanceof Monster) {
                 this.getMonsterField().add((Monster) decidedCard, -1);
             } else {
                 this.getSpellField().add((Spell) decidedCard, -1);
             }
+            System.out.println(decidedCard.getName() + " has entered the battlefield");
             decidedCard = decideHandCard(enemy);
         }
 

@@ -7,12 +7,7 @@ import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-
 public class OgreMagi extends SpellCaster{
-    private String spellName = "Enrage";
 
     public OgreMagi(){
         name = "Ogre Magi";
@@ -29,6 +24,7 @@ public class OgreMagi extends SpellCaster{
     }
 
     public String getSpellName() {
+        String spellName = "Enrage";
         return spellName;
     }
 

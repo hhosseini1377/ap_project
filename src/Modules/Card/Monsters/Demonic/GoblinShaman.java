@@ -1,17 +1,11 @@
 package Modules.Card.Monsters.Demonic;
 
-import Modules.Card.Card;
-import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
-
 public class GoblinShaman extends SpellCaster{
-    private String spellName = "mend";
-    private String spellDetail = "Increase a friendly monster card or player's HP by 400";
 
     public GoblinShaman(){
         this.name = "Goblin Shaman";
@@ -39,11 +33,13 @@ public class GoblinShaman extends SpellCaster{
     }
 
     public String getSpellName() {
+        String spellName = "mend";
         return spellName;
     }
 
     @Override
     public String spellDetail() {
+        String spellDetail = "Increase a friendly monster card or player's HP by 400";
         return spellDetail;
     }
 }

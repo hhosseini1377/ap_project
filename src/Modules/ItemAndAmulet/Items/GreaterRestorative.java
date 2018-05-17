@@ -4,7 +4,6 @@ import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
 
 public class GreaterRestorative extends Item{
-    private String detail = "Increase Player's HP by 1000 and MP by 4";
 
     public GreaterRestorative(){
         gillCost = 4000;
@@ -23,6 +22,7 @@ public class GreaterRestorative extends Item{
 
     @Override
     public String spelldetail() {
+        String detail = "Increase Player's HP by 1000 and MP by 4";
         return detail;
     }
 

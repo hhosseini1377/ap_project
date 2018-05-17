@@ -12,7 +12,7 @@ public class Warrior {
     private User user;
     protected Commander commander;
     protected String name;
-    protected Deck deck;
+    protected final Deck deck;
     protected Hand hand;
     protected GraveYard graveYard;
     protected MonsterField monsterField;
@@ -31,7 +31,7 @@ public class Warrior {
         commander = new Commander();
     }
 
-    public Warrior(){
+    protected Warrior (){
         deck = new Deck();
         backPack = new BackPack();
         hand = new Hand();
@@ -127,5 +127,9 @@ public class Warrior {
 
     public void makeMove(Warrior enemy){
 
+    }
+
+    public boolean hasCard(String name){
+        return hand.hasCard(name) || graveYard.hasCard(name) || monsterField.hasCard(name) || spellField.hasCard(name);
     }
 }

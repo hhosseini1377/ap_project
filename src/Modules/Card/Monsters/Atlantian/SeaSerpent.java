@@ -1,11 +1,17 @@
 package Modules.Card.Monsters.Atlantian;
 
+import Modules.Card.Card;
+import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
 import Modules.Warrior.Warrior;
 
+import java.util.Scanner;
+
 public class SeaSerpent extends SpellCaster{
+    private String spellName = "Serpent's Bite";
+    private String spellDetail = "Deal 1000 damage to an enemy monster card or player";
 
     public SeaSerpent(){
         name = "Sea Serpent";
@@ -22,7 +28,6 @@ public class SeaSerpent extends SpellCaster{
     }
 
     public String getSpellName() {
-        String spellName = "Serpent's Bite";
         return spellName;
     }
 
@@ -37,7 +42,6 @@ public class SeaSerpent extends SpellCaster{
         }catch (Exception e){
             enemy.getCommander().decreaseHP(1000);
         }
-        canCast = false;
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
@@ -53,7 +57,6 @@ public class SeaSerpent extends SpellCaster{
 
     @Override
     public String spellDetail() {
-        String spellDetail = "Deal 1000 damage to an enemy monster card or player";
         return spellDetail;
     }
 }

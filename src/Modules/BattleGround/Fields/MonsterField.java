@@ -19,7 +19,6 @@ public class MonsterField {
     }
 
     public Monster getSlot(int slotNum) {
-        slotNum--;
         Monster monster = null;
         try {
              monster = slots.get(slotNum);
@@ -45,36 +44,29 @@ public class MonsterField {
         return numberOfCards.get(monster.getName());
     }
 
-    public boolean add(Monster monster, int slotNum){
-        if (slotNum > 5){
-            System.out.println("This slot is invalid, try another one");
-            return false;
-        }
-        slotNum--;
-        if (slotNum == -2){
+    public void add(Monster monster, int slotNum){
+        if (slotNum == -1){
             if (availablePlaces <= 0){
                 System.out.println("not enough space in the field");
-                return false;
             }
             for (int i = 0; i < 5; i++){
-                if (slots.get(i) == null){
+                if (slots.get(slotNum) == null){
                     monsterCards.add(monster);
                     if (numberOfCards.containsKey(monster.getName()))
                         numberOfCards.replace(monster.getName(),numberOfCards.get(monster.getName()) + 1);
                     else
                         numberOfCards.put(monster.getName(), 1);
                     availablePlaces--;
-                    slots.replace(i, monster);
+                    slots.replace(slotNum, monster);
                     if (!monster.isOffenseType())
                         defensiveCards.add(monster);
-                    break;
                 }
             }
-            return false;
+            return;
         }
         if (slots.get(slotNum) != null){
             System.out.println("the slot is full!!");
-            return false;
+            return;
         }
         if(availablePlaces>0){
             monsterCards.add(monster);
@@ -89,26 +81,13 @@ public class MonsterField {
         }
         else
             System.out.println("MonsterField is full");
-        return true;
-    }
-
-    public Card getCard(String name){
-        for (Monster monster:monsterCards){
-            if (monster.getName ().equals (name))
-                return monster;
-        }
-        return null;
     }
 
     public void remove(Monster monster){
         for (int i = 0; i < 5; i++) {
-            try{
-            if (slots.get(i) != null && slots.get(i).equals(monster)) {
+            if (slots.get(i).equals(monster)){
                 slots.replace(i, null);
                 break;
-            }
-            }catch (NullPointerException e){
-                System.out.println(e);
             }
         }
         monsterCards.remove(monster);
@@ -134,24 +113,5 @@ public class MonsterField {
                 strongestDefender = monster;
         }
         return strongestDefender;
-    }
-
-    public void changeTurnActions(Boolean isMyTurn){
-        if (isMyTurn)
-            for (Monster monster: getMonsterCards()){
-                if (monster.isSleeping()){
-                    monster.setSleeping(false);
-                }
-            }
-        else
-            for (Monster monster: defensiveCards){
-                if (monster.isSleeping()){
-                    monster.setSleeping(false);
-                }
-            }
-    }
-
-    public boolean hasCard(String name){
-        return this.numberOfCards.containsKey(name);
     }
 }

@@ -31,7 +31,6 @@ public class Luthien extends Hero{
         }
         int random = (int)(Math.random() * friend.getMonsterField().getMonsterCards().size());
         friend.getMonsterField().getMonsterCards().get(random).increaseHP(2500);
-        canCast = false;
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 

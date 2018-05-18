@@ -34,7 +34,7 @@ public abstract class Item implements Cloneable{
     public abstract void castSpell(Warrior player);
 
     public String toString(){
-        return "Name: " + name + "\ndetail: " + spelldetail();
+        return name;
     }
 
     public boolean equals(Item other){

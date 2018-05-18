@@ -10,6 +10,8 @@ import Modules.Warrior.Warrior;
 import java.util.Scanner;
 
 public class BlueDragon extends SpellCaster{
+    private String spellName = "Magical Fire";
+    private String spellDetail = "Move an enemy monster card from field to graveyard";
 
     public BlueDragon(){
         name = "Blue Dragon";
@@ -26,7 +28,6 @@ public class BlueDragon extends SpellCaster{
     }
 
     public String getSpellName() {
-        String spellName = "Magical Fire";
         return spellName;
     }
 
@@ -84,7 +85,6 @@ public class BlueDragon extends SpellCaster{
 
     @Override
     public String spellDetail() {
-        String spellDetail = "Move an enemy monster card from field to graveyard";
         return spellDetail;
     }
 }

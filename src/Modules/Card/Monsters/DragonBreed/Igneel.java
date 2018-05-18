@@ -1,9 +1,13 @@
 package Modules.Card.Monsters.DragonBreed;
 
+import Modules.Card.Card;
 import Modules.Card.Monsters.Hero;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
+import Modules.Card.Spell.Spell;
 import Modules.Warrior.Warrior;
+
+import java.util.Scanner;
 
 public class Igneel extends Hero {
     public Igneel() {

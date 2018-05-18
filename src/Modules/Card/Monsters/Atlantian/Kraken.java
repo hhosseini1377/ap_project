@@ -1,11 +1,19 @@
 package Modules.Card.Monsters.Atlantian;
 
+import Modules.Card.Card;
 import Modules.Card.Monsters.General;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Card.Spell.Spell;
 import Modules.Warrior.Warrior;
 
 public class Kraken extends General{
+    private String willName = "Titan's Fall";
+    private String willDetail = "Deal 400 damage to all enemy monster cards and player";
+    private String battleCryName = "Titan's Presence";
+    private String battleCryDetail = " Return one random enemy monster card " +
+            "from field to hand and reduce all" +
+            "enemy monsters’ AP by 200";
 
     public Kraken(){
         name = "Kraken";
@@ -55,25 +63,19 @@ public class Kraken extends General{
 
     @Override
     public String willDetail() {
-        String willDetail = "Deal 400 damage to all enemy monster cards and player";
         return willDetail;
     }
 
     @Override
     public String battleCryDetail() {
-        String battleCryDetail = " Return one random enemy monster card " +
-                "from field to hand and reduce all" +
-                "enemy monsters’ AP by 200";
         return battleCryDetail;
     }
 
     public String getWillName() {
-        String willName = "Titan's Fall";
         return willName;
     }
 
     public String getBattleCryName() {
-        String battleCryName = "Titan's Presence";
         return battleCryName;
     }
 }

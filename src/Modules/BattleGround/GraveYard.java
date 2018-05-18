@@ -48,8 +48,4 @@ public class GraveYard {
             System.out.println("card name not right!\ncheck and try again");
         }
     }
-
-    public boolean hasCard(String name){
-        return this.cardMap.containsKey(name);
-    }
 }

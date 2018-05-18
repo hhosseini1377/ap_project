@@ -1,12 +1,21 @@
 package Modules.Card.Monsters.Demonic;
 
+import Modules.BattleGround.Fields.MonsterField;
+import Modules.BattleGround.Hand;
+import Modules.Card.Card;
 import Modules.Card.Monsters.General;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Warrior.Warrior;
 
+import java.util.ArrayList;
+
 public class VampirePrince extends General{
+    private String willName = "Darkness";
+    private String willDetail = "Reduce all enemy monsters' AP by 200 and increase all friendly monsters' AP by 200";
+    private String battleCryName = "Fear";
+    private String battleCryDetail = "Return two random enemy cards from field to hand";
 
     public VampirePrince(){
         name = "Vampire Prince";
@@ -29,7 +38,7 @@ public class VampirePrince extends General{
             try {
                 random = (int) (Math.random() * enemy.getMonsterField().getMonsterCards().size());
                 enemy.getHand().add(enemy.getMonsterField().getMonsterCards().get(random));
-                enemy.getMonsterField().remove(enemy.getMonsterField().getMonsterCards().get(random));
+                enemy.getMonsterField().remove((Monster) enemy.getMonsterField().getMonsterCards().get(random));
             }catch (Exception e){
                 System.out.println("Monster field does not have 2 cards");
             }
@@ -38,19 +47,17 @@ public class VampirePrince extends General{
     }
 
     public String getWillName() {
-        String willName = "Darkness";
         return willName;
     }
 
     public String getBattleCryName() {
-        String battleCryName = "Fear";
         return battleCryName;
     }
 
     @Override
     public void battleCry(Warrior enemy, Warrior friend) {
-        enemy.getMonsterField().getMonsterCards().forEach(card -> card.decreaseAP(200));
-        friend.getMonsterField().getMonsterCards().forEach(card -> card.increaseAP(200));
+        enemy.getMonsterField().getMonsterCards().forEach(card -> ((Monster) card).decreaseAP(200));
+        friend.getMonsterField().getMonsterCards().forEach(card -> ((Monster) card).increaseAP(200));
         System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
     }
 
@@ -68,13 +75,11 @@ public class VampirePrince extends General{
 
     @Override
     public String willDetail() {
-        String willDetail = "Reduce all enemy monsters' AP by 200 and increase all friendly monsters' AP by 200";
-        return willDetail;
+        return this.willDetail;
     }
 
     @Override
     public String battleCryDetail() {
-        String battleCryDetail = "Return two random enemy cards from field to hand";
-        return battleCryDetail;
+        return this.battleCryDetail;
     }
 }

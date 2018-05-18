@@ -43,7 +43,6 @@ public class Neptun extends Hero {
                 return;
             }
         }
-        canCast = false;
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 

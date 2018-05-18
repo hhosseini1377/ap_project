@@ -9,25 +9,25 @@ import Modules.Card.Card;
 import Modules.Card.Monsters.Demonic.UndeadMage;
 import Modules.Card.Monsters.Demonic.VampireAcolyte;
 import Modules.Card.Monsters.Demonic.VampirePrince;
-import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.Normal;
 import Modules.Card.Spell.*;
 import Modules.Warrior.Warrior;
 
 public class Vampires extends Warrior {
+    private Deck deck;
     private Hand hand;
     private GraveYard graveYard;
     private MonsterField monsterField;
     private SpellField spellField;
+    private int prize = 30000;
 
     public int getPrize() {
-        int prize = 30000;
         return prize;
     }
 
     public Vampires(){
         super();
-        Deck deck = new Deck ();
+        deck = new Deck();
         PoisonousCauldron poisonousCauldron = new PoisonousCauldron();
         FirstAidKit firstAidKit = new FirstAidKit();
         Normal stoutUndead = new Normal("StoutUndead", 1200, 600, 4, false, false, "DEMONIC");
@@ -55,21 +55,6 @@ public class Vampires extends Warrior {
     }
 
     public Card decideMove(MonsterField OpponentMonsterField, SpellField OpponentSpellField){
-        Card bestCard = null;
-        for (Card card : hand.getCards()){
-            if (manaPoint >= card.getManaPoint()) {
-                if (card instanceof Monster){
-                    if(!((Monster)card).isOffenseType()){
-                        bestCard = card;
-                        break;
-                    }else{
-                        bestCard = card;
-                    }
-                }else{
-                    bestCard = card;
-                }
-            }
-        }
-        return bestCard;
+        return new Card();
     }
 }

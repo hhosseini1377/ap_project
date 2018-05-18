@@ -4,6 +4,7 @@ import Modules.Card.Card;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Deck {
     private int maxNumber = 30;
@@ -72,15 +73,10 @@ public class Deck {
     }
 
     public Card takeCard(){
-        int random = (int)(Math.random() * (cards.size()));
-        try {
-            Card card = cards.get(random);
-            this.remove(card);
-            return card;
-        }catch (Exception e){
-            System.out.println("no more cards on deck");
-        }
-        return null;
+        int random = (int)(Math.random() * (cards.size() - 1));
+        Card card = cards.get(random);
+        this.remove(card);
+        return card;
     }
 
     public boolean contains(String Name){

@@ -1,5 +1,7 @@
 package Control.GameControll;
 
+import Control.GameControll.CardException;
+import Control.GameControll.GameControl;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Atlantian.Kraken;
@@ -33,8 +35,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 class GameDetailController {
-     private final String fileDirectory;
-     private final GameControl gameControl;
+     private String fileDirectory;
+     private GameControl gameControl;
 
     GameDetailController(String fileDirectory, GameControl gameControl){
         this.fileDirectory = fileDirectory;
@@ -114,12 +116,7 @@ class GameDetailController {
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
             if (gameControl.itemHashMap.containsKey(parts[0]))
-                for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                    try {
-                        this.gameControl.backPack.add((Item) gameControl.itemHashMap.get(parts[0]).clone(), 1);
-                    }catch (CloneNotSupportedException e){
-                        System.out.println("Clone not supported" + e.getStackTrace());
-                    }
+                this.gameControl.backPack.add(gameControl.itemHashMap.get(parts[0]), Integer.parseInt(parts[1]));
             else
                 this.gameControl.backPack.add(gameControl.amuletHashMap.get(parts[0]));
         }
@@ -134,14 +131,8 @@ class GameDetailController {
             String parts[] = line.split(" -");
             try {
                 if (!gameControl.cardHashMap.containsKey(parts[0]))
-                    throw new CardException();
-                for (int i = 0; i < Integer.parseInt(parts[1]); i++) {
-                    try {
-                        this.gameControl.deck.add((Card) gameControl.cardHashMap.get(parts[0]).clone(), 1);
-                    }catch (CloneNotSupportedException e){
-                        System.out.println("Clone not supported" + e.getStackTrace());
-                    }
-                }
+                    throw new CardException("card not available");
+                this.gameControl.deck.add(gameControl.cardHashMap.get(parts[0]), Integer.parseInt(parts[1]));
             }catch (CardException e){
                 System.out.println("");
             }
@@ -161,22 +152,15 @@ class GameDetailController {
             if (!line.contains(":")){
                 if (inventoryName.equals("items:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        try {
-                            gameControl.itemInventory.add((Item) gameControl.itemHashMap.get(parts[0]).clone());
-                        }catch (CloneNotSupportedException e){
-                            System.out.println("Clone not supported");
-                        }
+                        gameControl.itemInventory.add(gameControl.itemHashMap.get(parts[0]));
                 }
                 if (inventoryName.equals("amulets:")){
+                    for (int i = 0; i < Integer.parseInt(parts[1]); i++)
                         gameControl.amuletInventory.add(gameControl.amuletHashMap.get(parts[0]));
                 }
                 if (inventoryName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        try {
-                            gameControl.cardInventory.add((Card) gameControl.cardHashMap.get(parts[0]).clone());
-                        }catch (CloneNotSupportedException e){
-                            System.out.println(e);
-                        }
+                        gameControl.cardInventory.add(gameControl.cardHashMap.get(parts[0]));
                 }
             }else{
                 inventoryName = line;
@@ -206,11 +190,7 @@ class GameDetailController {
                 }
                 if (shopName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        try {
-                            gameControl.cardShop.addCard((Card) gameControl.cardHashMap.get(parts[0]).clone());
-                        }catch (CloneNotSupportedException e){
-                            System.out.println(e);
-                        }
+                        gameControl.cardShop.addCard(gameControl.cardHashMap.get(parts[0]));
                 }
             }else{
                 shopName = line;
@@ -225,17 +205,17 @@ class GameDetailController {
     // TODO needs to be completed
      void saveGame() throws IOException{
         FileWriter fileWriter = null;
-        saveBackPack();
-        saveDeck();
-        saveInventory();
-        saveShop();
+        saveBackPack(fileWriter);
+        saveDeck(fileWriter);
+        saveInventory(fileWriter);
+        saveShop(fileWriter);
         fileWriter = new FileWriter(fileDirectory + "userInfo.txt", false);
         fileWriter.write("level:" + gameControl.user.getLevel());
         fileWriter.write("gills:" + gameControl.user.getGills());
     }
 
-     private void saveBackPack () throws IOException{
-         FileWriter fileWriter = new FileWriter (fileDirectory + "backPack.txt", false);
+     private void saveBackPack(FileWriter fileWriter) throws IOException{
+        fileWriter = new FileWriter(fileDirectory + "backPack.txt", false);
         for (Item item:gameControl.backPack.getItems()) {
             fileWriter.write(item.getName() + " -" + gameControl.backPack.getNumberOfItems(item.getName()) + "\n");
         }
@@ -245,16 +225,16 @@ class GameDetailController {
         fileWriter.close();
     }
 
-     private void saveDeck () throws IOException{
-         FileWriter fileWriter = new FileWriter (fileDirectory + "deck.txt", false);
+     private void saveDeck(FileWriter fileWriter) throws IOException{
+        fileWriter = new FileWriter(fileDirectory + "deck.txt", false);
         for (Card card:gameControl.deck.getCards()) {
             fileWriter.write(card.getName() + " -" + gameControl.deck.getNumberOfCards(card.getName()) + "\n");
         }
         fileWriter.close();
     }
 
-     private void saveInventory () throws IOException{
-         FileWriter fileWriter = new FileWriter (fileDirectory + "inventory.txt", false);
+     private void saveInventory(FileWriter fileWriter) throws IOException{
+        fileWriter = new FileWriter(fileDirectory + "inventory.txt", false);
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemInventory.getItems()){
@@ -273,8 +253,8 @@ class GameDetailController {
         fileWriter.close();
     }
 
-     private void saveShop () throws IOException{
-         FileWriter fileWriter = new FileWriter (fileDirectory + "shop.txt");
+     private void saveShop(FileWriter fileWriter) throws IOException{
+        fileWriter = new FileWriter(fileDirectory + "shop.txt");
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemShop.getItems()){

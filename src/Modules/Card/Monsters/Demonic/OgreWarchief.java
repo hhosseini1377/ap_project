@@ -1,12 +1,19 @@
 package Modules.Card.Monsters.Demonic;
 
+import Modules.Card.Card;
 import Modules.Card.Monsters.General;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Warrior.Warrior;
 
+import java.util.ArrayList;
+
 public class OgreWarchief extends General{
+    private String willName = "Last Order";
+    private String willDetail = "Increase all friendly monsters by 300";
+    private String battleCryName = "War Stomp";
+    private String battleCryDetail = "Deal 400 damage to all enemy monsters and player";
 
     public OgreWarchief(){
         name = "Ogre Warchief";
@@ -23,26 +30,24 @@ public class OgreWarchief extends General{
     }
 
     public String getWillName() {
-        String willName = "Last Order";
         return willName;
     }
 
     public String getBattleCryName() {
-        String battleCryName = "War Stomp";
         return battleCryName;
     }
 
     @Override
     public void will(Warrior enemy, Warrior friend) {
         enemy.getMonsterField().getMonsterCards().
-                forEach(card -> card.increaseAP(300));
+                forEach(card -> ((Monster) card).increaseAP(300));
         System.out.println(this.getName() + " has cast a spell:\n" + this.willDetail());
     }
 
     @Override
     public void battleCry(Warrior enemy, Warrior friend) {
         enemy.getMonsterField().getMonsterCards().
-                forEach(card -> card.decreaseHP(400));
+                forEach(card -> ((Monster) card).decreaseHP(400));
         enemy.getCommander().decreaseHP(400);
         System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
     }
@@ -61,13 +66,11 @@ public class OgreWarchief extends General{
 
     @Override
     public String willDetail() {
-        String willDetail = "Increase all friendly monsters by 300";
-        return willDetail;
+        return this.willDetail;
     }
 
     @Override
     public String battleCryDetail() {
-        String battleCryDetail = "Deal 400 damage to all enemy monsters and player";
-        return battleCryDetail;
+        return this.battleCryDetail;
     }
 }

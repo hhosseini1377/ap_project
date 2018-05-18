@@ -1,5 +1,6 @@
 package View.ShopView;
 
+import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
 
 import java.util.ArrayList;
@@ -15,10 +16,12 @@ public class ItemShopView {
         //prints shop amulets
         System.out.println("Shop List: ");
         for(Item item:availableShopItems)
-            System.out.println(numberOfCards + ". " + item.getName() +  " " + item.getGillCost());
+            System.out.println(numberOfCards++ + ". " + item.getName() +  " " + item.getGillCost());
         //prints Inventory amulets
         System.out.println("Item Inventory: ");
-        numberOfItemsInInventory.forEach((key,value) -> System.out.println(value + " " + key));
+        numberOfItemsInInventory.forEach((key,value) -> {
+            System.out.println(value + " " + key);
+        });
     }
 
     public void printHelpDetails(){
@@ -30,7 +33,7 @@ public class ItemShopView {
 
     public void printBuyItemDetails(boolean canBuy,int numberToBuy,String itemName) {
         if (canBuy) {
-            System.out.println("Successfully bought " + numberToBuy + " of " + itemName);
+            System.out.println("Successfully bought " + numberToBuy + " of " + itemName + "s");
         }
         else {
             System.out.println("Not enough Gill!");
@@ -39,10 +42,10 @@ public class ItemShopView {
 
     public void printSellItemDetails(boolean canSell,int numberToSell,String itemName){
         if(canSell){
-            System.out.println("Successfully sold" + numberToSell + " of " + itemName);
+            System.out.println("Successfully sold " + numberToSell + " of " + itemName + "s");
         }
         else{
-            System.out.println("Not enough Gill!");
+            System.out.println("Not enough Cards!");
         }
     }
 

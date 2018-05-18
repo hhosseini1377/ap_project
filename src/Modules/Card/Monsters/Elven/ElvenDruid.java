@@ -10,6 +10,8 @@ import Modules.Warrior.Warrior;
 import java.util.Scanner;
 
 public class ElvenDruid extends SpellCaster{
+    private String spellName = "Rejuvenation";
+    private String spellDetail = " Increase a selected friendly monster card’s HP by 500 and AP by 300";
 
     public ElvenDruid(){
         name = "Elven Druid";
@@ -26,14 +28,12 @@ public class ElvenDruid extends SpellCaster{
     }
 
     public String getSpellName() {
-        String spellName = "Rejuvenation";
         return spellName;
     }
 
     protected void cast(Card card){
         ((Monster) card).increaseAP(300);
         ((Monster) card).increaseHP(500);
-        canCast = false;
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
@@ -87,7 +87,6 @@ public class ElvenDruid extends SpellCaster{
 
     @Override
     public String spellDetail() {
-        String spellDetail = " Increase a selected friendly monster card’s HP by 500 and AP by 300";
         return spellDetail;
     }
 }

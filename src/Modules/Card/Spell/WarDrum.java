@@ -1,5 +1,6 @@
 package Modules.Card.Spell;
 
+import Modules.Card.Card;
 import Modules.Warrior.Warrior;
 
 public class WarDrum extends Spell{

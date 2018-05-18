@@ -2,12 +2,18 @@ package Modules.Card.Monsters.Elven;
 
 import Modules.Card.Card;
 import Modules.Card.Monsters.General;
+import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Spell.Spell;
 import Modules.Warrior.Warrior;
 
 public class NobleElf extends General{
+    private String willName = "Elven Enliven";
+    private String willDetail = "Increase a random friendly Elven monster card on the" +
+            " field’s HP by 800 and AP by 600";
+    private String battleCryName = "Purge";
+    private String battleCryDetail = "Remove all enemy spell cards on the field and move them to hand";
 
     public NobleElf(){
         name = "Noble Elf";
@@ -45,14 +51,11 @@ public class NobleElf extends General{
 
     @Override
     public String willDetail() {
-        String willDetail = "Increase a random friendly Elven monster card on the" +
-                " field’s HP by 800 and AP by 600";
         return willDetail;
     }
 
     @Override
     public String battleCryDetail() {
-        String battleCryDetail = "Remove all enemy spell cards on the field and move them to hand";
         return battleCryDetail;
     }
 
@@ -69,12 +72,10 @@ public class NobleElf extends General{
     }
 
     public String getWillName() {
-        String willName = "Elven Enliven";
         return willName;
     }
 
     public String getBattleCryName() {
-        String battleCryName = "Purge";
         return battleCryName;
     }
 }

@@ -8,7 +8,6 @@ import Modules.BattleGround.Hand;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Demonic.OgreMagi;
 import Modules.Card.Monsters.Demonic.OgreWarchief;
-import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.Normal;
 import Modules.Card.Spell.FirstAidKit;
 import Modules.Card.Spell.PoisonousCauldron;
@@ -16,19 +15,20 @@ import Modules.Card.Spell.ThrowingKnives;
 import Modules.Warrior.Warrior;
 
 public class Ogres extends Warrior {
+    private Deck deck;
     private Hand hand;
     private GraveYard graveYard;
     private MonsterField monsterField;
     private SpellField spellField;
+    private int prize = 20000;
 
     public int getPrize() {
-        int prize = 20000;
         return prize;
     }
 
     public Ogres(){
         super();
-        Deck deck = new Deck ();
+        deck = new Deck();
         Normal ogreWarrior =  new Normal("OgreWarrior", 800, 500, 3, false, true, "DEMONIC");
         Normal ogreFrontliner = new Normal("OgreFrontliner", 1800, 600, 5, false, false, "DEMONIC");
         OgreMagi ogreMagi = new OgreMagi();
@@ -51,21 +51,6 @@ public class Ogres extends Warrior {
     }
 
     public Card decideMove(MonsterField OpponentMonsterField, SpellField OpponentSpellField){
-        Card bestCard = null;
-        for (Card card : hand.getCards()){
-            if (manaPoint >= card.getManaPoint()) {
-                if (card instanceof Monster){
-                    if(!((Monster)card).isOffenseType()){
-                        bestCard = card;
-                        break;
-                    }else{
-                        bestCard = card;
-                    }
-                }else{
-                    bestCard = card;
-                }
-            }
-        }
-        return bestCard;
+        return new Card();
     }
 }

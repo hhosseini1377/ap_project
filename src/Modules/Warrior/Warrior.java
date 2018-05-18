@@ -12,7 +12,7 @@ public class Warrior {
     private User user;
     protected Commander commander;
     protected String name;
-    protected final Deck deck;
+    protected Deck deck;
     protected Hand hand;
     protected GraveYard graveYard;
     protected MonsterField monsterField;
@@ -31,7 +31,7 @@ public class Warrior {
         commander = new Commander();
     }
 
-    protected Warrior (){
+    public Warrior(){
         deck = new Deck();
         backPack = new BackPack();
         hand = new Hand();
@@ -50,15 +50,13 @@ public class Warrior {
     }
 
     public void setManaPoint(int manaPoint) {
+        if (manaPoint <= 12) {
             this.manaPoint = manaPoint;
-    }
-
-    public void setMaxManaPoint(int maxManaPoint){
-        if (maxManaPoint <= 12)
-            this.maxManaPoint = maxManaPoint;
-        else
+            this.maxManaPoint = manaPoint;
+        }else {
             this.maxManaPoint = 12;
-        this.manaPoint = this.maxManaPoint;
+            this.manaPoint = maxManaPoint;
+        }
     }
 
     public Commander getCommander() {
@@ -123,13 +121,5 @@ public class Warrior {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public void makeMove(Warrior enemy){
-
-    }
-
-    public boolean hasCard(String name){
-        return hand.hasCard(name) || graveYard.hasCard(name) || monsterField.hasCard(name) || spellField.hasCard(name);
     }
 }

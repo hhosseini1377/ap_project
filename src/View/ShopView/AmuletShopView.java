@@ -9,7 +9,7 @@ public class AmuletShopView {
     /**
      * entrance print
      */
-    public void printAmuletShopDetails(ArrayList<Amulet> availableShopAmulets,Amulet equipedAmulet){
+    public void printAmuletShopDetails(ArrayList<Amulet> availableShopAmulets,Amulet equipedAmulet,HashMap<String,Integer> numberOfAmuletsInInventory,boolean isAmuletEquipped){
         System.out.println("Shop List: ");
         int numberOfCards=1;
         //prints Amulets available in shop and their costs
@@ -17,8 +17,15 @@ public class AmuletShopView {
             System.out.println(numberOfCards++ + ". " + amulet.getName() + " " + amulet.getGillCost());
         }
         //prints equipped Amulet
+        if(isAmuletEquipped)
         System.out.println("Equipped Amulet" + equipedAmulet.getName());
+        else
+            System.out.println("Amulet is not Equipped");
         //prints Inventory Amulets and number of each Amulet
+        if(numberOfAmuletsInInventory != null)
+        numberOfAmuletsInInventory.forEach((key,value) -> {
+            System.out.println(value + " " + key);
+        });
     }
     public void printHelpDetails(){
         System.out.println("1. Buy \"Amulet Name\" - #NumberToBuy: To buy a certain number of an Amulet from shop");
@@ -31,7 +38,7 @@ public class AmuletShopView {
 
     public void printBuyAmuletDetails(boolean canBuy,int numberToBuy,String amuletName) {
         if (canBuy) {
-            System.out.println("Successfully bought " + numberToBuy + " of " + amuletName);
+            System.out.println("Successfully bought " + numberToBuy + " of " + amuletName + "s");
         }
         else {
             System.out.println("Not enough Gill!");
@@ -40,10 +47,10 @@ public class AmuletShopView {
 
     public void printSellAmuletDetails(boolean canSell,int numberToSell,String amuletName){
         if(canSell){
-            System.out.println("Successfully sold" + numberToSell + " of " + amuletName);
+            System.out.println("Successfully sold " + numberToSell + " of " + amuletName + "s");
         }
         else{
-            System.out.println("Not enough Gill!");
+            System.out.println("Not enough Cards!");
         }
     }
 

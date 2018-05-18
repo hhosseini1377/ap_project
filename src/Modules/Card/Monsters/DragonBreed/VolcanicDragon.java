@@ -1,5 +1,6 @@
 package Modules.Card.Monsters.DragonBreed;
 
+import Modules.Card.Card;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
@@ -9,6 +10,9 @@ import Modules.Warrior.Warrior;
 import java.util.Scanner;
 
 public class VolcanicDragon extends SpellCaster {
+    private String spellName = "Lava Spit";
+    private String spellDetail = "Deal 500 damage to an enemy" +
+            " monster card and reduce its AP by 500";
 
     public VolcanicDragon() {
         name = "Volcanic Dragon";
@@ -25,14 +29,12 @@ public class VolcanicDragon extends SpellCaster {
     }
 
     public String getSpellName() {
-        String spellName = "Lava Spit";
         return spellName;
     }
 
     private void cast(Monster monster) {
         monster.decreaseAP(500);
         monster.decreaseHP(500);
-        canCast = false;
     }
 
     public void castSpell(Warrior enemy, Warrior friend) {
@@ -86,8 +88,6 @@ public class VolcanicDragon extends SpellCaster {
 
     @Override
     public String spellDetail() {
-        String spellDetail = "Deal 500 damage to an enemy" +
-                " monster card and reduce its AP by 500";
         return spellDetail;
     }
 

@@ -18,12 +18,7 @@ public class ThrowingKnives extends Spell{
     }
 
     @Override
-    public void castSpell(Card card) {
-        //TODO
-    }
-
-    @Override
-    public void castSpell() {
+    public void castSpell(Warrior enemy, Warrior friend) {
         //TODO
     }
 

@@ -8,7 +8,7 @@ public class DiamondPendant extends Amulet {
     private String detail = "Increase Player's Max HP by 2000";
 
     public DiamondPendant() {
-        name = "Iron Pendant";
+        name = "Diamond Pendant";
         gillCost = 2000;
     }
 

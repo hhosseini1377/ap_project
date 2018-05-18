@@ -7,10 +7,7 @@ import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Normal;
 import Modules.ItemAndAmulet.Amulet;
-import Modules.ItemAndAmulet.Amulets.DemonCrown;
-import Modules.ItemAndAmulet.Amulets.DiamondRing;
-import Modules.ItemAndAmulet.Amulets.GoldRing;
-import Modules.ItemAndAmulet.Amulets.IronRing;
+import Modules.ItemAndAmulet.Amulets.*;
 import Modules.ItemAndAmulet.Item;
 import Modules.Shop.AmuletShop;
 import Modules.Shop.CardShop;
@@ -21,7 +18,10 @@ import Modules.User.Inventory.ItemInventory;
 import Modules.User.User;
 import Modules.Warrior.BackPack;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -87,7 +87,9 @@ public class GameControl {
         gameDetailController.monsterStart();
         gameDetailController.spellStart();
         gameDetailController.itemStart();
-        //TODO instantiate amulets
+        amuletHashMap.put("Iron Pendant", new IronPendant());
+        amuletHashMap.put("Gold Pendant", new GoldPendant());
+        amuletHashMap.put("Diamond Pendant", new DiamondPendant());
         amuletHashMap.put("Iron Ring", new IronRing());
         amuletHashMap.put("Gold Ring", new GoldRing());
         amuletHashMap.put("Diamond Ring", new DiamondRing());

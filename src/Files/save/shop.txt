@@ -8,6 +8,9 @@ Large MP Potion
 Lesser Restorative
 Greater Restorative
 amulets:
+Iron Pendant
+Gold Pendant
+Diamond Pendant
 Iron Ring
 Gold Ring
 Diamond Ring

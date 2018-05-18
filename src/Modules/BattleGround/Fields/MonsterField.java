@@ -103,12 +103,12 @@ public class MonsterField {
     public void remove(Monster monster){
         for (int i = 0; i < 5; i++) {
             try{
-            if (slots.get(i).equals(monster)) {
+            if (slots.get(i) != null && slots.get(i).equals(monster)) {
                 slots.replace(i, null);
                 break;
             }
             }catch (NullPointerException e){
-                System.out.println();
+                System.out.println(e);
             }
         }
         monsterCards.remove(monster);
@@ -134,6 +134,21 @@ public class MonsterField {
                 strongestDefender = monster;
         }
         return strongestDefender;
+    }
+
+    public void changeTurnActions(Boolean isMyTurn){
+        if (isMyTurn)
+            for (Monster monster: getMonsterCards()){
+                if (monster.isSleeping()){
+                    monster.setSleeping(false);
+                }
+            }
+        else
+            for (Monster monster: defensiveCards){
+                if (monster.isSleeping()){
+                    monster.setSleeping(false);
+                }
+            }
     }
 
     public boolean hasCard(String name){

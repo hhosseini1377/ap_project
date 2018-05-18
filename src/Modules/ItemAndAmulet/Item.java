@@ -2,7 +2,7 @@ package Modules.ItemAndAmulet;
 
 import Modules.Warrior.Warrior;
 
-public abstract class Item {
+public abstract class Item implements Cloneable{
     protected String name;
     protected int gillCost;
     protected boolean isUsed = false;
@@ -47,5 +47,10 @@ public abstract class Item {
 
     public int hashCode(){
         return super.hashCode();
+    }
+
+    @Override
+    public Object clone () throws CloneNotSupportedException {
+        return super.clone();
     }
 }

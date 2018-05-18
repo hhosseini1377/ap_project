@@ -2,7 +2,7 @@ package Modules.Card;
 
 import Modules.Warrior.Warrior;
 
-public class Card {
+public class Card implements Cloneable{
     protected String name;
     protected int gillCost;
     protected int manaPoint;
@@ -70,10 +70,15 @@ public class Card {
     }
 
     public boolean equals(Card other){
-        return other.getName().equals(this.getName());
+        return other.hashCode() == this.hashCode();
     }
 
     public int hashCode(){
         return super.hashCode();
+    }
+
+    @Override
+    public Object clone () throws CloneNotSupportedException {
+        return super.clone();
     }
 }

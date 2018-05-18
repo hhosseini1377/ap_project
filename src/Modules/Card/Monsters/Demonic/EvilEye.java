@@ -43,7 +43,7 @@ public class EvilEye extends SpellCaster{
 
     @Override
     public void die(Warrior enemy, Warrior friend) {
-        System.out.println(this.getName() + " has died mercilessly");
+     super.die(enemy, friend);
     }
 
         public String spellDetail(){

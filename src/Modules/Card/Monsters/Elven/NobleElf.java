@@ -56,6 +56,18 @@ public class NobleElf extends General{
         return battleCryDetail;
     }
 
+    @Override
+    public void enterField (Warrior enemy, Warrior friend) {
+        super.enterField(enemy, friend);
+        battleCry(enemy, friend);
+    }
+
+    @Override
+    public void die (Warrior enemy, Warrior friend) {
+        super.die(enemy, friend);
+        will(enemy, friend);
+    }
+
     public String getWillName() {
         String willName = "Elven Enliven";
         return willName;

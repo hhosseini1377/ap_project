@@ -21,7 +21,7 @@ public class ArcaneBolt extends Spell {
     }
 
     @Override
-    public void castSpell(Warrior enemy, Warrior friend) {
+    public void castSpell() {
         //TODO
     }
 

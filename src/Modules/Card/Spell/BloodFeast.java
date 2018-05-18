@@ -13,7 +13,7 @@ public class BloodFeast extends Spell{
     }
 
     @Override
-    public void castSpell(Warrior enemy, Warrior friend) {
+    public void castSpell() {
         enemy.getCommander().decreaseHP(500);
         friend.getCommander().increaseHP(500);
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());

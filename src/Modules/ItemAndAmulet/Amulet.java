@@ -37,4 +37,9 @@ public abstract class Amulet {
     public String toString(){
         return "Name: " + name + "\ndetail: " + detail();
     }
+
+    @Override
+    protected Object clone () throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

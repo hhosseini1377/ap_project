@@ -27,7 +27,7 @@ public class FirstAidKit extends Spell{
     }
 
     @Override
-    public void castSpell(Warrior enemy, Warrior friend) {
+    public void castSpell() {
         if (!canCast){
             System.out.println("this card cannot cast anymore");
             return;
@@ -36,10 +36,14 @@ public class FirstAidKit extends Spell{
         System.out.println("\nList of targets:");
         System.out.println("1. commander\nMonster field:");
         for (int i = 1; i <= 5; i++){
-            if(friend.getMonsterField().getMonsterCards().get(i-1) == null){
-                System.out.println((i+1) + ". slot" + i + ": Empty");
-            }else
-                System.out.println((i+1) + ". slot" + i + ": " + friend.getMonsterField().getMonsterCards().get(i-1).getName());
+            try {
+                if (friend.getMonsterField().getMonsterCards().get(i - 1) == null) {
+                    System.out.println((i + 1) + ". slot" + i + ": Empty");
+                } else
+                    System.out.println((i + 1) + ". slot" + i + ": " + friend.getMonsterField().getMonsterCards().get(i - 1).getName());
+            }catch (Exception e){
+                System.out.println((i + 1) + ". slot" + i + ": Empty");
+            }
         }
 
         Scanner scanner = new Scanner(System.in);

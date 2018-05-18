@@ -48,7 +48,7 @@ public class SeaSerpent extends SpellCaster{
 
     @Override
     public void die(Warrior enemy, Warrior friend) {
-        System.out.println(this.getName() + " has died mercilessly");
+     super.die(enemy, friend);
     }
 
     @Override

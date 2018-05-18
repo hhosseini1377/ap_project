@@ -44,10 +44,14 @@ public class VolcanicDragon extends SpellCaster {
         System.out.println("\nList of targets:");
 //        System.out.println("1. Enemy commander\nMonster field:");
         for (int i = 1; i <= 5; i++) {
-            if (enemy.getMonsterField().getMonsterCards().get(i - 1) == null) {
+            try {
+                if (enemy.getMonsterField().getMonsterCards().get(i - 1) == null) {
+                    System.out.println(i + ". slot" + i + ": Empty");
+                } else
+                    System.out.println(i + ". slot" + i + ": " + enemy.getMonsterField().getMonsterCards().get(i - 1).getName());
+            }catch (Exception e){
                 System.out.println(i + ". slot" + i + ": Empty");
-            } else
-                System.out.println(i + ". slot" + i + ": " + enemy.getMonsterField().getMonsterCards().get(i - 1).getName());
+            }
         }
 
         Scanner scanner = new Scanner(System.in);

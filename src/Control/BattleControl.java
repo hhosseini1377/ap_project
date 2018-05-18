@@ -46,8 +46,8 @@ public class BattleControl {
                 System.out.println("You've already completed the game...\ngo somewhere else kido!!");
         }
         warrior[1].setUser(user);
-        warrior[0].setManaPoint(1);
-        warrior[1].setManaPoint(1);
+        warrior[0].setMaxManaPoint(1);
+        warrior[1].setMaxManaPoint(1);
         Iterator<Card> itr = warrior[1].getDeck().getCards().iterator();
         while (itr.hasNext()) {
             Card card = itr.next();
@@ -105,22 +105,26 @@ public class BattleControl {
         Matcher matcher = Pattern.compile("Info (.*)").matcher(line);
         switch (action[0]) {
             case "View":
-                switch (action[1]) {
-                    case "Hand":
-                        viewHand();
-                        break;
-                    case "Graveyard":
-                        viewGraveyard();
-                        break;
-                    case "MonsterField":
-                        viewMonsterField();
-                        break;
-                    case "SpellField":
-                        viewSpellField();
-                        break;
-                    default:
-                        System.out.println("invalid input");
-                        break;
+                try {
+                    switch (action[1]) {
+                        case "Hand":
+                            viewHand();
+                            break;
+                        case "Graveyard":
+                            viewGraveyard();
+                            break;
+                        case "MonsterField":
+                            viewMonsterField();
+                            break;
+                        case "SpellField":
+                            viewSpellField();
+                            break;
+                        default:
+                            System.out.println("invalid input");
+                            break;
+                    }
+                }catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println("You need to declare what to view...");
                 }
                 break;
             case "Info":
@@ -169,28 +173,41 @@ public class BattleControl {
      */
     private void changeTurn () {
         turn++;
+        //increase the mana point that the warrior has
         warrior[turn % 2].setMaxManaPoint(warrior[turn % 2].getMaxManaPoint() + 1);
+        //to do changes in sleeping status of monsters
+        warrior[turn % 2].getMonsterField().changeTurnActions(true);
+        //to do changes in sleeping status of defensive monsters
+        warrior[(turn + 1) % 2].getMonsterField().changeTurnActions(false);
         //drawing a card from deck to hand
-        Card drawnCard = warrior[turn % 2].getDeck().takeCard();
-        warrior[turn % 2].getHand().add(drawnCard);
+        try {
+            Card drawnCard = warrior[turn % 2].getDeck().takeCard();
+            warrior[turn % 2].getHand().add(drawnCard);
 
-        System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
-        if (turn % 2 == 1) {
-            System.out.println(drawnCard.getName());
-        }
-        //this has to be written every time we enter this menu
-        if (turn % 2 == 1)
-            System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
-                    + warrior[turn % 2].getMaxManaPoint() + "]");
-        if (turn % 2 == 0) {
-            warrior[0].makeMove(warrior[1]);
-            changeTurn();
+            System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
+            if (turn % 2 == 1) {
+                System.out.println(drawnCard.getName());
+            }
+            //this has to be written every time we enter this menu
+            if (turn % 2 == 1)
+                System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
+                        + warrior[turn % 2].getMaxManaPoint() + "]");
+            if (turn % 2 == 0) {
+                warrior[0].makeMove(warrior[1]);
+                changeTurn();
+            }
+        }catch (NullPointerException e) {
+            System.out.println("No more cards in the deck!!!");
+            System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
+            if (turn % 2 == 0) {
+                warrior[0].makeMove(warrior[1]);
+                changeTurn();
+            }
         }
     }
 
     /**
      * set the decided card from hand into the field
-     *
      * @param action the scanned instructions gotten from user
      */
     private void setIntoField (String[] action) {
@@ -202,21 +219,22 @@ public class BattleControl {
                     if (warrior[1].getMonsterField().add(((Monster) card), Integer.parseInt(action[3]))) {
                         warrior[1].getHand().remove(card);
                         System.out.println(card.getName() + " was set in MonsterField slot "
-                                + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + " MP was used.\n");
+                                + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + " MP was used.");
                         ((Monster) card).enterField(warrior[0], warrior[1]);
                     }
                 }
                 if (card instanceof Spell) {
                     warrior[1].getSpellField().add(((Spell) card), Integer.parseInt(action[3]));
                     System.out.println(card.getName() + " was set in SpellField slot "
-                            + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + " MP was used.\n");
+                            + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + " MP was used.");
                     warrior[1].getHand().remove(card);
-                    ((Spell) card).castSpell(warrior[0], warrior[1]);
                 }
+
+                warrior[1].setManaPoint(warrior[1].getManaPoint() - card.getManaPoint());
             } else
                 System.out.println("You do not have enough MP to do this act");
         }catch (Exception e){
-            System.out.println("The index you chose is not available, try again");
+            System.out.println("The index you chose is not available, try again" + e.getStackTrace());
         }
     }
 
@@ -278,6 +296,7 @@ public class BattleControl {
 
     private void viewHand () {
         int index = 1;
+        System.out.println("Your Status: \n[" + warrior[1].getManaPoint() + " - " + warrior[1].getMaxManaPoint() + "]");
         System.out.println("Your Hand:");
         for (Card card : warrior[1].getHand().getCards()) {
             System.out.println(index + ". " + card.getName() + ", Mana cost: " + card.getManaPoint());
@@ -302,6 +321,9 @@ public class BattleControl {
 
     private void viewMonsterField () {
         System.out.println("Your MonsterField:");
+        System.out.println("Your Commander: " + warrior[1].getCommander().getName() + " HP: " +
+                warrior[1].getCommander().getHP());
+
         Monster monster;
         for (int i = 1; i <= 5; i++) {
             if (warrior[1].getMonsterField().getSlot(i) == null)
@@ -320,6 +342,9 @@ public class BattleControl {
             }
         }
         System.out.println("Enemies MonsterField:");
+        System.out.println("Enemies Commander: " + warrior[0].getCommander().getName() + " HP: " +
+                warrior[0].getCommander().getHP());
+
         for (int i = 1; i <= 5; i++) {
             if (warrior[0].getMonsterField().getSlot(i) == null)
                 System.out.println(i + ". Empty");
@@ -352,10 +377,10 @@ public class BattleControl {
         System.out.println("Enemies SpellField:");
         for (int i = 0; i < 3; i++) {
             if (warrior[0].getSpellField().getSlot(i) == null)
-                System.out.println(i + ". Empty");
+                System.out.println((i + 1) + ". Empty");
             else {
                 spell = warrior[0].getSpellField().getSlot(i);
-                System.out.println(i + ". " + spell.getName());
+                System.out.println((i + 1) + ". " + spell.getName());
             }
         }
     }

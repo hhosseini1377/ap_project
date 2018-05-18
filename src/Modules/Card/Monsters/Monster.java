@@ -127,6 +127,10 @@ public abstract class Monster extends Card{
             System.out.println("this monster cannot attack the opponent!!");
             return;
         }
+        if (isSleeping() && !isNimble()){
+            System.out.println("this monster cannot attack right now");
+            return;
+        }
         Monster targeted;
         //checks if there are any defensive cards in the enemy field and if there was the defender will stop the combatant
         if (enemy.getMonsterField().containDefensiveCard()){
@@ -160,6 +164,10 @@ public abstract class Monster extends Card{
     }
 
     public void die(Warrior enemy, Warrior friend) {
+        AP = initialAP;
+        HP = initialHP;
+        isSleeping = true;
+        canCast = true;
         System.out.println(this.getName() + " has been murdered with cruelty!");
     }
 

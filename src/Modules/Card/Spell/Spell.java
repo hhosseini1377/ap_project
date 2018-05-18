@@ -8,14 +8,26 @@ public class Spell extends Card {
     protected SpellType spellType;
     protected String spellDetail;
 
+    public boolean isCanCast () {
+        return canCast;
+    }
+
+    public SpellType getSpellType () {
+        return spellType;
+    }
+
     public String spellDetail(){
         return spellDetail;
     }
 
-    public void castSpell(Warrior enemy, Warrior friend){
+    public void castSpell(){
     }
 
     public void castSpell(Card card){
+    }
+
+    public void reverseSpell(){
+
     }
 
     public String toString(){

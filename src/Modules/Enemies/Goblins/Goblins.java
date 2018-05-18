@@ -1,6 +1,7 @@
 package Modules.Enemies.Goblins;
 
 import Modules.Card.Card;
+import Modules.Card.Commanders.Commander;
 import Modules.Card.Monsters.Demonic.GoblinShaman;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.Normal;
@@ -8,6 +9,7 @@ import Modules.Card.Spell.Spell;
 import Modules.Card.Spell.ThrowingKnives;
 import Modules.Warrior.Warrior;
 
+import java.util.Iterator;
 import java.util.Objects;
 
 public class Goblins extends Warrior {
@@ -20,13 +22,13 @@ public class Goblins extends Warrior {
     public Goblins() {
         super();
         name = "Goblins";
-        Normal goblinSumggler = new Normal("Goblin Smuggler", 600, 400, 2, false, true, "DEMONIC");
-        hand.add(goblinSumggler);
-        GoblinShaman goblinShaman = new GoblinShaman();
-        ThrowingKnives throwingKnives = new ThrowingKnives();
-        deck.add(goblinSumggler, 10);
-        deck.add(goblinShaman, 5);
-        deck.add(throwingKnives, 5);
+        for (int i = 0; i < 10; i++)
+            deck.add(new Normal("Goblin Smuggler", 600, 400, 2, false, true, "DEMONIC"), 1);
+        for (int i = 0; i < 5; i++)
+            deck.add(new ThrowingKnives(), 1);
+        for (int i = 0; i < 5; i++)
+            deck.add(new GoblinShaman(), 1);
+        commander = new Commander();
     }
 
     private Card decideHandCard(Warrior enemy) {
@@ -55,23 +57,6 @@ public class Goblins extends Warrior {
     }
 
     public void makeMove(Warrior enemy) {
-        //first you will decide to bring a monster to the field
-        Card decidedCard = decideHandCard(enemy);
-        while (manaPoint > 0 && decideHandCard(enemy) != null) {
-            try {
-                setManaPoint (getMaxManaPoint () - Objects.requireNonNull (decidedCard).getManaPoint ());
-            }catch (NullPointerException e){
-                System.out.println ("the chosen card is empty");
-            }
-            this.getHand().remove(decidedCard);
-            if (decidedCard instanceof Monster) {
-                this.getMonsterField().add((Monster) decidedCard, -1);
-            } else {
-                this.getSpellField().add((Spell) decidedCard, -1);
-            }
-            System.out.println(decidedCard.getName() + " has entered the battlefield");
-            decidedCard = decideHandCard(enemy);
-        }
 
         if (this.getMonsterField().getAvailablePlaces() != 5) {
             if (enemy.getMonsterField().getAvailablePlaces() != 5) {
@@ -122,14 +107,38 @@ public class Goblins extends Warrior {
             } else {
                 //All of the monsters will attack the enemy commander
                 try {
-                    for (Monster monster : this.getMonsterField().getMonsterCards()) {
-                        enemy.getCommander().decreaseHP(monster.getAP());
-                        monster.decreaseHP(enemy.getCommander().getAP());
+                    int size = this.getMonsterField().getMonsterCards().size();
+                    for (int i = 0; i < size; i++){
+                        enemy.getCommander().decreaseHP(this.getMonsterField().getMonsterCards().get(i).getAP());
+                        this.getMonsterField().getMonsterCards().get(i).decreaseHP(enemy.getCommander().getAP());
+                        if (this.getMonsterField().getMonsterCards().size() != size){
+                            size = this.getMonsterField().getMonsterCards().size();
+                            i--;
+                        }
                     }
                 }catch (Exception e){
-
+                    System.out.println("an unknown problem");
                 }
             }
         }
+
+        //you will decide to bring a monster to the field
+        Card decidedCard = decideHandCard(enemy);
+        while (manaPoint > 0 && decideHandCard(enemy) != null && this.getMonsterField().getAvailablePlaces() > 0) {
+            try {
+                setManaPoint (getMaxManaPoint () - Objects.requireNonNull (decidedCard).getManaPoint ());
+            }catch (NullPointerException e){
+                System.out.println ("the chosen card is empty");
+            }
+            this.getHand().remove(decidedCard);
+            if (decidedCard instanceof Monster) {
+                this.getMonsterField().add((Monster) decidedCard, -1);
+                ((Monster) decidedCard).enterField(enemy, this);
+            } else {
+                this.getSpellField().add((Spell) decidedCard, -1);
+            }
+            decidedCard = decideHandCard(enemy);
+        }
+
     }
 }

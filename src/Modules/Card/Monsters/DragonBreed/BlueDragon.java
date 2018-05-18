@@ -38,11 +38,15 @@ public class BlueDragon extends SpellCaster{
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
         System.out.println("\nList of targets:");
 //        System.out.println("1. Enemy commander\nMonster field:");
-        for (int i = 1; i <= 5; i++){
-            if(enemy.getMonsterField().getMonsterCards().get(i-1) == null){
+        for (int i = 1; i <= 5; i++) {
+            try {
+                if (enemy.getMonsterField().getMonsterCards().get(i - 1) == null) {
+                    System.out.println(i + ". slot" + i + ": Empty");
+                } else
+                    System.out.println(i + ". slot" + i + ": " + enemy.getMonsterField().getMonsterCards().get(i - 1).getName());
+            }catch (Exception e){
                 System.out.println(i + ". slot" + i + ": Empty");
-            }else
-                System.out.println(i + ". slot" + i + ": " + enemy.getMonsterField().getMonsterCards().get(i-1).getName());
+            }
         }
 
         Scanner scanner = new Scanner(System.in);

@@ -47,12 +47,14 @@ public class Igneel extends Hero {
             if (monster.getMonsterKind() != MonsterKind.HERO){
                 enemy.getGraveYard().add(monster);
                 enemy.getMonsterField().remove(monster);
+                monster.die(enemy, friend);
             }
         }
         for (Monster monster:friend.getMonsterField().getMonsterCards()){
             if (monster.getMonsterKind() != MonsterKind.HERO){
                 friend.getGraveYard().add(monster);
                 friend.getMonsterField().remove(monster);
+                monster.die(enemy, friend);
             }
         }
         System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
@@ -96,7 +98,7 @@ public class Igneel extends Hero {
 
     @Override
     public void die(Warrior enemy, Warrior friend) {
-        System.out.println(this.getName() + " has died mercilessly");
+        super.die(enemy, friend);
         will(enemy, friend);
     }
 }

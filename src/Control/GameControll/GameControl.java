@@ -66,7 +66,7 @@ public class GameControl {
      * items and amulets
      * spells which again will be created of their own individual classes
      * the user and its
-     * @throws IOException
+     * @throws IOException whether the file directory is right or not
      */
     public void startGame()throws IOException{
         //readying the file reader

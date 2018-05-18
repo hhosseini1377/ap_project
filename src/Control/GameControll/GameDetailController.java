@@ -114,7 +114,12 @@ class GameDetailController {
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
             if (gameControl.itemHashMap.containsKey(parts[0]))
-                this.gameControl.backPack.add(gameControl.itemHashMap.get(parts[0]), Integer.parseInt(parts[1]));
+                for (int i = 0; i < Integer.parseInt(parts[1]); i++)
+                    try {
+                        this.gameControl.backPack.add((Item) gameControl.itemHashMap.get(parts[0]).clone(), 1);
+                    }catch (CloneNotSupportedException e){
+                        System.out.println("Clone not supported" + e.getStackTrace());
+                    }
             else
                 this.gameControl.backPack.add(gameControl.amuletHashMap.get(parts[0]));
         }
@@ -130,7 +135,13 @@ class GameDetailController {
             try {
                 if (!gameControl.cardHashMap.containsKey(parts[0]))
                     throw new CardException();
-                this.gameControl.deck.add(gameControl.cardHashMap.get(parts[0]), Integer.parseInt(parts[1]));
+                for (int i = 0; i < Integer.parseInt(parts[1]); i++) {
+                    try {
+                        this.gameControl.deck.add((Card) gameControl.cardHashMap.get(parts[0]).clone(), 1);
+                    }catch (CloneNotSupportedException e){
+                        System.out.println("Clone not supported" + e.getStackTrace());
+                    }
+                }
             }catch (CardException e){
                 System.out.println("");
             }
@@ -150,15 +161,22 @@ class GameDetailController {
             if (!line.contains(":")){
                 if (inventoryName.equals("items:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        gameControl.itemInventory.add(gameControl.itemHashMap.get(parts[0]));
+                        try {
+                            gameControl.itemInventory.add((Item) gameControl.itemHashMap.get(parts[0]).clone());
+                        }catch (CloneNotSupportedException e){
+                            System.out.println("Clone not supported");
+                        }
                 }
                 if (inventoryName.equals("amulets:")){
-                    for (int i = 0; i < Integer.parseInt(parts[1]); i++)
                         gameControl.amuletInventory.add(gameControl.amuletHashMap.get(parts[0]));
                 }
                 if (inventoryName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        gameControl.cardInventory.add(gameControl.cardHashMap.get(parts[0]));
+                        try {
+                            gameControl.cardInventory.add((Card) gameControl.cardHashMap.get(parts[0]).clone());
+                        }catch (CloneNotSupportedException e){
+                            System.out.println(e);
+                        }
                 }
             }else{
                 inventoryName = line;
@@ -188,7 +206,11 @@ class GameDetailController {
                 }
                 if (shopName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        gameControl.cardShop.addCard(gameControl.cardHashMap.get(parts[0]));
+                        try {
+                            gameControl.cardShop.addCard((Card) gameControl.cardHashMap.get(parts[0]).clone());
+                        }catch (CloneNotSupportedException e){
+                            System.out.println(e);
+                        }
                 }
             }else{
                 shopName = line;

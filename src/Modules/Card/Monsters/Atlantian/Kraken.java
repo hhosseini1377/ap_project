@@ -49,7 +49,7 @@ public class Kraken extends General{
 
     @Override
     public void die(Warrior enemy, Warrior friend) {
-        System.out.println(this.getName() + " has been murdered mercilessly");
+        super.die(enemy, friend);
         will(enemy, friend);
     }
 

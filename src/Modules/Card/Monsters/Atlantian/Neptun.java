@@ -66,10 +66,14 @@ public class Neptun extends Hero {
         System.out.println("\nList of targets:");
 //        System.out.println("1. Enemy commander\nMonster field:");
         for (int i = 1; i <= 5; i++){
-            if(friend.getHand().getCards().get(i-1) == null){
+            try {
+                if (friend.getHand().getCards().get(i - 1) == null) {
+                    System.out.println(i + ". slot" + i + ": Empty");
+                } else
+                    System.out.println(i + ". slot" + i + ": " + friend.getHand().getCards().get(i - 1).getName());
+            }catch (Exception e){
                 System.out.println(i + ". slot" + i + ": Empty");
-            }else
-                System.out.println(i + ". slot" + i + ": " + friend.getHand().getCards().get(i-1).getName());
+            }
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -93,6 +97,7 @@ public class Neptun extends Hero {
                             friend.getSpellField().add((Spell) card, -1);
                         }else {
                             friend.getMonsterField().add((Monster)card, -1);
+                            ((Monster) card).enterField(enemy, friend);
                         }
                         friend.getHand().remove(card);
                     }catch (Exception e){
@@ -115,7 +120,7 @@ public class Neptun extends Hero {
 
     @Override
     public void die(Warrior enemy, Warrior friend) {
-        System.out.println(this.getName() + " has died mercilessly");
+        super.die(enemy, friend);
         will(enemy, friend);
     }
 }

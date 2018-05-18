@@ -1,5 +1,6 @@
 package Modules.Card.Spell;
 
+import Modules.Card.Monsters.MonsterTribe;
 import Modules.Warrior.Warrior;
 
 public class LunarBlessing extends Spell {
@@ -17,7 +18,18 @@ public class LunarBlessing extends Spell {
 
     @Override
     public void castSpell() {
-        //TODO
+        if(!canCast){
+            System.out.println("this card cannot cast anymore");
+        }
+        else {
+            for (int i = 0; i < friend.getMonsterField().getMonsterCards().size(); i++) {
+                if (friend.getMonsterField().getMonsterCards().get(i).getMonsterTribe().equals(MonsterTribe.ELVEN)) {
+                    friend.getMonsterField().getMonsterCards().get(i).increaseAP(300);
+                    friend.getMonsterField().getMonsterCards().get(i).increaseHP(500);
+                }
+            }
+        }
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     @Override

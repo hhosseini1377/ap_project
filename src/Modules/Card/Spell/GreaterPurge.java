@@ -17,7 +17,20 @@ public class GreaterPurge extends Spell{
 
     @Override
     public void castSpell() {
-        //TODO
+        if(!canCast){
+            System.out.println("this card cannot cast any more");
+        }
+        else {
+            for (int i = 0; i < enemy.getSpellField().getSpellCards().size(); i++) {
+                enemy.getHand().add(enemy.getSpellField().getSpellCards().get(i));
+                enemy.getSpellField().getSpellCards().remove(enemy.getSpellField().getSpellCards().get(i));
+            }
+            for (int i = 0; i < friend.getSpellField().getSpellCards().size(); i++) {
+                friend.getHand().add(friend.getSpellField().getSpellCards().get(i));
+                friend.getSpellField().getSpellCards().remove(friend.getSpellField().getSpellCards().get(i));
+            }
+        }
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     @Override

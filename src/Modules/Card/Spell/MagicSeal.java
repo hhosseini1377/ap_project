@@ -17,7 +17,16 @@ public class MagicSeal extends Spell {
 
     @Override
     public void castSpell() {
-        //TODO
+        if(!canCast){
+            System.out.println("this card cannot cast any more");
+        }
+        else {
+            for (int i = 0; i < enemy.getSpellField().getSpellCards().size(); i++) {
+                enemy.getGraveYard().add(enemy.getSpellField().getSpellCards().get(i));
+                enemy.getSpellField().getSpellCards().remove(enemy.getSpellField().getSpellCards().get(i));
+            }
+        }
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     @Override

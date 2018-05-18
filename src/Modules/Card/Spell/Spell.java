@@ -11,7 +11,5 @@ public class Spell extends Card {
     public String spellDetail(){
         return spellDetail;
     }
-    public void castSpell(Warrior enemy, Warrior friend){
-
-    }
+    public void castSpell(){}
 }

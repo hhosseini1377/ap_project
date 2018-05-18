@@ -18,7 +18,15 @@ public class WarDrum extends Spell{
 
     @Override
     public void castSpell() {
-        //TODO
+        if(!canCast){
+            System.out.println("this card cannot cast any more");
+        }
+        else {
+            for (int i = 0; i < friend.getMonsterField().getMonsterCards().size(); i++) {
+                friend.getMonsterField().getMonsterCards().get(i).increaseAP(300);
+            }
+        }
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     @Override

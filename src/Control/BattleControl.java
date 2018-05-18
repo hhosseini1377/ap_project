@@ -127,7 +127,7 @@ public class BattleControl {
                             System.out.println(card.getName() + "was set in SpellField slot "
                                     + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + "MP was used.\n");
                             warrior[1].getHand().remove(card);
-                            ((Spell)card).castSpell(warrior[0], warrior[1]);
+                            ((Spell)card).castSpell();
                         }
                     }else
                         System.out.println("You do not have enough MP to do this act");

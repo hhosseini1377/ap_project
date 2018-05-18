@@ -19,12 +19,53 @@ public class ArcaneBolt extends Spell {
         return canCast;
     }
 
-    private void cast(Monster monster){
+    private void cast(Spell spell){
+        enemy.getCommander().decreaseHP(500);
+        enemy.getGraveYard().add(spell);
+        enemy.getSpellField().getSpellCards().remove(spell);
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     @Override
     public void castSpell() {
-        //TODO
+        if(!canCast){
+            System.out.println("this card cannot cast any more");
+        }
+        else{
+            System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
+            System.out.println("\nList of targets:");
+            for(int i=1;i<=3;i++){
+                if(enemy.getSpellField().getSpellCards().get(i-1) == null)
+                    System.out.println(i + ". Slot" + i + ". Empty");
+                else
+                    System.out.println(i + ". Slot" + i +". " + enemy.getSpellField().getSpellCards().get(i-1).getName());
+            }
+
+            Scanner scanner = new Scanner(System.in);
+            while(true) {
+                switch (scanner.next()) {
+                    case "Exit":
+                        System.out.println("no target was decided...");
+                        return;
+                    case "Help":
+                        System.out.println("1. Target #TargetNum : To cast the spell on the specified target\n" +
+                                "2. Exit: To skip spell casting");
+                        break;
+                    case "Target":
+                        int target = scanner.nextInt();
+                            try{
+                                cast(enemy.getSpellField().getSpellCards().get(target-1));
+                            }catch (Exception e){
+                                System.out.println("invalid target");
+                            }
+                        canCast = false;
+                        return;
+                    default:
+                        System.out.println("invalid input");
+                        break;
+                }
+            }
+        }
     }
 
     @Override

@@ -43,7 +43,8 @@ class GameDetailController {
 
     //initializing the monster cards and thus the maps
     void monsterStart(){
-        //TODO instantiate other types of monster cards
+        gameControl.cardHashMap.put("Cerberus, Gatekeeper of Hell", new Cerberus());
+        gameControl.cardHashMap.put("Dark Knight", new DarkKnight());
         gameControl.cardHashMap.put("Kraken", new Kraken());
         gameControl.cardHashMap.put("Neptune, King of Atlantis", new Neptun());
         gameControl.cardHashMap.put("Blue Dragon", new BlueDragon());
@@ -103,7 +104,7 @@ class GameDetailController {
          gameControl.itemHashMap.put(smallHPPotion.getName(), smallHPPotion);
         SmallMPPotion smallMPPotion = new SmallMPPotion();
          gameControl.itemHashMap.put(smallMPPotion.getName(), smallMPPotion);
-         gameControl.itemHashMap.put("Mystic Hourglass", new MysticHourglass());
+         gameControl.itemHashMap.put("Mystic Hourglass", new MysticHourglass(gameControl));
     }
 
     //readying the backPack
@@ -220,10 +221,10 @@ class GameDetailController {
 
     /**
      * saves the game when endGame() method is called
-     * @throws IOException
+     * @throws IOException if the file input is wrong
      */
     // TODO needs to be completed
-     void saveGame() throws IOException{
+     public void saveGame() throws IOException{
         FileWriter fileWriter = null;
         saveBackPack();
         saveDeck();
@@ -231,7 +232,8 @@ class GameDetailController {
         saveShop();
         fileWriter = new FileWriter(fileDirectory + "userInfo.txt", false);
         fileWriter.write("level:" + gameControl.user.getLevel());
-        fileWriter.write("gills:" + gameControl.user.getGills());
+        fileWriter.write("\ngills:" + gameControl.user.getGills());
+        fileWriter.close();
     }
 
      private void saveBackPack () throws IOException{
@@ -247,10 +249,14 @@ class GameDetailController {
 
      private void saveDeck () throws IOException{
          FileWriter fileWriter = new FileWriter (fileDirectory + "deck.txt", false);
-        for (Card card:gameControl.deck.getCards()) {
-            fileWriter.write(card.getName() + " -" + gameControl.deck.getNumberOfCards(card.getName()) + "\n");
-        }
-        fileWriter.close();
+         Card lastCard = null;
+         for (Card card:gameControl.deck.getCards()) {
+             if (lastCard == null || !card.getName().equals(lastCard.getName())) {
+                 fileWriter.write(card.getName() + " -" + gameControl.deck.getNumberOfCards(card.getName()) + "\n");
+                 lastCard = card;
+             }
+         }
+         fileWriter.close();
     }
 
      private void saveInventory () throws IOException{
@@ -289,7 +295,7 @@ class GameDetailController {
         fileWriter.write("cards:\n");
         Card lastCard = null;
         for (Card card:gameControl.cardShop.getCards()){
-            if (card != lastCard){
+            if (lastCard == null || !card.getName().equals(lastCard.getName())){
                 fileWriter.write(card.getName() + " -" + gameControl.cardShop.getNumberOfCard(card.getName()) + "\n");
                 lastCard = card;
             }

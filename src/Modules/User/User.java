@@ -14,7 +14,7 @@ public class User {
     private int level;
     private String name;
     private Deck deck;
-    private final BackPack backPack;
+    private BackPack backPack;
 
     public User(CardInventory cardInventory, ItemInventory itemInventory, AmuletInventory amuletInventory, Deck deck, int gills, int level, String name,BackPack backPack) {
         this.backPack = backPack;
@@ -25,6 +25,10 @@ public class User {
         this.name = name;
         this.itemInventory = itemInventory;
         this.amuletInventory = amuletInventory;
+    }
+
+    public void setBackPack (BackPack backPack) {
+        this.backPack = backPack;
     }
 
     public ItemInventory getItemInventory() {

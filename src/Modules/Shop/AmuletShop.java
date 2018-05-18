@@ -19,7 +19,7 @@ public class AmuletShop {
     }
 
     public void addAmulet(Amulet amulet){
-        if (amulets.contains(amulet)){
+        if (!amulets.contains(amulet)){
             amulets.add(amulet);
             amuletHashMap.put(amulet.getName(), amulet);
         }

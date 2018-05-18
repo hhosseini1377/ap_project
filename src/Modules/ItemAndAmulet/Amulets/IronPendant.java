@@ -24,7 +24,6 @@ public class IronPendant extends Amulet{
         return super.equals(other);
     }
 
-    @Override
     public void castSpell() {
 
     }

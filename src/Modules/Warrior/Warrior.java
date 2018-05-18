@@ -35,6 +35,11 @@ public class Warrior {
         spellField = new SpellField();
         this.name = name;
         commander = new ArslanTheHero();
+        try {
+            backPack.getAmulet().castSpell(this);
+        }catch (NullPointerException e){
+            System.out.println("No amulet equipped!");
+        }
     }
 
     protected Warrior (){
@@ -44,6 +49,11 @@ public class Warrior {
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
+        try {
+            backPack.getAmulet().castSpell(this);
+        }catch (NullPointerException e){
+            System.out.println("No amulet equipped!");
+        }
     }
 
     public int getWinPrize () {

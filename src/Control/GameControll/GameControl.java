@@ -7,6 +7,10 @@ import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Normal;
 import Modules.ItemAndAmulet.Amulet;
+import Modules.ItemAndAmulet.Amulets.DemonCrown;
+import Modules.ItemAndAmulet.Amulets.DiamondRing;
+import Modules.ItemAndAmulet.Amulets.GoldRing;
+import Modules.ItemAndAmulet.Amulets.IronRing;
 import Modules.ItemAndAmulet.Item;
 import Modules.Shop.AmuletShop;
 import Modules.Shop.CardShop;
@@ -84,7 +88,10 @@ public class GameControl {
         gameDetailController.spellStart();
         gameDetailController.itemStart();
         //TODO instantiate amulets
-        //TODO instantiate commanders
+        amuletHashMap.put("Iron Ring", new IronRing());
+        amuletHashMap.put("Gold Ring", new GoldRing());
+        amuletHashMap.put("Diamond Ring", new DiamondRing());
+        amuletHashMap.put("Demon King's Crown", new DemonCrown());
         gameDetailController.backPackStart();
         gameDetailController.deckStart();
         gameDetailController.inventoryStart();
@@ -141,11 +148,11 @@ public class GameControl {
                 break;
             case "Battle":
                 battleControl.startBattle(user);
-//                try {
-//                    gameDetailController.saveGame();
-//                }catch (IOException e){
-//                    System.out.println(e.toString());
-//                }
+                try {
+                    gameDetailController.saveGame();
+                }catch (IOException e){
+                    System.out.println(e.toString());
+                }
                 break;
             default:
                 System.out.println("invalid input");
@@ -176,8 +183,12 @@ public class GameControl {
      */
     // TODO needs to be completed
     private void endGame (){
-        System.out.println("Do you want to save the game?(Yes, No)");
+        System.out.println("Do you realy want to quit the game?(I kinda have to :(, No)");
         Scanner scan = new Scanner(System.in);
+        if ("No".equals( scan.nextLine())) {
+            return;
+        }
+        System.out.println("Do you want to save the game?(Yes, No, reset)");
         switch (scan.next()){
             case "Yes":
                 try{
@@ -234,6 +245,13 @@ public class GameControl {
 
     public User getUser() {
         return user;
+    }
+
+    public void reloadGame() throws IOException{
+        gameDetailController.backPackStart();
+        user.setBackPack(backPack);
+        gameDetailController.deckStart();
+        user.setDeck(deck);
     }
 }
 

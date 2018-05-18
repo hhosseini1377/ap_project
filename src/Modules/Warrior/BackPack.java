@@ -44,7 +44,7 @@ public class BackPack {
     }
 
     public boolean isAmuletEquipped(){
-        return ! amulet.equals (null);
+        return  amulet != null;
     }
 
     public void add(Amulet amulet){

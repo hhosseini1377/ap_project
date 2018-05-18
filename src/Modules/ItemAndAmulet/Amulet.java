@@ -1,6 +1,8 @@
 package Modules.ItemAndAmulet;
 
-public abstract class Amulet {
+import Modules.Warrior.Warrior;
+
+public abstract class Amulet implements Cloneable {
     protected int gillCost;
     protected String name;
 
@@ -20,14 +22,16 @@ public abstract class Amulet {
         this.name = name;
     }
 
-    public abstract void castSpell();
-
     public boolean equals(Amulet other){
         return other.getName().equals(this.getName());
     }
 
     public String detail(){
         return "nothing special";
+    }
+
+    public void castSpell(Warrior lord){
+
     }
 
     public int hashCode(){
@@ -39,7 +43,7 @@ public abstract class Amulet {
     }
 
     @Override
-    protected Object clone () throws CloneNotSupportedException {
+    public Object clone () throws CloneNotSupportedException {
         return super.clone();
     }
 }

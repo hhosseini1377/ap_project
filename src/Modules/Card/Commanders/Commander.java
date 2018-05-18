@@ -4,6 +4,7 @@ import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterTribe;
 
 public abstract class Commander extends Monster{
+    protected double reductionCoefficiency = 1;
     protected String name;
     protected int HP;
     protected int AP;
@@ -12,6 +13,10 @@ public abstract class Commander extends Monster{
     protected int manaPoint;
     protected MonsterTribe monsterTribe;
     protected boolean isDead = false;
+
+    public void setReductionCoefficiency (double reductionCoefficiency) {
+        this.reductionCoefficiency = reductionCoefficiency;
+    }
 
     public void setHP (int HP) {
         this.HP = HP;
@@ -58,7 +63,7 @@ public abstract class Commander extends Monster{
     }
 
     public void decreaseHP(int points){
-        this.HP -= points;
+        this.HP -= (int)(points * reductionCoefficiency);
     }
 
     public void increaseAP(int points){

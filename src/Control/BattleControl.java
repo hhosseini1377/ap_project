@@ -7,6 +7,7 @@ import Modules.Enemies.Goblins.Goblins;
 import Modules.Enemies.Lucifer.Lucifer;
 import Modules.Enemies.Ogres.Ogres;
 import Modules.Enemies.Vampires.Vampires;
+import Modules.ItemAndAmulet.Items.MysticHourglass;
 import Modules.User.User;
 import Modules.Warrior.Warrior;
 
@@ -136,7 +137,9 @@ public class BattleControl {
                 help();
                 break;
             case "Exit":
-                endBattle();
+                System.out.println("Are you sure you want to exit the battle?(All data will be reset to before the game started)");
+                if (scan.nextLine().equals("No"))
+                    break;
                 return true;
             case "Use":
                 try {
@@ -440,17 +443,12 @@ public class BattleControl {
         return false;
     }
 
-    private void endBattle () {
-        
-    }
-
     private void lose () {
-//        if (warrior[1].getBackPack().ContainsItem("Mystic HourGlass")){
-        //TODO
-//            warrior[1].getBackPack().getItem("Mystic HourGlass");
-//            warrior[1].getBackPack().remove()
-//        }
-
+        if (warrior[1].getBackPack().ContainsItem("Mystic HourGlass")){
+            ((MysticHourglass)warrior[1].getBackPack().getItem("Mystic HourGlass")).castSpell();
+            warrior[1].getBackPack().remove(warrior[1].getBackPack().getItem("Mystic HourGlass"));
+            System.out.println("now the game will be reset to the time before battle");
+        }
         System.out.println("Unfortunately the demons were too strong!!" +
                 "\nRegain power and challenge them again brave hero!");
 

@@ -4,5 +4,6 @@ public enum MonsterTribe {
         ELVEN,
         DRAGON_BREED,
         ATLANTIAN,
-        DEMONIC
+        DEMONIC,
+        HUMAN
 }

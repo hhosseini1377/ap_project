@@ -6,6 +6,7 @@ import Modules.BattleGround.Fields.SpellField;
 import Modules.BattleGround.GraveYard;
 import Modules.BattleGround.Hand;
 import Modules.Card.Card;
+import Modules.Card.Commanders.VampireDemon;
 import Modules.Card.Monsters.Demonic.UndeadMage;
 import Modules.Card.Monsters.Demonic.VampireAcolyte;
 import Modules.Card.Monsters.Demonic.VampirePrince;
@@ -30,30 +31,25 @@ public class Vampires extends Warrior {
     public Vampires(){
         super();
         Deck deck = new Deck ();
-        PoisonousCauldron poisonousCauldron = new PoisonousCauldron();
-        FirstAidKit firstAidKit = new FirstAidKit();
-        Normal stoutUndead = new Normal("StoutUndead", 1200, 600, 4, false, false, "DEMONIC");
-        Normal undead = new Normal("Undead", 200, 400, 1, false, true, "DEMONIC");
-        Normal giantBat = new Normal("GiantBat", 500, 900, 3, true, true, "DEMONIC");
-        UndeadMage undeadMage = new UndeadMage();
-        VampireAcolyte vampireAcolyte = new VampireAcolyte();
-        VampirePrince vampirePrince = new VampirePrince();
-        BloodFeast bloodFeast = new BloodFeast();
-        GreaterPurge greaterPurge = new GreaterPurge();
-        HealingWard healingWard = new HealingWard();
-        WarDrum warDrum = new WarDrum();
-        deck.add(undead, 4);
-        deck.add(giantBat, 3);
-        deck.add(stoutUndead, 3);
-        deck.add(undeadMage, 2);
-        deck.add(bloodFeast, 3);
-        deck.add(firstAidKit, 2);
-        deck.add(vampireAcolyte, 1);
-        deck.add(vampirePrince, 1);
-        deck.add(warDrum, 1);
-        deck.add(poisonousCauldron, 1);
-        deck.add(healingWard, 1);
-        deck.add(greaterPurge, 1);
+        for (int i = 0; i < 4; i++)
+            deck.add(new Normal("Undead", 200, 400, 1, false, true, "DEMONIC"), 1);
+        for (int i = 0; i < 3; i++)
+            deck.add(new Normal("GiantBat", 500, 900, 3, true, true, "DEMONIC"), 1);
+        for (int i = 0; i < 3; i++)
+            deck.add(new Normal("StoutUndead", 1200, 600, 4, false, false, "DEMONIC"), 1);
+        for (int i = 0; i < 2; i++)
+            deck.add(new UndeadMage(), 1);
+        for (int i = 0; i < 3; i++)
+            deck.add(new BloodFeast(), 1);
+        for (int i = 0; i < 2; i++)
+            deck.add(new FirstAidKit(), 1);
+        deck.add(new VampireAcolyte(), 1);
+        deck.add(new VampirePrince(), 1);
+        deck.add(new WarDrum(), 1);
+        deck.add(new PoisonousCauldron(), 1);
+        deck.add(new HealingWard(), 1);
+        deck.add(new GreaterPurge(), 1);
+        commander = new VampireDemon();
     }
 
     private Card decideHandCard(Warrior enemy) {

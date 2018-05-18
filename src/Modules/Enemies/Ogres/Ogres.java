@@ -6,6 +6,7 @@ import Modules.BattleGround.Fields.SpellField;
 import Modules.BattleGround.GraveYard;
 import Modules.BattleGround.Hand;
 import Modules.Card.Card;
+import Modules.Card.Commanders.OgerKing;
 import Modules.Card.Monsters.Demonic.OgreMagi;
 import Modules.Card.Monsters.Demonic.OgreWarchief;
 import Modules.Card.Monsters.Monster;
@@ -29,25 +30,19 @@ public class Ogres extends Warrior {
     public Ogres(){
         super();
         Deck deck = new Deck ();
-        Normal ogreWarrior =  new Normal("OgreWarrior", 800, 500, 3, false, true, "DEMONIC");
-        Normal ogreFrontliner = new Normal("OgreFrontliner", 1800, 600, 5, false, false, "DEMONIC");
-        OgreMagi ogreMagi = new OgreMagi();
-        OgreWarchief ogreWarchief  = new OgreWarchief();
-        ThrowingKnives throwingKnives = new ThrowingKnives();
-        PoisonousCauldron poisonousCauldron = new PoisonousCauldron();
-        FirstAidKit firstAidKit = new FirstAidKit();
-//        for (int i = 0; i < 4; i++)
-        deck.add(ogreFrontliner,4);
-//        for (int i = 0; i < 6; i++)
-        deck.add(ogreWarrior,6);
-//        for (int i = 0; i < 5; i++)
-        deck.add(throwingKnives, 5);
-//        for (int i = 0; i < 2; i++)
-        deck.add(ogreMagi, 2);
-//        for (int i = 0; i < 3; i++)
-        deck.add(firstAidKit, 3);
-        deck.add(ogreWarchief, 1);
-        deck.add(poisonousCauldron, 1);
+        for (int i = 0; i < 4; i++)
+            deck.add(new Normal("OgreFrontliner", 1800, 600, 5, false, false, "DEMONIC"),1);
+        for (int i = 0; i < 6; i++)
+            deck.add(new Normal("OgreWarrior", 800, 500, 3, false, true, "DEMONIC"),1);
+        for (int i = 0; i < 5; i++)
+            deck.add(new ThrowingKnives(), 1);
+        for (int i = 0; i < 2; i++)
+            deck.add(new OgreMagi(), 1);
+        for (int i = 0; i < 3; i++)
+            deck.add(new FirstAidKit(), 1);
+        deck.add(new OgreWarchief(), 1);
+        deck.add(new PoisonousCauldron(), 1);
+        commander = new OgerKing();
     }
 
     private Card decideHandCard(Warrior enemy) {

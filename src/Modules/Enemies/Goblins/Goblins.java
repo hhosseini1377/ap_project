@@ -2,6 +2,7 @@ package Modules.Enemies.Goblins;
 
 import Modules.Card.Card;
 import Modules.Card.Commanders.Commander;
+import Modules.Card.Commanders.GoblinOyabun;
 import Modules.Card.Monsters.Demonic.GoblinShaman;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.Normal;
@@ -30,7 +31,7 @@ public class Goblins extends Warrior {
             deck.add(new ThrowingKnives(), 1);
         for (int i = 0; i < 5; i++)
             deck.add(new GoblinShaman(), 1);
-        commander = new Commander();
+        commander = new GoblinOyabun();
     }
 
     private Card decideHandCard(Warrior enemy) {

@@ -6,12 +6,15 @@ import Modules.BattleGround.Fields.SpellField;
 import Modules.BattleGround.GraveYard;
 import Modules.BattleGround.Hand;
 import Modules.Card.Card;
+import Modules.Card.Commanders.DaiMao;
+import Modules.Card.Monsters.Demonic.Cerberus;
+import Modules.Card.Monsters.Demonic.DarkKnight;
+import Modules.Card.Monsters.Demonic.EvilEye;
+import Modules.Card.Monsters.Demonic.Necromancer;
+import Modules.Card.Monsters.Elven.NobleElf;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.Normal;
-import Modules.Card.Spell.FirstAidKit;
-import Modules.Card.Spell.Spell;
-import Modules.Card.Spell.StrategicRetreat;
-import Modules.Card.Spell.ThrowingKnives;
+import Modules.Card.Spell.*;
 import Modules.Warrior.Warrior;
 
 import java.util.Objects;
@@ -30,8 +33,31 @@ public class Lucifer extends Warrior{
     public Lucifer(){
         super();
         Deck deck = new Deck ();
-        Normal imp = new Normal("Imp", 300, 500, 2, false, true, "DEMONIC");
-
+        for (int i = 0; i < 4; i++)
+            deck.add(new Normal("Imp", 300, 500, 2, false, true, "DEMONIC"), 1);
+        for (int i = 0; i < 3; i++)
+            deck.add(new Normal("Shade", 500,800,3,false,true, "DEMONIC"), 1);
+        for (int i = 0; i < 3; i++)
+            deck.add(new Normal("Living Armor", 1500,400,5,false,false,"DEMONIC"), 1);
+        for (int i = 0; i < 2; i++)
+            deck.add(new Normal("Hell hound", 800, 1000, 5, true, true, "DEMONIC"), 1);
+        for (int i = 0; i < 2; i++)
+            deck.add(new EvilEye(), 1);
+        for (int i = 0; i < 2; i++)
+            deck.add(new Necromancer(), 1);
+        for (int i = 0; i < 3; i++)
+            deck.add(new ReaperScythe(), 1);
+        for (int i = 0; i < 3; i++)
+            deck.add(new FirstAidKit(), 1);
+        for (int i = 0; i < 2; i++)
+            deck.add(new HealingWard(), 1);
+        deck.add(new DarkKnight(), 1);
+        deck.add(new Cerberus(), 1);
+        deck.add(new StrategicRetreat(), 1);
+        deck.add(new WarDrum(), 1);
+        deck.add(new MeteorShower(), 1);
+        deck.add(new MagicSeal(), 1);
+        commander = new DaiMao();
     }
 
     private Card decideHandCard(Warrior enemy) {

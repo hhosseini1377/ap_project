@@ -6,6 +6,7 @@ import Modules.BattleGround.Fields.SpellField;
 import Modules.BattleGround.GraveYard;
 import Modules.BattleGround.Hand;
 import Modules.Card.Card;
+import Modules.Card.Commanders.ArslanTheHero;
 import Modules.Card.Commanders.Commander;
 import Modules.User.User;
 
@@ -33,7 +34,7 @@ public class Warrior {
         monsterField = new MonsterField();
         spellField = new SpellField();
         this.name = name;
-        commander = new Commander();
+        commander = new ArslanTheHero();
     }
 
     protected Warrior (){
@@ -43,7 +44,6 @@ public class Warrior {
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
-        commander = new Commander();
     }
 
     public int getWinPrize () {

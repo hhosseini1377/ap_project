@@ -22,13 +22,21 @@ public class Hand {
 
 	public void add(Card card){
 		cards.add(card);
-		if (!cardHashMap.containsKey(card.getName()))
-			cardHashMap.put(card.getName(), card);
-		if (numberOfCards.containsKey(card.getName()))
-			numberOfCards.replace(card.getName(),numberOfCards.get(card.getName())+1);
-		else
-			numberOfCards.put(card.getName(), 1);
+		try {
+			if (!cardHashMap.containsKey(card.getName()))
+				cardHashMap.put(card.getName(), card);
+			if (numberOfCards.containsKey(card.getName()))
+				numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + 1);
+			else
+				numberOfCards.put(card.getName(), 1);
+		}catch (NullPointerException e){
+			System.out.println("no available cards");
+		}
 	}
+
+	public boolean hasCard(String name){
+        return this.cardHashMap.containsKey(name);
+    }
 
 	public Card getCard(int index){
 		return cards.get(index);

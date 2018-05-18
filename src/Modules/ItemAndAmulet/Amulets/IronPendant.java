@@ -3,7 +3,6 @@ package Modules.ItemAndAmulet.Amulets;
 import Modules.ItemAndAmulet.Amulet;
 
 public class IronPendant extends Amulet{
-    private String detail = "Increase Player's Max HP by 500";
 
     public IronPendant(){
         name = "Iron Pendant";
@@ -11,6 +10,7 @@ public class IronPendant extends Amulet{
     }
 
     public String getDetail() {
+        String detail = "Increase Player's Max HP by 500";
         return detail;
     }
 

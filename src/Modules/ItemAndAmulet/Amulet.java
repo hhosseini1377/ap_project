@@ -22,10 +22,6 @@ public abstract class Amulet {
 
     public abstract void castSpell();
 
-    public String toString(){
-        return name;
-    }
-
     public boolean equals(Amulet other){
         return other.getName().equals(this.getName());
     }
@@ -36,5 +32,14 @@ public abstract class Amulet {
 
     public int hashCode(){
         return super.hashCode();
+    }
+
+    public String toString(){
+        return "Name: " + name + "\ndetail: " + detail();
+    }
+
+    @Override
+    protected Object clone () throws CloneNotSupportedException {
+        return super.clone();
     }
 }

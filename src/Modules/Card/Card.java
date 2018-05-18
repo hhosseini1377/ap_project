@@ -54,8 +54,7 @@ public class Card implements Cloneable{
     }
 
     public String[] detail(){
-        String[] details = {""};
-        return details;
+        return new String[]{""};
     }
 
     private String spellDetail(){

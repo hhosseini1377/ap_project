@@ -43,6 +43,7 @@ public class Neptun extends Hero {
                 return;
             }
         }
+        canCast = false;
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
@@ -57,13 +58,8 @@ public class Neptun extends Hero {
 
     @Override
     public void battleCry(Warrior enemy, Warrior friend) {
-        if (!CanCast()) {
-            System.out.println("this monster cannot cast now");
-            return;
-        }
-        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
+        System.out.println(this.getName() + " has cast a spell:\n" + this.battleCryDetail());
         System.out.println("\nList of targets:");
-//        System.out.println("1. Enemy commander\nMonster field:");
         for (int i = 1; i <= 5; i++){
             try {
                 if (friend.getHand().getCards().get(i - 1) == null) {

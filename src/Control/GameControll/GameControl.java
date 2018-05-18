@@ -1,23 +1,13 @@
 package Control.GameControll;
 
 import Control.BattleControl;
-import Control.GameControll.GameDetailController;
 import Control.InventoryControl;
 import Control.ShopControl;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
-import Modules.Card.Monsters.Atlantian.Kraken;
-import Modules.Card.Monsters.Atlantian.NagaSiren;
-import Modules.Card.Monsters.Atlantian.SeaSerpent;
-import Modules.Card.Monsters.Demonic.*;
-import Modules.Card.Monsters.Elven.ElvenDruid;
-import Modules.Card.Monsters.Elven.ElvenSorceress;
-import Modules.Card.Monsters.Elven.NobleElf;
 import Modules.Card.Monsters.Normal;
-import Modules.Card.Spell.*;
 import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
-import Modules.ItemAndAmulet.Items.*;
 import Modules.Shop.AmuletShop;
 import Modules.Shop.CardShop;
 import Modules.Shop.ItemShop;
@@ -27,7 +17,6 @@ import Modules.User.Inventory.ItemInventory;
 import Modules.User.User;
 import Modules.Warrior.BackPack;
 
-import javax.imageio.IIOException;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -120,6 +109,8 @@ public class GameControl {
         Scanner scan = new Scanner(System.in);
         String action;
         String previousResult = null;
+        help();
+
         while (true) {
             action = scan.nextLine();
             previousResult = availableAction(action, previousResult);
@@ -184,7 +175,7 @@ public class GameControl {
      * saves the necessary data
      */
     // TODO needs to be completed
-    public void endGame(){
+    private void endGame (){
         System.out.println("Do you want to save the game?(Yes, No)");
         Scanner scan = new Scanner(System.in);
         switch (scan.next()){
@@ -247,7 +238,7 @@ public class GameControl {
 }
 
 class CardException extends Exception{
-    CardException(String detail){
-        System.out.println(detail);
+    CardException (){
+        System.out.println("card not available");
     }
 }

@@ -3,8 +3,6 @@ package Modules.Card.Monsters;
 import Modules.Card.Card;
 import Modules.Warrior.Warrior;
 
-import java.util.ArrayList;
-
 public abstract class Hero extends Monster {
     protected boolean canCast = true;
     protected String spellName;
@@ -29,6 +27,10 @@ public abstract class Hero extends Monster {
 
     public abstract void battleCry(Warrior enemy, Warrior friend);
 
+    public void battleCry(Card card){
+
+    }
+
     public String spellDetail(){
         return this.spellDetail;
     }
@@ -51,5 +53,16 @@ public abstract class Hero extends Monster {
 
     public String getSpellName() {
         return spellName;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + "\nHP: " + HP + "\nAP: " + AP +
+                "\nMP cost: " + manaPoint +
+                "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType +
+                "\nMonster Kind: " + monsterKind + "\nTribe: " + monsterTribe +
+                "\nSpell detail: " + spellName + ", " + spellDetail +
+                "\nWill detail: " + willName + ", " + willDetail() +
+                "\nBattle cry detail: " + battleCryName + ", " + battleCryDetail();
     }
 }

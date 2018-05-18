@@ -1,5 +1,6 @@
 package Modules.Card.Spell;
 
+import Modules.Card.Card;
 import Modules.Warrior.Warrior;
 
 public class StrategicRetreat extends Spell {
@@ -17,7 +18,12 @@ public class StrategicRetreat extends Spell {
     }
 
     @Override
-    public void castSpell(Warrior enemy, Warrior friend) {
+    public void castSpell(Card card){
+
+    }
+
+    @Override
+    public void castSpell() {
         //TODO
     }
 

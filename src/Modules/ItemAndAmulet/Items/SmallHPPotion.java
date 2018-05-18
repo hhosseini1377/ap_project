@@ -4,7 +4,6 @@ import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
 
 public class SmallHPPotion extends Item{
-    private String detail = "Increase Player's HP by 500";
 
     public SmallHPPotion(){
         gillCost = 1000;
@@ -23,6 +22,7 @@ public class SmallHPPotion extends Item{
 
     @Override
     public String spelldetail() {
+        String detail = "Increase Player's HP by 500";
         return detail;
     }
 

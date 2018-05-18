@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class BackPack {
     private ArrayList<Item> items = new ArrayList<>();
-    private Amulet amulet;
+    private Amulet amulet ;
     private HashMap<String, Item> itemMap = new HashMap<>();
     private HashMap<String, Integer> numberOfItems = new HashMap<>();
 
@@ -27,13 +27,13 @@ public class BackPack {
     public Item getItem(String itemName) {
         try {
             return itemMap.get(itemName);
-        } catch (NullPointerException e) {
+        }catch (NullPointerException e){
             System.out.println("This item is not available right now,\nYou can buy this one in item shop.");
         }
         return null;
     }
 
-    public void add(Item item, int itemNumber) {
+    public void add(Item item, int itemNumber){
         if (numberOfItems.containsKey(item.getName()))
             numberOfItems.replace(item.getName(), numberOfItems.get(item.getName() + itemNumber));
         else {
@@ -43,53 +43,45 @@ public class BackPack {
         }
     }
 
-    public boolean isAmuletEquipped() {
-        if (amulet == null)
-            return false;
-        else
-            return true;
+    public boolean isAmuletEquipped(){
+        return ! amulet.equals (null);
     }
 
-
-    public void add(Amulet amulet) {
+    public void add(Amulet amulet){
         if (this.amulet != null)
             this.amulet = amulet;
         else
             System.out.println("there is already an amulet equiped");
     }
 
-    public void remove(Item item) {
+    public void remove(Item item){
         if (numberOfItems.get(item.getName()) - 1 == 0) {
             items.remove(item);
             numberOfItems.remove(item.getName());
             itemMap.remove(item.getName());
-        } else
+        }
+        else
             numberOfItems.replace(item.getName(), numberOfItems.get(item.getName()) - 1);
     }
 
-    public void remove() {
+    public void remove(){
         amulet = null;
     }
 
-    public String toString() {
+    public String toString(){
         return "";
     }
 
-    public boolean ContainsAmulet(String AmuletName) {
+    public boolean ContainsAmulet(String AmuletName){
         return amulet.getName().equals(AmuletName);
     }
 
-    public boolean ContainsItem(String ItemName) {
+    public boolean ContainsItem(String ItemName){
         return numberOfItems.containsKey(ItemName);
     }
 
-    public int getNumberOfItems(String itemName) {
-        if (numberOfItems.containsKey(itemName))
-            return numberOfItems.get(itemName);
-        else {
-            System.out.println("Card does not exist in BackPack");
-        }
-        return 0;
+    public int getNumberOfItems(String itemName){
+        return numberOfItems.get(itemName);
     }
 }
 

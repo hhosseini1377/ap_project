@@ -1,12 +1,16 @@
 package Modules.ItemAndAmulet.Items;
 
+import Control.GameControll.GameControl;
 import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
 
-public class MysticHourglass extends Item{
-    private String detail = "returns the time to before the battle started";
+import java.io.IOException;
 
-    public MysticHourglass(){
+public class MysticHourglass extends Item{
+    GameControl gameControl;
+
+    public MysticHourglass(GameControl gameControl){
+        this.gameControl = gameControl;
         gillCost = 10000;
         name = "Mystic Hourglass";
     }
@@ -23,12 +27,21 @@ public class MysticHourglass extends Item{
 
     @Override
     public String spelldetail() {
+        String detail = "returns the time to before the battle started";
         return detail;
     }
 
     @Override
-    public void castSpell(Warrior player) {
+    public void castSpell (Warrior player) {
 
+    }
+
+    public void castSpell() {
+        try {
+            gameControl.reloadGame();
+        }catch (IOException e){
+            System.out.println("problem in input and output when reloading");
+        }
     }
 
 }

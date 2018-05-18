@@ -7,27 +7,30 @@ import Modules.Enemies.Goblins.Goblins;
 import Modules.Enemies.Lucifer.Lucifer;
 import Modules.Enemies.Ogres.Ogres;
 import Modules.Enemies.Vampires.Vampires;
+import Modules.ItemAndAmulet.Items.MysticHourglass;
 import Modules.User.User;
 import Modules.Warrior.Warrior;
 
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BattleControl {
     private int turn;
     private Warrior[] warrior;
 
-    public void startBattle(User user){
+    public void startBattle (User user) {
         warrior = new Warrior[2];
 
         //TODO needs to be handled with exception
-        if (!user.getDeck().isAcceptable()){
+        if (!user.getDeck().isAcceptable()) {
             System.out.println("deck not acceptable!!\nfix it and try again");
             return;
         }
 
         warrior[1] = new Warrior(user.getDeck(), user.getName());
-        switch (user.getLevel()){
+        switch (user.getLevel()) {
             case 1:
                 warrior[0] = new Goblins();
                 break;
@@ -40,23 +43,24 @@ public class BattleControl {
             case 4:
                 warrior[0] = new Lucifer();
                 break;
-                default:
-                    System.out.println("You've already completed the game...\ngo somewhere else kido!!");
+            default:
+                System.out.println("You've already completed the game...\ngo somewhere else kido!!");
         }
         warrior[1].setUser(user);
+        warrior[0].setMaxManaPoint(1);
+        warrior[1].setMaxManaPoint(1);
         Iterator<Card> itr = warrior[1].getDeck().getCards().iterator();
-        while (itr.hasNext()){
+        while (itr.hasNext()) {
             Card card = itr.next();
             card.setEnemy(warrior[0]);
             card.setFriend(warrior[1]);
         }
         itr = warrior[0].getDeck().getCards().iterator();
-        while (itr.hasNext()){
+        while (itr.hasNext()) {
             Card card = itr.next();
             card.setEnemy(warrior[1]);
             card.setFriend(warrior[0]);
         }
-        turn = 1;
         System.out.println("Battle against " + warrior[0].getName() + " started!");
         battle();
     }
@@ -65,118 +69,201 @@ public class BattleControl {
      * the bulk of the battle
      * checking user's inputs and deciding according to them
      */
-    private void battle(){
-        //randomly starting the game
-        int player = (int)(Math.random() * 2);
-        String action[];
+    private void battle () {
         Scanner scan = new Scanner(System.in);
+        //randomly starting the game
+        int player = (int) (Math.random() * 2);
         System.out.println(warrior[player].getName() + " starts the battle");
+        turn = player;
 
         //giving 5 cards to each combatant
         for (int i = 0; i < 5; i++) {
             warrior[player].getHand().add(warrior[player].getDeck().takeCard());
-            warrior[(player + 1) % 2].getHand().add(warrior[(player+1) % 2].getDeck().takeCard());
+            warrior[(player + 1) % 2].getHand().add(warrior[(player + 1) % 2].getDeck().takeCard());
         }
+
         System.out.print("player drew ");
         for (int i = 0; i < 4; i++)
             System.out.print(warrior[1].getHand().getCards().get(i).getName() + ", ");
         System.out.println(warrior[1].getHand().getCards().get(4).getName());
 
-        while (true){
-            if (checkEndOfTheGame()){
+        if (turn % 2 == 0)
+            changeTurn();
+        help();
+        while (true) {
+            if (decideAction(scan))
                 return;
-            }
-            action = scan.nextLine().split(" ");
-
-            switch (action[0]){
-                case "Help":
-                    help();
-                    break;
-                case "Exit":
-                    endBattle();
-                    return;
-                case "Use":
-                    try{
-                        if (turn % 2 != 1)
-                            throw new TurnException();
-                    }catch (TurnException e){
-                        break;
-                    }
-                    useCard(Integer.parseInt(action[1]));
-                    break;
-                case "Done":
-                    if (turn % 2 == 1) {
-                        changeTurn();
-                    }else{
-                        System.out.println("What the hell do you think you are doing little shit???");
-                    }
-                    break;
-                case "Set":
-                    Card card = warrior[1].getHand().getCard(Integer.parseInt(action[1]));
-                    if (warrior[1].getManaPoint() >= card.getManaPoint()) {
-                        if (card instanceof Monster) {
-                            ((Monster) card).enterField(warrior[0], warrior[1]);
-
-                            warrior[1].getMonsterField().add(((Monster) card), Integer.parseInt(action[3]));
-                            System.out.println(card.getName() + "was set in MonsterField slot "
-                                    + Integer.parseInt(action[3]) + " . "  + card.getManaPoint() + "MP was used.\n");
-                            warrior[1].getHand().remove(card);
-                        }
-                        if (card instanceof Spell){
-                            warrior[1].getSpellField().add(((Spell)card), Integer.parseInt(action[3]));
-                            System.out.println(card.getName() + "was set in SpellField slot "
-                                    + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + "MP was used.\n");
-                            warrior[1].getHand().remove(card);
-                            ((Spell)card).castSpell();
-                        }
-                    }else
-                        System.out.println("You do not have enough MP to do this act");
-            }
         }
+    }
+
+    private boolean decideAction (Scanner scan) {
+        String action[];
+        if (checkEndOfTheGame()) {
+            return true;
+        }
+        String line = scan.nextLine();
+        action = line.split(" ");
+        Matcher matcher = Pattern.compile("Info (.*)").matcher(line);
+        switch (action[0]) {
+            case "View":
+                try {
+                    switch (action[1]) {
+                        case "Hand":
+                            viewHand();
+                            break;
+                        case "Graveyard":
+                            viewGraveyard();
+                            break;
+                        case "MonsterField":
+                            viewMonsterField();
+                            break;
+                        case "SpellField":
+                            viewSpellField();
+                            break;
+                        default:
+                            System.out.println("invalid input");
+                            break;
+                    }
+                }catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println("You need to declare what to view...");
+                }
+                break;
+            case "Info":
+                if (matcher.matches()) {
+                    viewCardInfo(matcher);
+                }
+                break;
+            case "Help":
+                help();
+                break;
+            case "Exit":
+                System.out.println("Are you sure you want to exit the battle?(All data will be reset to before the game started)");
+                if (scan.nextLine().equals("No"))
+                    break;
+                return true;
+            case "Use":
+                try {
+                    if (turn % 2 != 1)
+                        throw new TurnException();
+                    try {
+                        useCard(Integer.parseInt(action[1]));
+                    }catch (NullPointerException e){
+                        System.out.println("This slot is empty!!");
+                    }
+                } catch (TurnException e) {
+                    break;
+                }
+                break;
+            case "Done":
+                if (turn % 2 == 1) {
+                    changeTurn();
+                } else {
+                    System.out.println("What the hell do you think you are doing little shit???");
+                }
+                break;
+            case "Set":
+                setIntoField(action);
+                break;
+            default:
+                System.out.println("invalid input");
+                break;
+        }
+        return false;
     }
 
     /**
      * to do the necessary changes in warriors status when Done is clicked
      */
-    private void changeTurn(){
+    private void changeTurn () {
         turn++;
-        warrior[turn % 2].setManaPoint(warrior[turn % 2].getManaPoint() + 1);
+        //increase the mana point that the warrior has
+        warrior[turn % 2].setMaxManaPoint(warrior[turn % 2].getMaxManaPoint() + 1);
+        //to do changes in sleeping status of monsters
+        warrior[turn % 2].getMonsterField().changeTurnActions(true);
+        //to do changes in sleeping status of defensive monsters
+        warrior[(turn + 1) % 2].getMonsterField().changeTurnActions(false);
         //drawing a card from deck to hand
-        Card drawnCard = warrior[turn % 2].getDeck().takeCard();
-        warrior[turn % 2].getHand().add(drawnCard);
+        try {
+            Card drawnCard = warrior[turn % 2].getDeck().takeCard();
+            warrior[turn % 2].getHand().add(drawnCard);
 
-        System.out.println("Turn " + turn + "started!\n" + warrior[turn % 2].getName() + "'s turn");
-        if (turn % 2 == 1){
-            System.out.println(drawnCard.getName());
+            System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
+            if (turn % 2 == 1) {
+                System.out.println(drawnCard.getName());
+            }
+            //this has to be written every time we enter this menu
+            if (turn % 2 == 1)
+                System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
+                        + warrior[turn % 2].getMaxManaPoint() + "]");
+            if (turn % 2 == 0) {
+                warrior[0].makeMove(warrior[1]);
+                changeTurn();
+            }
+        }catch (NullPointerException e) {
+            System.out.println("No more cards in the deck!!!");
+            System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
+            if (turn % 2 == 0) {
+                warrior[0].makeMove(warrior[1]);
+                changeTurn();
+            }
         }
-        //this has to be written every time we enter this menu
-        if (turn % 2 == 1)
-            System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
-                    + warrior[turn % 2].getMaxManaPoint() + "]");
     }
 
-    private void useCard(int slotNum){
+    /**
+     * set the decided card from hand into the field
+     * @param action the scanned instructions gotten from user
+     */
+    private void setIntoField (String[] action) {
+        try {
+            Card card = warrior[1].getHand().getCard(Integer.parseInt(action[1]) - 1);
+            if (warrior[1].getManaPoint() >= card.getManaPoint()) {
+                if (card instanceof Monster) {
+
+                    if (warrior[1].getMonsterField().add(((Monster) card), Integer.parseInt(action[3]))) {
+                        warrior[1].getHand().remove(card);
+                        System.out.println(card.getName() + " was set in MonsterField slot "
+                                + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + " MP was used.");
+                        ((Monster) card).enterField(warrior[0], warrior[1]);
+                    }
+                }
+                if (card instanceof Spell) {
+                    warrior[1].getSpellField().add(((Spell) card), Integer.parseInt(action[3]));
+                    System.out.println(card.getName() + " was set in SpellField slot "
+                            + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + " MP was used.");
+                    warrior[1].getHand().remove(card);
+                }
+
+                warrior[1].setManaPoint(warrior[1].getManaPoint() - card.getManaPoint());
+            } else
+                System.out.println("You do not have enough MP to do this act");
+        }catch (Exception e){
+            System.out.println("The index you chose is not available, try again" + e.getStackTrace());
+        }
+    }
+
+    private void useCard (int slotNum) {
         Monster monster = warrior[1].getMonsterField().getSlot(slotNum);
         System.out.println("Using " + monster.getName() + "\nHP: " +
                 monster.getHP() + " AP: " + monster.getAP() +
                 "\nIs Sleeping: " + monster.isSleeping() + "\nCan Attack: " +
                 monster.canAttack());
-        if (monster instanceof SpellCaster){
+        if (monster instanceof SpellCaster) {
             System.out.println("Can Cast: " + ((SpellCaster) monster).CanCast());
         }
-        if (monster instanceof Hero){
+        if (monster instanceof Hero) {
             System.out.println("Can Cast: " + ((Hero) monster).CanCast());
         }
         Scanner scan = new Scanner(System.in);
 
-        while(true){
-            switch (scan.next()){
+        while (true) {
+            switch (scan.next()) {
                 case "Help":
-                    System.out.println("1. Attack # EnemyMonsterSlot / Player : To attack the card on that slot of enemy MonsterField\n" +
+                    System.out.println("1. Attack #EnemyMonsterSlot / Player : To attack the card on that slot of enemy MonsterField\n" +
                             "2. Info: To get full information on card\n" +
                             "3. Exit: To go back to Play Menu\n");
                     break;
                 case "Info":
+                    System.out.println(warrior[1].getMonsterField().getSlot(slotNum).toString());
                     break;
                 case "Exit":
                     return;
@@ -185,10 +272,10 @@ public class BattleControl {
                     return;
                 case "Cast":
                     if (monster instanceof SpellCaster) {
-                        ((SpellCaster) monster).castSpell(warrior[0], warrior[1]);
-                    }else if (monster instanceof Hero) {
-                        ((Hero) monster).castSpell(warrior[0], warrior[1]);
-                    }else{
+                        monster.castSpell(warrior[0], warrior[1]);
+                    } else if (monster instanceof Hero) {
+                        monster.castSpell(warrior[0], warrior[1]);
+                    } else {
                         System.out.println("this warrior is neither a spell caster nor a hero");
                     }
                     break;
@@ -199,26 +286,152 @@ public class BattleControl {
         }
     }
 
-    private void help(){
-        System.out.println("1." +
-                " Use #SlotNum : To use a specific card which is on the Monster Field\n" +
-                "2." +
-                " Set #HandIndex to #SlotNum : To set a card which is on the hand , in the field\n" +
-                "3." +
-                " View Hand: To view the cards in your hand\n" +
-                "4." +
-                " View Graveyard : To view the cards in your graveyard\n" +
-                "5." +
-                " View SpellField : To view the cards in both ’players spell fields\n" +
-                "6." +
-                " View MonsterField : To view the cards in both ’players monster fields\n" +
-                "7." +
-                " Info \"Card Name\": To view full information about a card\n" +
-                "8." +
-                " Done: To end your turn\n");
+    private void help () {
+        System.out.println("1. Use #SlotNum : To use a specific card which is on the Monster Field\n" +
+                "2. Set #HandIndex to #SlotNum : To set a card which is on the hand , in the field\n" +
+                "3. View Hand: To view the cards in your hand\n" +
+                "4. View Graveyard : To view the cards in your graveyard\n" +
+                "5. View SpellField : To view the cards in both ’players spell fields\n" +
+                "6. View MonsterField : To view the cards in both ’players monster fields\n" +
+                "7. Info \"Card Name\": To view full information about a card\n" +
+                "8. Done: To end your turn\n");
     }
 
-    private boolean checkEndOfTheGame(){
+    private void viewHand () {
+        int index = 1;
+        System.out.println("Your Status: \n[" + warrior[1].getManaPoint() + " - " + warrior[1].getMaxManaPoint() + "]");
+        System.out.println("Your Hand:");
+        for (Card card : warrior[1].getHand().getCards()) {
+            System.out.println(index + ". " + card.getName() + ", Mana cost: " + card.getManaPoint());
+            index++;
+        }
+    }
+
+    private void viewGraveyard () {
+        int index = 1;
+        System.out.println("Your Graveyard:");
+        for (Card card : warrior[1].getGraveYard().getDestroyedCards()) {
+            System.out.println(index + ". " + card.getName());
+            index++;
+        }
+        index = 1;
+        System.out.println("Enemies Graveyard:");
+        for (Card card : warrior[0].getGraveYard().getDestroyedCards()) {
+            System.out.println(index + ". " + card.getName());
+            index++;
+        }
+    }
+
+    private void viewMonsterField () {
+        System.out.println("Your MonsterField:");
+        System.out.println("Your Commander: " + warrior[1].getCommander().getName() + " HP: " +
+                warrior[1].getCommander().getHP());
+
+        Monster monster;
+        for (int i = 1; i <= 5; i++) {
+            if (warrior[1].getMonsterField().getSlot(i) == null)
+                System.out.println(i + ". Empty");
+            else {
+                monster = warrior[1].getMonsterField().getSlot(i);
+                System.out.print(i + ". " + monster.getName() + "/ HP: " + monster.getHP() +  "/ AP: " +
+                        monster.getAP() + "/ is Defensive: " + !monster.isOffenseType() + "/ is nimble: " + monster.isNimble());
+                if (monster.getMonsterKind() == MonsterKind.SPELL_CASTER) {
+                    System.out.print(" can cast: " + ((SpellCaster) monster).CanCast());
+                }
+                if (monster.getMonsterKind() == MonsterKind.HERO) {
+                    System.out.print(" can cast: " + ((SpellCaster) monster).CanCast());
+                }
+                System.out.println();
+            }
+        }
+        System.out.println("Enemies MonsterField:");
+        System.out.println("Enemies Commander: " + warrior[0].getCommander().getName() + " HP: " +
+                warrior[0].getCommander().getHP());
+
+        for (int i = 1; i <= 5; i++) {
+            if (warrior[0].getMonsterField().getSlot(i) == null)
+                System.out.println(i + ". Empty");
+            else {
+                monster = warrior[0].getMonsterField().getSlot(i);
+                System.out.print(i + ". " + monster.getName() + "/ HP: " + monster.getHP() + "/ AP: " +
+                        monster.getAP() + "/ is Defensive: " + !monster.isOffenseType() + "/ is nimble: " + monster.isNimble());
+                if (monster.getMonsterKind() == MonsterKind.SPELL_CASTER) {
+                    System.out.print(" can cast: " + ((SpellCaster) monster).CanCast());
+                }
+                if (monster.getMonsterKind() == MonsterKind.HERO) {
+                    System.out.print(" can cast: " + ((SpellCaster) monster).CanCast());
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    private void viewSpellField () {
+        System.out.println("Your SpellField:");
+        Spell spell;
+        for (int i = 0; i < 3; i++) {
+            if (warrior[1].getSpellField().getSlot(i) == null)
+                System.out.println((i + 1) + ". Empty");
+            else {
+                spell = warrior[1].getSpellField().getSlot(i);
+                System.out.println((i + 1) + ". " + spell.getName());
+            }
+        }
+        System.out.println("Enemies SpellField:");
+        for (int i = 0; i < 3; i++) {
+            if (warrior[0].getSpellField().getSlot(i) == null)
+                System.out.println((i + 1) + ". Empty");
+            else {
+                spell = warrior[0].getSpellField().getSlot(i);
+                System.out.println((i + 1) + ". " + spell.getName());
+            }
+        }
+    }
+
+    private void viewCardInfo(Matcher matcher){
+
+        if (warrior[0].hasCard(matcher.group(1))) {
+            if (warrior[0].getHand().hasCard(matcher.group(1))) {
+                System.out.println(warrior[0].getHand().getCard(matcher.group(1)).toString());
+            } else if (warrior[0].getGraveYard().hasCard(matcher.group(1))) {
+                System.out.println(warrior[0].getGraveYard().getCard(matcher.group(1)).toString());
+            } else if (warrior[0].getMonsterField().hasCard(matcher.group(1))) {
+                try {
+                    System.out.println(warrior[0].getMonsterField().getCard(matcher.group(1)).toString());
+                } catch (NullPointerException e) {
+                    System.out.println("the card on monster field is null!" );
+                }
+            }else{
+                try {
+                    System.out.println(warrior[0].getSpellField().getCard(matcher.group(1)).toString());
+                }catch (NullPointerException e){
+                    System.out.println("the spell on spell field in null!");
+                }
+            }
+        } else if (warrior[1].hasCard(matcher.group(1))) {
+            if (warrior[1].getHand().hasCard(matcher.group(1))) {
+                System.out.println(warrior[1].getHand().getCard(matcher.group(1)).toString());
+            } else if (warrior[1].getGraveYard().hasCard(matcher.group(1))) {
+                System.out.println(warrior[1].getGraveYard().getCard(matcher.group(1)).toString());
+            } else if (warrior[1].getMonsterField().hasCard(matcher.group(1))) {
+                try {
+                    System.out.println(warrior[1].getMonsterField().getCard(matcher.group(1)).toString());
+                } catch (NullPointerException e) {
+                    System.out.println("the card on monster field is null!" );
+                }
+            }else{
+                try {
+                    System.out.println(warrior[1].getSpellField().getCard(matcher.group(1)).toString());
+                }catch (NullPointerException e){
+                    System.out.println("the spell on spell field in null!");
+                }
+            }
+        } else
+            System.out.println("There is no such card named as " + matcher.group(1) + ", You have probably made" +
+                    "a mistake in typing the name, please try again.");
+    }
+
+    private boolean checkEndOfTheGame () {
         if (warrior[0].getCommander().isDead()) {
             win();
             return true;
@@ -230,32 +443,28 @@ public class BattleControl {
         return false;
     }
 
-    private void endBattle(){
-
-    }
-
-    private void lose(){
-//        if (warrior[1].getBackPack().ContainsItem("Mystic HourGlass")){
-        //TODO
-//            warrior[1].getBackPack().getItem("Mystic HourGlass");
-//            warrior[1].getBackPack().remove()
-//        }
-
+    private void lose () {
+        if (warrior[1].getBackPack().ContainsItem("Mystic HourGlass")){
+            ((MysticHourglass)warrior[1].getBackPack().getItem("Mystic HourGlass")).castSpell();
+            warrior[1].getBackPack().remove(warrior[1].getBackPack().getItem("Mystic HourGlass"));
+            System.out.println("now the game will be reset to the time before battle");
+        }
         System.out.println("Unfortunately the demons were too strong!!" +
                 "\nRegain power and challenge them again brave hero!");
 
     }
 
-    private void win(){
+    private void win () {
         warrior[1].getUser().setLevel(warrior[1].getUser().getLevel() + 1);
+        warrior[1].getUser().setGills(warrior[1].getUser().getGills() + warrior[0].getWinPrize());
         System.out.println("Congratulations\n" +
                 "With your skills and bravery " + warrior[0].getName() + " has been utterly defeated!!" +
                 "\nIt was right to request help from you brave warrior!");
     }
 }
 
-class TurnException extends Exception{
-    TurnException(){
+class TurnException extends Exception {
+    TurnException () {
         System.out.println("not your turn\ntry again when its your turn");
     }
 }

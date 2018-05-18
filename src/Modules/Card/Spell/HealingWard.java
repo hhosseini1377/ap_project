@@ -1,10 +1,6 @@
 package Modules.Card.Spell;
 
-import Modules.Card.Card;
-import Modules.Card.Monsters.Monster;
 import Modules.Warrior.Warrior;
-
-import java.util.Scanner;
 
 public class HealingWard extends Spell {
     public HealingWard(){

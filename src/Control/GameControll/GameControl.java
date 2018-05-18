@@ -1,23 +1,17 @@
 package Control.GameControll;
 
 import Control.BattleControl;
-import Control.GameControll.GameDetailController;
 import Control.InventoryControl;
 import Control.ShopControl;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
-import Modules.Card.Monsters.Atlantian.Kraken;
-import Modules.Card.Monsters.Atlantian.NagaSiren;
-import Modules.Card.Monsters.Atlantian.SeaSerpent;
-import Modules.Card.Monsters.Demonic.*;
-import Modules.Card.Monsters.Elven.ElvenDruid;
-import Modules.Card.Monsters.Elven.ElvenSorceress;
-import Modules.Card.Monsters.Elven.NobleElf;
 import Modules.Card.Monsters.Normal;
-import Modules.Card.Spell.*;
 import Modules.ItemAndAmulet.Amulet;
+import Modules.ItemAndAmulet.Amulets.DemonCrown;
+import Modules.ItemAndAmulet.Amulets.DiamondRing;
+import Modules.ItemAndAmulet.Amulets.GoldRing;
+import Modules.ItemAndAmulet.Amulets.IronRing;
 import Modules.ItemAndAmulet.Item;
-import Modules.ItemAndAmulet.Items.*;
 import Modules.Shop.AmuletShop;
 import Modules.Shop.CardShop;
 import Modules.Shop.ItemShop;
@@ -27,7 +21,6 @@ import Modules.User.Inventory.ItemInventory;
 import Modules.User.User;
 import Modules.Warrior.BackPack;
 
-import javax.imageio.IIOException;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -95,7 +88,10 @@ public class GameControl {
         gameDetailController.spellStart();
         gameDetailController.itemStart();
         //TODO instantiate amulets
-        //TODO instantiate commanders
+        amuletHashMap.put("Iron Ring", new IronRing());
+        amuletHashMap.put("Gold Ring", new GoldRing());
+        amuletHashMap.put("Diamond Ring", new DiamondRing());
+        amuletHashMap.put("Demon King's Crown", new DemonCrown());
         gameDetailController.backPackStart();
         gameDetailController.deckStart();
         gameDetailController.inventoryStart();
@@ -120,6 +116,8 @@ public class GameControl {
         Scanner scan = new Scanner(System.in);
         String action;
         String previousResult = null;
+        help();
+
         while (true) {
             action = scan.nextLine();
             previousResult = availableAction(action, previousResult);
@@ -150,11 +148,11 @@ public class GameControl {
                 break;
             case "Battle":
                 battleControl.startBattle(user);
-//                try {
-//                    gameDetailController.saveGame();
-//                }catch (IOException e){
-//                    System.out.println(e.toString());
-//                }
+                try {
+                    gameDetailController.saveGame();
+                }catch (IOException e){
+                    System.out.println(e.toString());
+                }
                 break;
             default:
                 System.out.println("invalid input");
@@ -184,9 +182,13 @@ public class GameControl {
      * saves the necessary data
      */
     // TODO needs to be completed
-    public void endGame(){
-        System.out.println("Do you want to save the game?(Yes, No)");
+    private void endGame (){
+        System.out.println("Do you realy want to quit the game?(I kinda have to :(, No)");
         Scanner scan = new Scanner(System.in);
+        if ("No".equals( scan.nextLine())) {
+            return;
+        }
+        System.out.println("Do you want to save the game?(Yes, No, reset)");
         switch (scan.next()){
             case "Yes":
                 try{
@@ -244,10 +246,17 @@ public class GameControl {
     public User getUser() {
         return user;
     }
+
+    public void reloadGame() throws IOException{
+        gameDetailController.backPackStart();
+        user.setBackPack(backPack);
+        gameDetailController.deckStart();
+        user.setDeck(deck);
+    }
 }
 
 class CardException extends Exception{
-    CardException(String detail){
-        System.out.println(detail);
+    CardException (){
+        System.out.println("card not available");
     }
 }

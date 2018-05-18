@@ -20,33 +20,34 @@ public class ThrowingKnives extends Spell{
         return canCast;
     }
 
-    public void cast(Monster monster){
-        monster.decreaseHP(500);
+    @Override
+    public void castSpell(Card card) {
+        ((Monster) card).decreaseHP(500);
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
     @Override
     public void castSpell() {
-        if (!canCast){
+        if (!canCast) {
             System.out.println("this card cannot cast anymore");
             return;
         }
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
         System.out.println("\nList of targets:");
         System.out.println("1. commander\nMonster field:");
-        for (int i = 1; i <= 5; i++){
+        for (int i = 1; i <= 5; i++) {
             try {
                 if (enemy.getMonsterField().getMonsterCards().get(i - 1) == null) {
                     System.out.println((i + 1) + ". slot" + i + ": Empty");
                 } else
                     System.out.println((i + 1) + ". slot" + i + ": " + enemy.getMonsterField().getMonsterCards().get(i - 1).getName());
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println((i + 1) + ". slot" + i + ": Empty");
             }
         }
 
         Scanner scanner = new Scanner(System.in);
-        while(true) {
+        while (true) {
             switch (scanner.next()) {
                 case "Exit":
                     System.out.println("no target was decided...");
@@ -57,12 +58,12 @@ public class ThrowingKnives extends Spell{
                     break;
                 case "Target":
                     int target = scanner.nextInt();
-                    if (target == 1){
-                        cast(enemy.getCommander());
-                    }else{
-                        try{
-                            cast(enemy.getMonsterField().getMonsterCards().get(target));
-                        }catch (Exception e){
+                    if (target == 1) {
+                        castSpell(enemy.getCommander());
+                    } else {
+                        try {
+                            castSpell(enemy.getMonsterField().getMonsterCards().get(target));
+                        } catch (Exception e) {
                             System.out.println("invalid target");
                         }
                     }

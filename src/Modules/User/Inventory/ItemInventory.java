@@ -1,6 +1,5 @@
 package Modules.User.Inventory;
 
-import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.BackPack;
 

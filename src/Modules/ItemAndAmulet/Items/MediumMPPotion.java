@@ -4,7 +4,6 @@ import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
 
 public class MediumMPPotion extends Item{
-    private String detail = "Increase Player's MP by 4";
 
     public MediumMPPotion(){
         gillCost = 2000;
@@ -23,6 +22,7 @@ public class MediumMPPotion extends Item{
 
     @Override
     public String spelldetail() {
+        String detail = "Increase Player's MP by 4";
         return detail;
     }
 

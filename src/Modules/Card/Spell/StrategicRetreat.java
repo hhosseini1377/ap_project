@@ -1,5 +1,6 @@
 package Modules.Card.Spell;
 
+import Modules.Card.Card;
 import Modules.Warrior.Warrior;
 
 public class StrategicRetreat extends Spell {
@@ -14,6 +15,11 @@ public class StrategicRetreat extends Spell {
 
     public boolean canCast(){
         return canCast;
+    }
+
+    @Override
+    public void castSpell(Card card){
+
     }
 
     @Override

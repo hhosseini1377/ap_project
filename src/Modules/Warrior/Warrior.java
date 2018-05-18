@@ -5,6 +5,8 @@ import Modules.BattleGround.Fields.MonsterField;
 import Modules.BattleGround.Fields.SpellField;
 import Modules.BattleGround.GraveYard;
 import Modules.BattleGround.Hand;
+import Modules.Card.Card;
+import Modules.Card.Commanders.ArslanTheHero;
 import Modules.Card.Commanders.Commander;
 import Modules.User.User;
 
@@ -20,25 +22,42 @@ public class Warrior {
     protected BackPack backPack;
     protected int manaPoint = 0;
     protected int maxManaPoint;
+    protected int winPrize;
 
     public Warrior(Deck deck, String name) {
-        this.deck = deck;
+        this.deck = new Deck();
+        for (Card card: deck.getCards()){
+            this.deck.add(card, 1);
+        }
         hand = new Hand();
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
         this.name = name;
-        commander = new Commander();
+        commander = new ArslanTheHero();
+        try {
+            backPack.getAmulet().castSpell(this);
+        }catch (NullPointerException e){
+            System.out.println("No amulet equipped!");
+        }
     }
 
-    public Warrior(){
+    protected Warrior (){
         deck = new Deck();
         backPack = new BackPack();
         hand = new Hand();
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
-        commander = new Commander();
+        try {
+            backPack.getAmulet().castSpell(this);
+        }catch (NullPointerException e){
+            System.out.println("No amulet equipped!");
+        }
+    }
+
+    public int getWinPrize () {
+        return winPrize;
     }
 
     public int getManaPoint() {
@@ -50,13 +69,15 @@ public class Warrior {
     }
 
     public void setManaPoint(int manaPoint) {
-        if (manaPoint <= 12) {
             this.manaPoint = manaPoint;
-            this.maxManaPoint = manaPoint;
-        }else {
+    }
+
+    public void setMaxManaPoint(int maxManaPoint){
+        if (maxManaPoint <= 12)
+            this.maxManaPoint = maxManaPoint;
+        else
             this.maxManaPoint = 12;
-            this.manaPoint = maxManaPoint;
-        }
+        this.manaPoint = this.maxManaPoint;
     }
 
     public Commander getCommander() {
@@ -121,5 +142,13 @@ public class Warrior {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void makeMove(Warrior enemy){
+
+    }
+
+    public boolean hasCard(String name){
+        return hand.hasCard(name) || graveYard.hasCard(name) || monsterField.hasCard(name) || spellField.hasCard(name);
     }
 }

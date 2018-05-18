@@ -1,7 +1,5 @@
 package Control.GameControll;
 
-import Control.GameControll.CardException;
-import Control.GameControll.GameControl;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Atlantian.Kraken;
@@ -35,8 +33,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 class GameDetailController {
-     private String fileDirectory;
-     private GameControl gameControl;
+     private final String fileDirectory;
+     private final GameControl gameControl;
 
     GameDetailController(String fileDirectory, GameControl gameControl){
         this.fileDirectory = fileDirectory;
@@ -45,7 +43,8 @@ class GameDetailController {
 
     //initializing the monster cards and thus the maps
     void monsterStart(){
-        //TODO instantiate other types of monster cards
+        gameControl.cardHashMap.put("Cerberus, Gatekeeper of Hell", new Cerberus());
+        gameControl.cardHashMap.put("Dark Knight", new DarkKnight());
         gameControl.cardHashMap.put("Kraken", new Kraken());
         gameControl.cardHashMap.put("Neptune, King of Atlantis", new Neptun());
         gameControl.cardHashMap.put("Blue Dragon", new BlueDragon());
@@ -105,7 +104,7 @@ class GameDetailController {
          gameControl.itemHashMap.put(smallHPPotion.getName(), smallHPPotion);
         SmallMPPotion smallMPPotion = new SmallMPPotion();
          gameControl.itemHashMap.put(smallMPPotion.getName(), smallMPPotion);
-         gameControl.itemHashMap.put("Mystic Hourglass", new MysticHourglass());
+         gameControl.itemHashMap.put("Mystic Hourglass", new MysticHourglass(gameControl));
     }
 
     //readying the backPack
@@ -116,7 +115,12 @@ class GameDetailController {
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
             if (gameControl.itemHashMap.containsKey(parts[0]))
-                this.gameControl.backPack.add(gameControl.itemHashMap.get(parts[0]), Integer.parseInt(parts[1]));
+                for (int i = 0; i < Integer.parseInt(parts[1]); i++)
+                    try {
+                        this.gameControl.backPack.add((Item) gameControl.itemHashMap.get(parts[0]).clone(), 1);
+                    }catch (CloneNotSupportedException e){
+                        System.out.println("Clone not supported" + e.getStackTrace());
+                    }
             else
                 this.gameControl.backPack.add(gameControl.amuletHashMap.get(parts[0]));
         }
@@ -131,8 +135,14 @@ class GameDetailController {
             String parts[] = line.split(" -");
             try {
                 if (!gameControl.cardHashMap.containsKey(parts[0]))
-                    throw new CardException("card not available");
-                this.gameControl.deck.add(gameControl.cardHashMap.get(parts[0]), Integer.parseInt(parts[1]));
+                    throw new CardException();
+                for (int i = 0; i < Integer.parseInt(parts[1]); i++) {
+                    try {
+                        this.gameControl.deck.add((Card) gameControl.cardHashMap.get(parts[0]).clone(), 1);
+                    }catch (CloneNotSupportedException e){
+                        System.out.println("Clone not supported" + e.getStackTrace());
+                    }
+                }
             }catch (CardException e){
                 System.out.println("");
             }
@@ -152,15 +162,22 @@ class GameDetailController {
             if (!line.contains(":")){
                 if (inventoryName.equals("items:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        gameControl.itemInventory.add(gameControl.itemHashMap.get(parts[0]));
+                        try {
+                            gameControl.itemInventory.add((Item) gameControl.itemHashMap.get(parts[0]).clone());
+                        }catch (CloneNotSupportedException e){
+                            System.out.println("Clone not supported");
+                        }
                 }
                 if (inventoryName.equals("amulets:")){
-                    for (int i = 0; i < Integer.parseInt(parts[1]); i++)
                         gameControl.amuletInventory.add(gameControl.amuletHashMap.get(parts[0]));
                 }
                 if (inventoryName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        gameControl.cardInventory.add(gameControl.cardHashMap.get(parts[0]));
+                        try {
+                            gameControl.cardInventory.add((Card) gameControl.cardHashMap.get(parts[0]).clone());
+                        }catch (CloneNotSupportedException e){
+                            System.out.println(e);
+                        }
                 }
             }else{
                 inventoryName = line;
@@ -190,7 +207,11 @@ class GameDetailController {
                 }
                 if (shopName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        gameControl.cardShop.addCard(gameControl.cardHashMap.get(parts[0]));
+                        try {
+                            gameControl.cardShop.addCard((Card) gameControl.cardHashMap.get(parts[0]).clone());
+                        }catch (CloneNotSupportedException e){
+                            System.out.println(e);
+                        }
                 }
             }else{
                 shopName = line;
@@ -200,22 +221,23 @@ class GameDetailController {
 
     /**
      * saves the game when endGame() method is called
-     * @throws IOException
+     * @throws IOException if the file input is wrong
      */
     // TODO needs to be completed
-     void saveGame() throws IOException{
+     public void saveGame() throws IOException{
         FileWriter fileWriter = null;
-        saveBackPack(fileWriter);
-        saveDeck(fileWriter);
-        saveInventory(fileWriter);
-        saveShop(fileWriter);
+        saveBackPack();
+        saveDeck();
+        saveInventory();
+        saveShop();
         fileWriter = new FileWriter(fileDirectory + "userInfo.txt", false);
         fileWriter.write("level:" + gameControl.user.getLevel());
-        fileWriter.write("gills:" + gameControl.user.getGills());
+        fileWriter.write("\ngills:" + gameControl.user.getGills());
+        fileWriter.close();
     }
 
-     private void saveBackPack(FileWriter fileWriter) throws IOException{
-        fileWriter = new FileWriter(fileDirectory + "backPack.txt", false);
+     private void saveBackPack () throws IOException{
+         FileWriter fileWriter = new FileWriter (fileDirectory + "backPack.txt", false);
         for (Item item:gameControl.backPack.getItems()) {
             fileWriter.write(item.getName() + " -" + gameControl.backPack.getNumberOfItems(item.getName()) + "\n");
         }
@@ -225,16 +247,20 @@ class GameDetailController {
         fileWriter.close();
     }
 
-     private void saveDeck(FileWriter fileWriter) throws IOException{
-        fileWriter = new FileWriter(fileDirectory + "deck.txt", false);
-        for (Card card:gameControl.deck.getCards()) {
-            fileWriter.write(card.getName() + " -" + gameControl.deck.getNumberOfCards(card.getName()) + "\n");
-        }
-        fileWriter.close();
+     private void saveDeck () throws IOException{
+         FileWriter fileWriter = new FileWriter (fileDirectory + "deck.txt", false);
+         Card lastCard = null;
+         for (Card card:gameControl.deck.getCards()) {
+             if (lastCard == null || !card.getName().equals(lastCard.getName())) {
+                 fileWriter.write(card.getName() + " -" + gameControl.deck.getNumberOfCards(card.getName()) + "\n");
+                 lastCard = card;
+             }
+         }
+         fileWriter.close();
     }
 
-     private void saveInventory(FileWriter fileWriter) throws IOException{
-        fileWriter = new FileWriter(fileDirectory + "inventory.txt", false);
+     private void saveInventory () throws IOException{
+         FileWriter fileWriter = new FileWriter (fileDirectory + "inventory.txt", false);
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemInventory.getItems()){
@@ -253,8 +279,8 @@ class GameDetailController {
         fileWriter.close();
     }
 
-     private void saveShop(FileWriter fileWriter) throws IOException{
-        fileWriter = new FileWriter(fileDirectory + "shop.txt");
+     private void saveShop () throws IOException{
+         FileWriter fileWriter = new FileWriter (fileDirectory + "shop.txt");
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemShop.getItems()){
@@ -267,8 +293,12 @@ class GameDetailController {
         }
 
         fileWriter.write("cards:\n");
+        Card lastCard = null;
         for (Card card:gameControl.cardShop.getCards()){
-            fileWriter.write(card.getName() + " -" + gameControl.cardShop.getNumberOfCard(card.getName()) + "\n");
+            if (lastCard == null || !card.getName().equals(lastCard.getName())){
+                fileWriter.write(card.getName() + " -" + gameControl.cardShop.getNumberOfCard(card.getName()) + "\n");
+                lastCard = card;
+            }
         }
         fileWriter.close();
     }

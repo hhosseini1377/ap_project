@@ -21,8 +21,8 @@ public class FirstAidKit extends Spell{
         return canCast;
     }
 
-    private void cast(Monster monster){
-        monster.increaseHP(500);
+    public void castSpell(Card monster){
+        ((Monster) monster).increaseHP(500);
         System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
     }
 
@@ -59,10 +59,10 @@ public class FirstAidKit extends Spell{
                 case "Target":
                     int target = scanner.nextInt();
                     if (target == 1){
-                        cast(friend.getCommander());
+                        castSpell(friend.getCommander());
                     }else{
                     try{
-                        cast(friend.getMonsterField().getMonsterCards().get(target));
+                        castSpell(friend.getMonsterField().getMonsterCards().get(target));
                     }catch (Exception e){
                         System.out.println("invalid target");
                     }

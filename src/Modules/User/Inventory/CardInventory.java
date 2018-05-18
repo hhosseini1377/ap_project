@@ -2,9 +2,6 @@ package Modules.User.Inventory;
 
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
-import Modules.ItemAndAmulet.Amulet;
-import Modules.ItemAndAmulet.Item;
-import Modules.Warrior.BackPack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +24,12 @@ public class CardInventory{
     }
 
     public Card getCard(String name){
-        return cardMap.get(name);
+        try {
+            return cardMap.get(name);
+        }catch (NullPointerException e){
+        System.out.println("there is no such card named " + name + " in inventory...");
+        }
+        return null;
     }
 
     public Deck getDeck() {

@@ -7,9 +7,9 @@ import Modules.User.Inventory.ItemInventory;
 import Modules.Warrior.BackPack;
 
 public class User {
-    private CardInventory cardInventory;
-    private ItemInventory itemInventory;
-    private AmuletInventory amuletInventory;
+    private final CardInventory cardInventory;
+    private final ItemInventory itemInventory;
+    private final AmuletInventory amuletInventory;
     private int gills;
     private int level;
     private String name;
@@ -25,6 +25,10 @@ public class User {
         this.name = name;
         this.itemInventory = itemInventory;
         this.amuletInventory = amuletInventory;
+    }
+
+    public void setBackPack (BackPack backPack) {
+        this.backPack = backPack;
     }
 
     public ItemInventory getItemInventory() {

@@ -8,8 +8,31 @@ public class Spell extends Card {
     protected SpellType spellType;
     protected String spellDetail;
 
+    public boolean isCanCast () {
+        return canCast;
+    }
+
+    public SpellType getSpellType () {
+        return spellType;
+    }
+
     public String spellDetail(){
         return spellDetail;
     }
-    public void castSpell(){}
+
+    public void castSpell(){
+    }
+
+    public void castSpell(Card card){
+    }
+
+    public void reverseSpell(){
+
+    }
+
+    public String toString(){
+        return "Name: " + this.name + "\nMP cost: " + this.manaPoint +
+                "\nCard Type: " + this.spellType + "\n" + this.spellDetail +
+                "Card Story: ";//TODO card story
+    }
 }

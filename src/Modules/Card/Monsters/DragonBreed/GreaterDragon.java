@@ -7,10 +7,6 @@ import Modules.Card.Monsters.MonsterTribe;
 import Modules.Warrior.Warrior;
 
 public class GreaterDragon extends General{
-    private String willName = "Dragon's Call";
-    private String willDetail = "Draw two cards from deck to hand";
-    private String battleCryName = "Devour";
-    private String battleCryDetail = "Send a random enemy monster card from field to graveyard";
 
     public GreaterDragon(){
         name = "Greater Dragon";
@@ -57,19 +53,23 @@ public class GreaterDragon extends General{
 
     @Override
     public String willDetail() {
+        String willDetail = "Draw two cards from deck to hand";
         return willDetail;
     }
 
     @Override
     public String battleCryDetail() {
+        String battleCryDetail = "Send a random enemy monster card from field to graveyard";
         return battleCryDetail;
     }
 
     public String getWillName() {
+        String willName = "Dragon's Call";
         return willName;
     }
 
     public String getBattleCryName() {
+        String battleCryName = "Devour";
         return battleCryName;
     }
 

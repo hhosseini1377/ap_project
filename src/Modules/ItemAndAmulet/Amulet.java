@@ -1,5 +1,7 @@
 package Modules.ItemAndAmulet;
 
+import Modules.Warrior.Warrior;
+
 public abstract class Amulet {
     protected int gillCost;
     protected String name;
@@ -20,7 +22,7 @@ public abstract class Amulet {
         this.name = name;
     }
 
-    public abstract void castSpell();
+    public abstract void castSpell(Warrior lord);
 
     public String toString(){
         return name;

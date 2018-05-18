@@ -3,12 +3,12 @@ package Modules.ItemAndAmulet.Amulets;
 import Modules.ItemAndAmulet.Amulet;
 import Modules.Warrior.Warrior;
 
-public class IronPendant extends Amulet{
-    private String detail = "Increase Player's Max HP by 500";
+public class GoldPendant extends Amulet{
+    private String detail = "Increase Player's Max HP by 1000";
 
-    public IronPendant(){
-        name = "Iron Pendant";
-        gillCost = 2000;
+    public GoldPendant(){
+        name = "Gold Pendant";
+        gillCost = 8000;
     }
 
     public String getDetail() {
@@ -27,6 +27,6 @@ public class IronPendant extends Amulet{
 
     @Override
     public void castSpell(Warrior lord) {
-        lord.getCommander().setInitialHP(lord.getCommander().getInitialHP() +500);
+        lord.getCommander().setInitialHP(lord.getCommander().getInitialHP() +1000);
     }
 }

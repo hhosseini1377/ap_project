@@ -287,8 +287,12 @@ class GameDetailController {
         }
 
         fileWriter.write("cards:\n");
+        Card lastCard = null;
         for (Card card:gameControl.cardShop.getCards()){
-            fileWriter.write(card.getName() + " -" + gameControl.cardShop.getNumberOfCard(card.getName()) + "\n");
+            if (card != lastCard){
+                fileWriter.write(card.getName() + " -" + gameControl.cardShop.getNumberOfCard(card.getName()) + "\n");
+                lastCard = card;
+            }
         }
         fileWriter.close();
     }

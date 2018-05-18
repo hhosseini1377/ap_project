@@ -441,7 +441,7 @@ public class BattleControl {
     }
 
     private void endBattle () {
-
+        
     }
 
     private void lose () {

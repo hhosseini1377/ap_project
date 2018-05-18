@@ -35,7 +35,7 @@ public class BackPack {
 
     public void add(Item item, int itemNumber){
         if (numberOfItems.containsKey(item.getName()))
-            numberOfItems.replace(item.getName(), numberOfItems.get(item.getName() + itemNumber));
+            numberOfItems.replace(item.getName(), numberOfItems.get(item.getName()) + itemNumber);
         else {
             numberOfItems.put(item.getName(), itemNumber);
             items.add(item);

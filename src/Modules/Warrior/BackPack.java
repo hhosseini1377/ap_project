@@ -20,6 +20,7 @@ public class BackPack {
         return items;
     }
 
+
     public Amulet getAmulet() {
         return amulet;
     }

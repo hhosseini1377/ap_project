@@ -6,7 +6,7 @@ public class Menu {
     private Menu(){
     }
 
-    public static Menu getInstace(){
+    public static Menu getInstance(){
         return menu;
     }
 }

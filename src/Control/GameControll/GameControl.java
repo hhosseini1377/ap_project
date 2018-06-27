@@ -6,6 +6,7 @@ import Control.ShopControl;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Normal;
+import Modules.Graphic.Graphics;
 import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Amulets.*;
 import Modules.ItemAndAmulet.Item;
@@ -17,6 +18,13 @@ import Modules.User.Inventory.CardInventory;
 import Modules.User.Inventory.ItemInventory;
 import Modules.User.User;
 import Modules.Warrior.BackPack;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
@@ -104,14 +112,47 @@ public class GameControl {
         fileReader = new BufferedReader(new FileReader(fileDirectory + "userInfo.txt"));
         level = Integer.parseInt(fileReader.readLine().split(":")[1]);
         gills = Integer.parseInt(fileReader.readLine().split(":")[1]);
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter your preferable name to continue...");
-        user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, scan.nextLine(), backPack);
+        String userName = getNameFromUser();
+        user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, userName, backPack);
         System.out.println("Welcome " + user.getName() + ", my man!");
         fileReader.close();
         inventoryControl = new InventoryControl(user);
         shopControl = new ShopControl(cardShop, itemShop, amuletShop, user, inventoryControl);
         battleControl = new BattleControl();
+    }
+
+    private String getNameFromUser()throws IOException{
+        Group root = FXMLLoader.load(getClass().getResource("../../Files/Resources/RegisterPage.fxml"));
+        Graphics.getInstance().getStage().getScene().setRoot(root);
+        StringBuilder name = new StringBuilder("mrNobody");
+
+        Button register = ((Button)root.lookup("#registerButton"));
+        String buttonCss = "-fx-border-radius: 60; -fx-background-radius: 20; -fx-min-width: 40px; -fx-min-height: 35px; -fx-font-weight: bold;";
+        register.setEffect(Graphics.glow);
+        EventHandler<MouseEvent> onButtonEnter = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                register.setStyle("-fx-background-color: rgba(137,137,137,0.17);" + buttonCss);
+                register.setTextFill(Color.rgb(45,45,45));
+            }
+        };
+        EventHandler<MouseEvent> onButtonExit = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                register.setStyle("-fx-background-color: rgba(115,115,115,0.75);" + buttonCss);
+                register.setTextFill(Color.ALICEBLUE);
+            }
+        };
+        EventHandler<MouseEvent> enterGame = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                name.replace(0, 8, ((TextField)root.lookup("#textfield")).getText());
+            }
+        };
+        register.addEventHandler(MouseEvent.MOUSE_ENTERED, onButtonEnter);
+        register.addEventHandler(MouseEvent.MOUSE_EXITED, onButtonExit);
+        register.addEventHandler(MouseEvent.MOUSE_CLICKED, enterGame);
+        return name.toString();
     }
 
     public void game(){

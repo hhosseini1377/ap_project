@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Screen?>
-<Group>
+
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}"
@@ -17,4 +17,3 @@
               style="-fx-font-size: 70;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     </VBox>
 </GridPane>
-</Group>

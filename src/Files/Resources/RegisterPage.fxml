@@ -5,15 +5,14 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.stage.Screen?>
-<Group>
+<?import javafx.stage.Stage?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          maxHeight="${screen.visualBounds.height}" maxWidth="${screen.visualBounds.width}"
-          prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}"
-          minHeight="300" minWidth="400"
-          style="-fx-background-color: linear-gradient(to Bottom, rgba(29,29,29,0.91), darkgrey);" alignment="CENTER">
+          alignment="CENTER"
+          style="-fx-alignment: center; -fx-background-color: linear-gradient(to bottom, rgba(29,29,29,0.85), darkgrey)">
     <fx:define>
         <Screen fx:id="screen" fx:factory="getPrimary"/>
+        <Stage fx:id="stage"/>
     </fx:define>
     <TextField fx:id="textfield" promptText="Enter Your Name" style="-fx-background-color: white;
     -fx-border-radius: 5px; -fx-min-height: 35px; -fx-min-width: 180px; -fx-font-weight: bold;" GridPane.columnIndex="0"/>
@@ -22,4 +21,3 @@
             textFill="aliceblue" />
 
 </GridPane>
-</Group>

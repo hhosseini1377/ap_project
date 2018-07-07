@@ -25,7 +25,7 @@ public class Graphics {
     public final static Effect reflection = new Reflection(1, 0.5, 0.7, 0);
     public final static Effect glow = new Glow(0.7);
     public final static Media Start = new Media(new File("./src/Files/Music/13_westWorld.mp3").toURI().toString());
-    public final static MediaPlayer startPlayer = new MediaPlayer(Start);
+    public final static MediaPlayer startMusicPlayer = new MediaPlayer(Start);
 
     private Graphics(){
     }

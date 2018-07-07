@@ -1,6 +1,5 @@
 package Modules.Graphic;
 
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.Effect;
@@ -18,9 +17,9 @@ public class Graphics {
     public static final double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
     public static final double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
     private Parent menu;
-    private Group battle;
-    private Group shop;
-    private Group Inventory;
+    private Scene battle;
+    private Scene shop;
+    private Scene Inventory;
     private Scene mainScene;
     private Stage stage;
     public final static Effect reflection = new Reflection(1, 0.5, 0.7, 0);
@@ -43,27 +42,27 @@ public class Graphics {
         this.menu = menu;
     }
 
-    public Group getBattle () {
+    public Scene getBattle () {
         return battle;
     }
 
-    public void setBattle (Group battle) {
+    public void setBattle (Scene battle) {
         this.battle = battle;
     }
 
-    public Group getShop () {
+    public Scene getShop () {
         return shop;
     }
 
-    public void setShop (Group shop) {
+    public void setShop (Scene shop) {
         this.shop = shop;
     }
 
-    public Group getInventory () {
+    public Scene getInventory () {
         return Inventory;
     }
 
-    public void setInventory (Group inventory) {
+    public void setInventory (Scene inventory) {
         Inventory = inventory;
     }
 

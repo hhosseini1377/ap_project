@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Files/Resources/MainMenu.fxml" />
+    <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="graphic development1">
       <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
-      <change beforePath="$PROJECT_DIR$/src/Control/GameControll/GameControl.java" afterPath="$PROJECT_DIR$/src/Control/GameControll/GameControl.java" />
-      <change beforePath="$PROJECT_DIR$/src/Files/Resources/startScreen.fxml" afterPath="$PROJECT_DIR$/src/Files/Resources/startScreen.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" afterPath="$PROJECT_DIR$/src/Main/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" afterPath="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -500,7 +495,7 @@
       <workItem from="1530960553915" duration="4795000" />
       <workItem from="1530967602171" duration="3334000" />
       <workItem from="1531027914193" duration="4984000" />
-      <workItem from="1531033173866" duration="3540000" />
+      <workItem from="1531033173866" duration="4245000" />
     </task>
     <task id="LOCAL-00001" summary="progressed in controllers, Hand, fields, and completed some Monster cards">
       <created>1525816472673</created>
@@ -684,11 +679,25 @@
       <option name="project" value="LOCAL" />
       <updated>1530961919407</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="graphic development1">
+      <created>1531038338579</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1531038338580</updated>
+    </task>
+    <task id="LOCAL-00028" summary="graphic development1">
+      <created>1531038399793</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1531038399793</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163299000" />
+    <option name="totallyTimeSpent" value="164004000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -791,7 +800,8 @@
     <MESSAGE value="fixing save" />
     <MESSAGE value="Finished for the first time" />
     <MESSAGE value="graphic development" />
-    <option name="LAST_COMMIT_MESSAGE" value="graphic development" />
+    <MESSAGE value="graphic development1" />
+    <option name="LAST_COMMIT_MESSAGE" value="graphic development1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -941,6 +951,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -990,6 +1001,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="205" column="44" lean-forward="true" selection-start-line="205" selection-start-column="44" selection-end-line="205" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1120,18 +1132,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="27" column="30" lean-forward="false" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
-          <folding>
-            <element signature="e#1713#1714#0" expanded="false" />
-            <element signature="e#1750#1751#0" expanded="false" />
-            <element signature="e#1786#1787#0" expanded="false" />
-            <element signature="e#1818#1819#0" expanded="false" />
-            <element signature="e#1868#1869#0" expanded="false" />
-            <element signature="e#1910#1911#0" expanded="false" />
-            <element signature="e#1942#1943#0" expanded="false" />
-            <element signature="e#1970#1971#0" expanded="false" />
-            <element signature="e#2012#2013#0" expanded="false" />
-            <element signature="e#2046#2047#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>

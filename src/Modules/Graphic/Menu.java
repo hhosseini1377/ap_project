@@ -20,9 +20,8 @@ public class Menu {
     private Menu(){
     }
 
-    public void startGame() throws IOException{
+    public void startGame(GameControl gameControl) throws IOException{
         Stage primaryStage = Graphics.getInstance().getStage();
-
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/startScreen.fxml"));
         Graphics.getInstance().setMainScene(new Scene(root, Graphics.screenWidth,
                 Graphics.screenHeight));
@@ -36,7 +35,7 @@ public class Menu {
 
         Text text = (Text)root.lookup("#beginText");
         text.setEffect(Graphics.reflection);
-        Timeline fadeAway = new Timeline(new KeyFrame(Duration.millis(3.2), event -> {
+        Timeline fadeAway = new Timeline(new KeyFrame(Duration.millis(0.1), event -> {
             text.setOpacity(text.getOpacity() + OpaciyChange.opacityChange);
             if (text.getOpacity() < 0.01 && OpaciyChange.opacityChange < 0){
                 text.setText(OpaciyChange.text[OpaciyChange.turn]);
@@ -47,7 +46,6 @@ public class Menu {
                     text.setEffect(null);
                     text.setFont(Font.font(50));
                 }else if(OpaciyChange.turn == 3){
-                    GameControl gameControl = new GameControl("./src/Files/save/");
                     try {
                         gameControl.startGame();
                     }catch (IOException e){

@@ -22,19 +22,24 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.web.PromptData;
+import javafx.stage.Screen;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -148,6 +153,11 @@ public class GameControl {
                 user.setName(name.toString());
                 PromptData greetings = new PromptData("Welcome " + name.toString(), "");
                 System.out.println(name.toString());
+                try {
+                    game();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         };
         EventHandler<MouseEvent> onButtonExit = new EventHandler<MouseEvent>() {
@@ -163,16 +173,22 @@ public class GameControl {
         return name.toString();
     }
 
-    public void game(){
-        Scanner scan = new Scanner(System.in);
-        String action;
-        String previousResult = null;
-        help();
-
-        while (true) {
-            action = scan.nextLine();
-            previousResult = availableAction(action, previousResult);
-        }
+    public void game() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/MainMenu.fxml"));
+        Scene scene = Graphics.getInstance().getMainScene();
+//        Image image = null;
+//        try {
+//            image = new Image(getClass()
+//                    .getResource("../../Files").toURI().toString());
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//        BackgroundImage backgroundImage = new BackgroundImage(image,
+//                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+//                new BackgroundSize(scene.getWidth(), scene.getHeight(), false, false, true, true));
+//        Background background = new Background(backgroundImage);
+//        ((Pane)root.lookup("#pane")).setBackground(background);
+        scene.setRoot(root);
     }
 
     private String availableAction(String action, String previousResult){

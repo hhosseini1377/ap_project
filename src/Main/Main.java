@@ -27,9 +27,9 @@ public class Main extends Application{
 
     @Override
     public void start (Stage primaryStage) throws Exception{
+        GameControl gameControl = new GameControl("./src/Files/save/");
         Graphics.getInstance().setStage(primaryStage);
-        Menu.getInstance().startGame();
-//        gameControl.game();
+        Menu.getInstance().startGame(gameControl);
     }
 
     public static void main(String[] args) {

@@ -2,7 +2,7 @@ First Aid Kit -3
 Throwing Knives -3
 Poisonous Cauldron -1
 Healing Ward -1
-War Drum -4
+War Drum -1
 Elven Ranger -2
 Elven Hunter -2
 Elven Guardsman -1

@@ -5,6 +5,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Graphic.Graphics;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 public class CardShopView {
     /**
@@ -78,6 +89,31 @@ public class CardShopView {
             System.out.println("Card name:" + key + " Number of Cards: " + value);
         });
         //TODO its incomplete
+    }
+
+    public void viewCardShop (){
+
+        HBox[] cardRows = new HBox[2];
+        cardRows[0] = new HBox();
+        cardRows[0].setSpacing(Graphics.screenWidth / 19);
+        cardRows[0].setPrefSize(Graphics.screenWidth * 2 / 19, Graphics.screenHeight * 3 / 11);
+        cardRows[1] = new HBox();
+        cardRows[1].setSpacing(Graphics.screenWidth / 19);
+        cardRows[1].setPrefSize(Graphics.screenWidth * 2 / 19, Graphics.screenHeight * 3 / 11);
+
+        VBox cardRowColumn = new VBox();
+        cardRowColumn.setLayoutX(Graphics.screenWidth / 19);
+        cardRowColumn.setLayoutY(Graphics.screenHeight * 2 / 11);
+        cardRowColumn.setSpacing(Graphics.screenHeight / 11);
+        cardRowColumn.setPrefSize(Graphics.screenWidth * 17 / 19, Graphics.screenHeight * 7 / 11);
+
+
+
+
+
+        Graphics.getInstance().setCardShopScene(new Scene(cardRowColumn));
+
+        Graphics.getInstance().getStage().setScene(Graphics.getInstance().getCardShopScene());
     }
 
 }

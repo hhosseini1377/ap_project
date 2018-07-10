@@ -30,8 +30,8 @@ public class Menu {
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitHint("");
         primaryStage.show();
-        Graphics.startPlayer.setCycleCount(Animation.INDEFINITE);
-        Graphics.startPlayer.play();
+        Graphics.startMusicPlayer.setCycleCount(Animation.INDEFINITE);
+        Graphics.startMusicPlayer.play();
 
         Text text = (Text)root.lookup("#beginText");
         text.setEffect(Graphics.reflection);

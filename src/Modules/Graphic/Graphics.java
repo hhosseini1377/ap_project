@@ -19,6 +19,7 @@ public class Graphics {
     private Parent menu;
     private Scene battle;
     private Scene shop;
+    private Scene cardShopScene;
     private Scene Inventory;
     private Scene mainScene;
     private Stage stage;
@@ -80,5 +81,13 @@ public class Graphics {
 
     public void setStage (Stage stage) {
         this.stage = stage;
+    }
+
+    public Scene getCardShopScene() {
+        return cardShopScene;
+    }
+
+    public void setCardShopScene(Scene cardShopScene) {
+        this.cardShopScene = cardShopScene;
     }
 }

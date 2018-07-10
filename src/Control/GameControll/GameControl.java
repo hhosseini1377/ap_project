@@ -18,33 +18,29 @@ import Modules.User.Inventory.CardInventory;
 import Modules.User.Inventory.ItemInventory;
 import Modules.User.User;
 import Modules.Warrior.BackPack;
+import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.web.PromptData;
-import javafx.stage.Screen;
+import javafx.scene.text.Text;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class GameControl {
     private String fileDirectory;
@@ -133,26 +129,34 @@ public class GameControl {
     private String getNameFromUser()throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/RegisterPage.fxml"));
         Graphics.getInstance().getStage().getScene().setRoot(root);
-        StringBuilder name = new StringBuilder("mrNobody");
+        StringBuilder name = new StringBuilder("MrNobody");
 
         Button register = ((Button)root.lookup("#registerButton"));
-        String buttonCss = "-fx-border-radius: 60; -fx-background-radius: 20; -fx-min-width: 40px; -fx-min-height: 35px; -fx-font-weight: bold;";
-        register.setEffect(Graphics.glow);
+        String buttonCss = "-fx-border-radius: 60;" +
+                " -fx-background-radius: 20;" +
+                " -fx-min-width: 40px;" +
+                " -fx-min-height: 35px;" +
+                " -fx-font-weight: bold;";
+        register.setEffect(Graphics.GLOW);
 
-        EventHandler<MouseEvent> onButtonEnter = new EventHandler<MouseEvent>() {
+        EventHandler<MouseEvent> onButton = new EventHandler<MouseEvent>() {
             @Override
             public void handle (MouseEvent event) {
-                register.setStyle("-fx-background-color: rgba(137,137,137,0.17);" + buttonCss);
-                register.setTextFill(Color.rgb(45,45,45));
+                if(event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+                    register.setStyle("-fx-background-color: rgba(137,137,137,0.17);" + buttonCss);
+                    register.setTextFill(Color.rgb(45, 45, 45));
+                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
+                    register.setStyle("-fx-background-color: rgba(115,115,115,0.75);" + buttonCss);
+                    register.setTextFill(Color.ALICEBLUE);
+                }
             }
         };
         EventHandler<MouseEvent> enterGame = new EventHandler<MouseEvent>() {
             @Override
             public void handle (MouseEvent event) {
                 name.replace(0, 8, ((TextField)root.lookup("#textfield")).getText());
-                user.setName(name.toString());
-                PromptData greetings = new PromptData("Welcome " + name.toString(), "");
-                System.out.println(name.toString());
+                if (!name.toString().equals(""))
+                    user.setName(name.toString());
                 try {
                     game();
                 } catch (IOException e) {
@@ -160,15 +164,7 @@ public class GameControl {
                 }
             }
         };
-        EventHandler<MouseEvent> onButtonExit = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                register.setStyle("-fx-background-color: rgba(115,115,115,0.75);" + buttonCss);
-                register.setTextFill(Color.ALICEBLUE);
-            }
-        };
-        register.addEventHandler(MouseEvent.MOUSE_ENTERED, onButtonEnter);
-        register.addEventHandler(MouseEvent.MOUSE_EXITED, onButtonExit);
+        register.addEventHandler(MouseEvent.ANY, onButton);
         register.addEventHandler(MouseEvent.MOUSE_CLICKED, enterGame);
         return name.toString();
     }
@@ -176,57 +172,72 @@ public class GameControl {
     public void game() throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/MainMenu.fxml"));
         Scene scene = Graphics.getInstance().getMainScene();
-//        Image image = null;
-//        try {
-//            image = new Image(getClass()
-//                    .getResource("../../Files").toURI().toString());
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
-//        BackgroundImage backgroundImage = new BackgroundImage(image,
-//                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-//                new BackgroundSize(scene.getWidth(), scene.getHeight(), false, false, true, true));
-//        Background background = new Background(backgroundImage);
-//        ((Pane)root.lookup("#pane")).setBackground(background);
+        Graphics.getInstance().setMenu(scene);
         scene.setRoot(root);
-    }
+        Text welcome = ((Text)root.lookup("#welcome"));
+        welcome.setEffect(Graphics.SHADOW);
+        welcome.setText(welcome.getText() + user.getName());
 
-    private String availableAction(String action, String previousResult){
-        switch (action){
-            case "Help":
-                previousResult = help();
-                break;
-            case "Again":
-                if (previousResult == null){
-                    System.out.println("no previous instruction available");
-                    break;
-                }else {
-                    System.out.println(previousResult);
-                }
-                break;
-            case "Exit":
-                endGame();
-                return "";
-            case "Edit Inventory":
-                inventoryControl.mainThread();
-                break;
-            case "Enter Shop":
-                shopControl.mainController();
-                break;
-            case "Battle":
-                battleControl.startBattle(user);
-                try {
-                    gameDetailController.saveGame();
-                }catch (IOException e){
-                    System.out.println(e.toString());
-                }
-                break;
-            default:
-                System.out.println("invalid input");
-                previousResult = "invalid input";
-                break;
+        Text[] texts = new Text[4];
+        for (int i = 0; i < 4; i++) {
+            texts[i] = (Text) root.lookup("#menuText" + (i+1));
+            new MenuItems(texts[i], this);
         }
-        return previousResult;
+        new MenuItems((ImageView) root.lookup("#exitImage"), this);
+        ((VBox)root.lookup("#greeting")).prefWidthProperty().
+                bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1.0));
+        ((VBox)root.lookup("#greeting")).prefHeightProperty().
+                bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5.0/1.4));
+        ((VBox)root.lookup("#mainMenu")).prefHeightProperty().
+                bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5/2));
+        ((VBox)root.lookup("#exit")).prefHeightProperty().
+                bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5.0/1.5));
+
+        EventHandler<KeyEvent> up_Down = new EventHandler<KeyEvent>() {
+            @Override
+            public void handle (KeyEvent event) {
+                if (event.getCode() == KeyCode.UP){
+                    Text text = null;
+                    if (MenuItems.number != -1) {
+                        text = texts[MenuItems.number];
+                        text.setStyle("-fx-font-size: 30; -fx-font-family: Purisa;");
+                        text.setFill(Color.CORNSILK);
+                    }
+                    if (MenuItems.number > 0) {
+                        MenuItems.number--;
+                        text = texts[MenuItems.number];
+                        text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
+                        text.setFill(Color.rgb(229, 223, 160));
+                    }
+                }else if(event.getCode() == KeyCode.DOWN){
+                    Text text = null;
+                    if (MenuItems.number != -1) {
+                        text = texts[MenuItems.number];
+                        text.setStyle("-fx-font-size: 30; -fx-font-family: Purisa;");
+                        text.setFill(Color.CORNSILK);
+                    }
+                    if (MenuItems.number != 3) {
+                        MenuItems.number++;
+                        text = texts[MenuItems.number];
+                        text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
+                        text.setFill(Color.rgb(229, 223, 160));
+                    }
+                }else if(event.getCode() == KeyCode.ENTER){
+                    switch (texts[MenuItems.number].getText()){
+                        case "Enter Menu":
+                            //TODO
+                            break;
+                        case "Settings":
+                            //TODO
+                            break;
+                        case "Reset Game":
+                            resetGame();
+                            break;
+                    }
+                }
+            }
+        };
+        Graphics.getInstance().getStage().getScene().addEventHandler(KeyEvent.KEY_PRESSED, up_Down);
     }
 
     /**
@@ -248,38 +259,67 @@ public class GameControl {
      * checks if file data needs to be reset cause of completing the game
      * saves the necessary data
      */
-    // TODO needs to be completed
-    private void endGame (){
-        System.out.println("Do you realy want to quit the game?(I kinda have to :(, No)");
-        Scanner scan = new Scanner(System.in);
-        if ("No".equals( scan.nextLine())) {
-            return;
+    public void endGame (){
+        Parent root = Graphics.getInstance().getMenu().getRoot();
+        VBox dialogueScreen = null;
+        try {
+            dialogueScreen = FXMLLoader.load(getClass().getResource("../../Files/Resources/ExitBox.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        System.out.println("Do you want to save the game?(Yes, No, reset)");
-        switch (scan.next()){
-            case "Yes":
-                try{
-                    gameDetailController.saveGame();
-                }catch (IOException e){
-                    System.out.println("file output problem");
+        assert dialogueScreen != null;
+        dialogueScreen.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        dialogueScreen.minHeightProperty().bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 1));
+
+        VBox box = (VBox) dialogueScreen.lookup("#dialogBox");
+        box.maxWidthProperty().bind(Bindings.divide(dialogueScreen.widthProperty(), 2.2));
+        box.minHeightProperty().bind(Bindings.divide(dialogueScreen.heightProperty(), 2));
+
+        VBox questionHolder = (VBox) dialogueScreen.lookup("#questionHolder");
+        questionHolder.minHeightProperty().bind(Bindings.divide(box.minHeightProperty(), 1.7));
+
+        String cssButton = "-fx-background-radius: 10px;" +
+                "-fx-font-family: Purisa;" +
+                "-fx-font-weight: bold;";
+        Button[] buttons = new Button[2];
+        buttons[0] = (Button) dialogueScreen.lookup("#Button1");
+        buttons[1] = (Button) dialogueScreen.lookup("#Button2");
+        for (int i = 0; i < 2; i++) {
+            Button button = buttons[i];
+            EventHandler<MouseEvent> onButton = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle (MouseEvent event) {
+                    if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+                        button.setStyle(cssButton + "-fx-background-color: #cea57f; -fx-font-size: 25;");
+                    } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
+                        button.setStyle(cssButton + "-fx-background-color:  #69443c; -fx-font-size: 23;");
+                    }
                 }
-                break;
-            case "No":
-                break;
-            case "reset":
-                resetGame();
-            default:
-                System.out.println("invalid input");
-                break;
+            };
+            button.addEventHandler(MouseEvent.ANY, onButton);
         }
-        System.exit(0);
+        EventHandler<MouseEvent> yesButtonClick = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                try {
+                    gameDetailController.saveGame();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.exit(0);
+            }
+        };
+        ((GridPane)root).getChildren().add(dialogueScreen);
+        buttons[0].addEventHandler(MouseEvent.MOUSE_CLICKED, yesButtonClick);
+        VBox finalDialogueScreen = dialogueScreen;
+        buttons[1].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {((GridPane) root).getChildren().remove(finalDialogueScreen);});
     }
 
     /**
      * restarting the data of the game via copying the initial game data which is saved in "initial" folder
      * in "save" folder which is the source of the data in our game
      */
-    private void resetGame(){
+    public void resetGame(){
         String path1 = "/home/gilgamesh/Desktop/Programs/Java/Project/projectAp/src/Files/initial/";
         String path2 = "/home/gilgamesh/Desktop/Programs/Java/Project/projectAp/src/Files/save/";
         try {
@@ -287,10 +327,11 @@ public class GameControl {
             Files.copy(Paths.get(path1 + "deck.txt"), new FileOutputStream(path2 + "deck.txt"));
             Files.copy(Paths.get(path1 + "inventory.txt"), new FileOutputStream(path2 + "inventory.txt"));
             Files.copy(Paths.get(path1 + "shop.txt"), new FileOutputStream(path2 + "shop.txt"));
-            Files.copy(Paths.get(path1 + "UserInfo.txt"), new FileOutputStream(path2 + "UserInfo.txt"));
+            Files.copy(Paths.get(path1 + "userInfo.txt"), new FileOutputStream(path2 + "userInfo.txt"));
             System.out.println("the data of the game has been reset,\nrestart the game to notice the change.");
         }catch (IOException e){
             System.out.println("File not found!");
+            e.printStackTrace();
         }
     }
 
@@ -325,5 +366,55 @@ public class GameControl {
 class CardException extends Exception{
     CardException (){
         System.out.println("card not available");
+    }
+}
+
+class MenuItems{
+    public static int number = 0;
+
+    public MenuItems(Text text, GameControl gameControl){
+        EventHandler<MouseEvent> mouseEvent = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
+                    text.setFill(Color.rgb(229,223,160));
+                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
+                    text.setStyle("-fx-font-size: 30; -fx-font-family: Purisa;");
+                    text.setFill(Color.CORNSILK);
+                }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                    switch (text.getText()){
+                        case "Enter Menu":
+                            //TODO
+                            break;
+                        case "Settings":
+                            //TODO
+                            break;
+                        case "Reset Game":
+                            gameControl.resetGame();
+                            break;
+                    }
+                }
+            }
+        };
+        text.addEventHandler(MouseEvent.ANY, mouseEvent);
+    }
+
+    public MenuItems(ImageView exit, GameControl gameControl){
+        EventHandler<MouseEvent> mouseEvent = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    exit.setFitHeight(85);
+                    exit.setFitWidth(75);
+                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
+                    exit.setFitHeight(80);
+                    exit.setFitWidth(70);
+                }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                    gameControl.endGame();
+                }
+            }
+        };
+        exit.addEventHandler(MouseEvent.ANY, mouseEvent);
     }
 }

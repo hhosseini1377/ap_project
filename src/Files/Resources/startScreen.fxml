@@ -7,13 +7,22 @@
 
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}"
-          style="-fx-background-color: black;" alignment="CENTER">
+          prefHeight="${screen.visualBounds.height}"
+          prefWidth="${screen.visualBounds.width}"
+          style="-fx-background-color: black;"
+          alignment="CENTER">
     <fx:define>
         <Screen fx:id="screen" fx:factory="getPrimary"/>
     </fx:define>
-    <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" alignment="CENTER" >
-        <Text fx:id="beginText" text="Peloponnesia" fill="ghostwhite"
-              style="-fx-font-size: 70;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <VBox GridPane.rowIndex="0"
+          GridPane.columnIndex="1"
+          alignment="CENTER" >
+        <Text fx:id="beginText"
+              text="Peloponnesia"
+              fill="ghostwhite"
+              style="-fx-font-size: 70;
+              -fx-font-family: Nazli"
+              GridPane.columnIndex="1"
+              GridPane.rowIndex="0" />
     </VBox>
 </GridPane>

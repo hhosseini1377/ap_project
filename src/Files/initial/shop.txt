@@ -14,7 +14,7 @@ Diamond Pendant
 Iron Ring
 Gold Ring
 Diamond Ring
-Demon King’s Crown
+Demon King's Crown
 cards:
 Throwing Knives -3
 Poisonous Cauldron -3

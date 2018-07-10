@@ -5,6 +5,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
@@ -23,28 +24,30 @@ public class Menu {
     public void startGame(GameControl gameControl) throws IOException{
         Stage primaryStage = Graphics.getInstance().getStage();
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/startScreen.fxml"));
-        Graphics.getInstance().setMainScene(new Scene(root, Graphics.screenWidth,
-                Graphics.screenHeight));
+        Graphics.getInstance().setMainScene(new Scene(root, Graphics.SCREEN_WIDTH,
+                Graphics.SCREEN_HEIGHT));
         primaryStage.setScene(Graphics.getInstance().getMainScene());
         primaryStage.setTitle("PELOPONNESIAN WAR");
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitHint("");
         primaryStage.show();
-        Graphics.startMusicPlayer.setCycleCount(Animation.INDEFINITE);
-        Graphics.startMusicPlayer.play();
+        Graphics.START_MUSIC_PLAYER.setCycleCount(Animation.INDEFINITE);
+        Graphics.START_MUSIC_PLAYER.play();
 
+        ImageCursor imageCursor = new ImageCursor(Graphics.CURSOR_IMAGE, 30, 30);
+        Graphics.getInstance().getMainScene().setCursor(imageCursor);
         Text text = (Text)root.lookup("#beginText");
-        text.setEffect(Graphics.reflection);
-        Timeline fadeAway = new Timeline(new KeyFrame(Duration.millis(0.1), event -> {
+        text.setEffect(Graphics.REFLECTION);
+        Timeline fadeAway = new Timeline(new KeyFrame(Duration.millis(3.15), event -> {
             text.setOpacity(text.getOpacity() + OpaciyChange.opacityChange);
             if (text.getOpacity() < 0.01 && OpaciyChange.opacityChange < 0){
                 text.setText(OpaciyChange.text[OpaciyChange.turn]);
                 OpaciyChange.turn++;
                 if (OpaciyChange.turn == 1)
-                    text.setFont(Font.font(60));
+                    text.setFont(Font.font("Nazli", 60));
                 if (OpaciyChange.turn == 2) {
                     text.setEffect(null);
-                    text.setFont(Font.font(50));
+                    text.setFont(Font.font("Nazli", 50));
                 }else if(OpaciyChange.turn == 3){
                     try {
                         gameControl.startGame();
@@ -62,6 +65,7 @@ public class Menu {
     }
 
     public void mainMenu(){
+
 
     }
 

@@ -9,15 +9,30 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           alignment="CENTER"
-          style="-fx-alignment: center; -fx-background-color: linear-gradient(to bottom, rgba(29,29,29,0.85), darkgrey)">
+          style="-fx-alignment: center;
+          -fx-background-color: linear-gradient(to bottom, rgba(29,29,29,0.85), darkgrey)">
     <fx:define>
-        <Screen fx:id="screen" fx:factory="getPrimary"/>
+        <Screen fx:id="screen"
+                fx:factory="getPrimary"/>
         <Stage fx:id="stage"/>
     </fx:define>
-    <TextField fx:id="textfield" promptText="Enter Your Name" style="-fx-background-color: white;
-    -fx-border-radius: 5px; -fx-min-height: 35px; -fx-min-width: 180px; -fx-font-weight: bold;" GridPane.columnIndex="0"/>
-    <Button fx:id="registerButton" text="Next" style="-fx-background-color: rgba(115,115,115,0.75);
-    -fx-border-radius: 60; -fx-background-radius: 20; -fx-min-width: 40px; -fx-min-height: 35px; -fx-font-weight: bold;" GridPane.columnIndex="1"
+    <TextField fx:id="textfield"
+               promptText="Enter Your Name"
+               style="-fx-background-color: white;
+                -fx-border-radius: 5px;
+                -fx-min-height: 35px;
+                -fx-min-width: 180px;
+                -fx-font-weight: bold;"
+               GridPane.columnIndex="0"/>
+    <Button fx:id="registerButton"
+            text="Next"
+            style="-fx-background-color: rgba(115,115,115,0.75);
+            -fx-border-radius: 60;
+            -fx-background-radius: 20;
+            -fx-min-width: 40px;
+            -fx-min-height: 35px;
+            -fx-font-weight: bold;"
+            GridPane.columnIndex="1"
             textFill="aliceblue" />
 
 </GridPane>

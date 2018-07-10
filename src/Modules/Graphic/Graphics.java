@@ -1,32 +1,38 @@
 package Modules.Graphic;
 
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.Reflection;
+import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.File;
 
 public class Graphics {
+    private final static Media START = new Media(new File("./src/Files/Music/13_westWorld.mp3").toURI().toString());
+    public final static Image CURSOR_IMAGE = new Image("Files/Images/cursor1.png");
+    public final static Effect REFLECTION = new Reflection(1, 0.5, 0.7, 0);
+    public final static Effect GLOW = new Glow(0.7);
+    public final static Effect SHADOW = new DropShadow(3, 1, 4, Color.DARKGRAY);
+    public final static MediaPlayer START_MUSIC_PLAYER = new MediaPlayer(START);
+    public static final double SCREEN_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
+    public static final double SCREEN_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
+
     private static Graphics graphics = new Graphics();
-    public static final double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
-    public static final double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
-    private Parent menu;
+    private Scene menu;
     private Scene battle;
     private Scene shop;
     private Scene cardShopScene;
     private Scene Inventory;
     private Scene mainScene;
     private Stage stage;
-    public final static Effect reflection = new Reflection(1, 0.5, 0.7, 0);
-    public final static Effect glow = new Glow(0.7);
-    public final static Media Start = new Media(new File("./src/Files/Music/13_westWorld.mp3").toURI().toString());
-    public final static MediaPlayer startMusicPlayer = new MediaPlayer(Start);
+
 
     private Graphics(){
     }
@@ -35,11 +41,11 @@ public class Graphics {
         return graphics;
     }
 
-    public Parent getMenu () {
+    public Scene getMenu () {
         return menu;
     }
 
-    public void setMenu (Parent menu) {
+    public void setMenu (Scene menu) {
         this.menu = menu;
     }
 

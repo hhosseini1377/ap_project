@@ -38,7 +38,7 @@ public class Menu {
         Graphics.getInstance().getMainScene().setCursor(imageCursor);
         Text text = (Text)root.lookup("#beginText");
         text.setEffect(Graphics.REFLECTION);
-        Timeline fadeAway = new Timeline(new KeyFrame(Duration.millis(0.1), event -> {
+        Timeline fadeAway = new Timeline(new KeyFrame(Duration.millis(3.15), event -> {
             text.setOpacity(text.getOpacity() + OpaciyChange.opacityChange);
             if (text.getOpacity() < 0.01 && OpaciyChange.opacityChange < 0){
                 text.setText(OpaciyChange.text[OpaciyChange.turn]);

@@ -181,9 +181,9 @@ public class GameControl {
         Text[] texts = new Text[4];
         for (int i = 0; i < 4; i++) {
             texts[i] = (Text) root.lookup("#menuText" + (i+1));
-            MenuItems menuItems = new MenuItems(texts[i], this);
+            new MenuItems(texts[i], this);
         }
-        MenuItems menuItems = new MenuItems((ImageView) root.lookup("#exitImage"), this);
+        new MenuItems((ImageView) root.lookup("#exitImage"), this);
         ((VBox)root.lookup("#greeting")).prefWidthProperty().
                 bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1.0));
         ((VBox)root.lookup("#greeting")).prefHeightProperty().
@@ -193,13 +193,6 @@ public class GameControl {
         ((VBox)root.lookup("#exit")).prefHeightProperty().
                 bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5.0/1.5));
 
-
-        EventHandler<KeyEvent> click = new EventHandler<KeyEvent>() {
-            @Override
-            public void handle (KeyEvent event) {
-
-            }
-        };
         EventHandler<KeyEvent> up_Down = new EventHandler<KeyEvent>() {
             @Override
             public void handle (KeyEvent event) {
@@ -244,7 +237,7 @@ public class GameControl {
                 }
             }
         };
-        Graphics.getInstance().getStage().addEventHandler(KeyEvent.KEY_PRESSED, up_Down);
+        Graphics.getInstance().getStage().getScene().addEventHandler(KeyEvent.KEY_PRESSED, up_Down);
     }
 
     /**

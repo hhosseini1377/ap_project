@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
-      <change beforePath="$PROJECT_DIR$/src/Control/GameControll/GameControl.java" afterPath="$PROJECT_DIR$/src/Control/GameControll/GameControl.java" />
-      <change beforePath="$PROJECT_DIR$/src/Files/Resources/MainMenu.fxml" afterPath="$PROJECT_DIR$/src/Files/Resources/MainMenu.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" afterPath="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -421,7 +418,7 @@
       <workItem from="1531091618129" duration="4113000" />
       <workItem from="1531131227341" duration="18515000" />
       <workItem from="1531162974857" duration="5387000" />
-      <workItem from="1531207407799" duration="121000" />
+      <workItem from="1531207407799" duration="179000" />
     </task>
     <task id="LOCAL-00001" summary="progressed in controllers, Hand, fields, and completed some Monster cards">
       <created>1525816472673</created>
@@ -640,11 +637,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531168581058</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Completed Main Menu">
+      <created>1531207554049</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1531207554049</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205287000" />
+    <option name="totallyTimeSpent" value="205345000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -788,6 +792,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1076,6 +1081,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
           <caret line="207" column="47" lean-forward="true" selection-start-line="207" selection-start-column="47" selection-end-line="207" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1107,6 +1113,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="53" lean-forward="false" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+          <folding>
+            <marker date="1531167049179" expanded="true" signature="607:751" ph="{...}" />
+            <marker date="1531167049179" expanded="true" signature="1004:1074" ph="{...}" />
+            <marker date="1531167049179" expanded="true" signature="1485:1698" ph="{...}" />
+            <marker date="1531167049179" expanded="true" signature="2079:2292" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

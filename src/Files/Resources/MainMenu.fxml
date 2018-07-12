@@ -70,7 +70,7 @@
                        fitHeight="80"
             >
                 <image>
-                    <Image url="Files/Images/exit-door.png"
+                    <Image url="Files/Images/exit-Door.png"
                            backgroundLoading="true"
                     />
                 </image>

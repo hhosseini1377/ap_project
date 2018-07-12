@@ -512,6 +512,52 @@ class Hero{
         }
     }
 
+    public ImageView getView () {
+        views[direction][stateOfWalk].setX(x);
+        views[direction][stateOfWalk].setY(y);
+        return views[direction][stateOfWalk];
+    }
+
+    public ImageView[][] getViews () {
+        return views;
+    }
+
+    public double getX () {
+        return x;
+    }
+
+    public void setX (double x) {
+        this.x = x;
+    }
+
+    public double getY () {
+        return y;
+    }
+
+    public void setY (double y) {
+        this.y = y;
+    }
+
+    public double getSpeed () {
+        return speed;
+    }
+
+    public int getDirection () {
+        return direction;
+    }
+
+    public void setDirection (int direction) {
+        this.direction = direction;
+    }
+
+    public int getStateOfWalk () {
+        return stateOfWalk;
+    }
+
+    public void setStateOfWalk (int stateOfWalk) {
+        this.stateOfWalk = stateOfWalk % 9;
+    }
+
     public void moveHero(){
         switch (direction) {
             case 0:
@@ -527,31 +573,5 @@ class Hero{
                 x += speed;
                 break;
         }
-    }
-
-    public ImageView getView () {
-        views[direction][stateOfWalk].setX(x);
-        views[direction][stateOfWalk].setY(y);
-        return views[direction][stateOfWalk];
-    }
-
-    public ImageView[][] getViews () {
-        return views;
-    }
-
-    public void setStateOfWalk (int stateOfWalk) {
-        this.stateOfWalk = stateOfWalk % 9;
-    }
-
-    public int getStateOfWalk () {
-        return stateOfWalk;
-    }
-
-    public int getDirection () {
-        return direction;
-    }
-
-    public void setDirection (int direction) {
-        this.direction = direction;
     }
 }

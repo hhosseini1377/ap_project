@@ -18,7 +18,7 @@ import java.net.URL;
 
 public class Graphics {
     private final static Media START = new Media(new File("./src/Files/Music/13_westWorld.mp3").toURI().toString());
-    //public final static Image CURSOR_IMAGE = new Image("Files/Images/cursor1.png");
+    public final static Image CURSOR_IMAGE = new Image("Files/Images/cursor1.png");
     public final static Effect REFLECTION = new Reflection(1, 0.5, 0.7, 0);
     public final static Effect GLOW = new Glow(0.7);
     public final static Effect SHADOW = new DropShadow(3, 1, 4, Color.DARKGRAY);

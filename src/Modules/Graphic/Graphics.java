@@ -9,10 +9,12 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.net.URL;
 
 public class Graphics {
     private final static Media START = new Media(new File("./src/Files/Music/13_westWorld.mp3").toURI().toString());
@@ -26,6 +28,7 @@ public class Graphics {
 
     private static Graphics graphics = new Graphics();
     private Scene menu;
+    private Scene dynamicMenu;
     private Scene battle;
     private Scene shop;
     private Scene Inventory;
@@ -33,7 +36,21 @@ public class Graphics {
     private Stage stage;
 
 
+
     private Graphics(){
+    }
+
+    public Scene getDynamicMenu () {
+        return dynamicMenu;
+    }
+
+    public void setDynamicMenu (Scene dynamicMenu) {
+        this.dynamicMenu = dynamicMenu;
+    }
+
+    public Font getFont(){
+        Font font = Font.loadFont("Snell Roundhand Script.ttf",23);
+        return font;
     }
 
     public static Graphics getInstance () {

@@ -7,6 +7,7 @@ import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Normal;
 import Modules.Graphic.Graphics;
+import Modules.Graphic.Menu;
 import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Amulets.*;
 import Modules.ItemAndAmulet.Item;
@@ -118,7 +119,8 @@ public class GameControl {
         fileReader = new BufferedReader(new FileReader(fileDirectory + "userInfo.txt"));
         level = Integer.parseInt(fileReader.readLine().split(":")[1]);
         gills = Integer.parseInt(fileReader.readLine().split(":")[1]);
-        String userName = getNameFromUser();
+        Menu.getInstance().setGameControl(this);
+        String userName = Menu.getInstance().getNameFromUser();
         user = new User(cardInventory, itemInventory, amuletInventory, deck, gills, level, userName, backPack);
         fileReader.close();
         inventoryControl = new InventoryControl(user);
@@ -126,118 +128,10 @@ public class GameControl {
         battleControl = new BattleControl();
     }
 
-    private String getNameFromUser()throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/RegisterPage.fxml"));
-        Graphics.getInstance().getStage().getScene().setRoot(root);
-        StringBuilder name = new StringBuilder("MrNobody");
 
-        Button register = ((Button)root.lookup("#registerButton"));
-        String buttonCss = "-fx-border-radius: 60;" +
-                " -fx-background-radius: 20;" +
-                " -fx-min-width: 40px;" +
-                " -fx-min-height: 35px;" +
-                " -fx-font-weight: bold;";
-        register.setEffect(Graphics.GLOW);
-
-        EventHandler<MouseEvent> onButton = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                if(event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
-                    register.setStyle("-fx-background-color: rgba(137,137,137,0.17);" + buttonCss);
-                    register.setTextFill(Color.rgb(45, 45, 45));
-                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
-                    register.setStyle("-fx-background-color: rgba(115,115,115,0.75);" + buttonCss);
-                    register.setTextFill(Color.ALICEBLUE);
-                }
-            }
-        };
-        EventHandler<MouseEvent> enterGame = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                name.replace(0, 8, ((TextField)root.lookup("#textfield")).getText());
-                if (!name.toString().equals(""))
-                    user.setName(name.toString());
-                try {
-                    game();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        register.addEventHandler(MouseEvent.ANY, onButton);
-        register.addEventHandler(MouseEvent.MOUSE_CLICKED, enterGame);
-        return name.toString();
-    }
 
     public void game() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/MainMenu.fxml"));
-        Scene scene = Graphics.getInstance().getMainScene();
-        Graphics.getInstance().setMenu(scene);
-        scene.setRoot(root);
-        Text welcome = ((Text)root.lookup("#welcome"));
-        welcome.setEffect(Graphics.SHADOW);
-        welcome.setText(welcome.getText() + user.getName());
-
-        Text[] texts = new Text[4];
-        for (int i = 0; i < 4; i++) {
-            texts[i] = (Text) root.lookup("#menuText" + (i+1));
-            new MenuItems(texts[i], this);
-        }
-        new MenuItems((ImageView) root.lookup("#exitImage"), this);
-        ((VBox)root.lookup("#greeting")).prefWidthProperty().
-                bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1.0));
-        ((VBox)root.lookup("#greeting")).prefHeightProperty().
-                bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5.0/1.4));
-        ((VBox)root.lookup("#mainMenu")).prefHeightProperty().
-                bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5/2));
-        ((VBox)root.lookup("#exit")).prefHeightProperty().
-                bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5.0/1.5));
-
-        EventHandler<KeyEvent> up_Down = new EventHandler<KeyEvent>() {
-            @Override
-            public void handle (KeyEvent event) {
-                if (event.getCode() == KeyCode.UP){
-                    Text text = null;
-                    if (MenuItems.number != -1) {
-                        text = texts[MenuItems.number];
-                        text.setStyle("-fx-font-size: 30; -fx-font-family: Purisa;");
-                        text.setFill(Color.CORNSILK);
-                    }
-                    if (MenuItems.number > 0) {
-                        MenuItems.number--;
-                        text = texts[MenuItems.number];
-                        text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
-                        text.setFill(Color.rgb(229, 223, 160));
-                    }
-                }else if(event.getCode() == KeyCode.DOWN){
-                    Text text = null;
-                    if (MenuItems.number != -1) {
-                        text = texts[MenuItems.number];
-                        text.setStyle("-fx-font-size: 30; -fx-font-family: Purisa;");
-                        text.setFill(Color.CORNSILK);
-                    }
-                    if (MenuItems.number != 3) {
-                        MenuItems.number++;
-                        text = texts[MenuItems.number];
-                        text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
-                        text.setFill(Color.rgb(229, 223, 160));
-                    }
-                }else if(event.getCode() == KeyCode.ENTER){
-                    switch (texts[MenuItems.number].getText()){
-                        case "Enter Menu":
-                            //TODO
-                            break;
-                        case "Settings":
-                            //TODO
-                            break;
-                        case "Reset Game":
-                            resetGame();
-                            break;
-                    }
-                }
-            }
-        };
-        Graphics.getInstance().getStage().getScene().addEventHandler(KeyEvent.KEY_PRESSED, up_Down);
+        Menu.getInstance().mainMenu();
     }
 
     /**
@@ -254,65 +148,17 @@ public class GameControl {
                 "4. Exit: save and exit the game";
     }
 
+    public void saveGame() throws IOException {
+        gameDetailController.saveGame();
+    }
+
     /**
      * ends the game
      * checks if file data needs to be reset cause of completing the game
      * saves the necessary data
      */
     public void endGame (){
-        Parent root = Graphics.getInstance().getMenu().getRoot();
-        VBox dialogueScreen = null;
-        try {
-            dialogueScreen = FXMLLoader.load(getClass().getResource("../../Files/Resources/ExitBox.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assert dialogueScreen != null;
-        dialogueScreen.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
-        dialogueScreen.minHeightProperty().bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 1));
-
-        VBox box = (VBox) dialogueScreen.lookup("#dialogBox");
-        box.maxWidthProperty().bind(Bindings.divide(dialogueScreen.widthProperty(), 2.2));
-        box.minHeightProperty().bind(Bindings.divide(dialogueScreen.heightProperty(), 2));
-
-        VBox questionHolder = (VBox) dialogueScreen.lookup("#questionHolder");
-        questionHolder.minHeightProperty().bind(Bindings.divide(box.minHeightProperty(), 1.7));
-
-        String cssButton = "-fx-background-radius: 10px;" +
-                "-fx-font-family: Purisa;" +
-                "-fx-font-weight: bold;";
-        Button[] buttons = new Button[2];
-        buttons[0] = (Button) dialogueScreen.lookup("#Button1");
-        buttons[1] = (Button) dialogueScreen.lookup("#Button2");
-        for (int i = 0; i < 2; i++) {
-            Button button = buttons[i];
-            EventHandler<MouseEvent> onButton = new EventHandler<MouseEvent>() {
-                @Override
-                public void handle (MouseEvent event) {
-                    if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
-                        button.setStyle(cssButton + "-fx-background-color: #cea57f; -fx-font-size: 25;");
-                    } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
-                        button.setStyle(cssButton + "-fx-background-color:  #69443c; -fx-font-size: 23;");
-                    }
-                }
-            };
-            button.addEventHandler(MouseEvent.ANY, onButton);
-        }
-        EventHandler<MouseEvent> yesButtonClick = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                try {
-                    gameDetailController.saveGame();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                System.exit(0);
-            }
-        };
-        ((GridPane)root).getChildren().add(dialogueScreen);
-        buttons[0].addEventHandler(MouseEvent.MOUSE_CLICKED, yesButtonClick);
-        VBox finalDialogueScreen = dialogueScreen;
-        buttons[1].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {((GridPane) root).getChildren().remove(finalDialogueScreen);});
+        Menu.getInstance().endGameScreen();
     }
 
     /**
@@ -366,55 +212,5 @@ public class GameControl {
 class CardException extends Exception{
     CardException (){
         System.out.println("card not available");
-    }
-}
-
-class MenuItems{
-    public static int number = 0;
-
-    public MenuItems(Text text, GameControl gameControl){
-        EventHandler<MouseEvent> mouseEvent = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
-                    text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
-                    text.setFill(Color.rgb(229,223,160));
-                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
-                    text.setStyle("-fx-font-size: 30; -fx-font-family: Purisa;");
-                    text.setFill(Color.CORNSILK);
-                }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
-                    switch (text.getText()){
-                        case "Enter Menu":
-                            //TODO
-                            break;
-                        case "Settings":
-                            //TODO
-                            break;
-                        case "Reset Game":
-                            gameControl.resetGame();
-                            break;
-                    }
-                }
-            }
-        };
-        text.addEventHandler(MouseEvent.ANY, mouseEvent);
-    }
-
-    public MenuItems(ImageView exit, GameControl gameControl){
-        EventHandler<MouseEvent> mouseEvent = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
-                    exit.setFitHeight(85);
-                    exit.setFitWidth(75);
-                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
-                    exit.setFitHeight(80);
-                    exit.setFitWidth(70);
-                }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
-                    gameControl.endGame();
-                }
-            }
-        };
-        exit.addEventHandler(MouseEvent.ANY, mouseEvent);
     }
 }

@@ -12,12 +12,12 @@
           xmlns:fx="http://javafx.com/fxml"
           minHeight="${screen.visualBounds.height}"
           minWidth="${screen.visualBounds.width}"
-          style="-fx-background-image:url(Files/Images/warDragon.jpg);
-          -fx-background-size: cover;
+          style="-fx-background-image:url(Files/Images/DragonWar1.jpg);
+          -fx-background-size: stretch;
           -fx-background-repeat: no-repeat;
           -fx-background-position: center;"
 >
-    <VBox opacity="0.1" style="-fx-background-color: black;" minHeight="${screen.visualBounds.height}"
+    <VBox opacity="0.3" style="-fx-background-color: black;" minHeight="${screen.visualBounds.height}"
           minWidth="${screen.visualBounds.width}"/>
     <VBox spacing="50">
         <VBox  fx:id="greeting"

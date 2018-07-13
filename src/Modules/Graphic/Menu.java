@@ -27,7 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -35,9 +35,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.util.Scanner;
 
 public class Menu {
     private GameControl gameControl;
@@ -284,8 +287,8 @@ public class Menu {
     public void dynamicMenu() throws IOException {
         dynamicMenuStart();
         hero = new Hero();
-        Group root = (Group) ((ScrollPane) Graphics.getInstance().getDynamicMenu().getRoot()).getContent();
-        root.getChildren().add(hero.getViews()[3][0]);
+        Group root = (Group) Graphics.getInstance().getDynamicMenu().getRoot();
+        root.getChildren().add(hero.getView());
         walkOperation(root);
     }
 
@@ -297,6 +300,7 @@ public class Menu {
                         event.getCode() == KeyCode.UP ||
                         event.getCode() == KeyCode.LEFT ||
                         event.getCode() == KeyCode.RIGHT) {
+                    hero.moveHero();
                     root.getChildren().remove(hero.getView());
                     if (event.getCode() == KeyCode.DOWN) {
                         if (hero.getDirection() == 2) {
@@ -332,7 +336,6 @@ public class Menu {
                         }
                     }
                     root.getChildren().add(hero.getView());
-                    hero.moveHero();
                 }
             }
         };
@@ -341,71 +344,75 @@ public class Menu {
 
     private void dynamicMenuStart() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/DynamicMenu.fxml"));
-        Graphics.getInstance().setDynamicMenu(new Scene(zoomPane(root)));
+        Graphics.getInstance().setDynamicMenu(new Scene(root));
+        ((GridPane)root.lookup("#gridPane")).minWidthProperty().bind(Bindings.divide(
+                Graphics.getInstance().getStage().widthProperty(), 1));
+        ((GridPane)root.lookup("#gridPane")).minHeightProperty().bind(Bindings.divide(
+                Graphics.getInstance().getStage().heightProperty(), 1));
         Graphics.getInstance().getStage().setScene(Graphics.getInstance().getDynamicMenu());
         Graphics.getInstance().getStage().setFullScreen(true);
     }
 
-    /**returns a scrollPane so you can zoom and pan with ease
-     * @param group takes a parent and adds it to the new zoomPane
-     * @return a zoomPane(actually a scroll pane)
-     */
-    private ScrollPane zoomPane(final Parent group){
-        final double SCALE_DELTA = 1.1;
-        final StackPane zoomPane = new StackPane();
-
-        zoomPane.getChildren().add(group);
-
-        final ScrollPane scroller = new ScrollPane();
-        final Group scrollContent = new Group(zoomPane);
-        scroller.setContent(scrollContent);
-
-        zoomPane.setOnScroll(new EventHandler<ScrollEvent>() {
-            @Override
-            public void handle(ScrollEvent event) {
-                event.consume();
-
-                if (event.getDeltaY() == 0) {
-                    return;
-                }
-
-                double scaleFactor = (event.getDeltaY() > 0) ? SCALE_DELTA
-                        : 1 / SCALE_DELTA;
-
-                group.setScaleX(group.getScaleX() * scaleFactor);
-                group.setScaleY(group.getScaleY() * scaleFactor);
-
-            }
-        });
-
-        // Panning via drag....
-        final ObjectProperty<Point2D> lastMouseCoordinates = new SimpleObjectProperty<Point2D>();
-        scrollContent.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                lastMouseCoordinates.set(new Point2D(event.getX(), event.getY()));
-            }
-        });
-
-        scrollContent.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                double deltaX = event.getX() - lastMouseCoordinates.get().getX();
-                double extraWidth = scrollContent.getLayoutBounds().getWidth() - scroller.getViewportBounds().getWidth();
-                double deltaH = deltaX * (scroller.getHmax() - scroller.getHmin()) / extraWidth;
-                double desiredH = scroller.getHvalue() - deltaH;
-                scroller.setHvalue(Math.max(0, Math.min(scroller.getHmax(), desiredH)));
-
-                double deltaY = event.getY() - lastMouseCoordinates.get().getY();
-                double extraHeight = scrollContent.getLayoutBounds().getHeight() - scroller.getViewportBounds().getHeight();
-                double deltaV = deltaY * (scroller.getHmax() - scroller.getHmin()) / extraHeight;
-                double desiredV = scroller.getVvalue() - deltaV;
-                scroller.setVvalue(Math.max(0, Math.min(scroller.getVmax(), desiredV)));
-            }
-        });
-
-        return scroller;
-    }
+//    /**returns a scrollPane so you can zoom and pan with ease
+//     * @param group takes a parent and adds it to the new zoomPane
+//     * @return a zoomPane(actually a scroll pane)
+//     */
+//    private ScrollPane zoomPane(final Parent group){
+//        final double SCALE_DELTA = 1.1;
+//        final GridPane zoomPane = new GridPane();
+//
+//        zoomPane.getChildren().add(group);
+//
+//        final ScrollPane scroller = new ScrollPane();
+//        final Group scrollContent = new Group(zoomPane);
+//        scroller.setContent(scrollContent);
+//
+//        zoomPane.setOnScroll(new EventHandler<ScrollEvent>() {
+//            @Override
+//            public void handle(ScrollEvent event) {
+//                event.consume();
+//
+//                if (event.getDeltaY() == 0) {
+//                    return;
+//                }
+//
+//                double scaleFactor = (event.getDeltaY() > 0) ? SCALE_DELTA
+//                        : 1 / SCALE_DELTA;
+//
+//                group.setScaleX(group.getScaleX() * scaleFactor);
+//                group.setScaleY(group.getScaleY() * scaleFactor);
+//
+//            }
+//        });
+//
+//        // Panning via drag....
+//        final ObjectProperty<Point2D> lastMouseCoordinates = new SimpleObjectProperty<Point2D>();
+//        scrollContent.setOnMousePressed(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                lastMouseCoordinates.set(new Point2D(event.getX(), event.getY()));
+//            }
+//        });
+//
+//        scrollContent.setOnMouseDragged(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                double deltaX = event.getX() - lastMouseCoordinates.get().getX();
+//                double extraWidth = scrollContent.getLayoutBounds().getWidth() - scroller.getViewportBounds().getWidth();
+//                double deltaH = deltaX * (scroller.getHmax() - scroller.getHmin()) / extraWidth;
+//                double desiredH = scroller.getHvalue() - deltaH;
+//                scroller.setHvalue(Math.max(0, Math.min(scroller.getHmax(), desiredH)));
+//
+//                double deltaY = event.getY() - lastMouseCoordinates.get().getY();
+//                double extraHeight = scrollContent.getLayoutBounds().getHeight() - scroller.getViewportBounds().getHeight();
+//                double deltaV = deltaY * (scroller.getHmax() - scroller.getHmin()) / extraHeight;
+//                double desiredV = scroller.getVvalue() - deltaV;
+//                scroller.setVvalue(Math.max(0, Math.min(scroller.getVmax(), desiredV)));
+//            }
+//        });
+//
+//        return scroller;
+//    }
 
     public GameControl getGameControl () {
         return gameControl;
@@ -478,12 +485,15 @@ class MenuItems{
 }
 
 class Hero{
-    private double x;
-    private double y;
+    private double x = Graphics.getInstance().getStage().getWidth() * 15 / 60;
+    private double y = Graphics.getInstance().getStage().getHeight() * 30 / 40;
+    private double width;
+    private double height;
     private int direction = 3;
     private int stateOfWalk = 0;
     private final double speed = 3;
     private ImageView[][] views;
+    private Map map = new Map();
 
     Hero () {
         Image image = null;
@@ -506,8 +516,12 @@ class Hero{
                     }
                 }
                 views[j][i] = new ImageView(wImage);
-                views[j][i].setFitWidth(50);
-                views[j][i].setFitHeight(50);
+
+                //binding width and height property to stage's width and height
+                views[j][i].fitWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 30));
+                views[j][i].fitHeightProperty().bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 20));
+                width = views[j][i].getFitWidth();
+                height = views[j][i].getFitHeight();
             }
         }
     }
@@ -562,16 +576,60 @@ class Hero{
         switch (direction) {
             case 0:
                 y -= speed;
+                if (map.isCellBlocked(x + (.5)*width, y + (3/4.0)*height)){
+                    y += speed;
+                }
                 break;
             case 1:
                 x -= speed;
+                if (map.isCellBlocked(x+ (.5)*width, y + (3/4.0)*height)){
+                    x += speed;
+                }
                 break;
             case 2:
                 y += speed;
+                if (map.isCellBlocked(x+ (.5)*width, y + (3/4.0)*height)){
+                    y -= speed;
+                }
                 break;
             case 3:
                 x += speed;
+                if (map.isCellBlocked(x+ (.5)*width, y + (3/4.0)*height)){
+                    x -= speed;
+                }
                 break;
         }
+    }
+}
+
+class Map{
+    private String[] cells = new String[40];
+
+    Map(){
+        try {
+            Scanner scanner = new Scanner(new File("./src/mapBlocks"));
+            int index = 0;
+            while (scanner.hasNextLine()){
+                cells[index] = scanner.nextLine();
+                index++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isCellBlocked(double x, double y){
+        double cellWidth = Graphics.getInstance().getStage().getWidth() / 60;
+        double cellHeight = Graphics.getInstance().getStage().getHeight() / 40;
+
+        return cells[(int)(y / cellHeight)].charAt((int)(x / cellWidth)) == '#';
+    }
+
+    public String[] getCells () {
+        return cells;
+    }
+
+    public void setCells (String[] cells) {
+        this.cells = cells;
     }
 }

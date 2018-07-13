@@ -33,8 +33,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 class GameDetailController {
-     private final String fileDirectory;
-     private final GameControl gameControl;
+    private final String fileDirectory;
+    private final GameControl gameControl;
 
     GameDetailController(String fileDirectory, GameControl gameControl){
         this.fileDirectory = fileDirectory;
@@ -68,47 +68,47 @@ class GameDetailController {
     }
 
     //initializing the spell cards and thus the maps
-     void spellStart(){
-         gameControl.cardHashMap.put("Blood Feast", new BloodFeast());
-         gameControl.cardHashMap.put("First Aid Kit", new FirstAidKit());
-         gameControl.cardHashMap.put("Healing Ward", new HealingWard());
-         gameControl.cardHashMap.put("Greater Purge", new GreaterPurge());
-         gameControl.cardHashMap.put("Poisonous Cauldron", new PoisonousCauldron());
-         gameControl.cardHashMap.put("Throwing Knives", new ThrowingKnives());
-         gameControl.cardHashMap.put("War Drum", new WarDrum());
-         gameControl.cardHashMap.put("Reaper's Scythe", new ReaperScythe());
-         gameControl.cardHashMap.put("Meteor Shower", new MeteorShower());
-         gameControl.cardHashMap.put("Lunar Blessing", new LunarBlessing());
-         gameControl.cardHashMap.put("Strategic Retreat", new StrategicRetreat());
-         gameControl.cardHashMap.put("Tsunami", new Tsunami());
-         gameControl.cardHashMap.put("Take All You Can", new TakeAllYouCan());
-         gameControl.cardHashMap.put("Arcane Bolt", new ArcaneBolt());
-         gameControl.cardHashMap.put("Magic Seal", new MagicSeal());
+    void spellStart(){
+        gameControl.cardHashMap.put("Blood Feast", new BloodFeast());
+        gameControl.cardHashMap.put("First Aid Kit", new FirstAidKit());
+        gameControl.cardHashMap.put("Healing Ward", new HealingWard());
+        gameControl.cardHashMap.put("Greater Purge", new GreaterPurge());
+        gameControl.cardHashMap.put("Poisonous Cauldron", new PoisonousCauldron());
+        gameControl.cardHashMap.put("Throwing Knives", new ThrowingKnives());
+        gameControl.cardHashMap.put("War Drum", new WarDrum());
+        gameControl.cardHashMap.put("Reaper's Scythe", new ReaperScythe());
+        gameControl.cardHashMap.put("Meteor Shower", new MeteorShower());
+        gameControl.cardHashMap.put("Lunar Blessing", new LunarBlessing());
+        gameControl.cardHashMap.put("Strategic Retreat", new StrategicRetreat());
+        gameControl.cardHashMap.put("Tsunami", new Tsunami());
+        gameControl.cardHashMap.put("Take All You Can", new TakeAllYouCan());
+        gameControl.cardHashMap.put("Arcane Bolt", new ArcaneBolt());
+        gameControl.cardHashMap.put("Magic Seal", new MagicSeal());
     }
 
     //initializing the items and thus the maps
-     void itemStart(){
+    void itemStart(){
         GreaterRestorative greaterRestorative= new GreaterRestorative();
-         gameControl.itemHashMap.put(greaterRestorative.getName(), greaterRestorative);
+        gameControl.itemHashMap.put(greaterRestorative.getName(), greaterRestorative);
         LargeHPPotion largeHPPotion = new LargeHPPotion();
-         gameControl.itemHashMap.put(largeHPPotion.getName(), largeHPPotion);
+        gameControl.itemHashMap.put(largeHPPotion.getName(), largeHPPotion);
         LargeMPPotion largeMPPotion = new LargeMPPotion();
-         gameControl.itemHashMap.put(largeMPPotion.getName(), largeMPPotion);
+        gameControl.itemHashMap.put(largeMPPotion.getName(), largeMPPotion);
         LesserRestorative lesserRestorative = new LesserRestorative();
-         gameControl.itemHashMap.put(lesserRestorative.getName(), lesserRestorative);
+        gameControl.itemHashMap.put(lesserRestorative.getName(), lesserRestorative);
         MediumHPPotion mediumHPPotion = new MediumHPPotion();
-         gameControl.itemHashMap.put(mediumHPPotion.getName(), mediumHPPotion);
+        gameControl.itemHashMap.put(mediumHPPotion.getName(), mediumHPPotion);
         MediumMPPotion mediumMPPotion = new MediumMPPotion();
-         gameControl.itemHashMap.put(mediumMPPotion.getName(), mediumMPPotion);
+        gameControl.itemHashMap.put(mediumMPPotion.getName(), mediumMPPotion);
         SmallHPPotion smallHPPotion = new SmallHPPotion();
-         gameControl.itemHashMap.put(smallHPPotion.getName(), smallHPPotion);
+        gameControl.itemHashMap.put(smallHPPotion.getName(), smallHPPotion);
         SmallMPPotion smallMPPotion = new SmallMPPotion();
-         gameControl.itemHashMap.put(smallMPPotion.getName(), smallMPPotion);
-         gameControl.itemHashMap.put("Mystic Hourglass", new MysticHourglass(gameControl));
+        gameControl.itemHashMap.put(smallMPPotion.getName(), smallMPPotion);
+        gameControl.itemHashMap.put("Mystic Hourglass", new MysticHourglass(gameControl));
     }
 
     //readying the backPack
-     void backPackStart() throws IOException {
+    void backPackStart() throws IOException {
         String line;
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "backPack.txt"));
         this.gameControl.backPack = new BackPack();
@@ -116,18 +116,16 @@ class GameDetailController {
             String parts[] = line.split(" -");
             if (gameControl.itemHashMap.containsKey(parts[0]))
                 for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                    try {
-                        this.gameControl.backPack.add((Item) gameControl.itemHashMap.get(parts[0]).clone(), 1);
-                    }catch (CloneNotSupportedException e){
-                        System.out.println("Clone not supported" + e.getStackTrace());
-                    }
+                {
+                    this.gameControl.backPack.add(gameControl.itemHashMap.get(parts[0]), 1);
+                }
             else
                 this.gameControl.backPack.add(gameControl.amuletHashMap.get(parts[0]));
         }
     }
 
     //readying the deck
-     void deckStart()throws IOException{
+    void deckStart()throws IOException{
         String line;
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "deck.txt"));
         this.gameControl.deck = new Deck();
@@ -137,11 +135,7 @@ class GameDetailController {
                 if (!gameControl.cardHashMap.containsKey(parts[0]))
                     throw new CardException();
                 for (int i = 0; i < Integer.parseInt(parts[1]); i++) {
-                    try {
-                        this.gameControl.deck.add((Card) gameControl.cardHashMap.get(parts[0]).clone(), 1);
-                    }catch (CloneNotSupportedException e){
-                        System.out.println("Clone not supported" + e.getStackTrace());
-                    }
+                    this.gameControl.deck.add(gameControl.cardHashMap.get(parts[0]), 1);
                 }
             }catch (CardException e){
                 System.out.println("");
@@ -150,10 +144,10 @@ class GameDetailController {
     }
 
     //readying the inventory
-     void inventoryStart()throws IOException{
-         gameControl.itemInventory = new ItemInventory(gameControl.backPack);
-         gameControl.amuletInventory = new AmuletInventory(gameControl.backPack);
-         gameControl.cardInventory = new CardInventory(gameControl.deck);
+    void inventoryStart()throws IOException{
+        gameControl.itemInventory = new ItemInventory(gameControl.backPack);
+        gameControl.amuletInventory = new AmuletInventory(gameControl.backPack);
+        gameControl.cardInventory = new CardInventory(gameControl.deck);
         String inventoryName = "items:";
         String line;
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "inventory.txt"));
@@ -162,22 +156,16 @@ class GameDetailController {
             if (!line.contains(":")){
                 if (inventoryName.equals("items:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        try {
-                            gameControl.itemInventory.add((Item) gameControl.itemHashMap.get(parts[0]).clone());
-                        }catch (CloneNotSupportedException e){
-                            System.out.println("Clone not supported");
-                        }
+                        gameControl.itemInventory.add( gameControl.itemHashMap.get(parts[0]));
                 }
                 if (inventoryName.equals("amulets:")){
-                        gameControl.amuletInventory.add(gameControl.amuletHashMap.get(parts[0]));
+                    gameControl.amuletInventory.add(gameControl.amuletHashMap.get(parts[0]));
                 }
                 if (inventoryName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        try {
-                            gameControl.cardInventory.add((Card) gameControl.cardHashMap.get(parts[0]).clone());
-                        }catch (CloneNotSupportedException e){
-                            System.out.println(e);
-                        }
+                    {
+                        gameControl.cardInventory.add( gameControl.cardHashMap.get(parts[0]));
+                    }
                 }
             }else{
                 inventoryName = line;
@@ -187,10 +175,10 @@ class GameDetailController {
     }
 
     //readying the shops
-     void shopStart()throws IOException{
-         gameControl.itemShop = new ItemShop();
-         gameControl.amuletShop = new AmuletShop();
-         gameControl.cardShop = new CardShop();
+    void shopStart()throws IOException{
+        gameControl.itemShop = new ItemShop();
+        gameControl.amuletShop = new AmuletShop();
+        gameControl.cardShop = new CardShop();
         String shopName = "items:";
         String line;
         BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "shop.txt"));
@@ -207,11 +195,9 @@ class GameDetailController {
                 }
                 if (shopName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
-                        try {
-                            gameControl.cardShop.addCard((Card) gameControl.cardHashMap.get(parts[0]).clone());
-                        }catch (CloneNotSupportedException e){
-                            System.out.println(e);
-                        }
+                    {
+                        gameControl.cardShop.addCard(gameControl.cardHashMap.get(parts[0]));
+                    }
                 }
             }else{
                 shopName = line;
@@ -224,7 +210,7 @@ class GameDetailController {
      * @throws IOException if the file input is wrong
      */
     // TODO needs to be completed
-     public void saveGame() throws IOException{
+    public void saveGame() throws IOException{
         FileWriter fileWriter = null;
         saveBackPack();
         saveDeck();
@@ -236,8 +222,8 @@ class GameDetailController {
         fileWriter.close();
     }
 
-     private void saveBackPack () throws IOException{
-         FileWriter fileWriter = new FileWriter (fileDirectory + "backPack.txt", false);
+    private void saveBackPack () throws IOException{
+        FileWriter fileWriter = new FileWriter (fileDirectory + "backPack.txt", false);
         for (Item item:gameControl.backPack.getItems()) {
             fileWriter.write(item.getName() + " -" + gameControl.backPack.getNumberOfItems(item.getName()) + "\n");
         }
@@ -247,20 +233,20 @@ class GameDetailController {
         fileWriter.close();
     }
 
-     private void saveDeck () throws IOException{
-         FileWriter fileWriter = new FileWriter (fileDirectory + "deck.txt", false);
-         Card lastCard = null;
-         for (Card card:gameControl.deck.getCards()) {
-             if (lastCard == null || !card.getName().equals(lastCard.getName())) {
-                 fileWriter.write(card.getName() + " -" + gameControl.deck.getNumberOfCards(card.getName()) + "\n");
-                 lastCard = card;
-             }
-         }
-         fileWriter.close();
+    private void saveDeck () throws IOException{
+        FileWriter fileWriter = new FileWriter (fileDirectory + "deck.txt", false);
+        Card lastCard = null;
+        for (Card card:gameControl.deck.getCards()) {
+            if (lastCard == null || !card.getName().equals(lastCard.getName())) {
+                fileWriter.write(card.getName() + " -" + gameControl.deck.getNumberOfCards(card.getName()) + "\n");
+                lastCard = card;
+            }
+        }
+        fileWriter.close();
     }
 
-     private void saveInventory () throws IOException{
-         FileWriter fileWriter = new FileWriter (fileDirectory + "inventory.txt", false);
+    private void saveInventory () throws IOException{
+        FileWriter fileWriter = new FileWriter (fileDirectory + "inventory.txt", false);
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemInventory.getItems()){
@@ -279,8 +265,8 @@ class GameDetailController {
         fileWriter.close();
     }
 
-     private void saveShop () throws IOException{
-         FileWriter fileWriter = new FileWriter (fileDirectory + "shop.txt");
+    private void saveShop () throws IOException{
+        FileWriter fileWriter = new FileWriter (fileDirectory + "shop.txt");
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemShop.getItems()){

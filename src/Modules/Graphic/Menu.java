@@ -162,19 +162,19 @@ public class Menu {
 
     private void addEventHandler(){
         Parent root = Graphics.getInstance().getMenu().getRoot();
-        Text[] texts = new Text[4];
-        for (int i = 0; i < 4; i++) {
+        Text[] texts = new Text[7];
+        for (int i = 0; i < 7; i++) {
             texts[i] = (Text) root.lookup("#menuText" + (i+1));
             new MenuItems(texts[i], gameControl);
         }
         new MenuItems((ImageView) root.lookup("#exitImage"), gameControl);
-        ((VBox)root.lookup("#greeting")).prefWidthProperty().
+        ((VBox)root.lookup("#greeting")).maxWidthProperty().
                 bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1.0));
-        ((VBox)root.lookup("#greeting")).prefHeightProperty().
+        ((VBox)root.lookup("#greeting")).maxHeightProperty().
                 bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5.0/1.4));
-        ((VBox)root.lookup("#mainMenu")).prefHeightProperty().
+        ((VBox)root.lookup("#mainMenu")).maxHeightProperty().
                 bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5/2));
-        ((VBox)root.lookup("#exit")).prefHeightProperty().
+        ((VBox)root.lookup("#exit")).maxHeightProperty().
                 bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5.0/1.5));
 
         EventHandler<KeyEvent> up_Down = new EventHandler<KeyEvent>() {
@@ -184,7 +184,7 @@ public class Menu {
                     Text text = null;
                     if (MenuItems.number != -1) {
                         text = texts[MenuItems.number];
-                        text.setStyle("-fx-font-size: 30; -fx-font-family: Purisa;");
+                        text.setStyle("-fx-font-size: 20; -fx-font-family: Purisa;");
                         text.setFill(Color.CORNSILK);
                     }
                     if (MenuItems.number > 0) {
@@ -197,10 +197,10 @@ public class Menu {
                     Text text = null;
                     if (MenuItems.number != -1) {
                         text = texts[MenuItems.number];
-                        text.setStyle("-fx-font-size: 30; -fx-font-family: Purisa;");
+                        text.setStyle("-fx-font-size: 20; -fx-font-family: Purisa;");
                         text.setFill(Color.CORNSILK);
                     }
-                    if (MenuItems.number != 3) {
+                    if (MenuItems.number != 6) {
                         MenuItems.number++;
                         text = texts[MenuItems.number];
                         text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
@@ -208,12 +208,18 @@ public class Menu {
                     }
                 }else if(event.getCode() == KeyCode.ENTER){
                     switch (texts[MenuItems.number].getText()){
-                        case "Enter Menu":
+                        case "Single Player":
                             try {
                                 dynamicMenu();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            break;
+                        case "MultiPlayer":
+                            break;
+                        case "Custom Game":
+                            break;
+                        case "Save Game":
                             break;
                         case "Settings":
                             //TODO
@@ -247,8 +253,7 @@ public class Menu {
         VBox questionHolder = (VBox) dialogueScreen.lookup("#questionHolder");
         questionHolder.minHeightProperty().bind(Bindings.divide(box.minHeightProperty(), 1.7));
 
-        String cssButton = "-fx-background-radius: 10px;" +
-                "-fx-font-family: Purisa;" +
+        String cssButton = "-fx-font-family: Purisa;" +
                 "-fx-font-weight: bold;";
         Button[] buttons = new Button[2];
         buttons[0] = (Button) dialogueScreen.lookup("#Button1");
@@ -278,10 +283,10 @@ public class Menu {
                 System.exit(0);
             }
         };
-        ((GridPane)root).getChildren().add(dialogueScreen);
         buttons[0].addEventHandler(MouseEvent.MOUSE_CLICKED, yesButtonClick);
         VBox finalDialogueScreen = dialogueScreen;
         buttons[1].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {((GridPane) root).getChildren().remove(finalDialogueScreen);});
+        ((GridPane)root).getChildren().add(dialogueScreen);
     }
 
     public void dynamicMenu() throws IOException {
@@ -441,16 +446,22 @@ class MenuItems{
                     text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
                     text.setFill(Color.rgb(229,223,160));
                 }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
-                    text.setStyle("-fx-font-size: 30; -fx-font-family: Purisa;");
+                    text.setStyle("-fx-font-size: 20; -fx-font-family: Purisa;");
                     text.setFill(Color.CORNSILK);
                 }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
                     switch (text.getText()){
-                        case "Enter Menu":
+                        case "Single Player":
                             try {
                                 Menu.getInstance().dynamicMenu();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            break;
+                        case "MultiPlayer":
+                            break;
+                        case "Custom Game":
+                            break;
+                        case "Save Game":
                             break;
                         case "Settings":
                             //TODO

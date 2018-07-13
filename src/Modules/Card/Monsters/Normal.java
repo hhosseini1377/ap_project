@@ -3,6 +3,7 @@ package Modules.Card.Monsters;
 public class Normal extends Monster {
     public Normal(String name, int AP, int HP, int manaPoint, boolean isNimble, boolean offenseType,
                   String tribe) {
+        super();
         this.name = name;
         this.AP = AP;
         this.initialAP = AP;

@@ -19,7 +19,7 @@
 >
     <VBox opacity="0.3" style="-fx-background-color: black;" minHeight="${screen.visualBounds.height}"
           minWidth="${screen.visualBounds.width}"/>
-    <VBox spacing="50">
+    <VBox spacing="30">
         <VBox  fx:id="greeting"
                GridPane.vgrow="ALWAYS"
                style="-fx-padding: 20px;"
@@ -39,27 +39,45 @@
               spacing="40"
         >
             <Text fx:id="menuText1"
-                  text="Enter Menu"
+                  text="Single Player"
                   fill="cornsilk"
-                  style="-fx-font-size: 30;
+                  style="-fx-font-size: 20;
                   -fx-font-family: Purisa;"
             />
             <Text fx:id="menuText2"
-                  text="Settings"
+                  text="MultiPlayer"
                   fill="cornsilk"
-                  style="-fx-font-size: 30;
+                  style="-fx-font-size: 20;
                   -fx-font-family: Purisa;"
             />
             <Text fx:id="menuText3"
-                  text="Reset Game"
+                  text="Custom Game"
                   fill="cornsilk"
-                  style="-fx-font-size: 30;
+                  style="-fx-font-size: 20;
                   -fx-font-family: Purisa;"
             />
             <Text fx:id="menuText4"
+                  text="Save Game"
+                  fill="cornsilk"
+                  style="-fx-font-size: 20;
+                  -fx-font-family: Purisa;"
+            />
+            <Text fx:id="menuText5"
+                  text="Settings"
+                  fill="cornsilk"
+                  style="-fx-font-size: 20;
+                  -fx-font-family: Purisa;"
+            />
+            <Text fx:id="menuText6"
+                  text="Reset Game"
+                  fill="cornsilk"
+                  style="-fx-font-size: 20;
+                  -fx-font-family: Purisa;"
+            />
+            <Text fx:id="menuText7"
                   text="About Game"
                   fill="cornsilk"
-                  style="-fx-font-size: 30;
+                  style="-fx-font-size: 20;
                   -fx-font-family: Purisa;"
             />
         </VBox>

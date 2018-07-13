@@ -23,6 +23,7 @@ public class Warrior {
     protected int manaPoint = 0;
     protected int maxManaPoint;
     protected int winPrize;
+    protected boolean hasLost = false;
 
     public Warrior(Deck deck, String name) {
         this.deck = new Deck();
@@ -78,6 +79,14 @@ public class Warrior {
         else
             this.maxManaPoint = 12;
         this.manaPoint = this.maxManaPoint;
+    }
+
+    public boolean hasLost () {
+        return hasLost;
+    }
+
+    public void setHasLost (boolean hasLost) {
+        this.hasLost = hasLost;
     }
 
     public Commander getCommander() {

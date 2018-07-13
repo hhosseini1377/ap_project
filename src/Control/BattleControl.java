@@ -185,19 +185,21 @@ public class BattleControl {
         //drawing a card from deck to hand
         try {
             Card drawnCard = warrior[turn % 2].getDeck().takeCard();
-            warrior[turn % 2].getHand().add(drawnCard);
+            if (drawnCard != null) {
+                warrior[turn % 2].getHand().add(drawnCard);
 
-            System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
-            if (turn % 2 == 1) {
-                System.out.println(drawnCard.getName());
-            }
-            //this has to be written every time we enter this menu
-            if (turn % 2 == 1)
-                System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
-                        + warrior[turn % 2].getMaxManaPoint() + "]");
-            if (turn % 2 == 0) {
-                warrior[0].makeMove(warrior[1]);
-                changeTurn();
+                System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
+                if (turn % 2 == 1) {
+                    System.out.println(drawnCard.getName());
+                }
+                //this has to be written every time we enter this menu
+                if (turn % 2 == 1)
+                    System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
+                            + warrior[turn % 2].getMaxManaPoint() + "]");
+                if (turn % 2 == 0) {
+                    warrior[0].makeMove(warrior[1]);
+                    changeTurn();
+                }
             }
         }catch (NullPointerException e) {
             System.out.println("No more cards in the deck!!!");
@@ -237,7 +239,7 @@ public class BattleControl {
             } else
                 System.out.println("You do not have enough MP to do this act");
         }catch (Exception e){
-            System.out.println("The index you chose is not available, try again" + e.getStackTrace());
+            System.out.println("The index you chose is not available, try again" );
         }
     }
 
@@ -432,11 +434,11 @@ public class BattleControl {
     }
 
     private boolean checkEndOfTheGame () {
-        if (warrior[0].getCommander().isDead()) {
+        if (warrior[0].getCommander().isDead() || warrior[0].hasLost()) {
             win();
             return true;
         }
-        if (warrior[1].getCommander().isDead()) {
+        if (warrior[1].getCommander().isDead() || warrior[1].hasLost()) {
             lose();
             return true;
         }

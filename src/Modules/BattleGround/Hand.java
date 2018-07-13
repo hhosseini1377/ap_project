@@ -21,6 +21,8 @@ public class Hand {
 	}
 
 	public void add(Card card){
+		if (card == null)
+			return;
 		cards.add(card);
 		try {
 			if (!cardHashMap.containsKey(card.getName()))

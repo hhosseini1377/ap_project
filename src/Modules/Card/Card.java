@@ -8,6 +8,13 @@ public class Card implements Cloneable{
     protected int manaPoint;
     protected Warrior enemy;
     protected Warrior friend;
+    protected int id;
+    public static int cardNumbers = 0;
+
+    public Card(){
+        id = Card.cardNumbers;
+        Card.cardNumbers++;
+    }
 
     public Warrior getEnemy() {
         return enemy;
@@ -69,10 +76,20 @@ public class Card implements Cloneable{
         return "nothing special";
     }
 
-    public boolean equals(Card other){
-        return other.hashCode() == this.hashCode();
+    public int getId () {
+        return id;
     }
 
+    public void setId (int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        return ((Card)other).getId() == this.getId();
+    }
+
+    @Override
     public int hashCode(){
         return super.hashCode();
     }

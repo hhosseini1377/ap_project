@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/mapBlocks" />
       <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
-      <change beforePath="$PROJECT_DIR$/src/Files/Resources/DynamicMenu.fxml" afterPath="$PROJECT_DIR$/src/Files/Resources/DynamicMenu.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/Files/mapBlocks" afterPath="$PROJECT_DIR$/src/Files/initial/mapBlocks" />
       <change beforePath="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" afterPath="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" />
+      <change beforePath="$PROJECT_DIR$/src/mapBlocks" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +36,8 @@
       <file leaf-file-name="Menu.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Modules/Graphic/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="590" column="63" lean-forward="false" selection-start-line="590" selection-start-column="63" selection-end-line="590" selection-end-column="63" />
+            <state relative-caret-position="114">
+              <caret line="611" column="19" lean-forward="false" selection-start-line="611" selection-start-column="19" selection-end-line="611" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1581#1582#0" expanded="true" />
@@ -66,10 +66,10 @@
                 <element signature="e#24202#24203#0" expanded="true" />
                 <element signature="e#24254#24255#0" expanded="true" />
                 <element signature="e#24304#24305#0" expanded="true" />
-                <element signature="e#25909#25910#0" expanded="true" />
-                <element signature="e#25937#25938#0" expanded="true" />
-                <element signature="e#25982#25983#0" expanded="true" />
-                <element signature="e#26016#26017#0" expanded="true" />
+                <element signature="e#25926#25927#0" expanded="true" />
+                <element signature="e#25954#25955#0" expanded="true" />
+                <element signature="e#25999#26000#0" expanded="true" />
+                <element signature="e#26033#26034#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -258,6 +258,7 @@
       <recent name="$PROJECT_DIR$/src/Modules/User/Inventory" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Files/initial" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/Files" />
       <recent name="$PROJECT_DIR$/src/Files/save" />
@@ -421,7 +422,7 @@
       <workItem from="1531218340365" duration="2292000" />
       <workItem from="1531298582720" duration="1851000" />
       <workItem from="1531330151851" duration="6695000" />
-      <workItem from="1531408024177" duration="18723000" />
+      <workItem from="1531408024177" duration="18865000" />
     </task>
     <task id="LOCAL-00001" summary="progressed in controllers, Hand, fields, and completed some Monster cards">
       <created>1525816472673</created>
@@ -668,11 +669,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531419042665</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="added block detecting ability &#10;added new map">
+      <created>1531478882800</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1531478882800</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="237726000" />
+    <option name="totallyTimeSpent" value="237868000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -685,7 +693,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="18" y="160" width="1366" height="768" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -700,7 +707,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18333334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18333334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281493" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281493" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -755,7 +762,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
-    <MESSAGE value="progressed in controllers, Hand, fields, and completed some Monster cards" />
     <MESSAGE value="Completed files" />
     <MESSAGE value="progressed in battle control&#10;added new methods in monsterField class and monster class&#10;also added things to warrior" />
     <MESSAGE value="completed game control(just needing the cards and items to be written)&#10;progressed in battle control&#10;changed shop control and deck and backpack and inventory and shops a bit" />
@@ -780,7 +786,8 @@
     <MESSAGE value="edited music player name" />
     <MESSAGE value="Completed Main Menu" />
     <MESSAGE value="added dynamic menu and map&#10;changed main menu background&#10;added walking sprite&#10;added scrolling and zooming ability to the map" />
-    <option name="LAST_COMMIT_MESSAGE" value="added dynamic menu and map&#10;changed main menu background&#10;added walking sprite&#10;added scrolling and zooming ability to the map" />
+    <MESSAGE value="added block detecting ability &#10;added new map" />
+    <option name="LAST_COMMIT_MESSAGE" value="added block detecting ability &#10;added new map" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1089,7 +1096,7 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Files/mapBlocks">
+    <entry file="file://$PROJECT_DIR$/src/Files/initial/mapBlocks">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-337">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1227,8 +1234,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Modules/Graphic/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="590" column="63" lean-forward="false" selection-start-line="590" selection-start-column="63" selection-end-line="590" selection-end-column="63" />
+        <state relative-caret-position="114">
+          <caret line="611" column="19" lean-forward="false" selection-start-line="611" selection-start-column="19" selection-end-line="611" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1581#1582#0" expanded="true" />
@@ -1257,10 +1264,10 @@
             <element signature="e#24202#24203#0" expanded="true" />
             <element signature="e#24254#24255#0" expanded="true" />
             <element signature="e#24304#24305#0" expanded="true" />
-            <element signature="e#25909#25910#0" expanded="true" />
-            <element signature="e#25937#25938#0" expanded="true" />
-            <element signature="e#25982#25983#0" expanded="true" />
-            <element signature="e#26016#26017#0" expanded="true" />
+            <element signature="e#25926#25927#0" expanded="true" />
+            <element signature="e#25954#25955#0" expanded="true" />
+            <element signature="e#25999#26000#0" expanded="true" />
+            <element signature="e#26033#26034#0" expanded="true" />
           </folding>
         </state>
       </provider>

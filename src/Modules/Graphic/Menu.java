@@ -582,19 +582,19 @@ class Hero{
                 break;
             case 1:
                 x -= speed;
-                if (map.isCellBlocked(x+ (.5)*width, y + (3/4.0)*height)){
+                if (map.isCellBlocked(x + (.5)*width, y + (3/4.0)*height)){
                     x += speed;
                 }
                 break;
             case 2:
                 y += speed;
-                if (map.isCellBlocked(x+ (.5)*width, y + (3/4.0)*height)){
+                if (map.isCellBlocked(x + (.5)*width, y + (3/4.0)*height)){
                     y -= speed;
                 }
                 break;
             case 3:
                 x += speed;
-                if (map.isCellBlocked(x+ (.5)*width, y + (3/4.0)*height)){
+                if (map.isCellBlocked(x + (.5)*width, y + (3/4.0)*height)){
                     x -= speed;
                 }
                 break;
@@ -607,7 +607,7 @@ class Map{
 
     Map(){
         try {
-            Scanner scanner = new Scanner(new File("./src/mapBlocks"));
+            Scanner scanner = new Scanner(new File("./src/Files/initial/mapBlocks"));
             int index = 0;
             while (scanner.hasNextLine()){
                 cells[index] = scanner.nextLine();

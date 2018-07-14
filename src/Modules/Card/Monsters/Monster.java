@@ -19,6 +19,10 @@ public abstract class Monster extends Card{
     protected boolean canAttack = true;
     protected boolean canCast;
 
+    public Monster(){
+        super();
+    }
+
     public boolean canCast() {
         return canCast;
     }

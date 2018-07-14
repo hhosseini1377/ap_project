@@ -296,9 +296,9 @@ public class ShopControl {
     }
 
     public boolean sellAmulet(String amuletName,int numberToSell){
-        if (User.getAmuletInventory().hasAmulet(amuletName) && !User.getBackPack().getAmulet().getName().equals(amuletName)) {
-            User.getAmuletInventory().remove(amuletName);
+        if (User.getAmuletInventory().hasAmulet(amuletName) && !User.getBackPack().ContainsAmulet(amuletName)) {
             User.setGills(User.getGills() + numberToSell * User.getAmuletInventory().getAmulet(amuletName).getGillCost() / 2);
+            User.getAmuletInventory().remove(amuletName);
             return true;
         }
         return false;

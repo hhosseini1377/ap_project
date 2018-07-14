@@ -20,7 +20,7 @@
        <VBox fx:id="dialogBox"
              spacing="40"
              style="-fx-background-image: url(Files/Images/DialogueBg.jpeg);
-             -fx-background-size: cover;
+             -fx-background-size: stretch;
              -fx-background-repeat: no-repeat;">
            <padding>
             <Insets />

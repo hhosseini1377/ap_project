@@ -74,7 +74,9 @@ public class BackPack {
     }
 
     public boolean ContainsAmulet(String AmuletName){
-        return amulet.getName().equals(AmuletName);
+        if (isAmuletEquipped())
+            return amulet.getName().equals(AmuletName);
+        return false;
     }
 
     public boolean ContainsItem(String ItemName){

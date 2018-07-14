@@ -1,14 +1,20 @@
 package View.ShopView;
 
 import Modules.Card.Card;
+
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import Modules.Card.Monsters.DragonBreed.BlueDragon;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Graphic.Graphics;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -93,25 +99,37 @@ public class CardShopView {
 
     public void viewCardShop (){
 
+
         HBox[] cardRows = new HBox[2];
         cardRows[0] = new HBox();
-        cardRows[0].setSpacing(Graphics.screenWidth / 19);
-        cardRows[0].setPrefSize(Graphics.screenWidth * 2 / 19, Graphics.screenHeight * 3 / 11);
+        cardRows[0].setSpacing(Graphics.SCREEN_WIDTH / 19);
+        cardRows[0].setPrefSize(Graphics.SCREEN_WIDTH * 2 / 19, Graphics.SCREEN_HEIGHT * 3 / 11);
         cardRows[1] = new HBox();
-        cardRows[1].setSpacing(Graphics.screenWidth / 19);
-        cardRows[1].setPrefSize(Graphics.screenWidth * 2 / 19, Graphics.screenHeight * 3 / 11);
+        cardRows[1].setSpacing(Graphics.SCREEN_WIDTH / 19);
+        cardRows[1].setPrefSize(Graphics.SCREEN_WIDTH * 2 / 19, Graphics.SCREEN_HEIGHT * 3 / 11);
 
         VBox cardRowColumn = new VBox();
-        cardRowColumn.setLayoutX(Graphics.screenWidth / 19);
-        cardRowColumn.setLayoutY(Graphics.screenHeight * 2 / 11);
-        cardRowColumn.setSpacing(Graphics.screenHeight / 11);
-        cardRowColumn.setPrefSize(Graphics.screenWidth * 17 / 19, Graphics.screenHeight * 7 / 11);
+        cardRowColumn.setLayoutX(Graphics.SCREEN_WIDTH / 19);
+        cardRowColumn.setLayoutY(Graphics.SCREEN_HEIGHT * 2 / 11);
+        cardRowColumn.setSpacing(Graphics.SCREEN_HEIGHT / 11);
+        cardRowColumn.setPrefSize(Graphics.SCREEN_WIDTH * 17 / 19, Graphics.SCREEN_HEIGHT * 7 / 11);
+
+        cardRowColumn.getChildren().addAll(cardRows[0], cardRows[1]);
+
+        VBox fullScreen = new VBox(cardRowColumn);
+        fullScreen.setAlignment(Pos.CENTER);
+        fullScreen.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
+        fullScreen.setStyle("-fx-background-image: url(Files/Images/CardShopBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+
+        BlueDragon blueDragon = new BlueDragon();
+        CardView testCard = null;
+
+        testCard = new CardView(Graphics.SCREEN_WIDTH * 3 / 19, Graphics.SCREEN_HEIGHT * 3 / 11, new Image("Files/Images/Blue-Eyes-White-Dragon.jpg"), blueDragon, 0, 0);
+
+        cardRows[0].getChildren().add(testCard.getMainVBox());
 
 
-
-
-
-        Graphics.getInstance().setCardShopScene(new Scene(cardRowColumn));
+        Graphics.getInstance().setCardShopScene(new Scene(fullScreen));
 
         Graphics.getInstance().getStage().setScene(Graphics.getInstance().getCardShopScene());
     }

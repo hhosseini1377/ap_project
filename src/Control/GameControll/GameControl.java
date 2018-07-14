@@ -166,8 +166,8 @@ public class GameControl {
      * in "save" folder which is the source of the data in our game
      */
     public void resetGame(){
-        String path1 = "/home/gilgamesh/Desktop/Programs/Java/Project/projectAp/src/Files/initial/";
-        String path2 = "/home/gilgamesh/Desktop/Programs/Java/Project/projectAp/src/Files/save/";
+        String path1 = "../../Files/initial/";
+        String path2 = "../../Files/save/";
         try {
             Files.copy(Paths.get(path1 + "backPack.txt"), new FileOutputStream(path2 + "backPack.txt"));
             Files.copy(Paths.get(path1 + "deck.txt"), new FileOutputStream(path2 + "deck.txt"));

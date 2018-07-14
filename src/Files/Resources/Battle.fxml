@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.stage.Screen?>
+<?import javafx.scene.image.ImageView?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="battleScreen"
+      prefHeight="${screen.visualBounds.height}"
+      prefWidth="${screen.visualBounds.width}"
+      style="-fx-background-color: rgba(226,215,89,0.54);">
+
+    <fx:define>
+        <Screen fx:id="screen" fx:factory="getPrimary"/>
+    </fx:define>
+
+    <VBox fx:id="playerPart1">
+
+        <HBox fx:id="fieldP1">
+
+            <HBox fx:id="monsterFieldP1"
+                  spacing="30">
+
+                <HBox fx:id="cartslot1P1"
+                      prefWidth="50"
+                      prefHeight="100"
+                      />
+                <HBox fx:id="cartslot2P1"
+                      prefWidth="50"
+                      prefHeight="100"
+                />
+                <HBox fx:id="cartslot3P1"
+                      prefWidth="50"
+                      prefHeight="100"
+                />
+                <HBox fx:id="cartslot4P1"
+                      prefWidth="50"
+                      prefHeight="100"
+                />
+                <HBox fx:id="cartslot5P1"
+                      prefWidth="50"
+                      prefHeight="100"
+                />
+            </HBox>
+        </HBox>
+
+        <HBox fx:id="detailP1">
+            <HBox fx:id="handP1">
+
+            </HBox>
+
+        </HBox>
+    </VBox>
+
+    <VBox fx:id="playerPart2">
+
+        <HBox fx:id="fieldP2">
+
+            <HBox fx:id="monsterFieldP2"
+                  spacing="30">
+
+                <HBox fx:id="cartslot1P2"
+                      prefWidth="50"
+                      prefHeight="100"
+                />
+                <HBox fx:id="cartslot2P2"
+                      prefWidth="50"
+                      prefHeight="100"
+                />
+                <HBox fx:id="cartslot3P2"
+                      prefWidth="50"
+                      prefHeight="100"
+                />
+                <HBox fx:id="cartslot4P2"
+                      prefWidth="50"
+                      prefHeight="100"
+                />
+                <HBox fx:id="cartslot5P2"
+                      prefWidth="50"
+                      prefHeight="100"
+                />
+            </HBox>
+        </HBox>
+
+        <HBox fx:id="detailP2">
+            <HBox fx:id="handP2">
+
+            </HBox>
+
+        </HBox>
+    </VBox>
+
+</VBox>

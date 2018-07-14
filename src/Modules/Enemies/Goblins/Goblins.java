@@ -79,7 +79,7 @@ public class Goblins extends Warrior {
                         }
                     }
                     //we find the monsters with least HP
-                    Monster mostVulnerableEnemyMonster = this.getMonsterField().getMonsterCards().get(0);
+                    Monster mostVulnerableEnemyMonster = enemy.getMonsterField().getMonsterCards().get(0);
                     for (Monster monster : enemy.getMonsterField().getMonsterCards()) {
                         if (monster.getHP() < mostVulnerableEnemyMonster.getHP()) {
                             mostVulnerableEnemyMonster = monster;
@@ -97,7 +97,7 @@ public class Goblins extends Warrior {
                             mostPowerfull = monster;
                         }
                     }
-                    Monster mostVulnerableEnemyMonster = this.getMonsterField().getMonsterCards().get(0);
+                    Monster mostVulnerableEnemyMonster = enemy.getMonsterField().getMonsterCards().get(0);
                     for (Monster monster : enemy.getMonsterField().getMonsterCards()) {
                         if (monster.getHP() < mostVulnerableEnemyMonster.getHP()) {
                             mostVulnerableEnemyMonster = monster;
@@ -127,7 +127,10 @@ public class Goblins extends Warrior {
 
         //you will decide to bring a monster to the field
         Card decidedCard = decideHandCard(enemy);
-        while (manaPoint > 0 && decideHandCard(enemy) != null && this.getMonsterField().getAvailablePlaces() > 0) {
+        if (decidedCard == null){
+            hasLost = true;
+        }
+        while (manaPoint > 0 && decidedCard != null && this.getMonsterField().getAvailablePlaces() > 0) {
             try {
                 setManaPoint (getMaxManaPoint () - Objects.requireNonNull (decidedCard).getManaPoint ());
             }catch (NullPointerException e){

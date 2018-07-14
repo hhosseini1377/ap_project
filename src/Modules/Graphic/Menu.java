@@ -1,6 +1,8 @@
 package Modules.Graphic;
 
 import Control.GameControll.GameControl;
+import Modules.Graphic.MenuClasses.Hero;
+import Modules.Graphic.MenuClasses.MenuItems;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -54,6 +56,26 @@ public class Menu {
         return menu;
     }
 
+    public GameControl getGameControl () {
+        return gameControl;
+    }
+
+    public void setGameControl (GameControl gameControl) {
+        this.gameControl = gameControl;
+    }
+
+    public void startBattle(){
+        gameControl.startBattle();
+    }
+
+    public void shopEntrance(){
+        gameControl.shopEntrance();
+    }
+
+    /**first page that initialize with the beginning of the game
+     *
+     * @param gameControl to initialize the game as the effects go on
+     */
     public void startScreen (GameControl gameControl) throws IOException{
         loadScreenXML();
         Graphics.START_MUSIC_PLAYER.setCycleCount(Animation.INDEFINITE);
@@ -91,6 +113,9 @@ public class Menu {
         fadeAway.play();
     }
 
+    /**
+     * just for cleaning the code of the main method(startScreen)
+     */
     private void loadScreenXML() throws IOException {
         Stage primaryStage = Graphics.getInstance().getStage();
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/startScreen.fxml"));
@@ -103,6 +128,11 @@ public class Menu {
         primaryStage.show();
     }
 
+
+    /**
+     * for getting name of user in register page
+     * @return returns a default name
+     */
     public String getNameFromUser()throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/RegisterPage.fxml"));
         Graphics.getInstance().getStage().getScene().setRoot(root);
@@ -142,17 +172,23 @@ public class Menu {
         return name.toString();
     }
 
+    /**
+     * the main menu from which you can decide going to battle or saving the game or other stuff
+     */
     public void mainMenu() throws IOException {
         loadMenuXML();
         Parent root = Graphics.getInstance().getMenu().getRoot();
 
-        Text welcome = ((Text)root.lookup("#welcome"));
+        Text welcome = ((Text) root.lookup("#welcome"));
         welcome.setEffect(Graphics.SHADOW);
         welcome.setText(welcome.getText() + gameControl.getUser().getName());
 
         addEventHandler();
-            }
+    }
 
+    /**
+     * for loading the fxml code from resources
+     */
     private void loadMenuXML() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/MainMenu.fxml"));
         Scene scene = Graphics.getInstance().getMainScene();
@@ -160,6 +196,9 @@ public class Menu {
         scene.setRoot(root);
     }
 
+    /**
+     * adds event handling to menu items
+     */
     private void addEventHandler(){
         Parent root = Graphics.getInstance().getMenu().getRoot();
         Text[] texts = new Text[7];
@@ -234,6 +273,9 @@ public class Menu {
         Graphics.getInstance().getStage().getScene().addEventHandler(KeyEvent.KEY_PRESSED, up_Down);
     }
 
+    /**
+     * it's for when the user wants to exit the game, in which you will assure that he wants that
+     */
     public void endGameScreen(){
         Parent root = Graphics.getInstance().getMenu().getRoot();
         VBox dialogueScreen = null;
@@ -289,6 +331,9 @@ public class Menu {
         ((GridPane)root).getChildren().add(dialogueScreen);
     }
 
+    /**
+     * dynamic menu or the game map in which you will decide your next battle
+     */
     public void dynamicMenu() throws IOException {
         dynamicMenuStart();
         hero = new Hero();
@@ -297,6 +342,27 @@ public class Menu {
         walkOperation(root);
     }
 
+    /**
+     * initializing the game map
+     * @throws IOException
+     */
+    private void dynamicMenuStart() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/DynamicMenu.fxml"));
+        Graphics.START_MUSIC_PLAYER.stop();
+        Graphics.MAP_MUSIC_PLAYER.setCycleCount(Animation.INDEFINITE);
+        Graphics.MAP_MUSIC_PLAYER.play();
+        Graphics.getInstance().setDynamicMenu(new Scene(root));
+        ((GridPane)root.lookup("#gridPane")).minWidthProperty().bind(Bindings.divide(
+                Graphics.getInstance().getStage().widthProperty(), 1));
+        ((GridPane)root.lookup("#gridPane")).minHeightProperty().bind(Bindings.divide(
+                Graphics.getInstance().getStage().heightProperty(), 1));
+        Graphics.getInstance().getStage().setScene(Graphics.getInstance().getDynamicMenu());
+        Graphics.getInstance().getStage().setFullScreen(true);
+    }
+
+    /**
+     * for handling the sprites walking
+     */
     private void walkOperation(Group root){
         EventHandler<KeyEvent> walkEvent = new EventHandler<KeyEvent>() {
             @Override
@@ -346,86 +412,6 @@ public class Menu {
         };
         Graphics.getInstance().getDynamicMenu().addEventHandler(KeyEvent.ANY, walkEvent);
     }
-
-    private void dynamicMenuStart() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/DynamicMenu.fxml"));
-        Graphics.getInstance().setDynamicMenu(new Scene(root));
-        ((GridPane)root.lookup("#gridPane")).minWidthProperty().bind(Bindings.divide(
-                Graphics.getInstance().getStage().widthProperty(), 1));
-        ((GridPane)root.lookup("#gridPane")).minHeightProperty().bind(Bindings.divide(
-                Graphics.getInstance().getStage().heightProperty(), 1));
-        Graphics.getInstance().getStage().setScene(Graphics.getInstance().getDynamicMenu());
-        Graphics.getInstance().getStage().setFullScreen(true);
-    }
-
-//    /**returns a scrollPane so you can zoom and pan with ease
-//     * @param group takes a parent and adds it to the new zoomPane
-//     * @return a zoomPane(actually a scroll pane)
-//     */
-//    private ScrollPane zoomPane(final Parent group){
-//        final double SCALE_DELTA = 1.1;
-//        final GridPane zoomPane = new GridPane();
-//
-//        zoomPane.getChildren().add(group);
-//
-//        final ScrollPane scroller = new ScrollPane();
-//        final Group scrollContent = new Group(zoomPane);
-//        scroller.setContent(scrollContent);
-//
-//        zoomPane.setOnScroll(new EventHandler<ScrollEvent>() {
-//            @Override
-//            public void handle(ScrollEvent event) {
-//                event.consume();
-//
-//                if (event.getDeltaY() == 0) {
-//                    return;
-//                }
-//
-//                double scaleFactor = (event.getDeltaY() > 0) ? SCALE_DELTA
-//                        : 1 / SCALE_DELTA;
-//
-//                group.setScaleX(group.getScaleX() * scaleFactor);
-//                group.setScaleY(group.getScaleY() * scaleFactor);
-//
-//            }
-//        });
-//
-//        // Panning via drag....
-//        final ObjectProperty<Point2D> lastMouseCoordinates = new SimpleObjectProperty<Point2D>();
-//        scrollContent.setOnMousePressed(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                lastMouseCoordinates.set(new Point2D(event.getX(), event.getY()));
-//            }
-//        });
-//
-//        scrollContent.setOnMouseDragged(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                double deltaX = event.getX() - lastMouseCoordinates.get().getX();
-//                double extraWidth = scrollContent.getLayoutBounds().getWidth() - scroller.getViewportBounds().getWidth();
-//                double deltaH = deltaX * (scroller.getHmax() - scroller.getHmin()) / extraWidth;
-//                double desiredH = scroller.getHvalue() - deltaH;
-//                scroller.setHvalue(Math.max(0, Math.min(scroller.getHmax(), desiredH)));
-//
-//                double deltaY = event.getY() - lastMouseCoordinates.get().getY();
-//                double extraHeight = scrollContent.getLayoutBounds().getHeight() - scroller.getViewportBounds().getHeight();
-//                double deltaV = deltaY * (scroller.getHmax() - scroller.getHmin()) / extraHeight;
-//                double desiredV = scroller.getVvalue() - deltaV;
-//                scroller.setVvalue(Math.max(0, Math.min(scroller.getVmax(), desiredV)));
-//            }
-//        });
-//
-//        return scroller;
-//    }
-
-    public GameControl getGameControl () {
-        return gameControl;
-    }
-
-    public void setGameControl (GameControl gameControl) {
-        this.gameControl = gameControl;
-    }
 }
 
 class OpaciyChange{
@@ -433,214 +419,4 @@ class OpaciyChange{
     final static String[] text = {"with High Performance...", "Represented by:" +
             "\nSajad the Gilga\nHossein the Haja\nKasra the Nigga", ""};
     static int turn = 0;
-}
-
-class MenuItems{
-    public static int number = 0;
-
-    public MenuItems(Text text, GameControl gameControl){
-        EventHandler<MouseEvent> mouseEvent = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
-                    text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
-                    text.setFill(Color.rgb(229,223,160));
-                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
-                    text.setStyle("-fx-font-size: 20; -fx-font-family: Purisa;");
-                    text.setFill(Color.CORNSILK);
-                }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
-                    switch (text.getText()){
-                        case "Single Player":
-                            try {
-                                Menu.getInstance().dynamicMenu();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                        case "MultiPlayer":
-                            break;
-                        case "Custom Game":
-                            break;
-                        case "Save Game":
-                            break;
-                        case "Settings":
-                            //TODO
-                            break;
-                        case "Reset Game":
-                            gameControl.resetGame();
-                            break;
-                    }
-                }
-            }
-        };
-        text.addEventHandler(MouseEvent.ANY, mouseEvent);
-    }
-
-    public MenuItems(ImageView exit, GameControl gameControl){
-        EventHandler<MouseEvent> mouseEvent = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
-                    exit.setFitHeight(85);
-                    exit.setFitWidth(75);
-                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
-                    exit.setFitHeight(80);
-                    exit.setFitWidth(70);
-                }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
-                    gameControl.endGame();
-                }
-            }
-        };
-        exit.addEventHandler(MouseEvent.ANY, mouseEvent);
-    }
-}
-
-class Hero{
-    private double x = Graphics.getInstance().getStage().getWidth() * 15 / 60;
-    private double y = Graphics.getInstance().getStage().getHeight() * 30 / 40;
-    private double width;
-    private double height;
-    private int direction = 3;
-    private int stateOfWalk = 0;
-    private final double speed = 3;
-    private ImageView[][] views;
-    private Map map = new Map();
-
-    Hero () {
-        Image image = null;
-        try {
-            image = new Image(getClass().getResource("../../Files/Images/heroSprite.png").toURI().toString());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        views = new ImageView[4][9];
-        for (int i = 0; i < 9; i++){
-            for (int j = 0; j < 4; j++){
-                WritableImage wImage = new WritableImage(64, 64);
-                assert image != null;
-                PixelReader reader = image.getPixelReader();
-                PixelWriter writer = wImage.getPixelWriter();
-                for (int x = 64*i; x < 64*i + 64; x++){
-                    for (int y = 64*j; y < 64*j + 64; y++){
-                        if (x < 574)
-                            writer.setColor(x - 64*i, y - 64*j, reader.getColor(x, y));
-                    }
-                }
-                views[j][i] = new ImageView(wImage);
-
-                //binding width and height property to stage's width and height
-                views[j][i].fitWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 30));
-                views[j][i].fitHeightProperty().bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 20));
-                width = views[j][i].getFitWidth();
-                height = views[j][i].getFitHeight();
-            }
-        }
-    }
-
-    public ImageView getView () {
-        views[direction][stateOfWalk].setX(x);
-        views[direction][stateOfWalk].setY(y);
-        return views[direction][stateOfWalk];
-    }
-
-    public ImageView[][] getViews () {
-        return views;
-    }
-
-    public double getX () {
-        return x;
-    }
-
-    public void setX (double x) {
-        this.x = x;
-    }
-
-    public double getY () {
-        return y;
-    }
-
-    public void setY (double y) {
-        this.y = y;
-    }
-
-    public double getSpeed () {
-        return speed;
-    }
-
-    public int getDirection () {
-        return direction;
-    }
-
-    public void setDirection (int direction) {
-        this.direction = direction;
-    }
-
-    public int getStateOfWalk () {
-        return stateOfWalk;
-    }
-
-    public void setStateOfWalk (int stateOfWalk) {
-        this.stateOfWalk = stateOfWalk % 9;
-    }
-
-    public void moveHero(){
-        switch (direction) {
-            case 0:
-                y -= speed;
-                if (map.isCellBlocked(x + (.5)*width, y + (3/4.0)*height)){
-                    y += speed;
-                }
-                break;
-            case 1:
-                x -= speed;
-                if (map.isCellBlocked(x + (.5)*width, y + (3/4.0)*height)){
-                    x += speed;
-                }
-                break;
-            case 2:
-                y += speed;
-                if (map.isCellBlocked(x + (.5)*width, y + (3/4.0)*height)){
-                    y -= speed;
-                }
-                break;
-            case 3:
-                x += speed;
-                if (map.isCellBlocked(x + (.5)*width, y + (3/4.0)*height)){
-                    x -= speed;
-                }
-                break;
-        }
-    }
-}
-
-class Map{
-    private String[] cells = new String[40];
-
-    Map(){
-        try {
-            Scanner scanner = new Scanner(new File("./src/Files/initial/mapBlocks"));
-            int index = 0;
-            while (scanner.hasNextLine()){
-                cells[index] = scanner.nextLine();
-                index++;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean isCellBlocked(double x, double y){
-        double cellWidth = Graphics.getInstance().getStage().getWidth() / 60;
-        double cellHeight = Graphics.getInstance().getStage().getHeight() / 40;
-
-        return cells[(int)(y / cellHeight)].charAt((int)(x / cellWidth)) == '#';
-    }
-
-    public String[] getCells () {
-        return cells;
-    }
-
-    public void setCells (String[] cells) {
-        this.cells = cells;
-    }
 }

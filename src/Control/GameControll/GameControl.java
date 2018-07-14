@@ -128,7 +128,33 @@ public class GameControl {
         battleControl = new BattleControl();
     }
 
+    public void startBattle(){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Battle.fxml"));
+            Graphics.getInstance().setBattle(new Scene(root));
+            Graphics.getInstance().getStage().setScene(Graphics.getInstance().getBattle());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert root != null;
+        VBox playerPart1 = (VBox) root.lookup("#playerPart1");
+        VBox playerPart2 = (VBox) root.lookup("#playerPart2");
+        //fixing the size of parts according to the page
+        playerPart1.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        playerPart1.maxHeightProperty().bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 2));
+        playerPart2.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        playerPart2.maxHeightProperty().bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 2));
+        HBox field1 = (HBox) root.lookup("#fieldP1");
+        HBox field2 = (HBox) root.lookup("#fieldP2");
+        field1.maxHeightProperty().bind(Bindings.divide(playerPart1.maxHeightProperty(), 3/2));
+        field2.maxHeightProperty().bind(Bindings.divide(playerPart1.maxHeightProperty(), 3/2));
+        battleControl.startBattle(getUser());
+    }
 
+    public void shopEntrance(){
+        shopControl.mainController();
+    }
 
     public void game() throws IOException{
         Menu.getInstance().mainMenu();

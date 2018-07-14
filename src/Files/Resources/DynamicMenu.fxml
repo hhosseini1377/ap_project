@@ -10,7 +10,7 @@
 <Group xmlns="http://javafx.com/javafx"
        xmlns:fx="http://javafx.com/fxml"
        >
-    <GridPane fx:id="gridPane" style="-fx-background-image: url(Files/Images/ProjectMap.png);
+    <GridPane fx:id="gridPane" style="-fx-background-image: url(Files/Images/Map/ProjectMap.png);
        -fx-background-repeat: no-repeat;
        -fx-background-position: center;
        -fx-background-size: stretch;"

@@ -34,6 +34,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -78,6 +79,8 @@ public class Menu {
      */
     public void startScreen (GameControl gameControl) throws IOException{
         loadScreenXML();
+        Graphics.getInstance().getStage().setWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        Graphics.getInstance().getStage().setHeight(Screen.getPrimary().getVisualBounds().getHeight());
         Graphics.START_MUSIC_PLAYER.setCycleCount(Animation.INDEFINITE);
         Graphics.START_MUSIC_PLAYER.play();
 

@@ -62,7 +62,7 @@ public class BattleControl {
             card.setFriend(warrior[0]);
         }
         System.out.println("Battle against " + warrior[0].getName() + " started!");
-        battle();
+//        battle();
     }
 
     /**

@@ -131,35 +131,20 @@ public class GameControl {
     }
 
     public void startBattle(){
-        Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Battle.fxml"));
-            Graphics.getInstance().setBattle(new Scene(root));
-            Graphics.getInstance().getStage().setScene(Graphics.getInstance().getBattle());
-            Graphics.getInstance().getStage().setFullScreen(true);
+            loadXML();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Parent root = Graphics.getInstance().getBattle().getRoot();
         assert root != null;
         Graphics.MAP_MUSIC_PLAYER.stop();
         Graphics.BATTLE_MUSIC_PLAYER.setCycleCount(-1);
         Graphics.BATTLE_MUSIC_PLAYER.play();
-        VBox playerPart1 = (VBox) root.lookup("#playerPart1");
-        VBox playerPart2 = (VBox) root.lookup("#playerPart2");
-        //fixing the size of parts according to the page
-        playerPart1.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
-        playerPart1.setFillWidth(true);
-        playerPart2.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
-        playerPart1.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
-        playerPart2.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
-        HBox field1 = (HBox) root.lookup("#fieldP1");
-        HBox field2 = (HBox) root.lookup("#fieldP2");
-        HBox detail1 = (HBox) root.lookup("#detailP1");
-        HBox detail2 = (HBox) root.lookup("#detailP2");
-        field1.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 2));
-        detail1.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 2));
-        field2.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 2));
-        detail2.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 2));
+        Graphics.getInstance().setMusicPlayer(Graphics.BATTLE_MUSIC_PLAYER);
+
+
+        playerPartControlSize();
 //        ImageView pic = (ImageView) root.lookup("#picP1");
 //        ImageView frame = (ImageView) root.lookup("#frameP1");
 //        pic.setFitWidth(.5*((VBox) root.lookup("#picContP1")).getMinWidth());
@@ -167,8 +152,45 @@ public class GameControl {
         battleControl.startBattle(getUser());
     }
 
+    private void loadXML() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Battle.fxml"));
+        Graphics.getInstance().setBattle(new Scene(root));
+        Graphics.getInstance().getStage().setScene(Graphics.getInstance().getBattle());
+        Graphics.getInstance().getStage().setFullScreen(true);
+    }
+
+    private void playerPartControlSize(){
+        Parent root = Graphics.getInstance().getBattle().getRoot();
+        VBox playerPart1 = (VBox) root.lookup("#playerPart1");
+        VBox playerPart2 = (VBox) root.lookup("#playerPart2");
+        //fixing the size of parts according to the page
+        playerPart1.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
+        playerPart1.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
+        playerPart2.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
+        playerPart2.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
+        playerPart1.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        playerPart1.maxWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        playerPart2.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        playerPart2.maxWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        //fixing size of fields
+        HBox field1 = (HBox) root.lookup("#fieldP1");
+        HBox field2 = (HBox) root.lookup("#fieldP2");
+        HBox detail1 = (HBox) root.lookup("#detailP1");
+        HBox detail2 = (HBox) root.lookup("#detailP2");
+        field1.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 3/2));
+        detail1.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 3));
+        field2.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 2));
+        detail2.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 2));
+
+        //fixing size of hands
+        HBox hand1 = (HBox) root.lookup("#handP1");
+        hand1.minWidthProperty().bind(Bindings.divide(detail1.minWidthProperty(), 6/5));
+        hand1.maxWidthProperty().bind(Bindings.divide(detail1.minWidthProperty(), 6/5));
+        HBox hand2 = (HBox) root.lookup("#handP2");
+    }
+
     public void shopEntrance(){
-        shopControl.enterShop();
+        shopControl.mainController();
     }
 
     public void game() throws IOException{

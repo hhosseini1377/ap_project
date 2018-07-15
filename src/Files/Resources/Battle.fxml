@@ -15,248 +15,254 @@
             fx:id="battleScreen"
             prefHeight="${screen.visualBounds.height}"
             prefWidth="${screen.visualBounds.width}"
+            style="-fx-background-color: rgb(226,210,82);"
 >
+    <!--fx-background-image: url(Files/Images/Battle/plateau3.jpg);-->
+    <!-- -fx-background-size: stretch;-->
+    <!-- -fx-background-repeat: no-repeat;-->
 
-<GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          alignment="TOP_CENTER"
-          prefHeight="${screen.visualBounds.height}"
-          prefWidth="${screen.visualBounds.width}"
-          style="-fx-background-image: url(Files/Images/Battle/plateau3.jpg);
-          -fx-background-size: stretch;
-          -fx-background-repeat: no-repeat;">
-
-    <columnConstraints/>
-    <columnConstraints/>
-    <rowConstraints/>
-    <rowConstraints/>
-    <rowConstraints/>
-
-    <VBox fx:id="playerPart1"
-          GridPane.rowIndex="1"
-    >
-
-        <HBox fx:id="detailP1"
+    <GridPane xmlns="http://javafx.com/javafx"
+              xmlns:fx="http://javafx.com/fxml"
               alignment="TOP_CENTER"
-              spacing="30">
-
-            <ImageView fx:id="deckP2"
-                       fitHeight="100"
-                       fitWidth="80">
-                <Image url="Files/Images/Battle/deckCard.jpeg"/>
-            </ImageView>
-            <HBox fx:id="handP1"
-                    minHeight="80"
-                    maxHeight="80"
-                    minWidth="1100"
-                    maxWidth="1100">
-            </HBox>
-            <ImageView fx:id="graveyardP1"
-                       fitWidth="80"
-                       fitHeight="100">
-                <Image url="Files/Images/Icons/graveyard.png"/>
-            </ImageView>
-
-        </HBox>
-
-        <!---->
-
-        <HBox fx:id="fieldP1" alignment="CENTER_RIGHT">
-            <padding><Insets right="30"/> </padding>
-
-
-            <HBox fx:id="monsterFieldP1"
-                  spacing="120"
-                  alignment="CENTER_RIGHT"
-            >
-
-                <HBox fx:id="cartslot1P1"
-                      maxHeight="150"
-
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-                <HBox fx:id="cartslot2P1"
-                      maxHeight="150"
-
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-                <HBox fx:id="cartslot3P1"
-                      maxHeight="150"
-
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-                <HBox fx:id="cartslot4P1"
-                      maxHeight="150"
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-                <HBox fx:id="cartslot5P1"
-                      maxHeight="150"
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-
-            </HBox>
-
-
-        </HBox>
-
-    </VBox>
-
-    <VBox GridPane.rowIndex="2"
-          alignment="CENTER_RIGHT"
+              prefHeight="${screen.visualBounds.height}"
+              prefWidth="${screen.visualBounds.width}"
+              style="-fx-background-color: rgba(17,17,17,0.41)"
     >
-        <padding> <Insets right="20"/> </padding>
-        <Button fx:id="changeTurn"
-                text="DONE"
-                minWidth="40"
-                style="-fx-background-color: rgba(152,220,49,0.99);
+
+        <columnConstraints/>
+        <columnConstraints/>
+        <rowConstraints/>
+        <rowConstraints/>
+        <rowConstraints/>
+
+        <VBox fx:id="playerPart1"
+              GridPane.rowIndex="1"
+        >
+
+            <HBox fx:id="detailP1"
+                  alignment="TOP_CENTER"
+                  spacing="30">
+
+                <ImageView fx:id="deckP2"
+                           fitHeight="100"
+                           fitWidth="80">
+                    <Image url="Files/Images/Battle/deckCard.jpeg"/>
+                </ImageView>
+                <HBox fx:id="handP1"
+                      minHeight="80"
+                      maxHeight="80"
+                      minWidth="1100"
+                      maxWidth="1100"
+                      style="-fx-background-color: rgba(202,206,139,0.91)"
+                >
+                </HBox>
+                <ImageView fx:id="graveyardP1"
+                           fitWidth="70"
+                           fitHeight="70">
+                    <Image url="Files/Images/Icons/graveyard.png"/>
+                </ImageView>
+
+            </HBox>
+
+            <!---->
+
+            <HBox fx:id="fieldP1" alignment="CENTER">
+                <!--<padding><Insets right="30"/> </padding>-->
+
+
+                <HBox fx:id="monsterFieldP1"
+                      spacing="100"
+                      alignment="CENTER"
+                >
+
+                    <HBox fx:id="cartslot1P1"
+                          maxHeight="150"
+
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+                    <HBox fx:id="cartslot2P1"
+                          maxHeight="150"
+
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+                    <HBox fx:id="cartslot3P1"
+                          maxHeight="150"
+
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+                    <HBox fx:id="cartslot4P1"
+                          maxHeight="150"
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+                    <HBox fx:id="cartslot5P1"
+                          maxHeight="150"
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+
+                </HBox>
+
+
+            </HBox>
+
+        </VBox>
+
+        <VBox GridPane.rowIndex="2"
+              alignment="CENTER_RIGHT"
+        >
+            <padding> <Insets right="20"/> </padding>
+            <Button fx:id="changeTurn"
+                    text="DONE"
+                    minWidth="40"
+                    style="-fx-background-color: rgba(220,215,47,0.99);
                         -fx-background-radius: 20;
                          -fx-border-radius: 20;
-                        -fx-border-width: 3;
-                        -fx-border-color: rgb(78,99,55);"
-        />
-    </VBox>
+                        -fx-border-width: 2;
+                        -fx-border-color: rgb(99,85,44);"
+            />
+        </VBox>
 
-    <VBox fx:id="playerPart2"
-          GridPane.rowIndex="3"
-          spacing="25"
-    >
+        <VBox fx:id="playerPart2"
+              GridPane.rowIndex="3"
+              spacing="25"
+        >
 
-        <HBox fx:id="fieldP2"
-              spacing="80" alignment="CENTER_RIGHT">
-            <padding><Insets right="30"/> </padding>
+            <HBox fx:id="fieldP2"
+                  spacing="80" alignment="CENTER">
+                <!--<padding><Insets right="30"/> </padding>-->
 
-            <HBox fx:id="monsterFieldP2"
-                  spacing="120" alignment="CENTER_RIGHT">
+                <HBox fx:id="monsterFieldP2"
+                      spacing="100" alignment="CENTER">
 
-                <HBox fx:id="cartslot1P2"
-                      maxHeight="150"
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-                <HBox fx:id="cartslot2P2"
-                      maxHeight="150"
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-                <HBox fx:id="cartslot3P2"
-                      maxHeight="150"
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-                <HBox fx:id="cartslot4P2"
-                      maxHeight="150"
+                    <HBox fx:id="cartslot1P2"
+                          maxHeight="150"
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+                    <HBox fx:id="cartslot2P2"
+                          maxHeight="150"
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+                    <HBox fx:id="cartslot3P2"
+                          maxHeight="150"
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+                    <HBox fx:id="cartslot4P2"
+                          maxHeight="150"
 
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-                <HBox fx:id="cartslot5P2"
-                      maxHeight="150"
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+                    <HBox fx:id="cartslot5P2"
+                          maxHeight="150"
 
-                      minWidth="120"
-                      style="-fx-background-color: rgba(99,98,15,0.46);"
-                />
-            </HBox>
-        </HBox>
-
-        <HBox fx:id="detailP2"
-              alignment="BOTTOM_CENTER"
-              spacing="30">
-            <padding><Insets bottom="20" /></padding>
-
-            <ImageView fx:id="graveyardP2"
-        fitWidth="80"
-        fitHeight="100">
-                <Image url="Files/Images/Icons/graveyard.png"/>
-            </ImageView>
-
-            <HBox fx:id="handP2"
-                  minHeight="80"
-                  maxHeight="80"
-                  minWidth="1100"
-                  maxWidth="1100">
-
+                          minWidth="120"
+                          style="-fx-background-color: rgba(28,26,18,0.74);"
+                    />
+                </HBox>
             </HBox>
 
-            <ImageView fx:id="deckP1"
-                       fitHeight="100"
-                       fitWidth="80">
-            <Image url="Files/Images/Battle/deckCard.jpeg"/>
-            </ImageView>
-        </HBox>
-    </VBox>
+            <HBox fx:id="detailP2"
+                  alignment="BOTTOM_CENTER"
+                  spacing="30">
+                <padding><Insets bottom="20" /></padding>
 
-    <fx:define>
-        <Screen fx:id="screen" fx:factory="getPrimary"/>
-    </fx:define>
-</GridPane>
-    <VBox fx:id="picContP1"
-          minWidth="100"
-          maxWidth="100"
-          minHeight="100"
-          maxHeight="100"
-          layoutY="40"
-          layoutX="600"
-          alignment="CENTER"
-    >
-        <ImageView fx:id="picP1"
-                   fitWidth="50"
-                   fitHeight="55"
-        >
-            <Image url="Files/Images/Battle/goblin.png"/>
-        </ImageView>
-    </VBox>
-    <VBox fx:id="frameContP1"
-          minWidth="100"
-          maxWidth="100"
-          minHeight="100"
-          maxHeight="100"
-          layoutY="40"
-          layoutX="600"
-          alignment="CENTER"
-    >
-        <ImageView fx:id="frameP1"
-                   fitWidth="100"
-                   fitHeight="100"
-        >
-            <Image url="Files/Images/Battle/picFrame.png"/>
-        </ImageView>
-    </VBox>
+                <ImageView fx:id="graveyardP2"
+                           fitWidth="70"
+                           fitHeight="70">
+                    <Image url="Files/Images/Icons/graveyard.png"/>
+                </ImageView>
 
-    <VBox fx:id="picContP2"
-          minWidth="100"
-          maxWidth="100"
-          minHeight="100"
-          maxHeight="100"
-          layoutY="600"
-          layoutX="600"
-          alignment="CENTER"
-    >
-        <ImageView fx:id="picP2"
-                   fitWidth="45"
-                   fitHeight="50"
-        >
-            <Image url="Files/Images/Battle/anonymous.png"/>
-        </ImageView>
-    </VBox>
-    <VBox fx:id="frameContP2"
-          minWidth="100"
-          maxWidth="100"
-          minHeight="100"
-          maxHeight="100"
-          layoutY="600"
-          layoutX="600"
-          alignment="CENTER"
-    >
-        <ImageView fx:id="frameP2"
-                   fitWidth="100"
-                   fitHeight="100"
-        >
-            <Image url="Files/Images/Battle/picFrame.png"/>
-        </ImageView>
+                <HBox fx:id="handP2"
+                      minHeight="80"
+                      maxHeight="80"
+                      minWidth="1100"
+                      maxWidth="1100"
+                      style="-fx-background-color: rgb(202,206,139, 0.91)"
+                >
+
+                </HBox>
+
+                <ImageView fx:id="deckP1"
+                           fitHeight="100"
+                           fitWidth="80">
+                    <Image url="Files/Images/Battle/deckCard.jpeg"/>
+                </ImageView>
+            </HBox>
+        </VBox>
+
+        <fx:define>
+            <Screen fx:id="screen" fx:factory="getPrimary"/>
+        </fx:define>
+    </GridPane>
+
+    <VBox fx:id="picV" alignment="CENTER">
+        <VBox fx:id="picVP1" alignment="TOP_CENTER">
+            <VBox fx:id="picContP1"
+                  minWidth="100"
+                  maxWidth="100"
+                  minHeight="100"
+                  maxHeight="100"
+                  alignment="CENTER"
+            >
+                <ImageView fx:id="picP1"
+                           fitWidth="50"
+                           fitHeight="55"
+                >
+                    <Image url="Files/Images/Battle/goblin.png"/>
+                </ImageView>
+            </VBox>
+            <VBox fx:id="frameContP1"
+                  minWidth="100"
+                  maxWidth="100"
+                  minHeight="100"
+                  maxHeight="100"
+                  alignment="CENTER"
+            >
+                <ImageView fx:id="frameP1"
+                           fitWidth="100"
+                           fitHeight="100"
+                >
+                    <Image url="Files/Images/Battle/picFrame.png"/>
+                </ImageView>
+            </VBox>
+
+        </VBox>
+        <VBox fx:id="picVP2" alignment="BOTTOM_CENTER">
+            <VBox fx:id="picContP2"
+                  minWidth="100"
+                  maxWidth="100"
+                  minHeight="100"
+                  maxHeight="100"
+                  alignment="CENTER"
+            >
+                <ImageView fx:id="picP2"
+                           fitWidth="45"
+                           fitHeight="50"
+                >
+                    <Image url="Files/Images/Battle/anonymous.png"/>
+                </ImageView>
+            </VBox>
+            <VBox fx:id="frameContP2"
+                  minWidth="100"
+                  maxWidth="100"
+                  minHeight="100"
+                  maxHeight="100"
+                  alignment="CENTER"
+            >
+                <ImageView fx:id="frameP2"
+                           fitWidth="100"
+                           fitHeight="100"
+                >
+                    <Image url="Files/Images/Battle/picFrame.png"/>
+                </ImageView>
+            </VBox>
+        </VBox>
     </VBox>
 </AnchorPane>

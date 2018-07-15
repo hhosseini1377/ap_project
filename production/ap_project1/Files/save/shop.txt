@@ -1,0 +1,57 @@
+items:
+Small HP Potion
+Medium HP Potion
+Large HP Potion
+Small MP Potion
+Medium MP Potion
+Large MP Potion
+Lesser Restorative
+Greater Restorative
+amulets:
+Iron Pendant
+Gold Pendant
+Diamond Pendant
+Iron Ring
+Gold Ring
+Diamond Ring
+Demon King's Crown
+cards:
+Throwing Knives -3
+Poisonous Cauldron -3
+First Aid Kit -3
+Reaper's Scythe -3
+Meteor Shower -3
+Lunar Blessing -2
+Strategic Retreat -2
+War Drum -2
+Healing Ward -2
+Blood Feast -2
+Tsunami -2
+Take All You Can -2
+Arcane Bolt -2
+Greater Purge -2
+Magic Seal -2
+Elven Ranger -4
+Elven Hunter -4
+Elven Guardsman -4
+Elven Assassin -4
+Elven Druid -2
+Elven Sorceress -2
+Noble Elf -2
+Luthien, The High Priestess -1
+Lesser Whelp -4
+Dragonling -4
+Armored Dragon -4
+Yellow Drake -4
+Blue Dragon -2
+Volcanic Dragon -2
+Greater Dragon -2
+Igneel, The Dragon King -1
+Murloc Crawler -4
+Murloc Warrior -4
+Giant Crab -4
+Shark Man -4
+Naga Siren -2
+Sea Serpent -2
+Kraken -2
+Neptune, King of Atlantis -1

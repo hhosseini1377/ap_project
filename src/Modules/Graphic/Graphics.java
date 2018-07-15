@@ -19,7 +19,7 @@ import java.net.URL;
 public class Graphics {
     private final static Media START = new Media(new File("./src/Files/Music/13_westWorld.mp3").toURI().toString());
     private final static Media MAP_MUSIC = new Media(new File("./src/Files/Music/15_westWorld.mp3").toURI().toString());
-    private final static Media BATTLE_MUSIC = new Media(new File("./src/Files/Music/21_westWorld.mp3").toURI().toString());
+    private final static Media BATTLE_MUSIC = new Media(new File("./src/Files/Music/11_westWorld.mp3").toURI().toString());
     public final static Image CURSOR_IMAGE = new Image("Files/Images/Icons/cursor1.png");
     public final static Effect REFLECTION = new Reflection(1, 0.5, 0.7, 0);
     public final static Effect GLOW = new Glow(0.7);
@@ -30,6 +30,7 @@ public class Graphics {
     public static final double SCREEN_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
     public static final double SCREEN_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
 
+
     private static Graphics graphics = new Graphics();
     private Scene menu;
     private Scene dynamicMenu;
@@ -39,8 +40,7 @@ public class Graphics {
     private Scene Inventory;
     private Scene mainScene;
     private Stage stage;
-
-
+    private MediaPlayer musicPlayer;
 
     private Graphics(){
     }
@@ -116,5 +116,13 @@ public class Graphics {
 
     public void setCardShopScene(Scene cardShopScene) {
         this.cardShopScene = cardShopScene;
+    }
+
+    public MediaPlayer getMusicPlayer () {
+        return musicPlayer;
+    }
+
+    public void setMusicPlayer (MediaPlayer musicPlayer) {
+        this.musicPlayer = musicPlayer;
     }
 }

@@ -180,6 +180,11 @@ public class Menu {
      */
     public void mainMenu() throws IOException {
         loadMenuXML();
+        Graphics.getInstance().getStage().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.HOME) {
+                goBacktoMenu();
+            }
+        });
         Parent root = Graphics.getInstance().getMenu().getRoot();
 
         Text welcome = ((Text) root.lookup("#welcome"));
@@ -189,12 +194,19 @@ public class Menu {
         addEventHandler();
     }
 
+    private void goBacktoMenu(){
+        Graphics.getInstance().getMusicPlayer().stop();
+        Graphics.START_MUSIC_PLAYER.play();
+        Graphics.getInstance().getStage().setScene(Graphics.getInstance().getMenu());
+    }
+
     /**
      * for loading the fxml code from resources
      */
     private void loadMenuXML() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/MainMenu.fxml"));
         Scene scene = Graphics.getInstance().getMainScene();
+        Graphics.getInstance().getStage().setScene(scene);
         Graphics.getInstance().setMenu(scene);
         scene.setRoot(root);
     }
@@ -204,7 +216,7 @@ public class Menu {
      */
     private void addEventHandler(){
         Parent root = Graphics.getInstance().getMenu().getRoot();
-        Text[] texts = new Text[7];
+        Text[] texts = new Text[8];
         for (int i = 0; i < 7; i++) {
             texts[i] = (Text) root.lookup("#menuText" + (i+1));
             new MenuItems(texts[i], gameControl);
@@ -217,6 +229,11 @@ public class Menu {
         ((VBox)root.lookup("#mainMenu")).maxHeightProperty().
                 bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5/2));
         ((VBox)root.lookup("#exit")).maxHeightProperty().
+                bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5.0/1.5));
+
+        ((VBox)root.lookup("#mainMenu")).minHeightProperty().
+                bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5/2));
+        ((VBox)root.lookup("#exit")).minHeightProperty().
                 bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 5.0/1.5));
 
         EventHandler<KeyEvent> up_Down = new EventHandler<KeyEvent>() {
@@ -232,7 +249,7 @@ public class Menu {
                     if (MenuItems.number > 0) {
                         MenuItems.number--;
                         text = texts[MenuItems.number];
-                        text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
+                        text.setStyle("-fx-font-size: 25; -fx-font-family: Purisa;");
                         text.setFill(Color.rgb(229, 223, 160));
                     }
                 }else if(event.getCode() == KeyCode.DOWN){
@@ -245,7 +262,7 @@ public class Menu {
                     if (MenuItems.number != 6) {
                         MenuItems.number++;
                         text = texts[MenuItems.number];
-                        text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
+                        text.setStyle("-fx-font-size: 25; -fx-font-family: Purisa;");
                         text.setFill(Color.rgb(229, 223, 160));
                     }
                 }else if(event.getCode() == KeyCode.ENTER){
@@ -354,6 +371,7 @@ public class Menu {
         Graphics.START_MUSIC_PLAYER.stop();
         Graphics.MAP_MUSIC_PLAYER.setCycleCount(Animation.INDEFINITE);
         Graphics.MAP_MUSIC_PLAYER.play();
+        Graphics.getInstance().setMusicPlayer(Graphics.MAP_MUSIC_PLAYER);
         Graphics.getInstance().setDynamicMenu(new Scene(root));
         ((GridPane)root.lookup("#gridPane")).minWidthProperty().bind(Bindings.divide(
                 Graphics.getInstance().getStage().widthProperty(), 1));

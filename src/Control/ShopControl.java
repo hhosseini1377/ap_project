@@ -1,8 +1,6 @@
 package Control;
 
 import Modules.Card.Monsters.Monster;
-import Modules.Card.Spell.Spell;
-import Modules.Graphic.Graphics;
 import Modules.Shop.AmuletShop;
 import Modules.Shop.CardShop;
 import Modules.Shop.ItemShop;

@@ -1,6 +1,7 @@
 package View.ShopView;
 
 import Modules.Graphic.Graphics;
+import Modules.Graphic.Menu;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -42,6 +43,17 @@ public class ShopView {
             exitIconImage.setPreserveRatio(true);
             exitIconImage.setFitWidth(60);
             exitIconImage.setLayoutY(-10);
+
+            exitIconImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    try {
+                        Menu.getInstance().mainMenu();
+                    }catch (Exception e){
+
+                    }
+                }
+            });
 
             ImageView amuletShopDetailView = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/amuletShopIcon.png")));
             amuletShopDetailView.setLayoutX(550);

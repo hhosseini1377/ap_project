@@ -110,7 +110,7 @@ public class CardShopView {
         VBox fullScreen = new VBox(cardRowColumn);
         fullScreen.setAlignment(Pos.CENTER);
         fullScreen.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
-        fullScreen.setStyle("-fx-background-image: url(Files/Images/CardShopBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+        //fullScreen.setStyle("-fx-background-image: url(Files/Images/CardShopBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
 
         BlueDragon blueDragon = new BlueDragon();
         CardView testCard = null;

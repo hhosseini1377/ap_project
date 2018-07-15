@@ -23,13 +23,25 @@ public class ShopView {
     private static Glow amuletGlow = new Glow();
 
     public void enterShop() {
-
-
         try {
+
             ImageView backGround = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/BackGround.jpg")));
             backGround.fitWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
             backGround.fitHeightProperty().bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 1));
             shopGroup.getChildren().add(backGround);
+
+            ImageView shopIconImage = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/Shop.png")));
+            shopIconImage.setPreserveRatio(true);
+            shopIconImage.setLayoutX(550);
+            shopIconImage.setLayoutY(0);
+            shopIconImage.setFitWidth(300);
+            shopGroup.getChildren().add(shopIconImage);
+
+            ImageView exitIconImage = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/Exit.png")));
+            shopGroup.getChildren().add(exitIconImage);
+            exitIconImage.setPreserveRatio(true);
+            exitIconImage.setFitWidth(60);
+            exitIconImage.setLayoutY(-10);
 
             ImageView amuletShopDetailView = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/amuletShopIcon.png")));
             amuletShopDetailView.setLayoutX(550);
@@ -42,20 +54,6 @@ public class ShopView {
             ImageView itemShopDetailView = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/itemShopIcon.png")));
             itemShopDetailView.setLayoutX(550);
             itemShopDetailView.setLayoutY(120);
-
-            ImageView shopIconImage = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/Shop.png")));
-            shopIconImage.setPreserveRatio(true);
-            shopIconImage.setLayoutX(550);
-            shopIconImage.setLayoutY(0);
-            shopIconImage.setFitWidth(300);
-            shopGroup.getChildren().add(shopIconImage);
-
-
-            ImageView exitIconImage = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/Exit.png")));
-            shopGroup.getChildren().add(exitIconImage);
-            exitIconImage.setPreserveRatio(true);
-            exitIconImage.setFitWidth(60);
-            exitIconImage.setLayoutY(-10);
 
             ImageView cardShopView = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/Card.png")));
             cardShopView.setFitWidth(300);
@@ -78,7 +76,7 @@ public class ShopView {
             });
 
 
-            ImageView itemShopView = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/itemShopIcon.png")));
+            ImageView itemShopView = new ImageView(new Image(new FileInputStream("/Users/macbook/Desktop/javacodes/projectfooking/ap_project/src/Files/Images/ShopImages/Item.png")));
             itemShopView.setPreserveRatio(true);
             itemShopView.setFitWidth(240);
             itemShopView.setOpacity(0.9);
@@ -135,9 +133,11 @@ public class ShopView {
         } catch (Exception e) {
             System.out.println("wrong fileInputStream");
         }
-        Graphics.getInstance().setShop(shopScene);
+
+
         Graphics.getInstance().getStage().setScene(shopScene);
         Graphics.getInstance().getStage().setFullScreen(true);
     }
-    }
+
+}
 

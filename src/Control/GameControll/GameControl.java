@@ -190,7 +190,7 @@ public class GameControl {
     }
 
     public void shopEntrance(){
-        shopControl.mainController();
+        shopControl.enterShop();
     }
 
     public void game() throws IOException{

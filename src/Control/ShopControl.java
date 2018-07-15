@@ -10,6 +10,7 @@ import Modules.User.User;
 import View.ShopView.AmuletShopView;
 import View.ShopView.CardShopView;
 import View.ShopView.ItemShopView;
+import View.ShopView.ShopView;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -22,6 +23,7 @@ public class ShopControl {
     private AmuletShopView amuletShopView;
     private ItemShopView itemShopView;
     private CardShopView cardShopView;
+    private ShopView shopView;
     private User User;
     private InventoryControl inventoryControl;
 
@@ -34,6 +36,11 @@ public class ShopControl {
         cardShopView = new CardShopView ();
         itemShopView = new ItemShopView ();
         amuletShopView = new AmuletShopView ();
+        shopView = new ShopView();
+    }
+
+    public void enterShop(){
+        shopView.enterShop();
     }
 
     private void cardShopController () {

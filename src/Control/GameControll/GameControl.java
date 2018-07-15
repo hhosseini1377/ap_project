@@ -144,6 +144,7 @@ public class GameControl {
         Graphics.MAP_MUSIC_PLAYER.stop();
         Graphics.BATTLE_MUSIC_PLAYER.setCycleCount(-1);
         Graphics.BATTLE_MUSIC_PLAYER.play();
+        Graphics.getInstance().setMusicPlayer(Graphics.BATTLE_MUSIC_PLAYER);
         VBox playerPart1 = (VBox) root.lookup("#playerPart1");
         VBox playerPart2 = (VBox) root.lookup("#playerPart2");
         //fixing the size of parts according to the page

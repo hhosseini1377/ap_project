@@ -24,6 +24,7 @@
                GridPane.vgrow="ALWAYS"
                style="-fx-padding: 20px;"
                GridPane.rowSpan="1"
+               alignment="CENTER_LEFT"
         >
             <Text fx:id="welcome"
                   text="welcome lord "

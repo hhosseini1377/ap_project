@@ -124,7 +124,7 @@ public class CardShopView {
         BlueDragon blueDragon = new BlueDragon();
         CardView testCard = null;
 
-        testCard = new CardView(Graphics.SCREEN_WIDTH * 3 / 19, Graphics.SCREEN_HEIGHT * 3 / 11, new Image("Files/Images/Blue-Eyes-White-Dragon.jpg"), blueDragon, 0, 0);
+        testCard = new CardView(Graphics.SCREEN_WIDTH * 2 / 19, Graphics.SCREEN_HEIGHT * 3 / 11, new Image("Files/Images/Blue-Eyes-White-Dragon.jpg"), blueDragon, 0, 0);
 
         cardRows[0].getChildren().add(testCard.getMainVBox());
 

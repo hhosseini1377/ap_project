@@ -10,7 +10,7 @@
           xmlns:fx="http://javafx.com/fxml"
           alignment="CENTER"
           style="-fx-alignment: center;
-          -fx-background-image: url(Files/Images/warDragon.jpg);
+          -fx-background-image: url(Files/Images/BackGround/warDragon.jpg);
           -fx-background-repeat: no-repeat;
           -fx-background-size: stretch;
           -fx-background-color: linear-gradient(to bottom, rgba(29,29,29,0.85), darkgrey)">

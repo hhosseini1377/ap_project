@@ -60,8 +60,8 @@ public class Card implements Cloneable{
         return name;
     }
 
-    public String[] detail(){
-        return new String[]{""};
+    public String detail(){
+        return "";
     }
 
     private String spellDetail(){

@@ -12,7 +12,7 @@
           xmlns:fx="http://javafx.com/fxml"
           minHeight="${screen.visualBounds.height}"
           minWidth="${screen.visualBounds.width}"
-          style="-fx-background-image:url(Files/Images/DragonWar1.jpg);
+          style="-fx-background-image:url(Files/Images/BackGround/hs2.jpg);
           -fx-background-size: stretch;
           -fx-background-repeat: no-repeat;
           -fx-background-position: center;"
@@ -88,7 +88,7 @@
                        fitHeight="80"
             >
                 <image>
-                    <Image url="Files/Images/exit-door.png"
+                    <Image url="Files/Images/Icons/exit-door.png"
                            backgroundLoading="true"
                     />
                 </image>

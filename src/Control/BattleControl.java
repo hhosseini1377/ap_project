@@ -70,7 +70,6 @@ public class BattleControl {
      * checking user's inputs and deciding according to them
      */
     private void battle () {
-        Scanner scan = new Scanner(System.in);
         //randomly starting the game
         int player = (int) (Math.random() * 2);
         System.out.println(warrior[player].getName() + " starts the battle");
@@ -89,11 +88,6 @@ public class BattleControl {
 
         if (turn % 2 == 0)
             changeTurn();
-        help();
-        while (true) {
-            if (decideAction(scan))
-                return;
-        }
     }
 
     private boolean decideAction (Scanner scan) {

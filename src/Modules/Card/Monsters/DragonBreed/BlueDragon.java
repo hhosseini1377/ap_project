@@ -83,6 +83,11 @@ public class BlueDragon extends SpellCaster{
     }
 
     @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    @Override
     public String spellDetail() {
         String spellDetail = "Move an enemy monster card from field to graveyard";
         return spellDetail;

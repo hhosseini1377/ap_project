@@ -30,6 +30,7 @@ public class Graphics {
     public static final double SCREEN_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
     public static final double SCREEN_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
 
+
     private static Graphics graphics = new Graphics();
     private Scene menu;
     private Scene dynamicMenu;
@@ -39,8 +40,7 @@ public class Graphics {
     private Scene Inventory;
     private Scene mainScene;
     private Stage stage;
-
-
+    private MediaPlayer musicPlayer;
 
     private Graphics(){
     }
@@ -116,5 +116,13 @@ public class Graphics {
 
     public void setCardShopScene(Scene cardShopScene) {
         this.cardShopScene = cardShopScene;
+    }
+
+    public MediaPlayer getMusicPlayer () {
+        return musicPlayer;
+    }
+
+    public void setMusicPlayer (MediaPlayer musicPlayer) {
+        this.musicPlayer = musicPlayer;
     }
 }

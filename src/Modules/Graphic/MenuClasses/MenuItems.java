@@ -18,7 +18,7 @@ public class MenuItems{
             @Override
             public void handle (MouseEvent event) {
                 if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
-                    text.setStyle("-fx-font-size: 40; -fx-font-family: Purisa;");
+                    text.setStyle("-fx-font-size: 25; -fx-font-family: Purisa;");
                     text.setFill(Color.rgb(229,223,160));
                 }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
                     text.setStyle("-fx-font-size: 20; -fx-font-family: Purisa;");
@@ -43,6 +43,8 @@ public class MenuItems{
                             break;
                         case "Reset Game":
                             gameControl.resetGame();
+                            break;
+                        case "About Game":
                             break;
                     }
                 }

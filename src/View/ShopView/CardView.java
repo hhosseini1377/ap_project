@@ -73,7 +73,7 @@ public class CardView {
 
     }
 
-    public VBox getMainVBox() {
+    public VBox getVBox() {
         return frame;
     }
 

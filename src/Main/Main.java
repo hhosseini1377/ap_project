@@ -2,7 +2,6 @@ package Main;
 
 import Control.GameControll.GameControl;
 import Modules.Graphic.Graphics;
-import Modules.Graphic.Menu;
 import View.ShopView.CardShopView;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,7 +14,7 @@ public class Main extends Application{
         Graphics.getInstance().setStage(primaryStage);
 //        Menu.getInstance().startScreen(gameControl);
         CardShopView cardShopView =   new CardShopView();
-        cardShopView.viewCardShop();
+        cardShopView.viewInventory();
         primaryStage.show();
     }
 

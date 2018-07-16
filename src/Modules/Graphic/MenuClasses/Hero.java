@@ -18,7 +18,7 @@ class Hero{
     private double height;
     private int direction = 3;
     private int stateOfWalk = 0;
-    private final double speed = 25;
+    private final double speed = 5;
     private ImageView[][] views;
     private Map map = new Map();
 

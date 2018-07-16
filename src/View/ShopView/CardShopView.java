@@ -77,7 +77,7 @@ public class CardShopView {
         screenVBox.setAlignment(Pos.CENTER);
         screenVBox.setLayoutX(250);
 
-        Text remaineGills = new Text()
+        Text remaineGills = new Text();
 
         ScrollBar sb = new ScrollBar();
         sb.setOrientation(Orientation.VERTICAL);

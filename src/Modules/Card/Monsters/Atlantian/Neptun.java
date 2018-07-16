@@ -3,6 +3,8 @@ package Modules.Card.Monsters.Atlantian;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Hero;
 import Modules.Card.Monsters.Monster;
+import Modules.Card.Monsters.MonsterKind;
+import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Spell.Spell;
 import Modules.Warrior.Warrior;
 
@@ -26,6 +28,8 @@ public class Neptun extends Hero {
         gillCost = 1000 * manaPoint;
         isNimble = true;
         offenseType = true;
+        monsterKind = MonsterKind.HERO;
+        monsterTribe = MonsterTribe.ATLANTIAN;
     }
 
     @Override

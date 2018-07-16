@@ -1,7 +1,9 @@
 package View.ShopView;
 
+import Control.ShopControl;
 import Modules.Card.Card;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,13 +11,94 @@ import Modules.Card.Monsters.DragonBreed.BlueDragon;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Graphic.Graphics;
+import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class CardShopView {
+    private ShopControl shopControl;
+    private ArrayList<VBox> cardImages = new ArrayList<>();
+    private Group cardShopGroup = new Group();
+    private Scene cardShopScene = new Scene(cardShopGroup);
+
+
+
+    public CardShopView(ShopControl shopControl){
+        this.shopControl = shopControl;
+    }
+
+    public void shopEntrance(){
+        ImageView backGround = new ImageView(new Image("Files/Images/CardShopBackground.jpg"));
+        backGround.fitWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        backGround.fitHeightProperty().bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 1));
+        cardShopGroup.getChildren().add(backGround);
+
+        ImageView cardShopIcon = new ImageView(new Image("Files/Images/ShopImages/cardShopIcon.png"));
+
+        for (Card card : shopControl.getCardShop().getCards()) {
+            cardImages.add(new CardView(Graphics.getInstance().getStage().getWidth()/7, Graphics.getInstance().getStage().getWidth() * 1.5 / 7, new Image("Files/Images/Battle/goblin.png"), card, 0, 0).getVBox());
+        }
+
+        VBox vBox1 = new VBox(50);
+        VBox vBox2 = new VBox(50);
+        VBox vBox3 = new VBox(50);
+        VBox vBox4 = new VBox(50);
+        int counter = 0;
+
+        for (VBox vBox : cardImages) {
+            if (counter % 4 == 0)
+                    vBox1.getChildren().add(vBox);
+                else if (counter % 4 == 1)
+                    vBox2.getChildren().add(vBox);
+                else if (counter % 4 == 2)
+                    vBox3.getChildren().add(vBox);
+                else if (counter % 4 == 3)
+                    vBox4.getChildren().add(vBox);
+                counter++;
+            }
+
+        HBox hBox = new HBox(50);
+        hBox.getChildren().addAll(vBox1,vBox2,vBox3,vBox4);
+
+        VBox screenVBox = new VBox();
+        screenVBox.getChildren().addAll(cardShopIcon,hBox);
+        screenVBox.setAlignment(Pos.CENTER);
+        screenVBox.setLayoutX(250);
+
+        Text remaineGills = new Text()
+
+        ScrollBar sb = new ScrollBar();
+        sb.setOrientation(Orientation.VERTICAL);
+        sb.setLayoutX(0);
+        sb.setPrefHeight(Graphics.getInstance().getStage().getHeight());
+        sb.setMax(9200);
+        sb.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                screenVBox.setLayoutY(-newValue.doubleValue());
+            }
+        });
+
+        cardShopGroup.getChildren().addAll(sb,screenVBox);
+
+
+
+        Graphics.getInstance().getStage().setScene(cardShopScene);
+    }
+
+
     /**
      * entrance Print
      * @param availableShopCards Comes from shopcontroller

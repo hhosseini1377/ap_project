@@ -31,14 +31,14 @@ public class ShopControl {
         this.itemShop = ItemShop;
         this.amuletShop = AmuletShop;
         this.User = User;
-        cardShopView = new CardShopView ();
+        cardShopView = new CardShopView (this);
         itemShopView = new ItemShopView ();
         amuletShopView = new AmuletShopView ();
-        shopView = new ShopView();
+        shopView = new ShopView(this);
     }
 
     public void enterShop(){
-        shopView.enterShop();
+        cardShopView.shopEntrance();
     }
 
     private void cardShopController () {
@@ -307,5 +307,17 @@ public class ShopControl {
             return true;
         }
         return false;
+    }
+
+    public CardShop getCardShop() {
+        return cardShop;
+    }
+
+    public ItemShop getItemShop() {
+        return itemShop;
+    }
+
+    public AmuletShop getAmuletShop() {
+        return amuletShop;
     }
 }

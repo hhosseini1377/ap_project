@@ -3,6 +3,7 @@ package Modules.Card.Monsters.DragonBreed;
 import Modules.Card.Monsters.Hero;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
+import Modules.Card.Monsters.MonsterTribe;
 import Modules.Warrior.Warrior;
 
 public class Igneel extends Hero {
@@ -22,6 +23,8 @@ public class Igneel extends Hero {
         gillCost = 1000 * manaPoint;
         isNimble = false;
         offenseType = true;
+        monsterKind = MonsterKind.HERO;
+        monsterTribe = MonsterTribe.DRAGON_BREED;
     }
 
     @Override

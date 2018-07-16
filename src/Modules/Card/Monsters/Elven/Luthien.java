@@ -2,6 +2,8 @@ package Modules.Card.Monsters.Elven;
 
 import Modules.Card.Card;
 import Modules.Card.Monsters.Hero;
+import Modules.Card.Monsters.MonsterKind;
+import Modules.Card.Monsters.MonsterTribe;
 import Modules.Warrior.Warrior;
 
 public class Luthien extends Hero{
@@ -21,6 +23,8 @@ public class Luthien extends Hero{
         gillCost = 1000 * manaPoint;
         isNimble = false;
         offenseType = true;
+        monsterKind = MonsterKind.HERO;
+        monsterTribe = MonsterTribe.ELVEN;
     }
 
     @Override

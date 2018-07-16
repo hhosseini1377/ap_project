@@ -194,7 +194,7 @@ public class Menu {
         addEventHandler();
     }
 
-    private void goBacktoMenu(){
+    public void goBacktoMenu(){
         Graphics.getInstance().getMusicPlayer().stop();
         Graphics.START_MUSIC_PLAYER.play();
         Graphics.getInstance().getStage().setScene(Graphics.getInstance().getMenu());
@@ -216,7 +216,7 @@ public class Menu {
      */
     private void addEventHandler(){
         Parent root = Graphics.getInstance().getMenu().getRoot();
-        Text[] texts = new Text[8];
+        Text[] texts = new Text[7];
         for (int i = 0; i < 7; i++) {
             texts[i] = (Text) root.lookup("#menuText" + (i+1));
             new MenuItems(texts[i], gameControl);

@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
-      <change beforePath="$PROJECT_DIR$/src/Control/ShopControl.java" afterPath="$PROJECT_DIR$/src/Control/ShopControl.java" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" afterPath="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShopView/CardView.java" afterPath="$PROJECT_DIR$/src/View/ShopView/CardView.java" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShopView/ShopView.java" afterPath="$PROJECT_DIR$/src/View/ShopView/ShopView.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -500,7 +496,7 @@
       <workItem from="1531750314785" duration="3701000" />
       <workItem from="1531763304494" duration="1120000" />
       <workItem from="1531764536986" duration="1726000" />
-      <workItem from="1531822887499" duration="4808000" />
+      <workItem from="1531822887499" duration="4907000" />
     </task>
     <task id="LOCAL-00001" summary="progressed in controllers, Hand, fields, and completed some Monster cards">
       <created>1525816472673</created>
@@ -803,11 +799,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531752795058</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="shopView and cardShopView attached to the project">
+      <created>1531827993647</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1531827993647</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284499000" />
+    <option name="totallyTimeSpent" value="284598000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -889,7 +892,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
-    <MESSAGE value="added new monster cards" />
     <MESSAGE value="Completed adding spells and improved in controllers a bit&#10;still needed to complete the spells and monsters and amulets" />
     <MESSAGE value="added new instances of spells" />
     <MESSAGE value="edit inventory added" />
@@ -914,7 +916,8 @@
     <MESSAGE value="shop entrance developed" />
     <MESSAGE value="shopImages sent" />
     <MESSAGE value="cardshopview developed a bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="cardshopview developed a bit" />
+    <MESSAGE value="shopView and cardShopView attached to the project" />
+    <option name="LAST_COMMIT_MESSAGE" value="shopView and cardShopView attached to the project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

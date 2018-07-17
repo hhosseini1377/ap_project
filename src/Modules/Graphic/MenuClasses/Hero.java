@@ -152,10 +152,16 @@ class Map{
         int row = (int)(y / cellHeight);
         switch (cells[row].charAt(col)){
             case 'G':
+                Menu.getInstance().startBattle(1);
+                break;
             case 'O':
+                Menu.getInstance().startBattle(2);
+                break;
             case 'V':
+                Menu.getInstance().startBattle(3);
+                break;
             case 'D':
-                Menu.getInstance().startBattle();
+                Menu.getInstance().startBattle(4);
                 break;
             case 'I':
                 break;

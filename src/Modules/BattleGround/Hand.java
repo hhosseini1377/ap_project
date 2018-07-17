@@ -1,11 +1,16 @@
 package Modules.BattleGround;
 
 import Modules.Card.Card;
+import View.BattleGroundView.HandView;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Hand {
+	private HandView handView = new HandView();
 	private ArrayList<Card> cards = new ArrayList<>();
 	private HashMap<String,Integer> numberOfCards = new HashMap<>();
 	private HashMap<String, Card> cardHashMap = new HashMap<>();
@@ -34,6 +39,10 @@ public class Hand {
 		}catch (NullPointerException e){
 			System.out.println("no available cards");
 		}
+	}
+
+	public void setHandView(HBox view){
+		handView.setHand(view);
 	}
 
 	public boolean hasCard(String name){

@@ -25,9 +25,6 @@ public class CardView {
 
 
     public CardView(double width, double height, Image image, Card card, double x, double y) {
-
-
-
         frame.setPrefSize(width, height);
         frame.setStyle("-fx-background-image: url(/Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
         frame.setAlignment(Pos.CENTER);

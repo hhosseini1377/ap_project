@@ -7,12 +7,25 @@ import Modules.Enemies.Goblins.Goblins;
 import Modules.Enemies.Lucifer.Lucifer;
 import Modules.Enemies.Ogres.Ogres;
 import Modules.Enemies.Vampires.Vampires;
+import Modules.Graphic.Graphics;
+import Modules.Graphic.Menu;
 import Modules.ItemAndAmulet.Items.MysticHourglass;
 import Modules.User.User;
 import Modules.Warrior.Warrior;
+import javafx.beans.binding.Bindings;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,17 +33,21 @@ public class BattleControl {
     private int turn;
     private Warrior[] warrior;
 
-    public void startBattle (User user) {
+    public void startBattle (User user, int level) {
         warrior = new Warrior[2];
 
         //TODO needs to be handled with exception
         if (!user.getDeck().isAcceptable()) {
-            System.out.println("deck not acceptable!!\nfix it and try again");
+            Graphics.getInstance().notifyMessage("deck not acceptable!!\nfix it and try again", "notify");
             return;
+        }
+        //doesn't let the cleared level to be repeated again
+        if (user.getLevel() > level){
+            Menu.getInstance().goBacktoMenu();
         }
 
         warrior[1] = new Warrior(user.getDeck(), user.getName());
-        switch (user.getLevel()) {
+        switch (level) {
             case 1:
                 warrior[0] = new Goblins();
                 break;
@@ -44,8 +61,10 @@ public class BattleControl {
                 warrior[0] = new Lucifer();
                 break;
             default:
-                System.out.println("You've already completed the game...\ngo somewhere else kido!!");
+                Graphics.getInstance().notifyMessage("You've already completed the game", "notify");
+                return;
         }
+
         warrior[1].setUser(user);
         warrior[0].setMaxManaPoint(1);
         warrior[1].setMaxManaPoint(1);
@@ -61,8 +80,8 @@ public class BattleControl {
             card.setEnemy(warrior[1]);
             card.setFriend(warrior[0]);
         }
-        System.out.println("Battle against " + warrior[0].getName() + " started!");
-//        battle();
+        Graphics.getInstance().notifyMessage("Battle against " + warrior[0].getName() + " started!", "notify");
+        battle();
     }
 
     /**
@@ -72,7 +91,8 @@ public class BattleControl {
     private void battle () {
         //randomly starting the game
         int player = (int) (Math.random() * 2);
-        System.out.println(warrior[player].getName() + " starts the battle");
+
+        Graphics.getInstance().notifyMessage(warrior[player].getName() + " starts the battle", "notify");
         turn = player;
 
         //giving 5 cards to each combatant
@@ -80,11 +100,6 @@ public class BattleControl {
             warrior[player].getHand().add(warrior[player].getDeck().takeCard());
             warrior[(player + 1) % 2].getHand().add(warrior[(player + 1) % 2].getDeck().takeCard());
         }
-
-        System.out.print("player drew ");
-        for (int i = 0; i < 4; i++)
-            System.out.print(warrior[1].getHand().getCards().get(i).getName() + ", ");
-        System.out.println(warrior[1].getHand().getCards().get(4).getName());
 
         if (turn % 2 == 0)
             changeTurn();

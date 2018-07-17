@@ -1,11 +1,14 @@
 package Modules.BattleGround;
 
 import Modules.Card.Card;
+import View.BattleGroundView.GraveYardView;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GraveYard {
+    private GraveYardView view = new GraveYardView();
     private ArrayList<Card> destroyedCards = new ArrayList<>();
     private HashMap<String, Card> cardMap = new HashMap<>();
     private HashMap<String, Integer> numberOfCards = new HashMap<>();
@@ -47,6 +50,10 @@ public class GraveYard {
         }catch (Exception e){
             System.out.println("card name not right!\ncheck and try again");
         }
+    }
+
+    public void setGraveyardView(ImageView view){
+        this.view.setGraveyardView(view);
     }
 
     public boolean hasCard(String name){

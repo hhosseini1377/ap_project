@@ -9,8 +9,10 @@ import Modules.Card.Card;
 import Modules.Card.Commanders.ArslanTheHero;
 import Modules.Card.Commanders.Commander;
 import Modules.User.User;
+import View.BattleGroundView.WarriorView;
 
 public class Warrior {
+    private WarriorView warriorView = new WarriorView();
     private User user;
     protected Commander commander;
     protected String name;

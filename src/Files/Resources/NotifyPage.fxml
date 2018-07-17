@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.stage.Screen?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.effect.Glow?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      prefHeight="${screen.visualBounds.height}"
+      prefWidth="${screen.visualBounds.width}"
+      style="-fx-background-color: rgba(0,0,0,0.71);"
+      alignment="CENTER"
+>
+    <fx:define>
+        <Screen fx:id="screen"
+                fx:factory="getPrimary"
+                />
+    </fx:define>
+    <VBox fx:id="dialogBox"
+          spacing="50"
+          style="-fx-background-image: url(Files/Images/BackGround/DialogueBg.jpeg);
+          -fx-background-size: stretch;
+          -fx-background-repeat: no-repeat;"
+          alignment="CENTER"
+    >
+        <Text fx:id="dialog"
+              text="Notify"
+              fill="cornsilk"
+              style="-fx-font-family: Purisa;
+                     -fx-font-size: 23;"/>
+
+        <Button fx:id="button"
+                text="Ok"
+                style="-fx-background-color: #69443c;
+                             -fx-background-radius: 10px;
+                             -fx-font-size: 23; -fx-font-family: Purisa;
+                             -fx-font-weight: bold;"
+                textAlignment="CENTER"
+                textFill="cornsilk"
+        >
+            <effect>
+                <Glow level="0.31" />
+            </effect>
+        </Button>
+    </VBox>
+
+</VBox>

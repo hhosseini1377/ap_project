@@ -23,6 +23,12 @@ public class ShopControl {
     private CardShopView cardShopView;
     private ShopView shopView;
     private User User;
+
+    public Modules.User.User getUser() {
+        return User;
+
+    }
+
     private InventoryControl inventoryControl;
 
     public ShopControl (CardShop CardShop, ItemShop ItemShop, AmuletShop AmuletShop, User User, InventoryControl inventoryControl) {
@@ -34,11 +40,11 @@ public class ShopControl {
         cardShopView = new CardShopView (this);
         itemShopView = new ItemShopView ();
         amuletShopView = new AmuletShopView ();
-        shopView = new ShopView(this);
+        shopView = new ShopView(this,cardShopView);
     }
 
     public void enterShop(){
-        cardShopView.shopEntrance();
+        shopView.enterShop();
     }
 
     private void cardShopController () {
@@ -54,7 +60,7 @@ public class ShopControl {
                     if(tradeMatcher.matches ()) {
                         int numberToBuy = Integer.parseInt(tradeMatcher.group(3));
                         try {
-                            cardShopView.printBuyCardsDetails(buyCard(tradeMatcher.group(2), numberToBuy), numberToBuy, tradeMatcher.group(2));
+//                            cardShopView.printBuyCardsDetails(buyCard(tradeMatcher.group(2), numberToBuy), numberToBuy, tradeMatcher.group(2));
                         } catch (Exception e) {
                             System.out.println("The entered name is wrong, make sure and try again.");
                         }
@@ -238,18 +244,13 @@ public class ShopControl {
         }
     }
 
-    private Boolean buyCard(String cardName, int numberToBuy){
-        if(User.canBuy(cardShop.getCard(cardName).getGillCost()*numberToBuy) && cardShop.getNumberOfCard(cardName) >= numberToBuy){
+    public void buyCard(String cardName, int numberToBuy){
             for(int counter =0;counter<numberToBuy;counter++) {
                 User.buy(cardShop.getCard(cardName).getGillCost());
                 User.getCardInventory().add(cardShop.getCard(cardName));
                 cardShop.removeCard(cardName);
             }
-            return true;
         }
-        else
-            return false;
-    }
 
     public Boolean buyItem(String itemName,int numberToBuy){
         if(User.canBuy(itemShop.getItem(itemName).getGillCost()*numberToBuy)){

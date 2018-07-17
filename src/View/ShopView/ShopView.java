@@ -24,8 +24,9 @@ public class ShopView {
     private static Glow amuletGlow = new Glow();
     private CardShopView thisCardShopView = new CardShopView(shopControl);
 
-    public ShopView(ShopControl shopControl){
+    public ShopView(ShopControl shopControl,CardShopView cardShopView){
         this.shopControl = shopControl;
+        this.thisCardShopView = cardShopView;
     }
 
 
@@ -71,7 +72,7 @@ public class ShopView {
             itemShopDetailView.setLayoutX(550);
             itemShopDetailView.setLayoutY(120);
 
-            ImageView cardShopView = new ImageView(new Image("Files/Images/ShopImages/cardShopIcon.png"));
+            ImageView cardShopView = new ImageView(new Image("Files/Images/ShopImages/Card.png"));
             cardShopView.setFitWidth(300);
             cardShopView.setFitHeight(480);
             cardShopView.setOpacity(0.9);
@@ -83,6 +84,7 @@ public class ShopView {
                     shopGroup.getChildren().add(cardShopDetailView);
                 }
             });
+
             cardShopView.setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -90,6 +92,14 @@ public class ShopView {
                     shopGroup.getChildren().remove(cardShopDetailView);
                 }
             });
+
+            cardShopView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    thisCardShopView.shopEntrance();
+                }
+            });
+
 
             cardShopView.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override

@@ -496,7 +496,7 @@
       <workItem from="1531750314785" duration="3701000" />
       <workItem from="1531763304494" duration="1120000" />
       <workItem from="1531764536986" duration="1726000" />
-      <workItem from="1531822887499" duration="4907000" />
+      <workItem from="1531822887499" duration="4941000" />
     </task>
     <task id="LOCAL-00001" summary="progressed in controllers, Hand, fields, and completed some Monster cards">
       <created>1525816472673</created>
@@ -806,11 +806,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531827993647</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="shopView and cardShopView attached to the project">
+      <created>1531828053267</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1531828053267</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284598000" />
+    <option name="totallyTimeSpent" value="284632000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

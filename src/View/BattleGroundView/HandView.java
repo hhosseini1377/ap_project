@@ -16,6 +16,8 @@ public class HandView {
     }
 
     public void addToHand(Card card){
-
+        card.getCardImage().setFitWidth(50);
+        card.getCardImage().setFitHeight(80);
+        hand.getChildren().add(card.getCardImage());
     }
 }

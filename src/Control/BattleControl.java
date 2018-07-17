@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -80,8 +81,16 @@ public class BattleControl {
             card.setEnemy(warrior[1]);
             card.setFriend(warrior[0]);
         }
+        setDetails();
         Graphics.getInstance().notifyMessage("Battle against " + warrior[0].getName() + " started!", "notify");
         battle();
+    }
+
+    private void setDetails(){
+        Parent root = Graphics.getInstance().getStage().getScene().getRoot();
+        warrior[1].getHand().setHandView((HBox) root.lookup("#handP2"));
+        warrior[0].getHand().setHandView((HBox) root.lookup("#handP1"));
+
     }
 
     /**

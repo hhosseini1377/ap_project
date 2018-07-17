@@ -163,6 +163,7 @@ public class CardShopView {
         Button noButton = new Button("No");
         HBox askHBox = new HBox(50);
         askHBox.getChildren().addAll(yesButton,noButton);
+        askHBox.setAlignment(Pos.CENTER);
 
         VBox vBox = new VBox(100);
         vBox.setAlignment(Pos.CENTER);
@@ -212,6 +213,9 @@ public class CardShopView {
             }
         });
     }
+
+
+
 
 
     /**

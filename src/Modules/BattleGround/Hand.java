@@ -36,6 +36,7 @@ public class Hand {
 				numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + 1);
 			else
 				numberOfCards.put(card.getName(), 1);
+			handView.addToHand(card);
 		}catch (NullPointerException e){
 			System.out.println("no available cards");
 		}

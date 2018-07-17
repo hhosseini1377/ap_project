@@ -65,8 +65,8 @@ public class Menu {
         this.gameControl = gameControl;
     }
 
-    public void startBattle(){
-        gameControl.startBattle();
+    public void startBattle(int level){
+        gameControl.startBattle(level);
     }
 
     public void shopEntrance(){

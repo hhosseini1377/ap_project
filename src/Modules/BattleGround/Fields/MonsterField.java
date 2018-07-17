@@ -2,11 +2,15 @@ package Modules.BattleGround.Fields;
 
         import Modules.Card.Card;
         import Modules.Card.Monsters.Monster;
+        import View.BattleGroundView.MonsterFieldView;
+        import javafx.scene.image.ImageView;
+        import javafx.scene.layout.HBox;
 
         import java.util.ArrayList;
         import java.util.HashMap;
 
 public class MonsterField {
+    private MonsterFieldView monsterFieldView = new MonsterFieldView();
     private HashMap<String,Integer> numberOfCards = new HashMap<>();
     private HashMap<Integer, Monster> slots = new HashMap<>();//a map of every card and its slot number
     private ArrayList<Monster> monsterCards = new ArrayList<>();
@@ -149,6 +153,10 @@ public class MonsterField {
                     monster.setSleeping(false);
                 }
             }
+    }
+
+    public void setFieldView(HBox view){
+        monsterFieldView.setFieldView(view);
     }
 
     public boolean hasCard(String name){

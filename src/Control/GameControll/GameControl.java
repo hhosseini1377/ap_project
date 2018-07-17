@@ -130,7 +130,7 @@ public class GameControl {
         battleControl = new BattleControl();
     }
 
-    public void startBattle(){
+    public void startBattle(int level){
         try {
             loadXML();
         } catch (IOException e) {
@@ -145,11 +145,7 @@ public class GameControl {
 
 
         playerPartControlSize();
-//        ImageView pic = (ImageView) root.lookup("#picP1");
-//        ImageView frame = (ImageView) root.lookup("#frameP1");
-//        pic.setFitWidth(.5*((VBox) root.lookup("#picContP1")).getMinWidth());
-//        pic.setFitWidth((7/12.0)*((VBox) root.lookup("#picContP1")).getMinHeight());
-        battleControl.startBattle(getUser());
+        battleControl.startBattle(getUser(), level);
     }
 
     private void loadXML() throws IOException {
@@ -160,18 +156,22 @@ public class GameControl {
     }
 
     private void playerPartControlSize(){
+        double width = Graphics.SCREEN_WIDTH;
+        double height = Graphics.SCREEN_HEIGHT;
         Parent root = Graphics.getInstance().getBattle().getRoot();
         VBox playerPart1 = (VBox) root.lookup("#playerPart1");
         VBox playerPart2 = (VBox) root.lookup("#playerPart2");
+
         //fixing the size of parts according to the page
-        playerPart1.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
-        playerPart1.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
-        playerPart2.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
-        playerPart2.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight()/2 - 20);
+        playerPart1.setMinHeight(height/2 - 20);
+        playerPart1.setMaxHeight(height/2 - 20);
+        playerPart2.setMinHeight(height/2 - 20);
+        playerPart2.setMaxHeight(height/2 - 20);
         playerPart1.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
         playerPart1.maxWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
         playerPart2.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
         playerPart2.maxWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+
         //fixing size of fields
         HBox field1 = (HBox) root.lookup("#fieldP1");
         HBox field2 = (HBox) root.lookup("#fieldP2");
@@ -184,9 +184,25 @@ public class GameControl {
 
         //fixing size of hands
         HBox hand1 = (HBox) root.lookup("#handP1");
-        hand1.minWidthProperty().bind(Bindings.divide(detail1.minWidthProperty(), 6/5));
-        hand1.maxWidthProperty().bind(Bindings.divide(detail1.minWidthProperty(), 6/5));
+        hand1.minWidthProperty().bind(Bindings.divide(playerPart1.minWidthProperty(), 1.2));
+        hand1.maxWidthProperty().bind(Bindings.divide(playerPart1.minWidthProperty(), 1.2));
         HBox hand2 = (HBox) root.lookup("#handP2");
+        hand2.minWidthProperty().bind(Bindings.divide(playerPart2.minWidthProperty(), 1.2));
+        hand2.maxWidthProperty().bind(Bindings.divide(playerPart2.minWidthProperty(), 1.2));
+
+        //fixing images
+        VBox pic1 = (VBox) root.lookup("#picContP1");
+        VBox frame1 = (VBox) root.lookup("#frameContP1");
+        VBox pic2 = (VBox) root.lookup("#picContP2");
+        VBox frame2 = (VBox) root.lookup("#frameContP2");
+        pic1.setLayoutY(60);
+        frame1.setLayoutY(60);
+        pic1.setLayoutX(width/2 - 40);
+        frame1.setLayoutX(width/2 - 40);
+        pic2.setLayoutY(height - 160);
+        frame2.setLayoutY(height - 160);
+        pic2.setLayoutX(width/2 - 40);
+        frame2.setLayoutX(width/2 - 40);
     }
 
     public void shopEntrance(){

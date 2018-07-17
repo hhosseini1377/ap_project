@@ -202,8 +202,14 @@
         </fx:define>
     </GridPane>
 
-    <VBox fx:id="picV" alignment="CENTER">
-        <VBox fx:id="picVP1" alignment="TOP_CENTER">
+    <!--<VBox fx:id="picV" -->
+          <!--alignment="CENTER" -->
+          <!--minWidth="${screen.visualBounds.width}" -->
+          <!--minHeight="${screen.visualBounds.height}"-->
+    <!--&gt;-->
+        <!--<VBox fx:id="picVP1" -->
+              <!--alignment="TOP_CENTER"-->
+        <!--&gt;-->
             <VBox fx:id="picContP1"
                   minWidth="100"
                   maxWidth="100"
@@ -233,8 +239,8 @@
                 </ImageView>
             </VBox>
 
-        </VBox>
-        <VBox fx:id="picVP2" alignment="BOTTOM_CENTER">
+        <!--</VBox>-->
+        <!--<VBox fx:id="picVP2" alignment="BOTTOM_CENTER">-->
             <VBox fx:id="picContP2"
                   minWidth="100"
                   maxWidth="100"
@@ -263,6 +269,6 @@
                     <Image url="Files/Images/Battle/picFrame.png"/>
                 </ImageView>
             </VBox>
-        </VBox>
-    </VBox>
+        <!--</VBox>-->
+    <!--</VBox>-->
 </AnchorPane>

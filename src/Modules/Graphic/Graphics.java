@@ -1,19 +1,28 @@
 package Modules.Graphic;
 
+import javafx.beans.binding.Bindings;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class Graphics {
@@ -125,4 +134,38 @@ public class Graphics {
     public void setMusicPlayer (MediaPlayer musicPlayer) {
         this.musicPlayer = musicPlayer;
     }
+
+    public void notifyMessage(String message, String kind){
+            VBox dialogPage = null;
+            try {
+                dialogPage = FXMLLoader.load(getClass().getResource("../../Files/Resources/NotifyPage.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assert dialogPage != null;
+            Scene scene = Graphics.getInstance().getStage().getScene();
+            ((Text) dialogPage.lookup("#dialog")).setText(message);
+            ((AnchorPane) scene.getRoot()).getChildren().add(dialogPage);
+            VBox box = (VBox) dialogPage.lookup("#dialogBox");
+            box.maxWidthProperty().bind(Bindings.divide(dialogPage.widthProperty(), 2.2));
+            box.minHeightProperty().bind(Bindings.divide(dialogPage.heightProperty(), 2));
+            Button button = (Button) dialogPage.lookup("#button");
+            String cssButton = "-fx-font-family: Purisa;" +
+                    "-fx-font-weight: bold;";
+            VBox finalDialogPage = dialogPage;
+            EventHandler<MouseEvent> onAction = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle (MouseEvent event) {
+                    if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+                        button.setStyle(cssButton + "-fx-background-color: #cea57f; -fx-font-size: 25;");
+                    } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
+                        button.setStyle(cssButton + "-fx-background-color:  #69443c; -fx-font-size: 23;");
+                    } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                        ((AnchorPane) scene.getRoot()).getChildren().remove(finalDialogPage);
+                    }
+                }
+            };
+            button.addEventHandler(MouseEvent.ANY, onAction);
+    }
+
 }

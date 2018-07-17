@@ -1,11 +1,14 @@
 package Modules.BattleGround;
 
 import Modules.Card.Card;
+import View.BattleGroundView.DeckView;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Deck implements Cloneable{
+    private DeckView deckView = new DeckView();
     private int maxNumber = 30;
     private int minNumber = 25;
     private ArrayList<Card> cards;
@@ -81,6 +84,10 @@ public class Deck implements Cloneable{
             System.out.println("no more cards on deck");
         }
         return null;
+    }
+
+    public void setDeckView(ImageView view){
+        deckView.setDeckImage(view);
     }
 
     public boolean contains(String Name){

@@ -10,10 +10,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Hand {
+	private boolean isEnemy = false;
 	private HandView handView = new HandView();
 	private ArrayList<Card> cards = new ArrayList<>();
 	private HashMap<String,Integer> numberOfCards = new HashMap<>();
 	private HashMap<String, Card> cardHashMap = new HashMap<>();
+
+	public void setEnemy (boolean enemy) {
+		isEnemy = enemy;
+	}
 
 	public void remove(Card card){
 		cards.remove(card);
@@ -23,6 +28,7 @@ public class Hand {
 		}
 		else
 			numberOfCards.remove(card.getName(),numberOfCards.get(card.getName())-1);
+		handView.removeFromHand(card, isEnemy);
 	}
 
 	public void add(Card card){
@@ -36,7 +42,7 @@ public class Hand {
 				numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + 1);
 			else
 				numberOfCards.put(card.getName(), 1);
-			handView.addToHand(card);
+			handView.addToHand(card, isEnemy);
 		}catch (NullPointerException e){
 			System.out.println("no available cards");
 		}

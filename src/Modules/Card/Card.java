@@ -97,7 +97,7 @@ public class Card implements Cloneable{
 
     @Override
     public boolean equals(Object other){
-        return ((Card)other).getId() == this.getId();
+        return ((Card)other).getName().equals(this.getName());
     }
 
     @Override
@@ -108,5 +108,10 @@ public class Card implements Cloneable{
     @Override
     public Object clone () throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    public Card renew(){
+        this.cardImage = new ImageView(new Image("./src/Files/Images/Battle/cardBack.jpeg"));
+        return this;
     }
 }

@@ -93,7 +93,7 @@ public class Menu {
         Timeline fadeAway = new Timeline(new KeyFrame(Duration.millis(.2), event -> {
             text.setOpacity(text.getOpacity() + OpaciyChange.opacityChange);
             if (text.getOpacity() < 0.01 && OpaciyChange.opacityChange < 0){
-                text.setText(OpaciyChange.text[OpaciyChange.turn]);
+//                text.setText(OpaciyChange.text[OpaciyChange.turn]);
                 OpaciyChange.turn++;
                 if (OpaciyChange.turn == 1)
                     text.setFont(Font.font("Nazli", 60));

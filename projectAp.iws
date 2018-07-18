@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="">
+    <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="shop improved">
+      <change beforePath="$PROJECT_DIR$/ap_project.ipr" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/ap_project.iws" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/ap_project1.iml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/ap_project1.ipr" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid510.log" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid551.log" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid557.log" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid568.log" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid615.log" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid627.log" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid647.log" afterPath="" />
       <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Card/Card.java" afterPath="$PROJECT_DIR$/src/Modules/Card/Card.java" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" afterPath="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Graphic/MenuClasses/Hero.java" afterPath="$PROJECT_DIR$/src/Modules/Graphic/MenuClasses/Hero.java" />
+      <change beforePath="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" afterPath="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,16 +38,29 @@
       <file leaf-file-name="CardShopView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/View/ShopView/CardShopView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="112" column="45" lean-forward="false" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+            <state relative-caret-position="389">
+              <caret line="150" column="28" lean-forward="false" selection-start-line="150" selection-start-column="28" selection-end-line="150" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1337#1338#0" expanded="true" />
-                <element signature="e#1383#1384#0" expanded="true" />
-                <element signature="e#6798#6799#0" expanded="true" />
-                <element signature="e#6844#6845#0" expanded="true" />
-                <element signature="e#8061#8062#0" expanded="true" />
-                <element signature="e#8107#8108#0" expanded="true" />
+                <element signature="e#1306#1307#0" expanded="true" />
+                <element signature="e#1352#1353#0" expanded="true" />
+                <element signature="e#3210#3211#0" expanded="true" />
+                <element signature="e#3277#3278#0" expanded="true" />
+                <element signature="e#7983#7984#0" expanded="true" />
+                <element signature="e#8029#8030#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Modules/User/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="416">
+              <caret line="81" column="19" lean-forward="false" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
+              <folding>
+                <element signature="e#1943#1944#0" expanded="true" />
+                <element signature="e#1980#1981#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,9 +69,56 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="135">
+              <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Modules/Graphic/Menu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="96" column="36" lean-forward="true" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
+              <folding>
+                <element signature="e#2027#2028#0" expanded="true" />
+                <element signature="e#2069#2070#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Modules/Card/Card.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="14" column="98" lean-forward="false" selection-start-line="14" selection-start-column="98" selection-end-line="14" selection-end-column="98" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hero.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Modules/Graphic/MenuClasses/Hero.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Monster.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Modules/Card/Monsters/Monster.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="e#610#611#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,59 +127,26 @@
         <entry file="file://$PROJECT_DIR$/src/View/ShopView/CardView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="35" column="50" lean-forward="true" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="82" />
+              <caret line="35" column="50" lean-forward="false" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cardframe.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Files/Images/cardframe.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ShopView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/ShopView/ShopView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
+            <state relative-caret-position="225">
               <caret line="28" column="45" lean-forward="false" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
-              <folding>
-                <element signature="e#4110#4111#0" expanded="true" />
-                <element signature="e#4181#4182#0" expanded="true" />
-                <element signature="e#4356#4357#0" expanded="true" />
-                <element signature="e#4427#4428#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Amulet.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Files/Images/ShopImages/Amulet.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CardShopBackground.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Files/Images/CardShopBackground.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="heroSprite.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Files/Images/heroSprite.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ShopControl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Control/ShopControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="450">
               <caret line="42" column="49" lean-forward="false" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
               <folding>
                 <element signature="e#1363#1364#0" expanded="true" />
@@ -115,19 +157,6 @@
                 <element signature="e#15187#15188#0" expanded="true" />
                 <element signature="e#15228#15229#0" expanded="true" />
                 <element signature="e#15261#15262#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameControl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Control/GameControll/GameControl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="192" column="21" lean-forward="true" selection-start-line="192" selection-start-column="21" selection-end-line="192" selection-end-column="21" />
-              <folding>
-                <element signature="e#8492#8493#0" expanded="true" />
-                <element signature="e#8531#8532#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -217,7 +246,6 @@
         <option value="$PROJECT_DIR$/src/Files/Resources/DynamicMenu.fxml" />
         <option value="$PROJECT_DIR$/src/Files/Resources/MainMenu.fxml" />
         <option value="$PROJECT_DIR$/src/Files/Resources/ExitBox.fxml" />
-        <option value="$PROJECT_DIR$/src/Modules/Card/Card.java" />
         <option value="$PROJECT_DIR$/src/Modules/Card/Monsters/Monster.java" />
         <option value="$PROJECT_DIR$/src/Modules/Card/Monsters/Normal.java" />
         <option value="$PROJECT_DIR$/src/Modules/Card/Monsters/Demonic/Cerberus.java" />
@@ -231,13 +259,14 @@
         <option value="$PROJECT_DIR$/src/Control/BattleControl.java" />
         <option value="$PROJECT_DIR$/src/Files/Resources/Battle.fxml" />
         <option value="$PROJECT_DIR$/src/Modules/Graphic/Graphics.java" />
-        <option value="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/src/Control/GameControll/GameControl.java" />
-        <option value="$PROJECT_DIR$/src/Modules/Graphic/MenuClasses/Hero.java" />
         <option value="$PROJECT_DIR$/src/View/ShopView/CardView.java" />
         <option value="$PROJECT_DIR$/src/Control/ShopControl.java" />
         <option value="$PROJECT_DIR$/src/View/ShopView/ShopView.java" />
+        <option value="$PROJECT_DIR$/src/Modules/Graphic/Menu.java" />
+        <option value="$PROJECT_DIR$/src/Modules/Card/Card.java" />
+        <option value="$PROJECT_DIR$/src/Modules/Graphic/MenuClasses/Hero.java" />
         <option value="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" />
       </list>
     </option>
@@ -267,8 +296,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,6 +325,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
@@ -496,7 +525,10 @@
       <workItem from="1531750314785" duration="3701000" />
       <workItem from="1531763304494" duration="1120000" />
       <workItem from="1531764536986" duration="1726000" />
-      <workItem from="1531822887499" duration="4949000" />
+      <workItem from="1531822887499" duration="4997000" />
+      <workItem from="1531833148572" duration="834000" />
+      <workItem from="1531919113291" duration="101000" />
+      <workItem from="1531919238186" duration="3408000" />
     </task>
     <task id="LOCAL-00001" summary="progressed in controllers, Hand, fields, and completed some Monster cards">
       <created>1525816472673</created>
@@ -820,11 +852,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531828080255</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="shopView and cardShopView attached to the project">
+      <created>1531828088016</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1531828088016</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284640000" />
+    <option name="totallyTimeSpent" value="289031000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -837,21 +876,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32648125" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32588235" sideWeight="0.49722221" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25208914" sideWeight="0.50572246" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32588235" sideWeight="0.50277776" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21886337" sideWeight="0.49427754" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33736396" sideWeight="0.49284694" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21294117" sideWeight="0.49166667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33647057" sideWeight="0.49284694" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21816881" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21736111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -906,7 +946,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
-    <MESSAGE value="Completed adding spells and improved in controllers a bit&#10;still needed to complete the spells and monsters and amulets" />
     <MESSAGE value="added new instances of spells" />
     <MESSAGE value="edit inventory added" />
     <MESSAGE value="edited some stuff" />
@@ -931,7 +970,8 @@
     <MESSAGE value="shopImages sent" />
     <MESSAGE value="cardshopview developed a bit" />
     <MESSAGE value="shopView and cardShopView attached to the project" />
-    <option name="LAST_COMMIT_MESSAGE" value="shopView and cardShopView attached to the project" />
+    <MESSAGE value="shop improved" />
+    <option name="LAST_COMMIT_MESSAGE" value="shop improved" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -952,27 +992,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/View/BattleGroundView/MonsterFieldView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/BattleGroundView/HandView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Modules/Graphic/MenuClasses/MenuItems.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="25" column="50" lean-forward="false" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/BattleGroundView/DeckView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -996,24 +1015,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hs_err_pid632.log" />
-    <entry file="file://$PROJECT_DIR$/hs_err_pid627.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/hs_err_pid627.log" />
     <entry file="file://$PROJECT_DIR$/src/View/ShopView/ItemShopView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Modules/Card/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="98" column="15" lean-forward="false" selection-start-line="98" selection-start-column="15" selection-end-line="98" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -1027,13 +1033,6 @@
     <entry file="file://$PROJECT_DIR$/src/Files/Images/Battle/anonymous.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Modules/Graphic/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Control/GameControll/GameDetailController.java">
@@ -1132,13 +1131,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Modules/Graphic/MenuClasses/Hero.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="20" column="35" lean-forward="false" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Control/InventoryControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1150,7 +1142,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1158,7 +1149,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1166,17 +1156,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1531659785000" expanded="true" signature="451:636" ph="{...}" />
-            <marker date="1531659785000" expanded="true" signature="1149:1268" ph="{...}" />
-            <marker date="1531659785000" expanded="true" signature="1575:1636" ph="{...}" />
-            <marker date="1531659785000" expanded="true" signature="1785:1846" ph="{...}" />
-            <marker date="1531659785000" expanded="true" signature="1995:2056" ph="{...}" />
-            <marker date="1531659785000" expanded="true" signature="2203:2264" ph="{...}" />
-            <marker date="1531659785000" expanded="true" signature="2410:2471" ph="{...}" />
-            <marker date="1531659785000" expanded="true" signature="2619:2680" ph="{...}" />
-            <marker date="1531659785000" expanded="true" signature="2828:2889" ph="{...}" />
-          </folding>
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1187,7 +1166,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1214,17 +1192,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Modules/User/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="81" column="19" lean-forward="false" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
-          <folding>
-            <element signature="e#1943#1944#0" expanded="true" />
-            <element signature="e#1980#1981#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Files/Images/cardBackground.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1247,11 +1214,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Control/GameControll/GameControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="192" column="21" lean-forward="true" selection-start-line="192" selection-start-column="21" selection-end-line="192" selection-end-column="21" />
+        <state relative-caret-position="2475">
+          <caret line="208" column="21" lean-forward="false" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="21" />
           <folding>
-            <element signature="e#8492#8493#0" expanded="true" />
-            <element signature="e#8531#8532#0" expanded="true" />
+            <element signature="e#8882#8883#0" expanded="false" />
+            <element signature="e#8921#8922#0" expanded="false" />
+            <marker date="1531828098000" expanded="true" signature="8842:8850" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1261,25 +1229,17 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/ShopView/CardView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="35" column="50" lean-forward="true" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="82" />
+          <caret line="35" column="50" lean-forward="false" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Control/ShopControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="450">
           <caret line="42" column="49" lean-forward="false" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
           <folding>
             <element signature="e#1363#1364#0" expanded="true" />
@@ -1296,29 +1256,84 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/ShopView/ShopView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
+        <state relative-caret-position="225">
           <caret line="28" column="45" lean-forward="false" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hs_err_pid568.log" />
+    <entry file="file://$PROJECT_DIR$/hs_err_pid615.log" />
+    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="12" />
           <folding>
-            <element signature="e#4110#4111#0" expanded="true" />
-            <element signature="e#4181#4182#0" expanded="true" />
-            <element signature="e#4356#4357#0" expanded="true" />
-            <element signature="e#4427#4428#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/Graphic/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="96" column="36" lean-forward="true" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
+          <folding>
+            <element signature="e#2027#2028#0" expanded="true" />
+            <element signature="e#2069#2070#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/Card/Monsters/Monster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#610#611#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/Card/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="14" column="98" lean-forward="false" selection-start-line="14" selection-start-column="98" selection-end-line="14" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/Graphic/MenuClasses/Hero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modules/User/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="81" column="19" lean-forward="false" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
+          <folding>
+            <element signature="e#1943#1944#0" expanded="true" />
+            <element signature="e#1980#1981#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/ShopView/CardShopView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="112" column="45" lean-forward="false" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+        <state relative-caret-position="389">
+          <caret line="150" column="28" lean-forward="false" selection-start-line="150" selection-start-column="28" selection-end-line="150" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1337#1338#0" expanded="true" />
-            <element signature="e#1383#1384#0" expanded="true" />
-            <element signature="e#6798#6799#0" expanded="true" />
-            <element signature="e#6844#6845#0" expanded="true" />
-            <element signature="e#8061#8062#0" expanded="true" />
-            <element signature="e#8107#8108#0" expanded="true" />
+            <element signature="e#1306#1307#0" expanded="true" />
+            <element signature="e#1352#1353#0" expanded="true" />
+            <element signature="e#3210#3211#0" expanded="true" />
+            <element signature="e#3277#3278#0" expanded="true" />
+            <element signature="e#7983#7984#0" expanded="true" />
+            <element signature="e#8029#8030#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -67,6 +67,7 @@ public class BattleControl {
         }
 
         warrior[1].setUser(user);
+        warrior[0].getHand().setEnemy(true);
         warrior[0].setMaxManaPoint(1);
         warrior[1].setMaxManaPoint(1);
         Iterator<Card> itr = warrior[1].getDeck().getCards().iterator();
@@ -86,11 +87,29 @@ public class BattleControl {
         battle();
     }
 
-    private void setDetails(){
+    private void setDetails() {
         Parent root = Graphics.getInstance().getStage().getScene().getRoot();
         warrior[1].getHand().setHandView((HBox) root.lookup("#handP2"));
         warrior[0].getHand().setHandView((HBox) root.lookup("#handP1"));
-
+        Button doneButton = (Button) root.lookup("#changeTurn");
+        String buttonStyle = "-fx-background-radius: 20;" +
+                "-fx-border-radius: 20;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-color: rgb(99,85,44);";
+        EventHandler<MouseEvent> onButton = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    doneButton.setStyle(buttonStyle + "-fx-background-color: rgb(189,171,22);");
+                }else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
+                    doneButton.setStyle(buttonStyle + "-fx-background-color: rgba(220,215,47,0.99);");
+                }else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                    if (turn % 2 == 1)
+                        changeTurn();
+                }
+            }
+        };
+        doneButton.addEventHandler(MouseEvent.ANY, onButton);
     }
 
     /**
@@ -100,6 +119,7 @@ public class BattleControl {
     private void battle () {
         //randomly starting the game
         int player = (int) (Math.random() * 2);
+        player = 1;
 
         Graphics.getInstance().notifyMessage(warrior[player].getName() + " starts the battle", "notify");
         turn = player;
@@ -109,84 +129,6 @@ public class BattleControl {
             warrior[player].getHand().add(warrior[player].getDeck().takeCard());
             warrior[(player + 1) % 2].getHand().add(warrior[(player + 1) % 2].getDeck().takeCard());
         }
-
-        if (turn % 2 == 0)
-            changeTurn();
-    }
-
-    private boolean decideAction (Scanner scan) {
-        String action[];
-        if (checkEndOfTheGame()) {
-            return true;
-        }
-        String line = scan.nextLine();
-        action = line.split(" ");
-        Matcher matcher = Pattern.compile("Info (.*)").matcher(line);
-        switch (action[0]) {
-            case "View":
-                try {
-                    switch (action[1]) {
-                        case "Hand":
-                            viewHand();
-                            break;
-                        case "Graveyard":
-                            viewGraveyard();
-                            break;
-                        case "MonsterField":
-                            viewMonsterField();
-                            break;
-                        case "SpellField":
-                            viewSpellField();
-                            break;
-                        default:
-                            System.out.println("invalid input");
-                            break;
-                    }
-                }catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("You need to declare what to view...");
-                }
-                break;
-            case "Info":
-                if (matcher.matches()) {
-                    viewCardInfo(matcher);
-                }
-                break;
-            case "Help":
-                help();
-                break;
-            case "Exit":
-                System.out.println("Are you sure you want to exit the battle?(All data will be reset to before the game started)");
-                if (scan.nextLine().equals("No"))
-                    break;
-                return true;
-            case "Use":
-                try {
-                    if (turn % 2 != 1)
-                        throw new TurnException();
-                    try {
-                        useCard(Integer.parseInt(action[1]));
-                    }catch (NullPointerException e){
-                        System.out.println("This slot is empty!!");
-                    }
-                } catch (TurnException e) {
-                    break;
-                }
-                break;
-            case "Done":
-                if (turn % 2 == 1) {
-                    changeTurn();
-                } else {
-                    System.out.println("What the hell do you think you are doing little shit???");
-                }
-                break;
-            case "Set":
-                setIntoField(action);
-                break;
-            default:
-                System.out.println("invalid input");
-                break;
-        }
-        return false;
     }
 
     /**

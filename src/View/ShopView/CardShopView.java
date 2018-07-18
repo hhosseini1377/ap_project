@@ -3,10 +3,7 @@ package View.ShopView;
 import Control.ShopControl;
 import Modules.Card.Card;
 import java.util.ArrayList;
-import java.util.HashMap;
 import Modules.Card.Monsters.DragonBreed.BlueDragon;
-import Modules.Card.Monsters.MonsterKind;
-import Modules.Card.Monsters.MonsterTribe;
 import Modules.Graphic.Graphics;
 import Modules.Graphic.Menu;
 import javafx.beans.binding.Bindings;
@@ -43,7 +40,7 @@ public class CardShopView {
         availableCards = new ArrayList<>();
         cardImages = new ArrayList<>();
 
-        ImageView backGround = new ImageView(new Image("Files/Images/CardShopBackground.jpg"));
+        ImageView backGround = new ImageView(new Image("Files/Images/BackGround/cardShopBackGround.jpg"));
         backGround.fitWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
         backGround.fitHeightProperty().bind(Bindings.divide(Graphics.getInstance().getStage().heightProperty(), 1));
         cardShopGroup.getChildren().add(backGround);
@@ -53,6 +50,8 @@ public class CardShopView {
         ImageView exitIcon = new ImageView(new Image("Files/Images/ShopImages/Exit.png"));
         exitIcon.setPreserveRatio(true);
         exitIcon.setFitWidth(60);
+        exitIcon.setLayoutX(Graphics.getInstance().getStage().getWidth()-65);
+        exitIcon.setLayoutY(-5);
         cardShopGroup.getChildren().add(exitIcon);
 
         exitIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -106,23 +105,30 @@ public class CardShopView {
         HBox hBox = new HBox(50);
         hBox.getChildren().addAll(vBox1,vBox2,vBox3,vBox4);
 
-        Text remainGills = new Text("remained gills:" + Integer.toString(shopControl.getUser().getGills()));
+        Text remainGills = new Text(Integer.toString(shopControl.getUser().getGills()));
 
-        VBox gillVBox = new VBox();
-        gillVBox.getChildren().addAll(remainGills);
+        ImageView coinImage = new ImageView(new Image("Files/Images/ShopImages/coinIcon.png"));
+        coinImage.setFitWidth(60);
+        coinImage.setPreserveRatio(true);
+
+        HBox coinHBox = new HBox();
+        coinHBox.setAlignment(Pos.CENTER);
+        coinHBox.getChildren().addAll(coinImage,remainGills);
+        coinHBox.setLayoutX(15);
+        coinHBox.setLayoutY(-8);
+        cardShopGroup.getChildren().add(coinHBox);
 
         VBox screenVBox = new VBox();
-        screenVBox.getChildren().addAll(remainGills,cardShopIcon,hBox);
+        screenVBox.getChildren().addAll(cardShopIcon,hBox);
         screenVBox.setAlignment(Pos.CENTER);
         screenVBox.setLayoutX(250);
         screenVBox.setLayoutY(50);
-
 
         ScrollBar sb = new ScrollBar();
         sb.setOrientation(Orientation.VERTICAL);
         sb.setLayoutX(0);
         sb.setPrefHeight(Graphics.getInstance().getStage().getHeight());
-        sb.setMax(9200);
+        sb.setMax(3000);
         sb.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -140,7 +146,7 @@ public class CardShopView {
         gridPane.setAlignment(Pos.CENTER);
         cardShopScene.setRoot(gridPane);
 
-        gridPane.setStyle("-fx-background-image: url(/Files/Images/CardShopBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+        gridPane.setStyle("-fx-background-image: url(/Files/Images/BackGround/cardShopBackGround.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
 
 
         Text text = new Text(card.toString());
@@ -151,8 +157,9 @@ public class CardShopView {
         form.setFitWidth(700);
 
         Button buyButton = new Button("Buy");
-
+        buyButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         Button backButton = new Button("Back");
+        backButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
 
         HBox hBox = new HBox(50);
         hBox.getChildren().addAll(buyButton,backButton);
@@ -191,14 +198,16 @@ public class CardShopView {
         gridPane.setAlignment(Pos.CENTER);
         cardShopScene.setRoot(gridPane);
 
-        gridPane.setStyle("-fx-background-image: url(/Files/Images/CardShopBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+        gridPane.setStyle("-fx-background-image: url(/Files/Images/BackGround/cardShopBackGround.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
 
 
         ImageView form = new ImageView(new Image("Files/Images/BackGround/DialogueBg.jpeg"));
         Text text = new Text("Are you sure you want to buy " + cardName + " from the Shop?");
         text.setFill(Color.WHITE);
         Button yesButton = new Button("Yes");
+        yesButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         Button noButton = new Button("No");
+        noButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         HBox askHBox = new HBox(50);
         askHBox.getChildren().addAll(yesButton,noButton);
         askHBox.setAlignment(Pos.CENTER);
@@ -232,12 +241,14 @@ public class CardShopView {
         gridPane.setAlignment(Pos.CENTER);
         cardShopScene.setRoot(gridPane);
 
-        gridPane.setStyle("-fx-background-image: url(/Files/Images/CardShopBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
-
+        gridPane.setStyle("-fx-background-image: url(/Files/Images/BackGround/cardShopBackGround.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
 
         Text text = new Text("You don't have enough gills to buy " + cartName);
+        text.setFill(Color.WHITE);
+
         ImageView form = new ImageView(new Image("Files/Images/BackGround/DialogueBg.jpeg"));
         Button returnButton = new Button("return to Card Shop");
+        returnButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         VBox vBox = new VBox(50);
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(text,returnButton);
@@ -250,83 +261,6 @@ public class CardShopView {
                 shopEntrance();
             }
         });
-    }
-
-
-
-
-
-    /**
-     * entrance Print
-     * @param availableShopCards Comes from shopcontroller
-     */
-    public void PrintCardShopDetails(ArrayList<Card> availableShopCards,HashMap<String,Integer> numberOfCards) {
-        int CardNumber = 1;
-        System.out.println("\nAvailable Cards:");
-        for (Card card : availableShopCards) {
-            System.out.println(CardNumber++ + ". " +  card.getName() + " " +card.getGillCost());
-        }
-        System.out.println("\nInventory Cards:");
-        numberOfCards.forEach((key,value) -> {
-            System.out.println(key + " " + value);
-        });
-    }
-
-    public void PrintCardShopHelpDetails() {
-        System.out.println("1. Buy \"Card Name\" - #NumberToBuy: To buy a certain number of a card from shop");
-        System.out.println("2. Sell \"Card Name\" - #NumberToSell: To sell a certain number of a card from inventory");
-        System.out.println("3. Info \"Card Name\" To get more information about a card");
-        System.out.println("4. Edit Deck: To edit Deck and remove and add cards to it");
-        System.out.println("5. Exit: To return to shop menu");
-    }
-
-    public void printBuyCardsDetails(boolean canbuy, int NumberOfBuy, String cardName) {
-        if (canbuy){
-            System.out.println("Successfully bought " + NumberOfBuy + " of " + cardName + "s");
-        } else {
-            System.out.println("Not enough Gill!");
-        }
-    }
-
-    public void printSellCardDetails(boolean canSell,int NumberOfSell,String cardName){
-        if(canSell){
-            System.out.println("Successfully sold " + NumberOfSell + " of " + cardName + "s");
-        }
-        else{
-            System.out.println("Not enough Cards!");
-        }
-    }
-
-    public void printInfoOfMonsterCard(String cardName,int defaultHP,int defaultAP,int MPcost,MonsterKind monsterKind,MonsterTribe monsterTribe,boolean isDefencive,boolean isNimble,String Details){
-        System.out.println(cardName + " Info:");
-        System.out.println("Name: " + cardName);
-        System.out.println("HP: " + defaultHP);
-        System.out.println("AP: " + defaultAP);
-        System.out.println("Card Type: " + monsterKind);
-        System.out.println("Card Tribe: " + monsterTribe);
-        System.out.println(Details);
-    }
-
-
-    public void printInfoOfSpellCard(String cardName,int MPCost,String details){
-        System.out.println(cardName + "Info: ");
-        System.out.println("Name: " + cardName);
-        System.out.println("MPCost: " + MPCost);
-        System.out.println(details);
-    }
-
-    public void printEditDeckDetails(HashMap<String,Integer> numberOfCardsInInventory,ArrayList<Card> deckCards){
-        //prints deck cards
-        int numberOfCards =0;
-        System.out.println("Deck: ");
-        for (Card card:deckCards)
-            System.out.println("Slot " + numberOfCards++ +": " + card.getName());
-        //prints inventory cards
-        System.out.println("Inventory Cards:");
-        numberOfCardsInInventory.forEach((key,value) -> {
-            System.out.println("Card name:" + key + " Number of Cards: " + value);
-        });
-        //TODO its incomplete
     }
 
     public void viewInventory(){

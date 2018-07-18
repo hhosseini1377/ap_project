@@ -150,8 +150,7 @@ public class Graphics {
             box.maxWidthProperty().bind(Bindings.divide(dialogPage.widthProperty(), 2.2));
             box.minHeightProperty().bind(Bindings.divide(dialogPage.heightProperty(), 2));
             Button button = (Button) dialogPage.lookup("#button");
-            String cssButton = "-fx-font-family: Purisa;" +
-                    "-fx-font-weight: bold;";
+            String cssButton = "-fx-font-family: Purisa;" + "-fx-font-weight: bold;";
             VBox finalDialogPage = dialogPage;
             EventHandler<MouseEvent> onAction = new EventHandler<MouseEvent>() {
                 @Override

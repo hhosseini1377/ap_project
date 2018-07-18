@@ -47,7 +47,8 @@ public class ShopView {
             shopGroup.getChildren().add(exitIconImage);
             exitIconImage.setPreserveRatio(true);
             exitIconImage.setFitWidth(60);
-            exitIconImage.setLayoutY(-10);
+            exitIconImage.setLayoutX(Graphics.getInstance().getStage().getWidth()-65);
+            exitIconImage.setLayoutY(-5);
 
             exitIconImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -55,7 +56,7 @@ public class ShopView {
                     try {
                         Menu.getInstance().mainMenu();
                     }catch (Exception e){
-
+                        System.out.println(e);
                     }
                 }
             });
@@ -74,7 +75,7 @@ public class ShopView {
 
             ImageView cardShopView = new ImageView(new Image("Files/Images/ShopImages/Card.png"));
             cardShopView.setFitWidth(300);
-            cardShopView.setFitHeight(480);
+            cardShopView.setFitHeight(300);
             cardShopView.setOpacity(0.9);
             cardShopView.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
@@ -97,14 +98,7 @@ public class ShopView {
                 @Override
                 public void handle(MouseEvent event) {
                     thisCardShopView.shopEntrance();
-                }
-            });
-
-
-            cardShopView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    thisCardShopView.shopEntrance();
+                    Graphics.getInstance().getStage().setFullScreen(true);
                 }
             });
 

@@ -87,7 +87,7 @@ public class BattleControl {
         battle();
     }
 
-    private void setDetails(){
+    private void setDetails() {
         Parent root = Graphics.getInstance().getStage().getScene().getRoot();
         warrior[1].getHand().setHandView((HBox) root.lookup("#handP2"));
         warrior[0].getHand().setHandView((HBox) root.lookup("#handP1"));

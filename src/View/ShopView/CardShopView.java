@@ -26,7 +26,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class CardShopView {
@@ -82,10 +81,7 @@ public class CardShopView {
             cardView.getVBox().setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    if(shopControl.getUser().canBuy(cardView.getCard().getGillCost()))
-                        buyCard(cardView.getCard().getName());
-                    else
-                        cantBuy(cardView.getCard().getName());
+                    buyCard(cardView.getCard());
                 }
             });
         }
@@ -111,9 +107,6 @@ public class CardShopView {
         hBox.getChildren().addAll(vBox1,vBox2,vBox3,vBox4);
 
         Text remainGills = new Text("remained gills:" + Integer.toString(shopControl.getUser().getGills()));
-//        ImageView gillImage = new ImageView(new Image("Files/Images/ShopImages/gill.jpg"));
-//        gillImage.setFitWidth(20);
-//        gillImage.setPreserveRatio(true);
 
         VBox gillVBox = new VBox();
         gillVBox.getChildren().addAll(remainGills);
@@ -142,22 +135,67 @@ public class CardShopView {
         Graphics.getInstance().getStage().setScene(cardShopScene);
     }
 
+    private void buyCard(Card card){
+        GridPane gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
+        cardShopScene.setRoot(gridPane);
+
+        gridPane.setStyle("-fx-background-image: url(/Files/Images/CardShopBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+
+
+        Text text = new Text(card.toString());
+        text.setFill(Color.WHITE);
+
+        ImageView form = new ImageView(new Image("Files/Images/BackGround/DialogueBg.jpeg"));
+        form.setPreserveRatio(true);
+        form.setFitWidth(700);
+
+        Button buyButton = new Button("Buy");
+
+        Button backButton = new Button("Back");
+
+        HBox hBox = new HBox(50);
+        hBox.getChildren().addAll(buyButton,backButton);
+        hBox.setAlignment(Pos.CENTER);
+
+        VBox detailVBox = new VBox(100);
+        detailVBox.getChildren().addAll(text,hBox);
+        detailVBox.setAlignment(Pos.CENTER);
+
+        gridPane.getChildren().addAll(form,detailVBox);
+
+        buyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(shopControl.getUser().canBuy(card.getGillCost()))
+                    canBuy(card.getName());
+                else
+                    cantBuy(card.getName());
+            }
+        });
+
+        backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cardShopGroup.getChildren().removeAll(form,detailVBox);
+                shopEntrance();
+
+            }
+        });
+    }
 
     //this method calls when we want to check if user wants to buy the card
-
-    private void buyCard(String cardName){
+    private void canBuy(String cardName){
 
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         cardShopScene.setRoot(gridPane);
-        cardShopScene.setFill(Color.BLACK);
 
         gridPane.setStyle("-fx-background-image: url(/Files/Images/CardShopBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
 
 
         ImageView form = new ImageView(new Image("Files/Images/BackGround/DialogueBg.jpeg"));
         Text text = new Text("Are you sure you want to buy " + cardName + " from the Shop?");
-//        text.setFont(Font.font(16));
         text.setFill(Color.WHITE);
         Button yesButton = new Button("Yes");
         Button noButton = new Button("No");

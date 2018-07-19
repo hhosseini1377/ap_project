@@ -11,7 +11,6 @@ import Modules.Warrior.Warrior;
 import View.ShopView.CardView;
 import javafx.scene.image.Image;
 
-import java.io.File;
 import java.util.Scanner;
 
 public class Neptun extends Hero {
@@ -20,10 +19,10 @@ public class Neptun extends Hero {
         battleCryName = "Call to Arms";
         spellName = "Trident Beam";
         willName = "Ocean's Cry";
-        battleCryDetail = " Select and move a card from\nhand to play field";
-        willDetail = " Deal 400 damage to all enemy\nmonster cards and player and\n" +
+        battleCryDetail = " Select and move a card from hand to play field";
+        willDetail = " Deal 400 damage to all enemy monster cards and player and\n" +
                 " increase all friend Atlantian monster cards' AP by 500";
-        spellDetail = "Deal 800 damage to three random\nenemy monster cards or player";
+        spellDetail = "Deal 800 damage to three random enemy monster cards or player";
         HP = 2200;
         AP = 2500;
         initialAP = AP;
@@ -34,7 +33,7 @@ public class Neptun extends Hero {
         offenseType = true;
         monsterKind = MonsterKind.HERO;
         monsterTribe = MonsterTribe.ATLANTIAN;
-        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        cardImage = new Image("./src/Files/Images/CardImages/"+this.name+".jpg");
         cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
         cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }

@@ -8,8 +8,6 @@ import Modules.Warrior.Warrior;
 import View.ShopView.CardView;
 import javafx.scene.image.Image;
 
-import java.io.File;
-
 public class SeaSerpent extends SpellCaster{
 
     public SeaSerpent(){
@@ -24,7 +22,7 @@ public class SeaSerpent extends SpellCaster{
         monsterTribe = MonsterTribe.ATLANTIAN;
         isNimble = true;
         offenseType = true;
-        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        cardImage = new Image("./src/Files/Images/CardImages/"+this.name+".jpg");
         cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
         cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }

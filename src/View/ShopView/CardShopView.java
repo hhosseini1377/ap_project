@@ -59,7 +59,6 @@ public class CardShopView {
         exitIcon.setLayoutX(Graphics.getInstance().getStage().getWidth()-65);
         exitIcon.setLayoutY(-5);
         cardShopGroup.getChildren().add(exitIcon);
-        System.out.println("fook you kasraaaaaaa");
 
         exitIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -79,17 +78,17 @@ public class CardShopView {
         }
 
         for (Card card : availableCards) {
-            cardImages.add(new CardView(Graphics.getInstance().getStage().getWidth() / 7, Graphics.getInstance().getStage().getWidth() / 7 * 1.5, new Image("Files/Images/Battle/goblin.png"), card, 0, 0,false));
+            cardImages.add(card.getCardView());
 
         }
 
         for(CardView cardView : cardImages){
-//            cardView.getMainVBox().setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                @Override
-//                public void handle(MouseEvent event) {
-//                    buyCard(cardView.getCard());
-//                }
-//            });
+            cardView.getMainVBox().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    buyCard(cardView.getCard());
+                }
+            });
 
             cardView.getMainVBox().setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override

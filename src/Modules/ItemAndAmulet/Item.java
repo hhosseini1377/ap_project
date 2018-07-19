@@ -9,7 +9,7 @@ public abstract class Item implements Cloneable{
     protected String name;
     protected int gillCost;
     protected boolean isUsed = false;
-//    protected ImageView itemImage = new ImageView(new Image("Files/Images/Items/" + this.name + ".jpg"));
+    protected ImageView itemImage = new ImageView(new Image("Files/Images/Items/" + this.name + ".jpg"));
     public String getName()  {
         return name;
     }

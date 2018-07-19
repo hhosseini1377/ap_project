@@ -22,9 +22,15 @@ public class CardView {
     private VBox mainVBox;
     private HBox nameHBox = new HBox(0);
     private HBox kindHBox = new HBox(0);
+    private Card card;
 
+
+    public Card getCard() {
+        return card;
+    }
 
     public CardView(double width, double height, Image image, Card card, double x, double y, boolean isBig) {
+        this.card = card;
 
 
         frame.setPrefSize(width, height);
@@ -97,7 +103,7 @@ public class CardView {
         if (card instanceof Spell){
             return "SpellCard";
         }else {
-            return ((Monster)card).getMonsterTribe().toString();
+            return "salam";
         }
     }
 

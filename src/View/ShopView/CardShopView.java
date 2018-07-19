@@ -16,6 +16,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +32,7 @@ public class CardShopView {
     private ArrayList<CardView> cardImages = new ArrayList<>();
     private Group cardShopGroup = new Group();
     private Scene cardShopScene = new Scene(cardShopGroup);
+    private Glow cardGlow = new Glow(0.5);
     public CardShopView(ShopControl shopControl){
         this.shopControl = shopControl;
     }
@@ -81,6 +83,20 @@ public class CardShopView {
                 @Override
                 public void handle(MouseEvent event) {
                     buyCard(cardView.getCard());
+                }
+            });
+
+            cardView.getVBox().setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    cardView.getVBox().setEffect(cardGlow);
+                }
+            });
+
+            cardView.getVBox().setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    cardView.getVBox().setEffect(null );
                 }
             });
         }

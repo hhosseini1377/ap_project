@@ -2,8 +2,11 @@ package Modules.ItemAndAmulet.Items;
 
 import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
+import javafx.scene.image.Image;
 
-public class GreaterRestorative extends Item{
+import javax.swing.text.html.ImageView;
+
+    public class GreaterRestorative extends Item{
 
     public GreaterRestorative(){
         gillCost = 4000;

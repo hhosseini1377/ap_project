@@ -8,6 +8,8 @@ import Modules.Warrior.Warrior;
 import View.ShopView.CardView;
 import javafx.scene.image.Image;
 
+import java.io.File;
+
 public class NagaSiren extends SpellCaster{
 
     public NagaSiren(){
@@ -22,7 +24,7 @@ public class NagaSiren extends SpellCaster{
         monsterTribe = MonsterTribe.ATLANTIAN;
         isNimble = true;
         offenseType = true;
-        cardImage = new Image("Files/Images/CardImages/"+this.name+".jpg");
+        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
         cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
         cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }

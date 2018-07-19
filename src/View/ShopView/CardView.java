@@ -82,6 +82,9 @@ public class CardView {
             if (card instanceof Monster) {
                 detailsText = new Label(("  HP:" + ((Monster) card).getHP() + "\n" + "  AP:" + ((Monster) card).getAP()));
                 detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
+            }else {
+                detailsText = new Label(card.toString());
+                detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
             }
         }
 

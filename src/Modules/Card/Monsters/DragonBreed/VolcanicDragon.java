@@ -10,6 +10,7 @@ import View.ShopView.CardView;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class VolcanicDragon extends SpellCaster {
@@ -26,7 +27,7 @@ public class VolcanicDragon extends SpellCaster {
         monsterTribe = MonsterTribe.DRAGON_BREED;
         isNimble = false;
         offenseType = false;
-        cardImage = new Image("./src/Files/Images/CardImages/"+this.name+".jpg");
+        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
         cardView = new CardView(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT * 3 / 12, cardImage, this,0, 0, false);
         cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12, cardImage,this, 0, 0, true);
     }

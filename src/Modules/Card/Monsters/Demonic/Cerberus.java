@@ -6,7 +6,10 @@ import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Spell.Spell;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -19,8 +22,7 @@ public class Cerberus extends Hero{
         willName = "Revenge of the Two Heads";
         battleCryDetail = "Draw three cards from deck to hand";
         willDetail = "Send two random enemy monster cards from field to graveyard";
-        spellDetail = "Deal 300 damage to all enemy monster cards and Increase HP and AP" +
-                "of all friendly monster cards by 300";
+        spellDetail = "Deal 300 damage to all enemy monster cards\n and Increase HP and AP of all friendly monster\n cards by 300";
         HP = 3000;
         AP = 2000;
         initialAP = AP;
@@ -31,6 +33,9 @@ public class Cerberus extends Hero{
         offenseType = true;
         monsterKind = MonsterKind.HERO;
         monsterTribe = MonsterTribe.DEMONIC;
+        cardImage = new Image("Files/Images/CardImages/"+this.name+".jpg");
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 
     @Override

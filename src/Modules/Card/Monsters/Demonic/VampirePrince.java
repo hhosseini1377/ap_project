@@ -4,7 +4,10 @@ import Modules.Card.Monsters.General;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
 
 public class VampirePrince extends General{
 
@@ -20,6 +23,9 @@ public class VampirePrince extends General{
         offenseType = true;
         monsterKind = MonsterKind.GENERAL;
         monsterTribe = MonsterTribe.DEMONIC;
+        cardImage = new Image("Files/Images/CardImages/"+this.name+".jpg");
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 
     @Override
@@ -68,7 +74,7 @@ public class VampirePrince extends General{
 
     @Override
     public String willDetail() {
-        String willDetail = "Reduce all enemy monsters' AP by 200 and increase all friendly monsters' AP by 200";
+        String willDetail = "Reduce all enemy monsters' AP by 200 and increase\n all friendly monsters' AP by 200";
         return willDetail;
     }
 

@@ -4,7 +4,10 @@ import Modules.Card.Card;
 import Modules.Card.Monsters.Hero;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
 
 public class Luthien extends Hero{
     public Luthien(){
@@ -12,9 +15,9 @@ public class Luthien extends Hero{
         battleCryName = "Revive Allies";
         spellName = "Divine Blessing";
         willName = "Burst of Light";
-        battleCryDetail = "move two random cards from your graceyard to hand";
-        willDetail = "Increase HP of all friendly monste cards and player by 500 and increase AP of all friendly monster cards by 200";
-        spellDetail = "Increase HP of a friendly monster card or player by 2500";
+        battleCryDetail = " move two random cards from your graceyard to hand";
+        willDetail = " Increase HP of all friendly monste cards and player by 500\n and increase AP of all friendly monster cards by 200";
+        spellDetail = " Increase HP of a friendly monster card or player by 2500";
         HP = 2500;
         AP = 2000;
         initialAP = AP;
@@ -25,6 +28,9 @@ public class Luthien extends Hero{
         offenseType = true;
         monsterKind = MonsterKind.HERO;
         monsterTribe = MonsterTribe.ELVEN;
+        cardImage = new Image("Files/Images/CardImages/"+this.name+".jpg");
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 
     @Override

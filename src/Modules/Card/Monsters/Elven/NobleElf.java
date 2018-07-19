@@ -5,7 +5,10 @@ import Modules.Card.Monsters.General;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Spell.Spell;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
 
 public class NobleElf extends General{
 
@@ -21,6 +24,9 @@ public class NobleElf extends General{
         offenseType = true;
         monsterKind = MonsterKind.GENERAL;
         monsterTribe = MonsterTribe.ELVEN;
+        cardImage = new Image("Files/Images/CardImages/"+this.name+".jpg");
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 
     @Override
@@ -45,14 +51,14 @@ public class NobleElf extends General{
 
     @Override
     public String willDetail() {
-        String willDetail = "Increase a random friendly Elven monster card on the" +
+        String willDetail = "Increase a random friendly Elven monster card on the\n" +
                 " field’s HP by 800 and AP by 600";
         return willDetail;
     }
 
     @Override
     public String battleCryDetail() {
-        String battleCryDetail = "Remove all enemy spell cards on the field and move them to hand";
+        String battleCryDetail = "Remove all enemy spell cards on the field and\n move them to hand";
         return battleCryDetail;
     }
 

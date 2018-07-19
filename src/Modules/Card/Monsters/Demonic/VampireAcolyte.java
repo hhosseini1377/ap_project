@@ -4,6 +4,9 @@ import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
+import Modules.Graphic.Graphics;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,9 @@ public class VampireAcolyte extends SpellCaster{
         monsterTribe = MonsterTribe.DEMONIC;
         isNimble = true;
         offenseType = true;
+        cardImage = new Image("Files/Images/CardImages/"+this.name+".jpg");
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 
     public String getSpellName() {
@@ -40,6 +46,6 @@ public class VampireAcolyte extends SpellCaster{
     }
 
     public String spellDetail(){
-        return "Deal 300 damage to all enemy monster cards and heal all friendly monster cards for 300 HP";
+        return "Deal 300 damage to all enemy monster cards\n and heal all friendly monster cards for 300 HP";
     }
 }

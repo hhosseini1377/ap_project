@@ -2,12 +2,18 @@ package Modules.ItemAndAmulet.Items;
 
 import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.File;
 
 public class SmallMPPotion extends Item{
 
     public SmallMPPotion(){
         gillCost = 1000;
         name = "Small MP Potion";
+        itemImage = new ImageView(new Image(new File("Files/Images/Items/" + this.name + ".jpg").toURI().toString()));
+
     }
 
     @Override

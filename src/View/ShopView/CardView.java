@@ -106,7 +106,7 @@ public class CardView {
         if (card instanceof Spell){
             return "SpellCard";
         }else {
-            return "salam";
+            return ((Monster) card).getMonsterKind().toString();
         }
     }
 

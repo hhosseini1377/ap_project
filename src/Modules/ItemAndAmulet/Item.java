@@ -26,6 +26,10 @@ public abstract class Item implements Cloneable{
         this.gillCost = gillCost;
     }
 
+    public ImageView getItemImage() {
+        return itemImage;
+    }
+
     public boolean isUsed() {
         return isUsed;
     }

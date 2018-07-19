@@ -5,7 +5,13 @@ import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 
 import java.util.Scanner;
 
@@ -23,7 +29,11 @@ public class BlueDragon extends SpellCaster{
         monsterTribe = MonsterTribe.DRAGON_BREED;
         isNimble = false;
         offenseType = true;
+        cardImage = new Image("Files/Images/Blue-Eyes-White-Dragon.jpg");
+        cardView = new CardView(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT * 3 / 12, cardImage, this, 0, 0, false);
+        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 4 / 18, Graphics.SCREEN_HEIGHT * 6 /12, cardImage,this, 0, 0, true);
     }
+
 
     public String getSpellName() {
         String spellName = "Magical Fire";

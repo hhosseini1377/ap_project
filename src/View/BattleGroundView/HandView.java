@@ -19,12 +19,12 @@ public class HandView {
     }
 
     public void addToHand(Card card, boolean isOpponent){
-        if (hand.getChildren().contains(card.getCardImage())) {
-            card.setCardImage(card.renew().getCardImage());
+        if (hand.getChildren().contains(card.getCardImage1())) {
+            card.setCardImage1(card.renew().getCardImage1());
         }
-        card.getCardImage().setFitWidth(50);
-        card.getCardImage().setFitHeight(80);
-        hand.getChildren().add(card.getCardImage());
+        card.getCardImage1().setFitWidth(50);
+        card.getCardImage1().setFitHeight(80);
+        hand.getChildren().add(card.getCardImage1());
         int size = hand.getChildren().size();
         double rotation = (isOpponent?1:-1)*30;
         for (Node node: hand.getChildren()){
@@ -37,9 +37,9 @@ public class HandView {
     }
 
     public void removeFromHand(Card card, boolean isOpponent){
-        if (hand.getChildren().contains(card.getCardImage())){
-            hand.getChildren().remove(card.getCardImage());
-            hand.getChildren().add(card.getCardImage());
+        if (hand.getChildren().contains(card.getCardImage1())){
+            hand.getChildren().remove(card.getCardImage1());
+            hand.getChildren().add(card.getCardImage1());
             int size = hand.getChildren().size();
             double rotation = (isOpponent?1:-1)*30;
             for (Node node: hand.getChildren()){

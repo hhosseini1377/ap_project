@@ -11,21 +11,34 @@ public class Card implements Cloneable{
     protected int manaPoint;
     protected Warrior enemy;
     protected Warrior friend;
+    protected Image cardImage;
+    protected CardView cardView;
+    protected CardView cardViewBig;
+
+    public CardView getCardViewBig() {
+        return cardViewBig;
+    }
+
     protected int id;
-    protected ImageView cardImage = new ImageView(new Image("Files/Images/Battle/cardBack.jpeg"));
+    protected ImageView cardImage1 = new ImageView(new Image("Files/Images/Battle/cardBack.jpeg"));
     public static int cardNumbers = 0;
+
+    public CardView getCardView() {
+        return cardView;
+    }
 
     public Card(){
         id = Card.cardNumbers;
+
         Card.cardNumbers++;
     }
 
-    public ImageView getCardImage () {
-        return cardImage;
+    public ImageView getCardImage1() {
+        return cardImage1;
     }
 
-    public void setCardImage (ImageView cardImage) {
-        this.cardImage = cardImage;
+    public void setCardImage1(ImageView cardImage1) {
+        this.cardImage1 = cardImage1;
     }
 
     public Warrior getEnemy() {
@@ -98,7 +111,7 @@ public class Card implements Cloneable{
 
     @Override
     public boolean equals(Object other){
-        return ((Card)other).getName().equals(this.getName());
+        return ((Card)other).getId() == this.getId();
     }
 
     @Override
@@ -112,7 +125,6 @@ public class Card implements Cloneable{
     }
 
     public Card renew(){
-        this.cardImage = new ImageView(new Image("src/Files/Images/Battle/cardBack.jpeg"));
         return this;
     }
 }

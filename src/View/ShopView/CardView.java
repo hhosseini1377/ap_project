@@ -28,12 +28,11 @@ public class CardView {
         return card;
     }
 
-    public CardView(double width, double height, Image image, Card card, double x, double y) {
-        this.card = card;
+    public CardView(double width, double height, Image image, Card card, double x, double y, boolean isBig) {
 
 
         frame.setPrefSize(width, height);
-        frame.setStyle("-fx-background-image: url(/Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+        frame.setStyle("-fx-background-image: url(Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
         frame.setAlignment(Pos.CENTER);
 
         cardImage = new ImageView(image);
@@ -51,37 +50,53 @@ public class CardView {
         mainNameHBox.setMaxSize(width * 6 / 8, height/24);
         mainNameHBox.setMinSize(width * 6 / 8, height/24);
 
-        Effect nameBoxShadow = new DropShadow(3, 1, 2, Color.BLACK);
-        mainNameHBox.setEffect(nameBoxShadow);
+//        Effect nameBoxShadow = new DropShadow(3, 1, 2, Color.BLACK);
+//        mainNameHBox.setEffect(nameBoxShadow);
 
         nameHBox.setMaxSize(width * 3 / 8, height / 24);
         nameHBox.setMinSize(width * 3 / 8, height / 24);
         nameHBox.setAlignment(Pos.CENTER_LEFT);
         Text nameText = new Text(card.getName());
-        nameText.setStyle("-fx-font-size: 10");
+        if (!isBig) {
+            nameText.setStyle("-fx-font-size: 10");
+        }else {
+            nameText.setStyle("-fx-font-size: 20");
+        }
         nameHBox.getChildren().add(nameText);
 
         kindHBox.setMaxSize(width * 2 / 8, height / 24);
         kindHBox.setMinSize(width * 2 / 8, height / 24);
         kindHBox.setAlignment(Pos.CENTER_RIGHT);
         Text kindText = new Text(getKind(card));
-        kindText.setStyle("-fx-font-size: 10");
+        if (!isBig) {
+            kindText.setStyle("-fx-font-size: 10");
+        }else {
+            kindText.setStyle("-fx-font-size: 20");
+        }
         kindHBox.getChildren().add(kindText);
 
-//        Label detailsText = new Label(card.toString());
-//        detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
+        Label detailsText = null;
+
+        if (isBig){
+            detailsText = new Label(card.toString());
+        }else {
+            if (card instanceof Monster) {
+                detailsText = new Label(("  HP:" + ((Monster) card).getHP() + "\n" + "  AP:" + ((Monster) card).getAP()));
+                detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
+            }
+        }
 
         mainNameHBox.getChildren().addAll(nameHBox, kindHBox);
 
 
 
-        mainVBox.getChildren().addAll(mainNameHBox, cardImage);
+        mainVBox.getChildren().addAll(mainNameHBox, cardImage, detailsText);
         frame.getChildren().addAll( mainVBox);
 
 
     }
 
-    public VBox getVBox() {
+    public VBox getMainVBox() {
         return frame;
     }
 
@@ -89,13 +104,8 @@ public class CardView {
         if (card instanceof Spell){
             return "SpellCard";
         }else {
-            return ((Monster) card).getMonsterKind().toString();
+            return ((Monster)card).getMonsterTribe().toString();
         }
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
 }

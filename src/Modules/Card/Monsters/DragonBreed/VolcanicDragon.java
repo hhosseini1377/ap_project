@@ -4,7 +4,11 @@ import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 
 import java.util.Scanner;
 
@@ -22,6 +26,8 @@ public class VolcanicDragon extends SpellCaster {
         monsterTribe = MonsterTribe.DRAGON_BREED;
         isNimble = false;
         offenseType = false;
+        cardImage = new Image("Files/Images/Red Dragon.jpg");
+        cardView = new CardView(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT * 3 / 12, cardImage, this,0, 0, false);
     }
 
     public String getSpellName() {

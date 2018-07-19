@@ -23,7 +23,7 @@ public class ElvenSorceress extends SpellCaster{
         monsterTribe = MonsterTribe.ELVEN;
         isNimble = true;
         offenseType = true;
-        cardImage = new Image("Files/Images/CardImages/"+this.name+".jpg");
+        cardImage = new Image("./src/Files/Images/CardImages/"+this.name+".jpg");
         cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
         cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }

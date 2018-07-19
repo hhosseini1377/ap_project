@@ -22,7 +22,7 @@ public class Kraken extends General{
         offenseType = true;
         monsterKind = MonsterKind.GENERAL;
         monsterTribe = MonsterTribe.ATLANTIAN;
-        cardImage = new Image("Files/Images/CardImages/"+this.name+".jpg");
+        cardImage = new Image("./src/Files/Images/CardImages/"+this.name+".jpg");
         cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
         cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }

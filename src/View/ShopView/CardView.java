@@ -22,11 +22,7 @@ public class CardView {
     private VBox mainVBox;
     private HBox nameHBox = new HBox(0);
     private HBox kindHBox = new HBox(0);
-    private Card card;
 
-    public Card getCard() {
-        return card;
-    }
 
     public CardView(double width, double height, Image image, Card card, double x, double y, boolean isBig) {
 
@@ -48,14 +44,12 @@ public class CardView {
 
         HBox mainNameHBox = new HBox(width * 1 / 8);
         mainNameHBox.setMaxSize(width * 6 / 8, height/24);
-        mainNameHBox.setMinSize(width * 6 / 8, height/24);
 
 //        Effect nameBoxShadow = new DropShadow(3, 1, 2, Color.BLACK);
 //        mainNameHBox.setEffect(nameBoxShadow);
 
         nameHBox.setMaxSize(width * 3 / 8, height / 24);
-        nameHBox.setMinSize(width * 3 / 8, height / 24);
-        nameHBox.setAlignment(Pos.CENTER_LEFT);
+        nameHBox.setAlignment(Pos.CENTER_RIGHT);
         Text nameText = new Text(card.getName());
         if (!isBig) {
             nameText.setStyle("-fx-font-size: 10");
@@ -65,8 +59,7 @@ public class CardView {
         nameHBox.getChildren().add(nameText);
 
         kindHBox.setMaxSize(width * 2 / 8, height / 24);
-        kindHBox.setMinSize(width * 2 / 8, height / 24);
-        kindHBox.setAlignment(Pos.CENTER_RIGHT);
+        nameHBox.setAlignment(Pos.CENTER_LEFT);
         Text kindText = new Text(getKind(card));
         if (!isBig) {
             kindText.setStyle("-fx-font-size: 10");

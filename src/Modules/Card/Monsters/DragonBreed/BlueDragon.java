@@ -31,7 +31,7 @@ public class BlueDragon extends SpellCaster{
         offenseType = true;
         cardImage = new Image("Files/Images/Blue-Eyes-White-Dragon.jpg");
         cardView = new CardView(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT * 3 / 12, cardImage, this, 0, 0, false);
-        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 4 / 18, Graphics.SCREEN_HEIGHT * 6 /12, cardImage,this, 0, 0, true);
+        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12, cardImage,this, 0, 0, true);
     }
 
 

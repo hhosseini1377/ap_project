@@ -46,12 +46,21 @@ public class Graphics {
     private Scene battle;
     private Scene shop;
     private Scene cardShopScene;
+    private Scene cardInventoryScene;
     private Scene Inventory;
     private Scene mainScene;
     private Stage stage;
     private MediaPlayer musicPlayer;
 
     private Graphics(){
+    }
+
+    public Scene getCardInventoryScene() {
+        return cardInventoryScene;
+    }
+
+    public void setCardInventoryScene(Scene cardInventoryScene) {
+        this.cardInventoryScene = cardInventoryScene;
     }
 
     public Scene getDynamicMenu () {

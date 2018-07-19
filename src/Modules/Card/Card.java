@@ -112,7 +112,7 @@ public class Card implements Cloneable{
     }
 
     public Card renew(){
-        this.cardImage = new ImageView(new Image("./src/Files/Images/Battle/cardBack.jpeg"));
+        this.cardImage = new ImageView(new Image("src/Files/Images/Battle/cardBack.jpeg"));
         return this;
     }
 }

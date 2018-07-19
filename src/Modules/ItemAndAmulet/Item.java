@@ -1,13 +1,16 @@
 package Modules.ItemAndAmulet;
 
 import Modules.Warrior.Warrior;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 public abstract class Item implements Cloneable{
     protected String name;
     protected int gillCost;
     protected boolean isUsed = false;
-
-    public String getName() {
+//    protected ImageView itemImage = new ImageView(new Image("Files/Images/Items/" + this.name + ".jpg"));
+    public String getName()  {
         return name;
     }
 

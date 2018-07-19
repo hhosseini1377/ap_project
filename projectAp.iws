@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Card/Card.java" afterPath="$PROJECT_DIR$/src/Modules/Card/Card.java" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/ItemAndAmulet/Amulet.java" afterPath="$PROJECT_DIR$/src/Modules/ItemAndAmulet/Amulet.java" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/ItemAndAmulet/Item.java" afterPath="$PROJECT_DIR$/src/Modules/ItemAndAmulet/Item.java" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/ItemAndAmulet/Items/GreaterRestorative.java" afterPath="$PROJECT_DIR$/src/Modules/ItemAndAmulet/Items/GreaterRestorative.java" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" afterPath="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -535,14 +530,7 @@
       <workItem from="1531983642685" duration="658000" />
       <workItem from="1531984566504" duration="994000" />
       <workItem from="1531986172743" duration="559000" />
-      <workItem from="1531989155030" duration="129000" />
-    </task>
-    <task id="LOCAL-00002" summary="Completed files">
-      <created>1525972151860</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1525972151860</updated>
+      <workItem from="1531989155030" duration="188000" />
     </task>
     <task id="LOCAL-00003" summary="progressed in battle control&#10;added new methods in monsterField class and monster class&#10;also added things to warrior">
       <created>1525988612195</created>
@@ -880,11 +868,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531933180990</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="pushed for kasra">
+      <created>1531989319895</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1531989319896</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="296770000" />
+    <option name="totallyTimeSpent" value="296829000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -967,7 +962,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
-    <MESSAGE value="added new instances of spells" />
     <MESSAGE value="edit inventory added" />
     <MESSAGE value="edited some stuff" />
     <MESSAGE value="added new spells and fixed some bugs" />
@@ -992,7 +986,8 @@
     <MESSAGE value="cardshopview developed a bit" />
     <MESSAGE value="shopView and cardShopView attached to the project" />
     <MESSAGE value="shop improved" />
-    <option name="LAST_COMMIT_MESSAGE" value="shop improved" />
+    <MESSAGE value="pushed for kasra" />
+    <option name="LAST_COMMIT_MESSAGE" value="pushed for kasra" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1113,6 +1108,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
           <caret line="98" column="54" lean-forward="false" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
+          <folding>
+            <element signature="e#3544#3545#0" expanded="true" />
+            <element signature="e#3622#3623#0" expanded="true" />
+            <element signature="e#3801#3802#0" expanded="true" />
+            <element signature="e#3876#3877#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1177,6 +1178,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
           <caret line="77" column="43" lean-forward="false" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1196,6 +1198,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1005">
           <caret line="98" column="53" lean-forward="false" selection-start-line="98" selection-start-column="53" selection-end-line="98" selection-end-column="53" />
+          <folding>
+            <element signature="e#3544#3545#0" expanded="true" />
+            <element signature="e#3622#3623#0" expanded="true" />
+            <element signature="e#3801#3802#0" expanded="true" />
+            <element signature="e#3876#3877#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1210,6 +1218,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
           <caret line="77" column="43" lean-forward="false" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1237,6 +1246,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1035">
           <caret line="114" column="50" lean-forward="false" selection-start-line="114" selection-start-column="50" selection-end-line="114" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1244,6 +1254,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
           <caret line="77" column="43" lean-forward="false" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1258,6 +1269,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
           <caret line="98" column="54" lean-forward="false" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
+          <folding>
+            <element signature="e#3544#3545#0" expanded="true" />
+            <element signature="e#3622#3623#0" expanded="true" />
+            <element signature="e#3801#3802#0" expanded="true" />
+            <element signature="e#3876#3877#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

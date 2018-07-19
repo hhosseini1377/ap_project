@@ -2,8 +2,12 @@ package Modules.Card.Spell;
 
 import Modules.Card.Card;
 import Modules.Card.Monsters.Monster;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class FirstAidKit extends Spell{
@@ -12,9 +16,13 @@ public class FirstAidKit extends Spell{
         name = "First Aid Kit";
         manaPoint = 3;
         gillCost = 700 * manaPoint;
-        spellDetail = "Increase HP of a selected friendly" +
+        spellDetail = "Increase HP of a selected friendly\n" +
                 " monster or player by 500";
         spellType = SpellType.INSTANT;
+        Image cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        CardView cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        CardView cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
+
     }
 
     public boolean canCast(){

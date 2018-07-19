@@ -1,14 +1,23 @@
 package Modules.Card.Spell;
 
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public class HealingWard extends Spell {
     public HealingWard(){
         name = "Healing Ward";
         manaPoint = 5;
         gillCost = 700 * manaPoint;
-        spellDetail = "Increase all friendly monster cards' HP by 200";
+        spellDetail = "Increase all friendly monster cards'\nHP by 200";
         spellType = SpellType.CONTINUOUS;
+        Image cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        CardView cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        CardView cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
+
     }
 
     public boolean canCast(){

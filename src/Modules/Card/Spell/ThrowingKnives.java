@@ -2,8 +2,12 @@ package Modules.Card.Spell;
 
 import Modules.Card.Card;
 import Modules.Card.Monsters.Monster;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class ThrowingKnives extends Spell{
@@ -12,8 +16,12 @@ public class ThrowingKnives extends Spell{
         manaPoint = 3;
         gillCost = 700 * manaPoint;
         spellDetail = "Deal 500 damage to a " +
-                "selected enemy monster card on the field or to enemy player";
+                "selected\nenemy monster card on the\nfield or to enemy player";
         spellType = SpellType.INSTANT;
+        Image cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        CardView cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        CardView cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
+
     }
 
     public boolean canCast(){

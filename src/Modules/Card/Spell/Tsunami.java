@@ -1,7 +1,12 @@
 package Modules.Card.Spell;
 
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public class Tsunami extends Spell {
     public Tsunami(){
@@ -9,8 +14,12 @@ public class Tsunami extends Spell {
         manaPoint = 6;
         gillCost = 700 * manaPoint;
         spellDetail = "Deal 500 damage to all" +
-                " non-Atlantian monster cards on both sides of field";
+                " non-Atlantian\nmonster cards on both sides of field";
         spellType = SpellType.INSTANT;
+        Image cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        CardView cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        CardView cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
+
     }
 
     public boolean canCast(){

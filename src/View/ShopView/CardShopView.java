@@ -59,7 +59,6 @@ public class CardShopView {
         exitIcon.setLayoutX(Graphics.getInstance().getStage().getWidth()-65);
         exitIcon.setLayoutY(-5);
         cardShopGroup.getChildren().add(exitIcon);
-        System.out.println("fook you kasraaaaaaa");
 
         exitIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

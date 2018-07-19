@@ -22,19 +22,22 @@ public class CardView {
     private VBox mainVBox;
     private HBox nameHBox = new HBox(0);
     private HBox kindHBox = new HBox(0);
+    private Card card;
 
+    public Card getCard() {
+        return card;
+    }
 
     public CardView(double width, double height, Image image, Card card, double x, double y, boolean isBig) {
-
+        this.card = card;
 
         frame.setPrefSize(width, height);
-        frame.setStyle("-fx-background-image: url(Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+        frame.setStyle("-fx-background-image: url(/Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
         frame.setAlignment(Pos.CENTER);
 
         cardImage = new ImageView(image);
         cardImage.setFitWidth(width * 5 / 8);
         cardImage.setFitHeight(height * 11 / 24);
-
         mainVBox = new VBox(height / 24);
         mainVBox.setLayoutX(width / 8);
         mainVBox.setLayoutY(height / 24);
@@ -100,5 +103,11 @@ public class CardView {
             return ((Monster)card).getMonsterTribe().toString();
         }
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
 
 }

@@ -3,6 +3,7 @@ package View.ShopView;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Spell.Spell;
+import Modules.Graphic.Graphics;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -32,6 +33,9 @@ public class CardView {
     public CardView(double width, double height, Image image, Card card, double x, double y, boolean isBig) {
         this.card = card;
 
+        width = Graphics.SCREEN_WIDTH * 3 / 18;
+        height = Graphics.SCREEN_HEIGHT * 5 / 12;
+
 
         frame.setPrefSize(width, height);
         frame.setStyle("-fx-background-image: url(Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
@@ -39,7 +43,7 @@ public class CardView {
 
         cardImage = new ImageView(image);
         cardImage.setFitWidth(width * 5 / 8);
-        cardImage.setFitHeight(height * 11 / 24);
+        cardImage.setFitHeight(height * 24 / 48);
 
         mainVBox = new VBox(height / 24);
         mainVBox.setLayoutX(width / 8);
@@ -83,7 +87,7 @@ public class CardView {
                 detailsText = new Label(("  HP:" + ((Monster) card).getHP() + "\n" + "  AP:" + ((Monster) card).getAP()));
                 detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
             }else {
-                detailsText = new Label(card.toString());
+                detailsText = new Label(card.detail());
                 detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
             }
         }

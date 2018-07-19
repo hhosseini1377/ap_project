@@ -128,7 +128,9 @@ public class CardShopView {
             }
 
 
-        HBox hBox = new HBox(50);
+        HBox hBox = new HBox(40);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setMinSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         hBox.getChildren().addAll(vBox1,vBox2,vBox3,vBox4);
 
         Text remainGills = new Text(Integer.toString(shopControl.getUser().getGills()));
@@ -147,7 +149,7 @@ public class CardShopView {
         VBox screenVBox = new VBox();
         screenVBox.getChildren().addAll(cardShopIcon,hBox);
         screenVBox.setAlignment(Pos.CENTER);
-        screenVBox.setLayoutX(250);
+        screenVBox.setLayoutX(0);
         screenVBox.setLayoutY(50);
 
         ScrollBar sb = new ScrollBar();
@@ -162,7 +164,7 @@ public class CardShopView {
             }
         });
 
-        cardShopGroup.getChildren().addAll(sb,screenVBox);
+        cardShopGroup.getChildren().addAll(screenVBox, sb);
 
         Graphics.getInstance().getStage().setScene(cardShopScene);
     }
@@ -212,7 +214,6 @@ public class CardShopView {
             public void handle(MouseEvent event) {
                 cardShopGroup.getChildren().removeAll(form,detailVBox);
                 shopEntrance();
-
             }
         });
     }

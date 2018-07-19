@@ -30,8 +30,14 @@ public class Spell extends Card {
 
     }
 
+    @Override
+    public String detail () {
+        return "Name: " + this.name + "\nMP cost: " + this.manaPoint +
+                "\nCard Type: " + this.spellType;
+    }
+
     public String toString(){
         return "Name: " + this.name + "\nMP cost: " + this.manaPoint +
-                "\nCard Type: " + this.spellType + "\n" + this.spellDetail ;
+                "\nCard Type: " + this.spellType + "\nDetails: " + spellDetail;
     }
 }

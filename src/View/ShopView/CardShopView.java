@@ -2,8 +2,6 @@ package View.ShopView;
 
 import Control.ShopControl;
 import Modules.Card.Card;
-
-import java.io.File;
 import java.util.ArrayList;
 import Modules.Card.Monsters.DragonBreed.BlueDragon;
 import Modules.Graphic.Graphics;
@@ -59,7 +57,7 @@ public class CardShopView {
         exitIcon.setPreserveRatio(true);
         exitIcon.setFitWidth(60);
         exitIcon.setLayoutX(Graphics.getInstance().getStage().getWidth()-65);
-//        exitIcon.setLayoutY(-5);
+        exitIcon.setLayoutY(-5);
         cardShopGroup.getChildren().add(exitIcon);
 
         exitIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -84,29 +82,27 @@ public class CardShopView {
 
         }
 
-        for(CardView cardView : cardImages) {
-            if (cardView != null) {
-                cardView.getMainVBox().setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle (MouseEvent event) {
-                        buyCard(cardView.getCard());
-                    }
-                });
+        for(CardView cardView : cardImages){
+            cardView.getMainVBox().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    buyCard(cardView.getCard());
+                }
+            });
 
-                cardView.getMainVBox().setOnMouseEntered(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle (MouseEvent event) {
-                        cardView.getMainVBox().setEffect(cardGlow);
-                    }
-                });
+            cardView.getMainVBox().setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    cardView.getMainVBox().setEffect(cardGlow);
+                }
+            });
 
-                cardView.getMainVBox().setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle (MouseEvent event) {
-                        cardView.getMainVBox().setEffect(null);
-                    }
-                });
-            }
+            cardView.getMainVBox().setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    cardView.getMainVBox().setEffect(null );
+                }
+            });
         }
 
         VBox vBox1 = new VBox(50);
@@ -115,8 +111,6 @@ public class CardShopView {
         VBox vBox4 = new VBox(50);
 
         for (int counter = 0;counter < availableCards.size();counter++) {
-            if (cardImages.get(counter) == null)
-                continue;
             if (counter % 4 == 0)
                     vBox1.getChildren().add(cardImages.get(counter).getMainVBox());
                 else if (counter % 4 == 1)
@@ -133,7 +127,7 @@ public class CardShopView {
 
         Text remainGills = new Text(Integer.toString(shopControl.getUser().getGills()));
 
-        ImageView coinImage = new ImageView(new Image(new File("./src/Files/Images/ShopImages/coinIcon.png").toURI().toString()));
+        ImageView coinImage = new ImageView(new Image("Files/Images/ShopImages/coinIcon.png"));
         coinImage.setFitWidth(60);
         coinImage.setPreserveRatio(true);
 
@@ -141,7 +135,7 @@ public class CardShopView {
         coinHBox.setAlignment(Pos.CENTER);
         coinHBox.getChildren().addAll(coinImage,remainGills);
         coinHBox.setLayoutX(15);
-//        coinHBox.setLayoutY(-8);
+        coinHBox.setLayoutY(-8);
         cardShopGroup.getChildren().add(coinHBox);
 
         VBox screenVBox = new VBox();

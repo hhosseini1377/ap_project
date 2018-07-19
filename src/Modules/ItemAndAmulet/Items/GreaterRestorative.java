@@ -3,17 +3,14 @@ package Modules.ItemAndAmulet.Items;
 import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.io.File;
+import javax.swing.text.html.ImageView;
 
-
-public class GreaterRestorative extends Item{
+    public class GreaterRestorative extends Item{
 
     public GreaterRestorative(){
         gillCost = 4000;
         name = "Greater Restorative";
-        itemImage = new ImageView(new Image(new File("Files/Images/Items/" + this.name + ".jpg").toURI().toString()));
     }
 
     @Override

@@ -27,7 +27,7 @@ public abstract class SpellCaster extends Monster {
     @Override
     public String toString() {
         return "Name: " + name + "\nHP: " + HP + "\nAP: " + AP +
-                "\nMP cost: " + manaPoint +
+                "\nMP cost: " + manaPoint + "\nCost: " + gillCost +
                 "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType +
                 "\nMonster Kind: " + monsterKind + "\nTribe: " + monsterTribe +
                 "\nSpell detail: " + spellName + ", " + spellDetail();

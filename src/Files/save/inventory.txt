@@ -21,3 +21,4 @@ Murloc Crawler -2
 Murloc Warrior -2
 Giant Crab -1
 Shark Man -1
+Kraken -1

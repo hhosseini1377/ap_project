@@ -4,7 +4,12 @@ import Modules.Card.Monsters.Hero;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public class Igneel extends Hero {
     public Igneel() {
@@ -12,7 +17,7 @@ public class Igneel extends Hero {
         battleCryName = "King's Grace";
         spellName = "King's Wing Slash";
         willName = "King's Wail";
-        battleCryDetail = "Send all non-Hero monster cards on both sides of field to their graveyards";
+        battleCryDetail = "Send all non-Hero monster cards on both sides\n of field to their graveyards";
         willDetail = "Decrease all enemy monster cards' AP by 400";
         spellDetail = "Deal 600 damage to all enemy monster cards and player";
         HP = 4000;
@@ -25,6 +30,9 @@ public class Igneel extends Hero {
         offenseType = true;
         monsterKind = MonsterKind.HERO;
         monsterTribe = MonsterTribe.DRAGON_BREED;
+        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 
     @Override

@@ -24,6 +24,7 @@ public class CardView {
     private HBox kindHBox = new HBox(0);
     private Card card;
 
+
     public Card getCard() {
         return card;
     }
@@ -31,13 +32,15 @@ public class CardView {
     public CardView(double width, double height, Image image, Card card, double x, double y, boolean isBig) {
         this.card = card;
 
+
         frame.setPrefSize(width, height);
-        frame.setStyle("-fx-background-image: url(/Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+        frame.setStyle("-fx-background-image: url(Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
         frame.setAlignment(Pos.CENTER);
 
         cardImage = new ImageView(image);
         cardImage.setFitWidth(width * 5 / 8);
         cardImage.setFitHeight(height * 11 / 24);
+
         mainVBox = new VBox(height / 24);
         mainVBox.setLayoutX(width / 8);
         mainVBox.setLayoutY(height / 24);
@@ -79,6 +82,9 @@ public class CardView {
             if (card instanceof Monster) {
                 detailsText = new Label(("  HP:" + ((Monster) card).getHP() + "\n" + "  AP:" + ((Monster) card).getAP()));
                 detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
+            }else {
+                detailsText = new Label(card.toString());
+                detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
             }
         }
 
@@ -100,14 +106,8 @@ public class CardView {
         if (card instanceof Spell){
             return "SpellCard";
         }else {
-            return ((Monster)card).getMonsterTribe().toString();
+            return ((Monster) card).getMonsterKind().toString();
         }
     }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
 
 }

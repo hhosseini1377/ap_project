@@ -4,14 +4,12 @@ import Modules.Warrior.Warrior;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
-
 
 public abstract class Item implements Cloneable{
     protected String name;
     protected int gillCost;
     protected boolean isUsed = false;
-    protected ImageView itemImage = new ImageView(new Image(new File("./src/Files/Images/Items/" + this.name + ".png").toURI().toString()));
+    protected ImageView itemImage;
     public String getName()  {
         return name;
     }
@@ -24,13 +22,8 @@ public abstract class Item implements Cloneable{
         return gillCost;
     }
 
-    public ImageView getItemImage() {
-        return itemImage;
-    }
-
     public void setGillCost(int gillCost) {
         this.gillCost = gillCost;
-
     }
 
     public boolean isUsed() {

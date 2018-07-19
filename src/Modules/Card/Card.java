@@ -1,9 +1,12 @@
 package Modules.Card;
 
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
 import View.ShopView.CardView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import java.io.File;
 
 public class Card implements Cloneable{
     protected String name;
@@ -11,7 +14,7 @@ public class Card implements Cloneable{
     protected int manaPoint;
     protected Warrior enemy;
     protected Warrior friend;
-    protected Image cardImage = new Image("Files/Images/"+this.name+".png");
+    protected Image cardImage;
     protected CardView cardView;
     protected CardView cardViewBig;
 

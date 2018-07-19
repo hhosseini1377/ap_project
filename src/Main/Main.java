@@ -22,22 +22,22 @@ public class Main extends Application{
     public void start (Stage primaryStage) throws Exception{
         GameControl gameControl = new GameControl("./src/Files/save/");
         Graphics.getInstance().setStage(primaryStage);
-//        Menu.getInstance().startScreen(gameControl);
-        CardInventoryView cardInventoryView = new CardInventoryView();
-
-        BlueDragon blueDragon = new BlueDragon();
-        VolcanicDragon volcanicDragon = new VolcanicDragon();
-
-        ArrayList<Card> arrayList1 = new ArrayList<>();
-        arrayList1.add(blueDragon);
-        ArrayList<Card> arrayList2 = new ArrayList<>();
-        arrayList2.add(volcanicDragon);
-
-
-
-
-        cardInventoryView.viewInventory(arrayList1, arrayList2);
-        primaryStage.show();
+        Menu.getInstance().startScreen(gameControl);
+//        CardInventoryView cardInventoryView = new CardInventoryView();
+//
+//        BlueDragon blueDragon = new BlueDragon();
+//        VolcanicDragon volcanicDragon = new VolcanicDragon();
+//
+//        ArrayList<Card> arrayList1 = new ArrayList<>();
+//        arrayList1.add(blueDragon);
+//        ArrayList<Card> arrayList2 = new ArrayList<>();
+//        arrayList2.add(volcanicDragon);
+//
+//
+//
+//
+//        cardInventoryView.viewInventory(arrayList1, arrayList2);
+//        primaryStage.show();
     }
 
     public static void main(String[] args) {

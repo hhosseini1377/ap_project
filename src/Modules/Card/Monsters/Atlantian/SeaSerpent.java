@@ -3,7 +3,12 @@ package Modules.Card.Monsters.Atlantian;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
 import Modules.Card.Monsters.SpellCaster;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public class SeaSerpent extends SpellCaster{
 
@@ -19,6 +24,9 @@ public class SeaSerpent extends SpellCaster{
         monsterTribe = MonsterTribe.ATLANTIAN;
         isNimble = true;
         offenseType = true;
+        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 
     public String getSpellName() {
@@ -53,7 +61,7 @@ public class SeaSerpent extends SpellCaster{
 
     @Override
     public String spellDetail() {
-        String spellDetail = "Deal 1000 damage to an enemy monster card or player";
+        String spellDetail = " Deal 1000 damage to an enemy monster \ncard or player";
         return spellDetail;
     }
 }

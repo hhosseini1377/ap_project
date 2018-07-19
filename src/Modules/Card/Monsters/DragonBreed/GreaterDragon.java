@@ -4,7 +4,12 @@ import Modules.Card.Card;
 import Modules.Card.Monsters.General;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public class GreaterDragon extends General{
 
@@ -20,6 +25,9 @@ public class GreaterDragon extends General{
         offenseType = true;
         monsterKind = MonsterKind.GENERAL;
         monsterTribe = MonsterTribe.DRAGON_BREED;
+        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 
     @Override
@@ -59,7 +67,7 @@ public class GreaterDragon extends General{
 
     @Override
     public String battleCryDetail() {
-        String battleCryDetail = "Send a random enemy monster card from field to graveyard";
+        String battleCryDetail = "Send a random enemy monster card from field\n to graveyard";
         return battleCryDetail;
     }
 

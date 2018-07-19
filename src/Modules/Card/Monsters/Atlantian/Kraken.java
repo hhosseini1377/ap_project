@@ -3,7 +3,12 @@ package Modules.Card.Monsters.Atlantian;
 import Modules.Card.Monsters.General;
 import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public class Kraken extends General{
 
@@ -19,6 +24,9 @@ public class Kraken extends General{
         offenseType = true;
         monsterKind = MonsterKind.GENERAL;
         monsterTribe = MonsterTribe.ATLANTIAN;
+        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 
     @Override
@@ -61,9 +69,7 @@ public class Kraken extends General{
 
     @Override
     public String battleCryDetail() {
-        String battleCryDetail = " Return one random enemy monster card " +
-                "from field to hand and reduce all" +
-                "enemy monsters’ AP by 200";
+        String battleCryDetail = " Return one random enemy monster card from field to \n hand and reduce all enemy monsters’ AP by 200";
         return battleCryDetail;
     }
 

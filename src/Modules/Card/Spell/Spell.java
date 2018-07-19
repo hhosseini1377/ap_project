@@ -32,7 +32,6 @@ public class Spell extends Card {
 
     public String toString(){
         return "Name: " + this.name + "\nMP cost: " + this.manaPoint +
-                "\nCard Type: " + this.spellType + "\n" + this.spellDetail +
-                "Card Story: ";//TODO card story
+                "\nCard Type: " + this.spellType + "\n" + this.spellDetail ;
     }
 }

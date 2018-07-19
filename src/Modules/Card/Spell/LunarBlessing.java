@@ -1,16 +1,25 @@
 package Modules.Card.Spell;
 
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public class LunarBlessing extends Spell {
     public LunarBlessing(){
     name = "Lunar Blessing";
     manaPoint = 6;
     gillCost = 700 * manaPoint;
-    spellDetail = "Increase AP and HP of friendly Elven monster cards by 300";
+    spellDetail = "Increase AP and HP of friendly\nElven monster cards by 300";
     spellType = SpellType.AURA;
-}
+        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
+
+    }
 
     public boolean canCast(){
         return canCast;

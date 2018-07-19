@@ -84,12 +84,12 @@ public class CardShopView {
         }
 
         for(CardView cardView : cardImages){
-            cardView.getMainVBox().setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    buyCard(cardView.getCard());
-                }
-            });
+//            cardView.getMainVBox().setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent event) {
+//                    buyCard(cardView.getCard());
+//                }
+//            });
 
             cardView.getMainVBox().setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override

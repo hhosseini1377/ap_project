@@ -11,7 +11,7 @@ public class Card implements Cloneable{
     protected int manaPoint;
     protected Warrior enemy;
     protected Warrior friend;
-    protected Image cardImage;
+    protected Image cardImage = new Image("Files/Images/"+this.name+".png");
     protected CardView cardView;
     protected CardView cardViewBig;
 

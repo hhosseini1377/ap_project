@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
+      <change beforePath="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" afterPath="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,38 +21,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Amulet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Modules/ItemAndAmulet/Amulet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#504#505#0" expanded="true" />
-                <element signature="e#536#537#0" expanded="true" />
-                <element signature="e#618#619#0" expanded="true" />
-                <element signature="e#645#646#0" expanded="true" />
-                <element signature="e#687#688#0" expanded="true" />
-                <element signature="e#748#749#0" expanded="true" />
-                <element signature="e#777#778#0" expanded="true" />
-                <element signature="e#817#818#0" expanded="true" />
-                <element signature="e#845#846#0" expanded="true" />
-                <element signature="e#884#885#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Item.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Modules/ItemAndAmulet/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
+            <state relative-caret-position="60">
               <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#415#416#0" expanded="true" />
                 <element signature="e#442#443#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CardShopView.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/View/ShopView/CardShopView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -237,11 +226,11 @@
         <option value="$PROJECT_DIR$/src/Modules/Graphic/Graphics.java" />
         <option value="$PROJECT_DIR$/src/View/ShopView/ShopView.java" />
         <option value="$PROJECT_DIR$/src/Modules/Card/Card.java" />
-        <option value="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" />
         <option value="$PROJECT_DIR$/src/View/ShopView/AmuletShopView.java" />
         <option value="$PROJECT_DIR$/src/Modules/ItemAndAmulet/Amulet.java" />
         <option value="$PROJECT_DIR$/src/Modules/ItemAndAmulet/Items/GreaterRestorative.java" />
         <option value="$PROJECT_DIR$/src/Modules/ItemAndAmulet/Item.java" />
+        <option value="$PROJECT_DIR$/src/View/ShopView/CardShopView.java" />
       </list>
     </option>
   </component>
@@ -317,6 +306,19 @@
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
               <item name="ItemAndAmulet" type="462c0819:PsiDirectoryNode" />
               <item name="Items" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ap_project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ap_project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+              <item name="ShopView" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -530,14 +532,7 @@
       <workItem from="1531983642685" duration="658000" />
       <workItem from="1531984566504" duration="994000" />
       <workItem from="1531986172743" duration="559000" />
-      <workItem from="1531989155030" duration="188000" />
-    </task>
-    <task id="LOCAL-00003" summary="progressed in battle control&#10;added new methods in monsterField class and monster class&#10;also added things to warrior">
-      <created>1525988612195</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1525988612195</updated>
+      <workItem from="1531989155030" duration="476000" />
     </task>
     <task id="LOCAL-00004" summary="completed game control(just needing the cards and items to be written)&#10;progressed in battle control&#10;changed shop control and deck and backpack and inventory and shops a bit">
       <created>1526037512987</created>
@@ -875,11 +870,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531989319896</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="pushed for kasra">
+      <created>1531989346618</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1531989346618</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="296829000" />
+    <option name="totallyTimeSpent" value="297117000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1108,12 +1110,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
           <caret line="98" column="54" lean-forward="false" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
-          <folding>
-            <element signature="e#3544#3545#0" expanded="true" />
-            <element signature="e#3622#3623#0" expanded="true" />
-            <element signature="e#3801#3802#0" expanded="true" />
-            <element signature="e#3876#3877#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1198,12 +1195,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1005">
           <caret line="98" column="53" lean-forward="false" selection-start-line="98" selection-start-column="53" selection-end-line="98" selection-end-column="53" />
-          <folding>
-            <element signature="e#3544#3545#0" expanded="true" />
-            <element signature="e#3622#3623#0" expanded="true" />
-            <element signature="e#3801#3802#0" expanded="true" />
-            <element signature="e#3876#3877#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1262,19 +1254,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/ShopView/CardShopView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="98" column="54" lean-forward="false" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
-          <folding>
-            <element signature="e#3544#3545#0" expanded="true" />
-            <element signature="e#3622#3623#0" expanded="true" />
-            <element signature="e#3801#3802#0" expanded="true" />
-            <element signature="e#3876#3877#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1378,13 +1357,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Modules/ItemAndAmulet/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
+        <state relative-caret-position="60">
           <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#415#416#0" expanded="true" />
             <element signature="e#442#443#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ShopView/CardShopView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

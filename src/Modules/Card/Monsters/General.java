@@ -29,7 +29,7 @@ public abstract class General extends Monster{
     @Override
     public String toString() {
         return "Name: " + name + "\nHP: " + HP + "\nAP: " + AP +
-                "\nMP cost: " + manaPoint + "\nCost: " + gillCost +
+                "\nMP cost: " + manaPoint +
                 "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType +
                 "\nMonster Kind: " + monsterKind + "\nTribe: " + monsterTribe +
                 "\nWill detail: " + willName + ", " + willDetail() +

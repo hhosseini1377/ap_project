@@ -3,7 +3,10 @@ package Modules.ItemAndAmulet.Items;
 import Control.GameControll.GameControl;
 import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.io.IOException;
 
 public class MysticHourglass extends Item{
@@ -13,6 +16,8 @@ public class MysticHourglass extends Item{
         this.gameControl = gameControl;
         gillCost = 10000;
         name = "Mystic Hourglass";
+        itemImage = new ImageView(new Image(new File("Files/Images/Items/" + this.name + ".jpg").toURI().toString()));
+
     }
 
     @Override

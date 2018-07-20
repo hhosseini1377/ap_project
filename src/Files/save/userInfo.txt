@@ -1,2 +1,2 @@
 level:1
-gills:4400
+gills:10000

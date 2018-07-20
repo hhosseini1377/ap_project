@@ -38,9 +38,9 @@ public class ShopControl {
         this.amuletShop = AmuletShop;
         this.User = User;
         cardShopView = new CardShopView (this);
-        itemShopView = new ItemShopView (this);
+        itemShopView = new ItemShopView ();
         amuletShopView = new AmuletShopView ();
-        shopView = new ShopView(this,cardShopView,itemShopView);
+        shopView = new ShopView(this,cardShopView);
     }
 
     public void enterShop(){

@@ -53,5 +53,5 @@ Giant Crab -4
 Shark Man -4
 Naga Siren -2
 Sea Serpent -2
-Kraken -1
+Kraken -2
 Neptune, King of Atlantis -1

@@ -38,7 +38,7 @@ public class CardView {
 
 
         frame.setPrefSize(width, height);
-        frame.setStyle("-fx-background-image: url(/Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+        frame.setStyle("-fx-background-image: url(Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
         frame.setAlignment(Pos.CENTER);
 
         cardImage = new ImageView(image);
@@ -84,8 +84,7 @@ public class CardView {
             detailsText = new Label(card.toString());
         }else {
             if (card instanceof Monster) {
-                detailsText = new Label(("  HP: " + ((Monster) card).getHP() + "\n  AP: " +
-                        ((Monster) card).getAP() + "\n  MP: " + ((Monster) card).getManaPoint()));
+                detailsText = new Label(("  HP:" + ((Monster) card).getHP() + "\n" + "  AP:" + ((Monster) card).getAP()));
                 detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
             }else {
                 detailsText = new Label(card.detail());
@@ -111,7 +110,7 @@ public class CardView {
         if (card instanceof Spell){
             return "SpellCard";
         }else {
-            return "salam";
+            return ((Monster) card).getMonsterKind().toString();
         }
     }
 

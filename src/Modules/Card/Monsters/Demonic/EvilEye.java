@@ -13,36 +13,36 @@ import java.io.File;
 public class EvilEye extends SpellCaster{
 
     public EvilEye(){
-            this.name = "Evil Eye";
-            this.initialHP = 400;
-            this.HP = 400;
-            this.initialAP = 400;
-            this.AP = 400;
-            this.manaPoint = 6;
-            gillCost = manaPoint * 500;
-            this.monsterKind = MonsterKind.SPELL_CASTER;
-            this.isNimble = false;
-            this.offenseType = true;
-            monsterTribe = MonsterTribe.DEMONIC;
+        this.name = "Evil Eye";
+        this.initialHP = 400;
+        this.HP = 400;
+        this.initialAP = 400;
+        this.AP = 400;
+        this.manaPoint = 6;
+        gillCost = manaPoint * 500;
+        this.monsterKind = MonsterKind.SPELL_CASTER;
+        this.isNimble = false;
+        this.offenseType = true;
+        monsterTribe = MonsterTribe.DEMONIC;
         cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
-            cardView = new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,cardImage,this,0,0,false);
-            cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
-        }
+        cardView = new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12, cardImage,this, 0, 0, true);
+    }
 
-        @Override
-        public void castSpell(Warrior enemy, Warrior friend){
-            if (CanCast()) {
-                enemy.getMonsterField().getMonsterCards().forEach(card -> card.decreaseHP(800));
-                canCast = false;
-                System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
-            }else
-                System.out.println("this monster cannot cast now");
-        }
+    @Override
+    public void castSpell(Warrior enemy, Warrior friend){
+        if (CanCast()) {
+        enemy.getMonsterField().getMonsterCards().forEach(card -> card.decreaseHP(800));
+        canCast = false;
+        System.out.println(this.getName() + " has cast a spell:\n" + this.spellDetail());
+        }else
+        System.out.println("this monster cannot cast now");
+    }
 
-        public String getSpellName() {
-            String spellName = "Evil Gaze";
-            return spellName;
-        }
+    public String getSpellName() {
+        String spellName = "Evil Gaze";
+        return spellName;
+    }
 
     @Override
     public void enterField(Warrior enemy, Warrior friend) {

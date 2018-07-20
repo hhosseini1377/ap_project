@@ -10,6 +10,7 @@ import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -38,6 +39,7 @@ public class Graphics {
     public final static MediaPlayer BATTLE_MUSIC_PLAYER = new MediaPlayer(BATTLE_MUSIC);
     public static final double SCREEN_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
     public static final double SCREEN_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
+    public static final Image CARD_BACK = new Image(new File("./src/Files/Images/Battle/cardBack.jpeg").toURI().toString());
 
 
     private static Graphics graphics = new Graphics();

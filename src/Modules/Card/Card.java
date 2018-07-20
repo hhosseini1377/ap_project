@@ -23,7 +23,6 @@ public class Card implements Cloneable{
     }
 
     protected int id;
-    protected ImageView cardImage1 = new ImageView(new Image("Files/Images/Battle/cardBack.jpeg"));
     public static int cardNumbers = 0;
 
     public CardView getCardView() {
@@ -34,14 +33,6 @@ public class Card implements Cloneable{
         id = Card.cardNumbers;
 
         Card.cardNumbers++;
-    }
-
-    public ImageView getCardImage1() {
-        return cardImage1;
-    }
-
-    public void setCardImage1(ImageView cardImage1) {
-        this.cardImage1 = cardImage1;
     }
 
     public Warrior getEnemy() {
@@ -125,6 +116,14 @@ public class Card implements Cloneable{
     @Override
     public Object clone () throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    public Image getCardImage () {
+        return cardImage;
+    }
+
+    public void setCardImage (Image cardImage) {
+        this.cardImage = cardImage;
     }
 
     public Card renew(){

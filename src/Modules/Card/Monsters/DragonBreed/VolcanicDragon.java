@@ -28,7 +28,7 @@ public class VolcanicDragon extends SpellCaster {
         isNimble = false;
         offenseType = false;
         cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
-        cardView = new CardView(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT * 3 / 12, cardImage, this,0, 0, false);
+        cardView = new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12, cardImage, this,0, 0, false);
         cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12, cardImage,this, 0, 0, true);
     }
 

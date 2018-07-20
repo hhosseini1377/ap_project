@@ -135,10 +135,12 @@ class GameDetailController {
                 if (!gameControl.cardHashMap.containsKey(parts[0]))
                     throw new CardException();
                 for (int i = 0; i < Integer.parseInt(parts[1]); i++) {
-                    this.gameControl.deck.add(gameControl.cardHashMap.get(parts[0]), 1);
+                    this.gameControl.deck.add((Card) (gameControl.cardHashMap.get(parts[0])).clone(), 1);
                 }
             }catch (CardException e){
                 System.out.println("");
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -164,7 +166,11 @@ class GameDetailController {
                 if (inventoryName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
                     {
-                        gameControl.cardInventory.add( gameControl.cardHashMap.get(parts[0]));
+                        try {
+                            gameControl.cardInventory.add((Card) (gameControl.cardHashMap.get(parts[0])).clone());
+                        } catch (CloneNotSupportedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }else{
@@ -196,7 +202,11 @@ class GameDetailController {
                 if (shopName.equals("cards:")){
                     for (int i = 0; i < Integer.parseInt(parts[1]); i++)
                     {
-                        gameControl.cardShop.addCard(gameControl.cardHashMap.get(parts[0]));
+                        try {
+                            gameControl.cardShop.addCard((Card) (gameControl.cardHashMap.get(parts[0])).clone());
+                        } catch (CloneNotSupportedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }else{

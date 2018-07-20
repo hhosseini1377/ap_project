@@ -26,7 +26,7 @@ public class Necromancer extends SpellCaster{
         isNimble = true;
         offenseType = true;
         cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
-        cardView = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,false);
+        cardView = new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,cardImage,this,0,0,false);
         cardViewBig = new CardView(Graphics.getInstance().getStage().getWidth()/7,Graphics.getInstance().getStage().getHeight()/7,cardImage,this,0,0,true);
     }
 

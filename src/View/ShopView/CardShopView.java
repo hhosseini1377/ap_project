@@ -173,8 +173,6 @@ public class CardShopView {
 
         gridPane.setStyle("-fx-background-image: url(/Files/Images/BackGround/cardShopBackGround.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
 
-
-
         Button buyButton = new Button("Buy");
         buyButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f; -fx-font-size: 18px;");
         Button backButton = new Button("Back");

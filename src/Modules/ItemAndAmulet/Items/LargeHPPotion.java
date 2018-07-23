@@ -12,8 +12,7 @@ public class LargeHPPotion extends Item{
     public LargeHPPotion(){
         gillCost = 4000;
         name = "Large HP Potion";
-        itemImage = new ImageView(new Image(new File("Files/Images/Items/" + this.name + ".jpg").toURI().toString()));
-
+        itemImage = new ImageView(new Image(new File("./src/Files/Images/Items/" + this.name + ".png").toURI().toString()));
     }
 
     @Override

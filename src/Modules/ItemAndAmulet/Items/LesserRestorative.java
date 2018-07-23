@@ -12,7 +12,7 @@ public class LesserRestorative extends Item{
     public LesserRestorative(){
         gillCost = 2000;
         name = "Lesser Restorative";
-        itemImage = new ImageView(new Image(new File("Files/Images/Items/" + this.name + ".jpg").toURI().toString()));
+        itemImage = new ImageView(new Image(new File("./src/Files/Images/Items/" + this.name + ".png").toURI().toString()));
 
     }
 

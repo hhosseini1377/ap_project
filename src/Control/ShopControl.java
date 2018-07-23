@@ -39,8 +39,8 @@ public class ShopControl {
         this.User = User;
         cardShopView = new CardShopView (this);
         itemShopView = new ItemShopView (this);
-        amuletShopView = new AmuletShopView ();
-        shopView = new ShopView(this,cardShopView,itemShopView);
+        amuletShopView = new AmuletShopView (this);
+        shopView = new ShopView(this,cardShopView,itemShopView,amuletShopView);
     }
 
     public void enterShop(){
@@ -57,30 +57,20 @@ public class ShopControl {
             }
         }
 
-    public Boolean buyItem(String itemName,int numberToBuy){
+    public void buyItem(String itemName,int numberToBuy){
         if(User.canBuy(itemShop.getItem(itemName).getGillCost()*numberToBuy)){
             for(int counter =0;counter<numberToBuy;counter++) {
                 User.buy(itemShop.getItem(itemName).getGillCost());
                 User.getItemInventory().add(itemShop.getItem(itemName));
-//                ItemShop.RemoveItem(itemName);
             }
-            return true;
         }
-        else
-            return false;
     }
 
-    public boolean buyAmulet(String amuletName,int numberToBuy){
-        if(User.canBuy(amuletShop.getAmulet(amuletName).getGillCost()*numberToBuy)) {
+    public void buyAmulet(String amuletName,int numberToBuy){
             for (int counter = 0; counter < numberToBuy; counter++) {
                 User.buy(amuletShop.getAmulet(amuletName).getGillCost());
                 User.getAmuletInventory().add(amuletShop.getAmulet(amuletName));
-                amuletShop.removeAmulet(amuletName);
             }
-            return true;
-        }
-        else
-            return false;
     }
 
     private boolean sellCard(String CardName,int NumberToSell) {

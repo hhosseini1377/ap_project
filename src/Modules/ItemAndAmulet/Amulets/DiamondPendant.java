@@ -2,6 +2,10 @@ package Modules.ItemAndAmulet.Amulets;
 
 import Modules.ItemAndAmulet.Amulet;
 import Modules.Warrior.Warrior;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.File;
 
 public class DiamondPendant extends Amulet {
 
@@ -10,6 +14,8 @@ public class DiamondPendant extends Amulet {
     public DiamondPendant() {
         name = "Diamond Pendant";
         gillCost = 2000;
+        amuletImage = new ImageView(new Image(new File("./src/Files/Images/Amulets/" + this.name + ".jpg").toURI().toString()));
+
     }
 
     public String getDetail() {

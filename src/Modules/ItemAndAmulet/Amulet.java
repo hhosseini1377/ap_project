@@ -1,14 +1,17 @@
 package Modules.ItemAndAmulet;
 
 import Modules.Warrior.Warrior;
-import View.ShopView.CardView;
+import javafx.scene.image.ImageView;
 
-import javax.swing.text.html.ImageView;
 
 public abstract class Amulet {
     protected int gillCost;
     protected String name;
     protected ImageView amuletImage;
+
+    public ImageView getAmuletImage() {
+        return amuletImage;
+    }
 
     public int getGillCost() {
         return gillCost;

@@ -24,11 +24,13 @@ public class ShopView {
     private static Glow amuletGlow = new Glow();
     private CardShopView thisCardShopView ;
     private ItemShopView thisItemShopView;
+    private AmuletShopView thisamuletShopView;
 
-    public ShopView(ShopControl shopControl,CardShopView cardShopView,ItemShopView thisItemShopView){
+    public ShopView(ShopControl shopControl,CardShopView cardShopView,ItemShopView thisItemShopView,AmuletShopView thisamuletShopView){
         this.shopControl = shopControl;
         this.thisCardShopView = cardShopView;
         this.thisItemShopView = thisItemShopView;
+        this.thisamuletShopView = thisamuletShopView;
     }
 
 
@@ -147,6 +149,7 @@ public class ShopView {
                     shopGroup.getChildren().add(amuletShopDetailView);
                 }
             });
+
             amuletShopView.setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -154,6 +157,14 @@ public class ShopView {
                     shopGroup.getChildren().remove(amuletShopDetailView);
                 }
             });
+
+            amuletShopView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    thisamuletShopView.amuletShopEntrance();
+                }
+            });
+
 
 
             VBox vBox = new VBox();

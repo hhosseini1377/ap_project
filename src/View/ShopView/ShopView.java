@@ -22,11 +22,13 @@ public class ShopView {
     private static Glow cardGlow = new Glow();
     private static Glow itemGlow = new Glow();
     private static Glow amuletGlow = new Glow();
-    private CardShopView thisCardShopView = new CardShopView(shopControl);
+    private CardShopView thisCardShopView ;
+    private ItemShopView thisItemShopView;
 
-    public ShopView(ShopControl shopControl,CardShopView cardShopView){
+    public ShopView(ShopControl shopControl,CardShopView cardShopView,ItemShopView thisItemShopView){
         this.shopControl = shopControl;
         this.thisCardShopView = cardShopView;
+        this.thisItemShopView = thisItemShopView;
     }
 
 
@@ -116,11 +118,19 @@ public class ShopView {
 
                 }
             });
+
             itemShopView.setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     itemGlow.setLevel(0);
                     shopGroup.getChildren().remove(itemShopDetailView);
+                }
+            });
+
+            itemShopView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    thisItemShopView.itemShopEntrance();
                 }
             });
 

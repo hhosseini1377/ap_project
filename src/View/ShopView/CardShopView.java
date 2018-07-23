@@ -39,6 +39,7 @@ public class CardShopView {
     private Group cardShopGroup = new Group();
     private Scene cardShopScene = new Scene(cardShopGroup);
     private Glow cardGlow = new Glow(0.5);
+
     public CardShopView(ShopControl shopControl){
         this.shopControl = shopControl;
     }
@@ -59,7 +60,6 @@ public class CardShopView {
         exitIcon.setPreserveRatio(true);
         exitIcon.setFitWidth(60);
         exitIcon.setLayoutX(Graphics.getInstance().getStage().getWidth()-65);
-//        exitIcon.setLayoutY(-5);
         cardShopGroup.getChildren().add(exitIcon);
 
         exitIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -81,7 +81,6 @@ public class CardShopView {
 
         for (Card card : availableCards) {
             cardImages.add(card.getCardView());
-
         }
 
         for(CardView cardView : cardImages) {
@@ -135,7 +134,7 @@ public class CardShopView {
 
         Text remainGills = new Text(Integer.toString(shopControl.getUser().getGills()));
 
-        ImageView coinImage = new ImageView(new Image(new File("./src/Files/Images/ShopImages/coinIcon.png").toURI().toString()));
+        ImageView coinImage = new ImageView(new Image(new File("./src/Files/Images/ShopImages/coin.png").toURI().toString()));
         coinImage.setFitWidth(60);
         coinImage.setPreserveRatio(true);
 
@@ -143,7 +142,6 @@ public class CardShopView {
         coinHBox.setAlignment(Pos.CENTER);
         coinHBox.getChildren().addAll(coinImage,remainGills);
         coinHBox.setLayoutX(15);
-//        coinHBox.setLayoutY(-8);
         cardShopGroup.getChildren().add(coinHBox);
 
         VBox screenVBox = new VBox();
@@ -165,7 +163,6 @@ public class CardShopView {
         });
 
         cardShopGroup.getChildren().addAll(screenVBox, sb);
-
         Graphics.getInstance().getStage().setScene(cardShopScene);
     }
 
@@ -177,27 +174,21 @@ public class CardShopView {
         gridPane.setStyle("-fx-background-image: url(/Files/Images/BackGround/cardShopBackGround.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
 
 
-        Text text = new Text(card.toString());
-        text.setFill(Color.WHITE);
-
-        ImageView form = new ImageView(new Image("Files/Images/BackGround/DialogueBg.jpeg"));
-        form.setPreserveRatio(true);
-        form.setFitWidth(700);
 
         Button buyButton = new Button("Buy");
-        buyButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
+        buyButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f; -fx-font-size: 18px;");
         Button backButton = new Button("Back");
-        backButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
+        backButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f; -fx-font-size: 18px;");
 
-        HBox hBox = new HBox(50);
+        HBox hBox = new HBox(75);
         hBox.getChildren().addAll(buyButton,backButton);
         hBox.setAlignment(Pos.CENTER);
 
-        VBox detailVBox = new VBox(100);
-        detailVBox.getChildren().addAll(text,hBox);
+        VBox detailVBox = new VBox(75);
+        detailVBox.getChildren().addAll(card.getCardViewBig().getMainVBox(),hBox);
         detailVBox.setAlignment(Pos.CENTER);
 
-        gridPane.getChildren().addAll(form,detailVBox);
+        gridPane.getChildren().addAll(detailVBox);
 
         buyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -212,7 +203,7 @@ public class CardShopView {
         backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cardShopGroup.getChildren().removeAll(form,detailVBox);
+                cardShopGroup.getChildren().removeAll(detailVBox);
                 shopEntrance();
             }
         });

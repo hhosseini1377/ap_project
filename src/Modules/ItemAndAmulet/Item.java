@@ -10,6 +10,12 @@ public abstract class Item implements Cloneable{
     protected int gillCost;
     protected boolean isUsed = false;
     protected ImageView itemImage;
+
+    public ImageView getItemImage() {
+        return itemImage;
+    }
+
+
     public String getName()  {
         return name;
     }

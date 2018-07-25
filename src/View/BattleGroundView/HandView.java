@@ -1,6 +1,8 @@
 package View.BattleGroundView;
 
 import Modules.Card.Card;
+import Modules.Card.Monsters.Monster;
+import Modules.Card.Spell.Spell;
 import Modules.Graphic.Graphics;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +44,7 @@ public class HandView {
             cardImageView = new ImageView(card.getCardImage());
         ImageView finalCardImageView = cardImageView;
         cardImageView.setOnMouseEntered(event -> finalCardImageView.setEffect(new Glow(.4)));
+        cardImageView.setOnMouseExited(event -> finalCardImageView.setEffect(null));
         EventHandler<MouseEvent> clickOnCard = new EventHandler<MouseEvent>() {
             @Override
             public void handle (MouseEvent event) {
@@ -50,9 +53,9 @@ public class HandView {
                 }
             }
         };
-        if (!isOpponent)
+        if (!isOpponent) {
             cardImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, clickOnCard);
-        cardImageView.setOnMouseExited(event -> finalCardImageView.setEffect(null));
+        }
         cardImageView.setFitWidth(50);
         cardImageView.setFitHeight(80);
         hand.getChildren().add(cardImageView);
@@ -142,8 +145,7 @@ public class HandView {
             @Override
             public void handle (MouseEvent event) {
                 if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
-                    ((AnchorPane) Graphics.getInstance().getBattle().getRoot()).getChildren()
-                            .removeAll(bHold, finalRoot);
+                    removeCardInfo(bHold, finalRoot);
                 if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
                     okButton.setEffect(glow);
                 if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
@@ -154,7 +156,8 @@ public class HandView {
             @Override
             public void handle (MouseEvent event) {
                 if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-
+                    moveToField(card);
+                    removeCardInfo(bHold, finalRoot);
                 }
                 if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
                     moveToField.setEffect(glow);
@@ -164,5 +167,22 @@ public class HandView {
         };
         okButton.addEventHandler(MouseEvent.ANY, okHandler);
         moveToField.addEventHandler(MouseEvent.ANY, moveHandler);
+    }
+
+    private void removeCardInfo(HBox bHold, Parent finalRoot){
+        ((AnchorPane) Graphics.getInstance().getBattle().getRoot()).getChildren()
+                .removeAll(bHold, finalRoot);
+    }
+
+    private void moveToField(Card card){
+        if (card instanceof Monster){
+            //TODO to add card to the specified slot
+            if (card.getFriend().getManaPoint() >= card.getManaPoint() || true) {
+                card.getFriend().getMonsterField().add((Monster) card, -1);
+                card.getFriend().getHand().remove(card);
+            }
+        }else{
+            card.getFriend().getSpellField().add((Spell) card, -1);
+        }
     }
 }

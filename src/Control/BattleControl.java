@@ -70,6 +70,7 @@ public class BattleControl {
 
         warrior[1].setUser(user);
         warrior[0].getHand().setEnemy(true);
+        warrior[0].getMonsterField().setEnemy(true);
         warrior[0].setMaxManaPoint(1);
         warrior[1].setMaxManaPoint(1);
         Iterator<Card> itr = warrior[1].getDeck().getCards().iterator();
@@ -91,8 +92,13 @@ public class BattleControl {
 
     private void setDetails() {
         Parent root = Graphics.getInstance().getStage().getScene().getRoot();
+        //setting hand view up
         warrior[1].getHand().setHandView((HBox) root.lookup("#handP2"));
         warrior[0].getHand().setHandView((HBox) root.lookup("#handP1"));
+
+        //setting monster field view up
+        warrior[1].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP2"));
+        warrior[0].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP1"));
         Button doneButton = (Button) root.lookup("#changeTurn");
         String buttonStyle = "-fx-background-radius: 20;" +
                 "-fx-border-radius: 20;" +

@@ -32,11 +32,6 @@ public class CardView {
 
     public CardView(double width, double height, Image image, Card card, double x, double y, boolean isBig) {
         this.card = card;
-
-//        width = Graphics.SCREEN_WIDTH * 3 / 18;
-//        height = Graphics.SCREEN_HEIGHT * 5 / 12;
-
-
         frame.setPrefSize(width, height);
         frame.setStyle("-fx-background-image: url(Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
         frame.setAlignment(Pos.CENTER);

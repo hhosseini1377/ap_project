@@ -25,14 +25,18 @@ public class Card implements Cloneable{
     protected int id;
     public static int cardNumbers = 0;
 
-    public CardView getCardView() {
-        return cardView;
-    }
-
     public Card(){
         id = Card.cardNumbers;
 
         Card.cardNumbers++;
+    }
+
+    public CardView getCardView() {
+        return cardView;
+    }
+
+    public void setCardView (CardView cardView) {
+        this.cardView = cardView;
     }
 
     public Warrior getEnemy() {

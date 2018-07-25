@@ -10,6 +10,7 @@ package Modules.BattleGround.Fields;
         import java.util.HashMap;
 
 public class MonsterField {
+    private boolean isEnemy = false;
     private MonsterFieldView monsterFieldView = new MonsterFieldView();
     private HashMap<String,Integer> numberOfCards = new HashMap<>();
     private HashMap<Integer, Monster> slots = new HashMap<>();//a map of every card and its slot number
@@ -69,6 +70,7 @@ public class MonsterField {
                         numberOfCards.put(monster.getName(), 1);
                     availablePlaces--;
                     slots.replace(i, monster);
+                    monsterFieldView.addToField(monster, i);
                     if (!monster.isOffenseType())
                         defensiveCards.add(monster);
                     break;
@@ -109,6 +111,7 @@ public class MonsterField {
             try{
             if (slots.get(i) != null && slots.get(i).equals(monster)) {
                 slots.replace(i, null);
+                monsterFieldView.removeFromField(monster, i);
                 break;
             }
             }catch (NullPointerException e){
@@ -116,8 +119,9 @@ public class MonsterField {
             }
         }
         monsterCards.remove(monster);
-        if (defensiveCards.contains(monster))
+        if (defensiveCards.contains(monster)) {
             defensiveCards.remove(monster);
+        }
         availablePlaces++;
         if(numberOfCards.get(monster.getName()) == 1){
             numberOfCards.remove(monster.getName());
@@ -157,6 +161,14 @@ public class MonsterField {
 
     public void setFieldView(HBox view){
         monsterFieldView.setFieldView(view);
+    }
+
+    public boolean isEnemy () {
+        return isEnemy;
+    }
+
+    public void setEnemy (boolean enemy) {
+        isEnemy = enemy;
     }
 
     public boolean hasCard(String name){

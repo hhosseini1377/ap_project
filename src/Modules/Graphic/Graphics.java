@@ -51,6 +51,7 @@ public class Graphics {
     private Scene cardInventoryScene;
     private Scene Inventory;
     private Scene mainScene;
+    private Scene graveyard;
     private Stage stage;
     private MediaPlayer musicPlayer;
 
@@ -104,6 +105,14 @@ public class Graphics {
 
     public void setShop (Scene shop) {
         this.shop = shop;
+    }
+
+    public Scene getGraveyard () {
+        return graveyard;
+    }
+
+    public void setGraveyard (Scene graveyard) {
+        this.graveyard = graveyard;
     }
 
     public Scene getInventory () {

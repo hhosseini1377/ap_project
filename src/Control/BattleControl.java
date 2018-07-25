@@ -17,6 +17,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Glow;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -110,6 +112,41 @@ public class BattleControl {
             }
         };
         doneButton.addEventHandler(MouseEvent.ANY, onButton);
+        ImageView graveyard1 = (ImageView) root.lookup("#graveyardP1");
+        ImageView graveyard2 = (ImageView) root.lookup("#graveyardP2");
+        //setting up necessary details for graveyard objects
+        warrior[0].getGraveYard().setGraveyardView(graveyard1);
+        warrior[0].getGraveYard().setOwner(warrior[0]);
+        warrior[1].getGraveYard().setGraveyardView(graveyard2);
+        warrior[1].getGraveYard().setOwner(warrior[1]);
+        EventHandler<MouseEvent> graveHandler1 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    graveyard1.setEffect(new Glow(.4));
+                }
+                if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
+                    graveyard1.setEffect(null);
+                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+                    warrior[0].getGraveYard().viewGraveyard();
+
+            }
+        };
+        EventHandler<MouseEvent> graveHandler2 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    graveyard2.setEffect(new Glow(.4));
+                }
+                if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
+                    graveyard2.setEffect(null);
+                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+                    warrior[1].getGraveYard().viewGraveyard();
+
+            }
+        };
+        graveyard1.addEventHandler(MouseEvent.ANY, graveHandler1);
+        graveyard2.addEventHandler(MouseEvent.ANY, graveHandler2);
     }
 
     /**

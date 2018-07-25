@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.stage.Screen?>
+<?import javafx.scene.effect.Glow?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          prefHeight="${screen.visualBounds.height}"
+          prefWidth="${screen.visualBounds.width}"
+          style="-fx-background-image: url(Files/Images/Battle/graveyard.jpeg);
+          -fx-background-size: stretch;
+          -fx-background-repeat: no-repeat;"
+          alignment="CENTER"
+          fx:id="graveyardPane"
+>
+    <fx:define>
+        <Screen fx:id="screen" fx:factory="getPrimary"/>
+    </fx:define>
+    <VBox fx:id="cardHolder"/>
+    <VBox fx:id="buttonHolder"
+          minHeight="50"
+          maxHeight="50"
+          minWidth="${screen.visualBounds.width}"
+          maxWidth="${screen.visualBounds.width}"
+          alignment="CENTER_RIGHT"
+          spacing="100"
+    >
+        <Button fx:id="backButton"
+                alignment="CENTER"
+                text="Back"
+                style="-fx-background-color: #e02426;
+                       -fx-background-radius: 10px;
+                       -fx-font-size: 23; -fx-font-family: Purisa;
+                       -fx-font-weight: bold;"
+                textAlignment="CENTER"
+                textFill="cornsilk">
+            <effect>
+                <Glow level="0.31" />
+            </effect>
+        </Button>
+    </VBox>
+</GridPane>

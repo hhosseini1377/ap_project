@@ -2,12 +2,23 @@ package View.BattleGroundView;
 
 import Modules.Card.Card;
 import Modules.Graphic.Graphics;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+
+import java.io.IOException;
 
 public class HandView {
     private HBox hand;
@@ -31,6 +42,16 @@ public class HandView {
             cardImageView = new ImageView(card.getCardImage());
         ImageView finalCardImageView = cardImageView;
         cardImageView.setOnMouseEntered(event -> finalCardImageView.setEffect(new Glow(.4)));
+        EventHandler<MouseEvent> clickOnCard = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                    CardInfo(card);
+                }
+            }
+        };
+        if (!isOpponent)
+            cardImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, clickOnCard);
         cardImageView.setOnMouseExited(event -> finalCardImageView.setEffect(null));
         cardImageView.setFitWidth(50);
         cardImageView.setFitHeight(80);
@@ -82,5 +103,66 @@ public class HandView {
             }
         }
         return null;
+    }
+
+    private void CardInfo(Card card){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../../Files/Resources/CardInfoPage.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert root!=null;
+        GridPane cardBox = (GridPane) root.lookup("#dialogBox");
+        cardBox.getChildren().add(card.getCardViewBig().getMainVBox());
+        ((AnchorPane)Graphics.getInstance().getStage().getScene().getRoot()).getChildren().add(root);
+        Button okButton = new Button();
+        okButton.setStyle("-fx-background-color: #69443c; " +
+                "-fx-background-radius: 10px; " +
+                "-fx-font-size: 23; -fx-font-family: Purisa;" +
+                "-fx-font-weight: bold;");
+        okButton.setText("OK");
+        okButton.setTextFill(Color.CORNSILK);
+        Button moveToField = new Button("Move To Field");
+        moveToField.setStyle("-fx-background-color: #69443c; " +
+                "-fx-background-radius: 10px; " +
+                "-fx-font-size: 23; -fx-font-family: Purisa;" +
+                "-fx-font-weight: bold;");
+        moveToField.setTextFill(Color.CORNSILK);
+
+        HBox bHold = new HBox(okButton, moveToField);
+        bHold.setSpacing(50);
+        Effect glow = new Glow(.4);
+        ((AnchorPane) Graphics.getInstance().getBattle().getRoot()).getChildren().add(bHold);
+        bHold.setLayoutX(Graphics.SCREEN_WIDTH/2 - 170);
+        bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 70);
+
+        Parent finalRoot = root;
+        EventHandler<MouseEvent> okHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+                    ((AnchorPane) Graphics.getInstance().getBattle().getRoot()).getChildren()
+                            .removeAll(bHold, finalRoot);
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
+                    okButton.setEffect(glow);
+                if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
+                    okButton.setEffect(null);
+            }
+        };
+        EventHandler<MouseEvent> moveHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+
+                }
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
+                    moveToField.setEffect(glow);
+                if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
+                    moveToField.setEffect(null);
+            }
+        };
+        okButton.addEventHandler(MouseEvent.ANY, okHandler);
+        moveToField.addEventHandler(MouseEvent.ANY, moveHandler);
     }
 }

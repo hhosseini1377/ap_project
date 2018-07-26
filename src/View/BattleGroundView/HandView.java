@@ -192,14 +192,14 @@ public class HandView {
 }
 
 class MonsterFieldSlotController{
-    private HBox field;
+    private HBox[] field;
     private ArrayList<EventHandler<MouseEvent>> onClicks = new ArrayList<>();
 
-    MonsterFieldSlotController(HBox field, Card card){
+    MonsterFieldSlotController(HBox[] field, Card card){
         if (card.getFriend().getManaPoint() >= card.getManaPoint()) {
             this.field = field;
             for (int i = 0; i < 5; i++) {
-                HBox slot = (HBox) field.getChildren().get(i);
+                HBox slot = (HBox) field[i];
                 int finalI = i;
                 EventHandler<MouseEvent> onClick = new EventHandler<MouseEvent>() {
                     @Override
@@ -230,7 +230,7 @@ class MonsterFieldSlotController{
 
     private void removeEventHandlers(){
         for (int i = 0; i < 5; i++){
-            HBox slot = (HBox) field.getChildren().get(i);
+            HBox slot = (HBox) field[i];
             slot.removeEventHandler(MouseEvent.ANY, onClicks.get(i));
         }
     }

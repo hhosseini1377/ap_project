@@ -3,6 +3,7 @@ package Modules.BattleGround.Fields;
         import Modules.Card.Card;
         import Modules.Card.Monsters.Monster;
         import View.BattleGroundView.MonsterFieldView;
+        import javafx.scene.Node;
         import javafx.scene.image.ImageView;
         import javafx.scene.layout.HBox;
 
@@ -183,7 +184,13 @@ public class MonsterField {
     }
 
     public void setFieldView(HBox view){
-        monsterFieldView.setFieldView(view);
+        HBox[] monsters = new HBox[5];
+        int index = 0;
+        for (Node hBox:view.getChildren()){
+            monsters[index] = ((HBox) hBox);
+            index++;
+        }
+        monsterFieldView.setFieldView(monsters);
     }
 
     public boolean isEnemy () {

@@ -10,9 +10,9 @@ import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 public class Graphics {
     private final static Media START = new Media(new File("./src/Files/Music/13_westWorld.mp3").toURI().toString());
@@ -40,6 +39,7 @@ public class Graphics {
     public static final double SCREEN_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
     public static final double SCREEN_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
     public static boolean isMute = false;
+    public static boolean isMonsterField = true;
     public static final Image CARD_BACK = new Image(new File("./src/Files/Images/Battle/cardBack.jpeg").toURI().toString());
 
 
@@ -55,6 +55,10 @@ public class Graphics {
     private Scene graveyard;
     private Stage stage;
     private MediaPlayer musicPlayer;
+    private HBox[] fmonsterField = new HBox[5];
+    private HBox[] emonsterField = new HBox[5];
+    private HBox[] fspellField = new HBox[3];
+    private HBox[] espellField = new HBox[3];
 
     private Graphics(){
     }
@@ -90,6 +94,38 @@ public class Graphics {
 
     public void setMenu (Scene menu) {
         this.menu = menu;
+    }
+
+    public HBox[] getFmonsterField () {
+        return fmonsterField;
+    }
+
+    public void setFmonsterField (HBox[] fmonsterField) {
+        this.fmonsterField = fmonsterField;
+    }
+
+    public HBox[] getEmonsterField () {
+        return emonsterField;
+    }
+
+    public void setEmonsterField (HBox[] emonsterField) {
+        this.emonsterField = emonsterField;
+    }
+
+    public HBox[] getFspellField () {
+        return fspellField;
+    }
+
+    public void setFspellField (HBox[] fspellField) {
+        this.fspellField = fspellField;
+    }
+
+    public HBox[] getEspellField () {
+        return espellField;
+    }
+
+    public void setEspellField (HBox[] espellField) {
+        this.espellField = espellField;
     }
 
     public Scene getBattle () {

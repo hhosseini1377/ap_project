@@ -16,6 +16,7 @@ import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
@@ -91,7 +92,34 @@ public class BattleControl {
     }
 
     private void setDetails() {
+        try {
+            Parent spellRoot = FXMLLoader.load(getClass().getResource("../Files/Resources/SpellField.fxml"));
+            HBox[] fspellField = new HBox[3];
+            HBox[] espellField = new HBox[3];
+            for(int i = 0; i < 3; i++){
+                fspellField[i] = (HBox) ((HBox) spellRoot.lookup("#friendField")).getChildren().get(i);
+                espellField[i] = (HBox) ((HBox) spellRoot.lookup("#enemyField")).getChildren().get(i);
+            }
+            Graphics.getInstance().setFspellField(fspellField);
+            Graphics.getInstance().setEspellField(espellField);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Parent root = Graphics.getInstance().getStage().getScene().getRoot();
+
+        //saving monster hbox
+        HBox[] fmonsters = new HBox[5];
+        HBox[] emonsters = new HBox[5];
+        for (int i = 0; i < 5; i++){
+            emonsters[i] = (HBox) ((HBox)root.lookup("#monsterFieldP1")).getChildren().get(i);
+            fmonsters[i] = (HBox) ((HBox)root.lookup("#monsterFieldP2")).getChildren().get(i);
+        }
+        Graphics.getInstance().setFmonsterField(fmonsters);
+        Graphics.getInstance().setEmonsterField(emonsters);
+
+        ImageView spellField = (ImageView) root.lookup("#spellField");
+        spellField.setOnMouseClicked(event -> {spellFieldScreen();});
+
         //setting hand view up
         warrior[1].getHand().setHandView((HBox) root.lookup("#handP2"));
         warrior[0].getHand().setHandView((HBox) root.lookup("#handP1"));
@@ -214,226 +242,35 @@ public class BattleControl {
         }
     }
 
-    /**
-     * set the decided card from hand into the field
-     * @param action the scanned instructions gotten from user
-     */
-    private void setIntoField (String[] action) {
-        try {
-            Card card = warrior[1].getHand().getCard(Integer.parseInt(action[1]) - 1);
-            if (warrior[1].getManaPoint() >= card.getManaPoint()) {
-                if (card instanceof Monster) {
-
-                    if (warrior[1].getMonsterField().add(((Monster) card), Integer.parseInt(action[3]))) {
-                        warrior[1].getHand().remove(card);
-                        System.out.println(card.getName() + " was set in MonsterField slot "
-                                + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + " MP was used.");
-                        ((Monster) card).enterField(warrior[0], warrior[1]);
-                    }
-                }
-                if (card instanceof Spell) {
-                    warrior[1].getSpellField().add(((Spell) card), Integer.parseInt(action[3]));
-                    System.out.println(card.getName() + " was set in SpellField slot "
-                            + Integer.parseInt(action[3]) + " . " + card.getManaPoint() + " MP was used.");
-                    warrior[1].getHand().remove(card);
-                }
-
-                warrior[1].setManaPoint(warrior[1].getManaPoint() - card.getManaPoint());
-            } else
-                System.out.println("You do not have enough MP to do this act");
-        }catch (Exception e){
-            System.out.println("The index you chose is not available, try again" );
-        }
-    }
-
-    private void useCard (int slotNum) {
-        Monster monster = warrior[1].getMonsterField().getSlot(slotNum);
-        System.out.println("Using " + monster.getName() + "\nHP: " +
-                monster.getHP() + " AP: " + monster.getAP() +
-                "\nIs Sleeping: " + monster.isSleeping() + "\nCan Attack: " +
-                monster.canAttack());
-        if (monster instanceof SpellCaster) {
-            System.out.println("Can Cast: " + ((SpellCaster) monster).CanCast());
-        }
-        if (monster instanceof Hero) {
-            System.out.println("Can Cast: " + ((Hero) monster).CanCast());
-        }
-        Scanner scan = new Scanner(System.in);
-
-        while (true) {
-            switch (scan.next()) {
-                case "Help":
-                    System.out.println("1. Attack #EnemyMonsterSlot / Player : To attack the card on that slot of enemy MonsterField\n" +
-                            "2. Info: To get full information on card\n" +
-                            "3. Exit: To go back to Play Menu\n");
-                    break;
-                case "Info":
-                    System.out.println(warrior[1].getMonsterField().getSlot(slotNum).toString());
-                    break;
-                case "Exit":
-                    return;
-                case "Attack":
-                    monster.attack(warrior[0], scan);
-                    return;
-                case "Cast":
-                    if (monster instanceof SpellCaster) {
-                        monster.castSpell(warrior[0], warrior[1]);
-                    } else if (monster instanceof Hero) {
-                        monster.castSpell(warrior[0], warrior[1]);
-                    } else {
-                        System.out.println("this warrior is neither a spell caster nor a hero");
-                    }
-                    break;
-                default:
-                    System.out.println("invalid input");
-                    break;
+    private void spellFieldScreen(){
+        Parent root = Graphics.getInstance().getBattle().getRoot();
+        if (Graphics.isMonsterField){
+            for (int i = 0; i < 5; i++){
+                ((HBox)root.lookup("#monsterFieldP1")).getChildren().remove(0);
+                ((HBox)root.lookup("#monsterFieldP2")).getChildren().remove(0);
             }
-        }
-    }
-
-    private void help () {
-        System.out.println("1. Use #SlotNum : To use a specific card which is on the Monster Field\n" +
-                "2. Set #HandIndex to #SlotNum : To set a card which is on the hand , in the field\n" +
-                "3. View Hand: To view the cards in your hand\n" +
-                "4. View Graveyard : To view the cards in your graveyard\n" +
-                "5. View SpellField : To view the cards in both ’players spell fields\n" +
-                "6. View MonsterField : To view the cards in both ’players monster fields\n" +
-                "7. Info \"Card Name\": To view full information about a card\n" +
-                "8. Done: To end your turn\n");
-    }
-
-    private void viewHand () {
-        int index = 1;
-        System.out.println("Your Status: \n[" + warrior[1].getManaPoint() + " - " + warrior[1].getMaxManaPoint() + "]");
-        System.out.println("Your Hand:");
-        for (Card card : warrior[1].getHand().getCards()) {
-            System.out.println(index + ". " + card.getName() + ", Mana cost: " + card.getManaPoint());
-            index++;
-        }
-    }
-
-    private void viewGraveyard () {
-        int index = 1;
-        System.out.println("Your Graveyard:");
-        for (Card card : warrior[1].getGraveYard().getDestroyedCards()) {
-            System.out.println(index + ". " + card.getName());
-            index++;
-        }
-        index = 1;
-        System.out.println("Enemies Graveyard:");
-        for (Card card : warrior[0].getGraveYard().getDestroyedCards()) {
-            System.out.println(index + ". " + card.getName());
-            index++;
-        }
-    }
-
-    private void viewMonsterField () {
-        System.out.println("Your MonsterField:");
-        System.out.println("Your Commander: " + warrior[1].getCommander().getName() + " HP: " +
-                warrior[1].getCommander().getHP());
-
-        Monster monster;
-        for (int i = 1; i <= 5; i++) {
-            if (warrior[1].getMonsterField().getSlot(i) == null)
-                System.out.println(i + ". Empty");
-            else {
-                monster = warrior[1].getMonsterField().getSlot(i);
-                System.out.print(i + ". " + monster.getName() + "/ HP: " + monster.getHP() +  "/ AP: " +
-                        monster.getAP() + "/ is Defensive: " + !monster.isOffenseType() + "/ is nimble: " + monster.isNimble());
-                if (monster.getMonsterKind() == MonsterKind.SPELL_CASTER) {
-                    System.out.print(" can cast: " + ((SpellCaster) monster).CanCast());
-                }
-                if (monster.getMonsterKind() == MonsterKind.HERO) {
-                    System.out.print(" can cast: " + ((SpellCaster) monster).CanCast());
-                }
-                System.out.println();
+            for (int i = 0; i < 3; i++){
+                ((HBox) root.lookup("#monsterFieldP1")).getChildren()
+                        .add(Graphics.getInstance().getEspellField()[i]);
+                ((HBox) root.lookup("#monsterFieldP2")).getChildren()
+                        .add(Graphics.getInstance().getFspellField()[i]);
             }
+            Graphics.isMonsterField = false;
+        }else{
+            for (int i = 0; i < 3; i++){
+                ((HBox) root.lookup("#monsterFieldP1")).getChildren()
+                        .remove(0);
+                ((HBox) root.lookup("#monsterFieldP2")).getChildren()
+                        .remove(0);
+            }
+            for (int i = 0; i < 5; i++){
+                ((HBox) root.lookup("#monsterFieldP1")).getChildren()
+                        .add(Graphics.getInstance().getEmonsterField()[i]);
+                ((HBox) root.lookup("#monsterFieldP2")).getChildren()
+                        .add(Graphics.getInstance().getFmonsterField()[i]);
+            }
+            Graphics.isMonsterField = true;
         }
-        System.out.println("Enemies MonsterField:");
-        System.out.println("Enemies Commander: " + warrior[0].getCommander().getName() + " HP: " +
-                warrior[0].getCommander().getHP());
-
-        for (int i = 1; i <= 5; i++) {
-            if (warrior[0].getMonsterField().getSlot(i) == null)
-                System.out.println(i + ". Empty");
-            else {
-                monster = warrior[0].getMonsterField().getSlot(i);
-                System.out.print(i + ". " + monster.getName() + "/ HP: " + monster.getHP() + "/ AP: " +
-                        monster.getAP() + "/ is Defensive: " + !monster.isOffenseType() + "/ is nimble: " + monster.isNimble());
-                if (monster.getMonsterKind() == MonsterKind.SPELL_CASTER) {
-                    System.out.print(" can cast: " + ((SpellCaster) monster).CanCast());
-                }
-                if (monster.getMonsterKind() == MonsterKind.HERO) {
-                    System.out.print(" can cast: " + ((SpellCaster) monster).CanCast());
-                }
-                System.out.println();
-            }
-        }
-    }
-
-    private void viewSpellField () {
-        System.out.println("Your SpellField:");
-        Spell spell;
-        for (int i = 0; i < 3; i++) {
-            if (warrior[1].getSpellField().getSlot(i) == null)
-                System.out.println((i + 1) + ". Empty");
-            else {
-                spell = warrior[1].getSpellField().getSlot(i);
-                System.out.println((i + 1) + ". " + spell.getName());
-            }
-        }
-        System.out.println("Enemies SpellField:");
-        for (int i = 0; i < 3; i++) {
-            if (warrior[0].getSpellField().getSlot(i) == null)
-                System.out.println((i + 1) + ". Empty");
-            else {
-                spell = warrior[0].getSpellField().getSlot(i);
-                System.out.println((i + 1) + ". " + spell.getName());
-            }
-        }
-    }
-
-    private void viewCardInfo(Matcher matcher){
-
-        if (warrior[0].hasCard(matcher.group(1))) {
-            if (warrior[0].getHand().hasCard(matcher.group(1))) {
-                System.out.println(warrior[0].getHand().getCard(matcher.group(1)).toString());
-            } else if (warrior[0].getGraveYard().hasCard(matcher.group(1))) {
-                System.out.println(warrior[0].getGraveYard().getCard(matcher.group(1)).toString());
-            } else if (warrior[0].getMonsterField().hasCard(matcher.group(1))) {
-                try {
-                    System.out.println(warrior[0].getMonsterField().getCard(matcher.group(1)).toString());
-                } catch (NullPointerException e) {
-                    System.out.println("the card on monster field is null!" );
-                }
-            }else{
-                try {
-                    System.out.println(warrior[0].getSpellField().getCard(matcher.group(1)).toString());
-                }catch (NullPointerException e){
-                    System.out.println("the spell on spell field in null!");
-                }
-            }
-        } else if (warrior[1].hasCard(matcher.group(1))) {
-            if (warrior[1].getHand().hasCard(matcher.group(1))) {
-                System.out.println(warrior[1].getHand().getCard(matcher.group(1)).toString());
-            } else if (warrior[1].getGraveYard().hasCard(matcher.group(1))) {
-                System.out.println(warrior[1].getGraveYard().getCard(matcher.group(1)).toString());
-            } else if (warrior[1].getMonsterField().hasCard(matcher.group(1))) {
-                try {
-                    System.out.println(warrior[1].getMonsterField().getCard(matcher.group(1)).toString());
-                } catch (NullPointerException e) {
-                    System.out.println("the card on monster field is null!" );
-                }
-            }else{
-                try {
-                    System.out.println(warrior[1].getSpellField().getCard(matcher.group(1)).toString());
-                }catch (NullPointerException e){
-                    System.out.println("the spell on spell field in null!");
-                }
-            }
-        } else
-            System.out.println("There is no such card named as " + matcher.group(1) + ", You have probably made" +
-                    "a mistake in typing the name, please try again.");
     }
 
     private boolean checkEndOfTheGame () {

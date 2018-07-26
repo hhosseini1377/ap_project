@@ -21,20 +21,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MonsterFieldView {
-    private HBox fieldView;
+    private HBox[] fieldView;
     private EventHandler<MouseEvent> cardInfo;
 
-    public HBox getFieldView () {
+    public HBox[] getFieldView () {
         return fieldView;
     }
 
-    public void setFieldView (HBox fieldView) {
+    public void setFieldView (HBox[] fieldView) {
         this.fieldView = fieldView;
     }
 
     public void addToField(Card card, int slot){
         card.setCardView(new CardView(120,180,card.getCardImage(),card,0,0));
-        ((HBox)fieldView.getChildren().get(slot)).getChildren().add(card.getCardView().getMainVBox());
+        fieldView[slot].getChildren().add(card.getCardView().getMainVBox());
         //adding effects and event handlers to card view
         card.getCardView().getMainVBox().setOnMouseEntered(event -> card.getCardView().getMainVBox().setEffect(new Glow(.4)));
         card.getCardView().getMainVBox().setOnMouseExited(event -> card.getCardView().getMainVBox().setEffect(null));
@@ -54,15 +54,15 @@ public class MonsterFieldView {
 
     public void removeFromField(Card card, int slot){
         card.getCardView().getMainVBox().removeEventHandler(MouseEvent.MOUSE_CLICKED, cardInfo);
-        ((HBox)fieldView.getChildren().get(slot)).getChildren().remove(card.getCardView().getMainVBox());
+        fieldView[slot].getChildren().remove(card.getCardView().getMainVBox());
         card.setCardView(new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,card.getCardImage(),card,0,0,false));
     }
 
 
     public void update(Card card, int slot){
-        ((HBox)fieldView.getChildren().get(slot)).getChildren().remove(card.getCardView().getMainVBox());
+        fieldView[slot].getChildren().remove(0);
         card.setCardView(new CardView(120,180,card.getCardImage(),card,0,0));
-        ((HBox)fieldView.getChildren().get(slot)).getChildren().add(card.getCardView().getMainVBox());
+        fieldView[slot].getChildren().add(card.getCardView().getMainVBox());
     }
 
 
@@ -182,13 +182,13 @@ public class MonsterFieldView {
 }
 
 class AttackHandler{
-    private HBox field;
+    private HBox[] field;
     private ArrayList<EventHandler<MouseEvent>> onClicks = new ArrayList<>();
 
-    AttackHandler(HBox enemyField, Card card){
+    AttackHandler(HBox[] enemyField, Card card){
             this.field = enemyField;
             for (int i = 0; i < 5; i++) {
-                HBox slot = (HBox) enemyField.getChildren().get(i);
+                HBox slot = (HBox) enemyField[i];
                 int finalI = i;
                 EventHandler<MouseEvent> onClick = new EventHandler<MouseEvent>() {
                     @Override
@@ -212,7 +212,7 @@ class AttackHandler{
 
     private void removeEventHandlers(){
         for (int i = 0; i < 5; i++){
-            HBox slot = (HBox) field.getChildren().get(i);
+            HBox slot = (HBox) field[i];
             slot.removeEventHandler(MouseEvent.ANY, onClicks.get(i));
         }
     }

@@ -109,10 +109,18 @@
 
         </VBox>
 
-        <VBox GridPane.rowIndex="2"
-              alignment="CENTER_RIGHT"
+        <HBox GridPane.rowIndex="2"
+              alignment="CENTER"
+              spacing="1220"
         >
             <padding> <Insets right="20"/> </padding>
+
+            <ImageView fx:id="spellField"
+                       fitWidth="50"
+                       fitHeight="50"
+            >
+                <Image url="Files/Images/Battle/SpellField.png"/>
+            </ImageView>
             <Button fx:id="changeTurn"
                     text="DONE"
                     minWidth="40"
@@ -122,7 +130,8 @@
                         -fx-border-width: 2;
                         -fx-border-color: rgb(99,85,44);"
             />
-        </VBox>
+        </HBox>
+
 
         <VBox fx:id="playerPart2"
               GridPane.rowIndex="3"

@@ -165,8 +165,8 @@ public class GameControl {
         //fixing the size of parts according to the page
         playerPart1.setMinHeight(height/2 - 20);
         playerPart1.setMaxHeight(height/2 - 20);
-        playerPart2.setMinHeight(height/2 - 20);
-        playerPart2.setMaxHeight(height/2 - 20);
+        playerPart2.setMinHeight(height/2 - 50);
+        playerPart2.setMaxHeight(height/2 - 50);
         playerPart1.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
         playerPart1.maxWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
         playerPart2.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
@@ -245,8 +245,8 @@ public class GameControl {
      * in "save" folder which is the source of the data in our game
      */
     public void resetGame(){
-        String path1 = "../../Files/initial/";
-        String path2 = "../../Files/save/";
+        String path1 = "./src/Files/initial/";
+        String path2 = "./src/Files/save/";
         try {
             Files.copy(Paths.get(path1 + "backPack.txt"), new FileOutputStream(path2 + "backPack.txt"));
             Files.copy(Paths.get(path1 + "deck.txt"), new FileOutputStream(path2 + "deck.txt"));

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.stage.Screen?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          prefHeight="${screen.visualBounds.height}"
+          prefWidth="${screen.visualBounds.width}"
+          style="-fx-background-color: rgb(226,210,82);"
+          alignment="CENTER"
+>
+    <fx:define>
+        <Screen fx:id="screen" fx:factory="getPrimary"/>
+    </fx:define>
+    <VBox fx:id="fields"
+          spacing="120"
+          minHeight="${screen.visualBounds.height}"
+          minWidth="${screen.visualBounds.width}"
+          alignment="CENTER"
+    >
+        <HBox fx:id="enemyField" spacing="70">
+            <HBox fx:id="cardSlot1P1"
+                  minWidth="120"
+                  maxWidth="120"
+                  minHeight="180"
+                  maxHeight="180"
+                  alignment="CENTER"
+                  style="-fx-background-color: rgba(28,26,18,0.74);"/>
+            <HBox fx:id="cardSlot2P1"
+                  minWidth="120"
+                  maxWidth="120"
+                  minHeight="180"
+                  maxHeight="180"
+                  alignment="CENTER"
+                  style="-fx-background-color: rgba(28,26,18,0.74);"/>
+            <HBox fx:id="cardSlot3P1"
+                  minWidth="120"
+                  maxWidth="120"
+                  minHeight="180"
+                  maxHeight="180"
+                  alignment="CENTER"
+                  style="-fx-background-color: rgba(28,26,18,0.74);"/>
+        </HBox>
+
+        <HBox fx:id="friendField" spacing="70">
+            <HBox fx:id="cardSlot1P2"
+                  minWidth="120"
+                  maxWidth="120"
+                  minHeight="180"
+                  maxHeight="180"
+                  alignment="CENTER"
+                  style="-fx-background-color: rgba(28,26,18,0.74);"
+            />
+            <HBox fx:id="cardSlot2P2"
+                  minWidth="120"
+                  maxWidth="120"
+                  minHeight="180"
+                  maxHeight="180"
+                  alignment="CENTER"
+                  style="-fx-background-color: rgba(28,26,18,0.74);"/>
+            <HBox fx:id="cardSlot3P2"
+                  minWidth="120"
+                  maxWidth="120"
+                  minHeight="180"
+                  maxHeight="180"
+                  alignment="CENTER"
+                  style="-fx-background-color: rgba(28,26,18,0.74);"/>
+        </HBox>
+    </VBox>
+
+</GridPane>

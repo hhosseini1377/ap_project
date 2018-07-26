@@ -37,7 +37,7 @@ Elven Guardsman -4
 Elven Assassin -4
 Elven Druid -2
 Elven Sorceress -2
-Noble Elf -1
+Noble Elf -2
 Luthien, The High Priestess -1
 Lesser Whelp -4
 Dragonling -4

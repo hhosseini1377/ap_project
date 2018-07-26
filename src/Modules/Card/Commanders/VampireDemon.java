@@ -6,7 +6,7 @@ import Modules.Card.Monsters.MonsterTribe;
 public class VampireDemon extends Commander{
     public VampireDemon(){
         name = "Damon";
-        HP = 12000;
+        HP = 5000;
         initialHP = HP;
         AP = 1200;
         initialAP = AP;

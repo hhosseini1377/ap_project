@@ -27,8 +27,11 @@ public class Card implements Cloneable{
 
     public Card(){
         id = Card.cardNumbers;
-
         Card.cardNumbers++;
+    }
+
+    public void reset(){
+
     }
 
     public CardView getCardView() {

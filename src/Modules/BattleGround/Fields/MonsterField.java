@@ -88,6 +88,7 @@ public class MonsterField {
                 numberOfCards.replace(monster.getName(),numberOfCards.get(monster.getName()) + 1);
             else
                 numberOfCards.put(monster.getName(), 1);
+            monsterFieldView.addToField(monster, slotNum);
             availablePlaces--;
             slots.replace(slotNum, monster);
             if (!monster.isOffenseType())
@@ -149,6 +150,7 @@ public class MonsterField {
             for (Monster monster: getMonsterCards()){
                 if (monster.isSleeping()){
                     monster.setSleeping(false);
+                    monster.setCanAttack(true);
                 }
             }
         else
@@ -157,6 +159,14 @@ public class MonsterField {
                     monster.setSleeping(false);
                 }
             }
+    }
+
+    public MonsterFieldView getMonsterFieldView () {
+        return monsterFieldView;
+    }
+
+    public void setMonsterFieldView (MonsterFieldView monsterFieldView) {
+        this.monsterFieldView = monsterFieldView;
     }
 
     public void update(Card card){

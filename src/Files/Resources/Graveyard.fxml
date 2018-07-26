@@ -8,9 +8,13 @@
 
 <?import javafx.stage.Screen?>
 <?import javafx.scene.effect.Glow?>
-<GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          prefHeight="${screen.visualBounds.height}"
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="${screen.visualBounds.height}"
+            prefWidth="${screen.visualBounds.width}"
+>
+<GridPane prefHeight="${screen.visualBounds.height}"
           prefWidth="${screen.visualBounds.width}"
           style="-fx-background-image: url(Files/Images/Battle/graveyard.jpeg);
           -fx-background-size: stretch;
@@ -18,17 +22,22 @@
           alignment="CENTER"
           fx:id="graveyardPane"
 >
+    <rowConstraints/>
+    <rowConstraints/>
     <fx:define>
         <Screen fx:id="screen" fx:factory="getPrimary"/>
     </fx:define>
-    <VBox fx:id="cardHolder"/>
+    <HBox fx:id="cardHolder" spacing="60" GridPane.rowIndex="1">
+        <padding><Insets left="120"/> </padding>
+    </HBox>
     <VBox fx:id="buttonHolder"
           minHeight="50"
           maxHeight="50"
           minWidth="${screen.visualBounds.width}"
           maxWidth="${screen.visualBounds.width}"
-          alignment="CENTER_RIGHT"
+          alignment="TOP_RIGHT"
           spacing="100"
+          GridPane.rowIndex="2"
     >
         <Button fx:id="backButton"
                 alignment="CENTER"
@@ -45,3 +54,4 @@
         </Button>
     </VBox>
 </GridPane>
+</AnchorPane>

@@ -76,7 +76,7 @@ public class MonsterField {
                     break;
                 }
             }
-            return false;
+            return true;
         }
         if (slots.get(slotNum) != null){
             System.out.println("the slot is full!!");

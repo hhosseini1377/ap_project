@@ -178,8 +178,8 @@ public class HandView {
         if (card instanceof Monster){
             //TODO to add card to the specified slot
             if (card.getFriend().getManaPoint() >= card.getManaPoint() || true) {
-                card.getFriend().getMonsterField().add((Monster) card, -1);
-                card.getFriend().getHand().remove(card);
+                if (card.getFriend().getMonsterField().add((Monster) card, -1))
+                    card.getFriend().getHand().remove(card);
             }
         }else{
             card.getFriend().getSpellField().add((Spell) card, -1);

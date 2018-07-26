@@ -51,8 +51,9 @@ public class MonsterFieldView {
     }
 
     public void removeFromField(Card card, int slot){
+        card.getCardView().getMainVBox().removeEventHandler(MouseEvent.MOUSE_CLICKED, cardInfo);
         ((HBox)fieldView.getChildren().get(slot)).getChildren().remove(card.getCardView().getMainVBox());
-        card.getCardView().getMainVBox().removeEventHandler(MouseEvent.ANY, cardInfo);
+        card.setCardView(new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,card.getCardImage(),card,0,0,false));
     }
 
     private void CardInfo(Card card){

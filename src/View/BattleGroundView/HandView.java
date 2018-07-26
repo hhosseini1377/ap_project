@@ -71,7 +71,7 @@ public class HandView {
     }
 
     public void removeFromHand(Card card, boolean isOpponent){
-        if (doesContain(card.getCardImage())){
+        if (doesContain(card.getCardImage()) || isOpponent){
             ImageView cardImageView;
             if (isOpponent)
                 cardImageView = getView(Graphics.CARD_BACK);

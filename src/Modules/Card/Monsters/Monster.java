@@ -109,6 +109,7 @@ public abstract class Monster extends Card{
 
     public void decreaseHP(int points){
         this.HP -= points;
+        friend.getMonsterField().update(this);
         if (isDead()){
             if (!isCommander) {
                 friend.getMonsterField().remove(this);

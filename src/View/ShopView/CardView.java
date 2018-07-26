@@ -104,6 +104,54 @@ public class CardView {
 
     }
 
+    public CardView(double width, double height, Image image, Card card, double x, double y) {
+        this.card = card;
+        frame.setPrefSize(width, height);
+        frame.setStyle("-fx-background-image: url(Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
+        frame.setAlignment(Pos.CENTER);
+
+        cardImage = new ImageView(image);
+        cardImage.setFitWidth(width * 5 / 8);
+        cardImage.setFitHeight(height * 24 / 48);
+
+        mainVBox = new VBox(height / 24);
+        mainVBox.setLayoutX(width / 8);
+        mainVBox.setLayoutY(height / 24);
+
+        mainVBox.setPrefSize(width * 6 / 8, height * 21 / 24);
+        mainVBox.setAlignment(Pos.TOP_CENTER);
+
+        HBox mainNameHBox = new HBox();
+        mainNameHBox.setMaxSize(width * 6 / 8, height/24);
+
+//        Effect nameBoxShadow = new DropShadow(3, 1, 2, Color.BLACK);
+//        mainNameHBox.setEffect(nameBoxShadow);
+
+        nameHBox.setMaxSize(width * 3 / 8, height/24);
+        nameHBox.setMinSize(width * 3 / 8, height/24);
+        nameHBox.setAlignment(Pos.CENTER_LEFT);
+        Text nameText = new Text(card.getName());
+        nameText.setStyle("-fx-font-size: 10");
+        nameHBox.getChildren().add(nameText);
+
+        Label detailsText = null;
+
+        if (card instanceof Monster) {
+            detailsText = new Label(("  HP:" + ((Monster) card).getHP() + "\n" + "  AP:" + ((Monster) card).getAP()));
+            detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
+        }else {
+            detailsText = new Label(card.detail());
+            detailsText.setMinSize(width * 3 / 4, height * 1 / 4);
+        }
+
+        mainNameHBox.getChildren().addAll(nameHBox);
+
+        mainVBox.getChildren().addAll(mainNameHBox, cardImage, detailsText);
+        frame.getChildren().addAll( mainVBox);
+
+
+    }
+
     public VBox getMainVBox() {
         return frame;
     }

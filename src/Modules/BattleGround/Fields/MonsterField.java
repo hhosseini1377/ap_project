@@ -159,6 +159,19 @@ public class MonsterField {
             }
     }
 
+    public void update(Card card){
+        for (int i = 0; i < 5; i++) {
+            try{
+                if (slots.get(i) != null && slots.get(i).equals(card)) {
+                    monsterFieldView.update(card, i);
+                    break;
+                }
+            }catch (NullPointerException e){
+                System.out.println(e);
+            }
+        }
+    }
+
     public void setFieldView(HBox view){
         monsterFieldView.setFieldView(view);
     }

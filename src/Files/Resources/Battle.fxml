@@ -73,32 +73,32 @@
 
                 <HBox fx:id="monsterFieldP1"
                       spacing="100"
-                      alignment="CENTER"
+                      alignment="TOP_CENTER"
                 >
 
                     <HBox fx:id="cartslot1P1"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
                     <HBox fx:id="cartslot2P1"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
                     <HBox fx:id="cartslot3P1"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
                     <HBox fx:id="cartslot4P1"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
                     <HBox fx:id="cartslot5P1"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
 
@@ -130,35 +130,35 @@
         >
 
             <HBox fx:id="fieldP2"
-                  spacing="80" alignment="CENTER">
+                  spacing="80" alignment="BOTTOM_CENTER">
                 <!--<padding><Insets right="30"/> </padding>-->
 
                 <HBox fx:id="monsterFieldP2"
-                      spacing="100" alignment="CENTER">
+                      spacing="100" alignment="BOTTOM_CENTER">
 
                     <HBox fx:id="cartslot1P2"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
                     <HBox fx:id="cartslot2P2"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
                     <HBox fx:id="cartslot3P2"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
                     <HBox fx:id="cartslot4P2"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
                     <HBox fx:id="cartslot5P2"
-                          maxHeight="120"
-                          minWidth="80"
+                          maxHeight="180"
+                          minWidth="120"
                           style="-fx-background-color: rgba(28,26,18,0.74);"
                     />
                 </HBox>

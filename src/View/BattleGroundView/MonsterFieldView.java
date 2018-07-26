@@ -31,7 +31,7 @@ public class MonsterFieldView {
     }
 
     public void addToField(Card card, int slot){
-        card.setCardView(new CardView(180,240,card.getCardImage(),card,0,0,false));
+        card.setCardView(new CardView(120,180,card.getCardImage(),card,0,0));
         ((HBox)fieldView.getChildren().get(slot)).getChildren().add(card.getCardView().getMainVBox());
         //adding effects and event handlers to card view
         card.getCardView().getMainVBox().setOnMouseEntered(event -> card.getCardView().getMainVBox().setEffect(new Glow(.4)));
@@ -55,6 +55,14 @@ public class MonsterFieldView {
         ((HBox)fieldView.getChildren().get(slot)).getChildren().remove(card.getCardView().getMainVBox());
         card.setCardView(new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,card.getCardImage(),card,0,0,false));
     }
+
+
+    public void update(Card card, int slot){
+        ((HBox)fieldView.getChildren().get(slot)).getChildren().remove(card.getCardView().getMainVBox());
+        card.setCardView(new CardView(120,180,card.getCardImage(),card,0,0));
+        ((HBox)fieldView.getChildren().get(slot)).getChildren().add(card.getCardView().getMainVBox());
+    }
+
 
     private void CardInfo(Card card){
         Parent root = null;

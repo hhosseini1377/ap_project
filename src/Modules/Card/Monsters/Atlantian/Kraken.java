@@ -63,13 +63,13 @@ public class Kraken extends General{
 
     @Override
     public String willDetail() {
-        String willDetail = "Deal 400 damage to all enemy monster cards and player";
+        String willDetail = " Deal 400 damage to all\n enemy monster cards and player";
         return willDetail;
     }
 
     @Override
     public String battleCryDetail() {
-        String battleCryDetail = " Return one random enemy monster card from field to \n hand and reduce all enemy monsters’ AP by 200";
+        String battleCryDetail = " Return one random enemy\n monster card from field to\n hand and reduce all enemy\n monsters’ AP by 200";
         return battleCryDetail;
     }
 

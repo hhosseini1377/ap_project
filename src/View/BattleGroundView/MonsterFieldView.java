@@ -31,7 +31,7 @@ public class MonsterFieldView {
     }
 
     public void addToField(Card card, int slot){
-        card.setCardView(new CardView(120,220,card.getCardImage(),card,0,0,false));
+        card.setCardView(new CardView(150,220,card.getCardImage(),card,0,0,false));
         ((HBox)fieldView.getChildren().get(slot)).getChildren().add(card.getCardView().getMainVBox());
         //adding effects and event handlers to card view
         card.getCardView().getMainVBox().setOnMouseEntered(event -> card.getCardView().getMainVBox().setEffect(new Glow(.4)));
@@ -86,7 +86,7 @@ public class MonsterFieldView {
         Effect glow = new Glow(.4);
         ((AnchorPane) Graphics.getInstance().getBattle().getRoot()).getChildren().add(bHold);
         bHold.setLayoutX(Graphics.SCREEN_WIDTH/2 - 130);
-        bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 70);
+        bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 60);
 
         Parent finalRoot = root;
         EventHandler<MouseEvent> okHandler = new EventHandler<MouseEvent>() {
@@ -141,7 +141,7 @@ public class MonsterFieldView {
         Effect glow = new Glow(.4);
         ((AnchorPane) Graphics.getInstance().getBattle().getRoot()).getChildren().add(bHold);
         bHold.setLayoutX(Graphics.SCREEN_WIDTH/2 - 30);
-        bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 70);
+        bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 60);
 
         Parent finalRoot = root;
         EventHandler<MouseEvent> okHandler = new EventHandler<MouseEvent>() {

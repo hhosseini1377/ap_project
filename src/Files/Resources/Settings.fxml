@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.stage.Screen?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          prefHeight="${screen.visualBounds.height}"
+          prefWidth="${screen.visualBounds.width}"
+          style="-fx-background-image:url(Files/Images/BackGround/DragonWar1.jpg);
+          -fx-background-size: stretch;
+          -fx-background-repeat: no-repeat;
+          -fx-background-position: center;"
+          alignment="BOTTOM_LEFT"
+>
+    <rowConstraints/>
+    <rowConstraints/>
+    <rowConstraints/>
+    <rowConstraints/>
+    <rowConstraints/>
+    <rowConstraints/>
+    <fx:define>
+        <Screen fx:id="screen"
+                fx:factory="getPrimary"
+                />
+    </fx:define>
+
+    <VBox alignment="CENTER"
+          style="-fx-background-color: rgba(1,1,1,0.32);"
+          prefHeight="${screen.visualBounds.height}"
+          prefWidth="${screen.visualBounds.width}"
+    >
+        <Text fx:id="sound"
+              text="Sound"
+              fill="cornsilk"
+              style="-fx-font-family: Purisa;
+              -fx-font-size: 20;"
+              />
+    </VBox>
+
+    <ImageView fx:id="exit"
+               fitHeight="100"
+               fitWidth="100"
+               GridPane.rowIndex="6"
+    >
+        <Image url="Files/Images/Icons/homeIcon.png"/>
+    </ImageView>
+
+</GridPane>

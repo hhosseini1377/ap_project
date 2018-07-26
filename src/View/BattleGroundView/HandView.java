@@ -177,10 +177,11 @@ public class HandView {
     private void moveToField(Card card){
         if (card instanceof Monster){
             //TODO to add card to the specified slot
-            if (card.getFriend().getManaPoint() >= card.getManaPoint() || true) {
+            if (card.getFriend().getManaPoint() >= card.getManaPoint()) {
                 if (card.getFriend().getMonsterField().add((Monster) card, -1))
                     card.getFriend().getHand().remove(card);
-            }
+            }else
+                Graphics.getInstance().notifyMessage("not enough MP", "notify");
         }else{
             card.getFriend().getSpellField().add((Spell) card, -1);
         }

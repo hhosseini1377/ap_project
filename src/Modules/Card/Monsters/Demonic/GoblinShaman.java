@@ -14,6 +14,7 @@ public class GoblinShaman extends SpellCaster{
 
     public GoblinShaman(){
         this.name = "Goblin Shaman";
+        this.spellName = "mend";
         this.initialHP = 1000;
         this.HP = 1000;
         this.initialAP = 700;
@@ -47,7 +48,7 @@ public class GoblinShaman extends SpellCaster{
 
     @Override
     public String spellDetail() {
-        String spellDetail = "Increase a friendly monster card or player's HP by 400";
+        String spellDetail = " Increase a friendly monster\n card or player's HP by 400";
         return spellDetail;
     }
 }

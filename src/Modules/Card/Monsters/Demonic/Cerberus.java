@@ -21,9 +21,9 @@ public class Cerberus extends Hero{
         battleCryName = "Open the Gate";
         spellName = "Hellfire";
         willName = "Revenge of the Two Heads";
-        battleCryDetail = "Draw three cards from deck to hand";
-        willDetail = "Send two random enemy monster cards from field to graveyard";
-        spellDetail = "Deal 300 damage to all enemy monster cards\n and Increase HP and AP of all friendly monster\n cards by 300";
+        battleCryDetail = " Draw three cards from deck to hand";
+        willDetail = " Send two random enemy\n monster cards from field to graveyard";
+        spellDetail = " Deal 300 damage to\n all enemy monster cards and Increase\n HP and AP of all friendly monster\n cards by 300";
         HP = 3000;
         AP = 2000;
         initialAP = AP;

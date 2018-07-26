@@ -5,7 +5,7 @@ import Modules.Warrior.Warrior;
 
 public abstract class SpellCaster extends Monster {
     protected boolean canCast = true;
-    private String spellName;
+    protected String spellName;
 
     public boolean CanCast() {
         return canCast;
@@ -26,10 +26,10 @@ public abstract class SpellCaster extends Monster {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\nHP: " + HP + "\nAP: " + AP +
-                "\nMP cost: " + manaPoint +
-                "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType +
-                "\nMonster Kind: " + monsterKind + "\nTribe: " + monsterTribe +
-                "\nSpell detail: " + spellName + ", " + spellDetail();
+        return " Name: " + name + "\n HP: " + HP + "\n AP: " + AP +
+                "\n MP cost: " + manaPoint +
+                "\n Is Nimble: " + isNimble + "\n Is Defensive: " + !offenseType +
+                "\n Monster Kind: " + monsterKind + "\n Tribe: " + monsterTribe +
+                "\n Spell detail: " + spellName + ", " + spellDetail();
     }
 }

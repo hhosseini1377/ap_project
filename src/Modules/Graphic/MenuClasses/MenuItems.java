@@ -1,6 +1,7 @@
 package Modules.Graphic.MenuClasses;
 
 import Control.GameControll.GameControl;
+import Modules.Graphic.Graphics;
 import Modules.Graphic.Menu;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
@@ -39,12 +40,26 @@ public class MenuItems{
                         case "Save Game":
                             break;
                         case "Settings":
-                            //TODO
+                            try {
+                                Menu.getInstance().settings();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
                         case "Reset Game":
                             gameControl.resetGame();
                             break;
                         case "About Game":
+                            break;
+                        case "Sound":
+                            if (!Graphics.isMute) {
+                                Graphics.getInstance().getMusicPlayer().stop();
+                                Graphics.isMute = true;
+                            }
+                            else {
+                                Graphics.getInstance().getMusicPlayer().play();
+                                Graphics.isMute = false;
+                            }
                             break;
                     }
                 }

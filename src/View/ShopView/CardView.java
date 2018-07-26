@@ -31,6 +31,10 @@ public class CardView {
     }
 
     public CardView(double width, double height, Image image, Card card, double x, double y, boolean isBig) {
+        if (isBig){
+            width = width * 4/3;
+            height = height * 4/3;
+        }
         this.card = card;
         frame.setPrefSize(width, height);
         frame.setStyle("-fx-background-image: url(Files/Images/cardBackground.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
@@ -47,14 +51,15 @@ public class CardView {
         mainVBox.setPrefSize(width * 6 / 8, height * 21 / 24);
         mainVBox.setAlignment(Pos.TOP_CENTER);
 
-        HBox mainNameHBox = new HBox(width * 1 / 8);
+        HBox mainNameHBox = new HBox();
         mainNameHBox.setMaxSize(width * 6 / 8, height/24);
 
 //        Effect nameBoxShadow = new DropShadow(3, 1, 2, Color.BLACK);
 //        mainNameHBox.setEffect(nameBoxShadow);
 
-        nameHBox.setMaxSize(width * 3 / 8, height / 24);
-        nameHBox.setAlignment(Pos.CENTER_RIGHT);
+        nameHBox.setMaxSize(width * 3 / 8, height/24);
+        nameHBox.setMinSize(width * 3 / 8, height/24);
+        nameHBox.setAlignment(Pos.CENTER_LEFT);
         Text nameText = new Text(card.getName());
         if (!isBig) {
             nameText.setStyle("-fx-font-size: 10");
@@ -63,8 +68,10 @@ public class CardView {
         }
         nameHBox.getChildren().add(nameText);
 
-        kindHBox.setMaxSize(width * 2 / 8, height / 24);
-        nameHBox.setAlignment(Pos.CENTER_LEFT);
+        kindHBox.setMaxSize(width * 2 / 8, height/24);
+        kindHBox.setMinSize(width * 2  / 8, height/24);
+        kindHBox.setAlignment(Pos.CENTER_RIGHT);
+        nameHBox.getChildren().add(kindHBox);
         Text kindText = new Text(getKind(card));
         if (!isBig) {
             kindText.setStyle("-fx-font-size: 10");
@@ -87,7 +94,7 @@ public class CardView {
             }
         }
 
-        mainNameHBox.getChildren().addAll(nameHBox, kindHBox);
+        mainNameHBox.getChildren().addAll(nameHBox);
 
 
 

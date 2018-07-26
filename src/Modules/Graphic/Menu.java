@@ -83,6 +83,7 @@ public class Menu {
         Graphics.getInstance().getStage().setHeight(Screen.getPrimary().getVisualBounds().getHeight());
         Graphics.START_MUSIC_PLAYER.setCycleCount(Animation.INDEFINITE);
         Graphics.START_MUSIC_PLAYER.play();
+        Graphics.getInstance().setMusicPlayer(Graphics.START_MUSIC_PLAYER);
 
         ImageCursor imageCursor = new ImageCursor(Graphics.CURSOR_IMAGE, 30, 30);
         Graphics.getInstance().getMainScene().setCursor(imageCursor);
@@ -281,7 +282,11 @@ public class Menu {
                         case "Save Game":
                             break;
                         case "Settings":
-                            //TODO
+                            try {
+                                settings();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
                         case "Reset Game":
                             gameControl.resetGame();
@@ -432,6 +437,28 @@ public class Menu {
             }
         };
         Graphics.getInstance().getDynamicMenu().addEventHandler(KeyEvent.ANY, walkEvent);
+    }
+
+    public void settings() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Settings.fxml"));
+        ImageView exit = (ImageView) root.lookup("#exit");
+        Graphics.getInstance().getStage().setScene(new Scene(root));
+        new MenuItems((Text) root.lookup("#sound"), gameControl);
+        EventHandler<MouseEvent> mouseEvent = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    exit.setFitHeight(110);
+                    exit.setFitWidth(110);
+                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
+                    exit.setFitHeight(100);
+                    exit.setFitWidth(100);
+                }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                    goBacktoMenu();
+                }
+            }
+        };
+        exit.addEventHandler(MouseEvent.ANY, mouseEvent);
     }
 }
 

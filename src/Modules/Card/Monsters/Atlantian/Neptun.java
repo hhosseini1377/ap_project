@@ -20,10 +20,10 @@ public class Neptun extends Hero {
         battleCryName = "Call to Arms";
         spellName = "Trident Beam";
         willName = "Ocean's Cry";
-        battleCryDetail = " Select and move a card from hand to play field";
-        willDetail = " Deal 400 damage to all enemy monster cards and player and\n" +
-                " increase all friend Atlantian monster cards' AP by 500";
-        spellDetail = "Deal 800 damage to three random enemy monster cards or player";
+        battleCryDetail = " Select and move a card\n from hand to play field";
+        willDetail = " Deal 400 damage to all\n enemy monster cards and player and\n" +
+                " increase all friend Atlantian\n monster cards' AP by 500";
+        spellDetail = "Deal 800 damage to three\n random enemy monster cards or player";
         HP = 2200;
         AP = 2500;
         initialAP = AP;

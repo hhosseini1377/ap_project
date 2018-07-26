@@ -57,7 +57,7 @@ public class NagaSiren extends SpellCaster{
 
     @Override
     public String spellDetail() {
-        String spellDetail = " Increase HP of all friendly monster cards by 300 \n and their AP by 200";
+        String spellDetail = " Increase HP of all friendly\n monster cards by 300 \n and their AP by 200";
         return spellDetail;
     }
 }

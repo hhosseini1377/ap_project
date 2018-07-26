@@ -39,6 +39,7 @@ public class Graphics {
     public final static MediaPlayer BATTLE_MUSIC_PLAYER = new MediaPlayer(BATTLE_MUSIC);
     public static final double SCREEN_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
     public static final double SCREEN_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
+    public static boolean isMute = false;
     public static final Image CARD_BACK = new Image(new File("./src/Files/Images/Battle/cardBack.jpeg").toURI().toString());
 
 

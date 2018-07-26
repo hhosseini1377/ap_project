@@ -61,7 +61,7 @@ public class SeaSerpent extends SpellCaster{
 
     @Override
     public String spellDetail() {
-        String spellDetail = " Deal 1000 damage to an enemy monster \ncard or player";
+        String spellDetail = " Deal 1000 damage to\n an enemy monster \ncard or player";
         return spellDetail;
     }
 }

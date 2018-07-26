@@ -43,6 +43,7 @@ public class Goblins extends Warrior {
                 if (card instanceof Monster) {
                     if (!((Monster) card).isOffenseType()) {
                         bestCard = card;
+                        manaPoint -= card.getManaPoint();
                         break;
                     }
                 }
@@ -52,6 +53,7 @@ public class Goblins extends Warrior {
             for (int i = 0; i < hand.getCards().size(); i++) {
                 if (manaPoint >= hand.getCards().get(i).getManaPoint()) {
                     bestCard = hand.getCards().get(i);
+                    manaPoint -= hand.getCards().get(i).getManaPoint();
                     break;
                 }
             }

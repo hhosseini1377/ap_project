@@ -5,7 +5,7 @@ import Modules.Card.Monsters.MonsterTribe;
 public class ArslanTheHero extends Commander{
     public ArslanTheHero(){
         name = "Arslan";
-        HP = 10000;
+        HP = 6000;
         initialHP = HP;
         AP = 1000;
         initialAP = AP;

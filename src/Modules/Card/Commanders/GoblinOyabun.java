@@ -6,7 +6,7 @@ import Modules.Card.Monsters.MonsterTribe;
 public class GoblinOyabun extends Commander{
     public GoblinOyabun(){
         name = "Oyabun";
-        HP = 7000;
+        HP = 2000;
         initialHP = HP;
         AP = 1000;
         initialAP = AP;

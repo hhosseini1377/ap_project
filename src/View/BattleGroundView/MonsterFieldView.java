@@ -1,6 +1,7 @@
 package View.BattleGroundView;
 
 import Modules.Card.Card;
+import Modules.Card.Monsters.Monster;
 import Modules.Graphic.Graphics;
 import View.ShopView.CardView;
 import javafx.event.EventHandler;
@@ -17,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MonsterFieldView {
     private HBox fieldView;
@@ -112,7 +114,12 @@ public class MonsterFieldView {
             @Override
             public void handle (MouseEvent event) {
                 if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-                    //TODO attack config
+                    if (((Monster) card).canAttack())
+                        new AttackHandler(card.getEnemy()
+                                .getMonsterField()
+                                .getMonsterFieldView().getFieldView(), card);
+                    else
+                        Graphics.getInstance().notifyMessage("Can not attack now!", "notify");
                     removeCardInfo(bHold, finalRoot);
                 }
                 if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
@@ -172,4 +179,41 @@ public class MonsterFieldView {
     }
 
 
+}
+
+class AttackHandler{
+    private HBox field;
+    private ArrayList<EventHandler<MouseEvent>> onClicks = new ArrayList<>();
+
+    AttackHandler(HBox enemyField, Card card){
+            this.field = enemyField;
+            for (int i = 0; i < 5; i++) {
+                HBox slot = (HBox) enemyField.getChildren().get(i);
+                int finalI = i;
+                EventHandler<MouseEvent> onClick = new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle (MouseEvent event) {
+                        if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+                            slot.setStyle("-fx-background-color: rgba(36,33,22,0.92);");
+                        } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
+                            slot.setStyle("-fx-background-color: rgba(28,26,18,0.74);");
+                        } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                            removeEventHandlers();
+                            Card enemySelectedCard = card.getEnemy().getMonsterField().getMonsterCards().get(finalI);
+                            ((Monster) enemySelectedCard).decreaseHP(((Monster) card).getAP());
+                            ((Monster) card).decreaseHP(((Monster) enemySelectedCard).getAP());
+                        }
+                    }
+                };
+                onClicks.add(onClick);
+                slot.addEventHandler(MouseEvent.ANY, onClick);
+            }
+    }
+
+    private void removeEventHandlers(){
+        for (int i = 0; i < 5; i++){
+            HBox slot = (HBox) field.getChildren().get(i);
+            slot.removeEventHandler(MouseEvent.ANY, onClicks.get(i));
+        }
+    }
 }

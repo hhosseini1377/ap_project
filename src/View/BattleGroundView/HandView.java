@@ -1,5 +1,6 @@
 package View.BattleGroundView;
 
+import Modules.BattleGround.Fields.MonsterField;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Spell.Spell;
@@ -21,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HandView {
     private HBox hand;
@@ -176,14 +178,60 @@ public class HandView {
 
     private void moveToField(Card card){
         if (card instanceof Monster){
-            //TODO to add card to the specified slot
             if (card.getFriend().getManaPoint() >= card.getManaPoint()) {
-                if (card.getFriend().getMonsterField().add((Monster) card, -1))
-                    card.getFriend().getHand().remove(card);
+                    new MonsterFieldSlotController(card.getFriend()
+                            .getMonsterField()
+                            .getMonsterFieldView()
+                            .getFieldView(), card);
             }else
                 Graphics.getInstance().notifyMessage("not enough MP", "notify");
         }else{
             card.getFriend().getSpellField().add((Spell) card, -1);
+        }
+    }
+}
+
+class MonsterFieldSlotController{
+    private HBox field;
+    private ArrayList<EventHandler<MouseEvent>> onClicks = new ArrayList<>();
+
+    MonsterFieldSlotController(HBox field, Card card){
+        if (card.getFriend().getManaPoint() >= card.getManaPoint()) {
+            this.field = field;
+            for (int i = 0; i < 5; i++) {
+                HBox slot = (HBox) field.getChildren().get(i);
+                int finalI = i;
+                EventHandler<MouseEvent> onClick = new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle (MouseEvent event) {
+                        if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+                            slot.setStyle("-fx-background-color: rgba(36,33,22,0.92);");
+                        } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
+                            slot.setStyle("-fx-background-color: rgba(28,26,18,0.74);");
+                        } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                            if (card.getFriend().getMonsterField().add((Monster) card, finalI + 1)) {
+                                //removing event handlers
+                                removeEventHandlers();
+                                //reducing the necessary MP
+                                card.getFriend().setManaPoint(card.getFriend().getManaPoint() - card.getManaPoint());
+                                //removing from hand
+                                card.getFriend().getHand().remove(card);
+                            }
+                        }
+                    }
+                };
+                onClicks.add(onClick);
+                slot.addEventHandler(MouseEvent.ANY, onClick);
+            }
+
+        }else
+            Graphics.getInstance().notifyMessage("not enough MP", "notify");
+    }
+
+    private void removeEventHandlers(){
+        for (int i = 0; i < 5; i++){
+            HBox slot = (HBox) field.getChildren().get(i);
+            slot.removeEventHandler(MouseEvent.ANY, onClicks.get(i));
         }
     }
 }

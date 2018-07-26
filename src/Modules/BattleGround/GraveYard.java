@@ -33,6 +33,7 @@ public class GraveYard {
     }
 
     public void add(Card card){
+        card.reset();
         if (cardMap.containsKey(card.getName())) {
             cardMap.put(card.getName(), card);
             numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + 1);

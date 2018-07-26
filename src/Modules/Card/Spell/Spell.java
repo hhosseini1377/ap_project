@@ -1,12 +1,21 @@
 package Modules.Card.Spell;
 
 import Modules.Card.Card;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
 
 public class Spell extends Card {
     protected boolean canCast = true;
     protected SpellType spellType;
     protected String spellDetail;
+
+    @Override
+    public void reset(){
+        canCast = true;
+        cardView = new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12,cardImage,this,0,0,true);
+    }
 
     public boolean isCanCast () {
         return canCast;

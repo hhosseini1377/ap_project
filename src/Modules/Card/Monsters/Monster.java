@@ -1,7 +1,9 @@
 package Modules.Card.Monsters;
 
 import Modules.Card.Card;
+import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
+import View.ShopView.CardView;
 
 import java.util.Scanner;
 
@@ -16,8 +18,20 @@ public abstract class Monster extends Card{
     protected MonsterKind monsterKind;
     protected MonsterTribe monsterTribe;
     protected boolean isSleeping = true;
-    protected boolean canAttack = true;
-    protected boolean canCast;
+    protected boolean canAttack = false;
+    protected boolean canCast = true;
+
+
+    @Override
+    public void reset(){
+        canAttack = false;
+        isSleeping = true;
+        AP = initialAP;
+        HP = initialHP;
+        canCast = true;
+        cardView = new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12,cardImage,this,0,0,true);
+    }
 
     public Monster(){
         super();
@@ -28,7 +42,7 @@ public abstract class Monster extends Card{
     }
 
     public boolean canAttack() {
-        return canAttack;
+        return canAttack || isNimble;
     }
 
     public void setCanAttack(boolean canAttack) {

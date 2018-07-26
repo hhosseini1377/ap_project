@@ -6,7 +6,7 @@ import Modules.Card.Monsters.MonsterTribe;
 public class DaiMao extends Commander{
     public DaiMao(){
         name = "Satan";
-        HP = 15000;
+        HP = 10000;
         initialHP = HP;
         AP = 2000;
         initialAP = AP;

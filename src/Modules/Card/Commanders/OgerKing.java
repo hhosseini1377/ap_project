@@ -6,7 +6,7 @@ import Modules.Card.Monsters.MonsterTribe;
 public class OgerKing extends Commander{
     public OgerKing(){
         name = "Shagholam";
-        HP = 11000;
+        HP = 4000;
         initialHP = HP;
         AP = 800;
         initialAP = AP;

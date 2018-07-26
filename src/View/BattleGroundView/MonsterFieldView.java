@@ -31,7 +31,7 @@ public class MonsterFieldView {
     }
 
     public void addToField(Card card, int slot){
-        card.setCardView(new CardView(150,220,card.getCardImage(),card,0,0,false));
+        card.setCardView(new CardView(180,240,card.getCardImage(),card,0,0,false));
         ((HBox)fieldView.getChildren().get(slot)).getChildren().add(card.getCardView().getMainVBox());
         //adding effects and event handlers to card view
         card.getCardView().getMainVBox().setOnMouseEntered(event -> card.getCardView().getMainVBox().setEffect(new Glow(.4)));

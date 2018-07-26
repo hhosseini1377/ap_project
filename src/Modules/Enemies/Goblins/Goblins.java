@@ -38,14 +38,14 @@ public class Goblins extends Warrior {
         if (hand.getCards().size() == 0)
             return null;
         Card bestCard = null;
-        if (manaPoint >= hand.getCards().get(0).getManaPoint())
+        if (manaPoint >= hand.getCards().get(0).getManaPoint()) {
             bestCard = hand.getCards().get(0);
+        }
         for (Card card : hand.getCards()) {
             if (manaPoint >= card.getManaPoint()) {
                 if (card instanceof Monster) {
                     if (!((Monster) card).isOffenseType()) {
                         bestCard = card;
-                        manaPoint -= card.getManaPoint();
                         break;
                     }
                 }
@@ -55,7 +55,6 @@ public class Goblins extends Warrior {
             for (int i = 0; i < hand.getCards().size(); i++) {
                 if (manaPoint >= hand.getCards().get(i).getManaPoint()) {
                     bestCard = hand.getCards().get(i);
-                    manaPoint -= hand.getCards().get(i).getManaPoint();
                     break;
                 }
             }
@@ -136,7 +135,7 @@ public class Goblins extends Warrior {
         }
         while (manaPoint > 0 && decidedCard != null && this.getMonsterField().getAvailablePlaces() > 0) {
             try {
-                setManaPoint (getMaxManaPoint () - Objects.requireNonNull (decidedCard).getManaPoint ());
+                setManaPoint (getManaPoint () -  (decidedCard).getManaPoint ());
             }catch (NullPointerException e){
                 System.out.println ("the chosen card is empty");
             }

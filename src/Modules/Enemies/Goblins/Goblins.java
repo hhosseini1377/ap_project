@@ -37,7 +37,9 @@ public class Goblins extends Warrior {
     private Card decideHandCard(Warrior enemy) {
         if (hand.getCards().size() == 0)
             return null;
-        Card bestCard = hand.getCards().get(0);
+        Card bestCard = null;
+        if (manaPoint >= hand.getCards().get(0).getManaPoint())
+            bestCard = hand.getCards().get(0);
         for (Card card : hand.getCards()) {
             if (manaPoint >= card.getManaPoint()) {
                 if (card instanceof Monster) {

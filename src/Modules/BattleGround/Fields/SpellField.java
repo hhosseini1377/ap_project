@@ -3,11 +3,16 @@ package Modules.BattleGround.Fields;
 import Modules.Card.Card;
 import Modules.Card.Spell.Spell;
 import Modules.Card.Spell.SpellType;
+import View.BattleGroundView.SpellFieldView;
+import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SpellField {
+    private boolean isEnemy = false;
+    private SpellFieldView view = new SpellFieldView();
     private HashMap<String,Integer> numberOfCards = new HashMap<>();
     private HashMap<Integer, Spell> slots = new HashMap<>();//a map of every card and its slot number
     private ArrayList<Spell> spellCards = new ArrayList<>();
@@ -73,8 +78,10 @@ public class SpellField {
                     spellCards.add(spell);
                     if (numberOfCards.containsKey(spell.getName())) {
                         numberOfCards.replace(spell.getName(), numberOfCards.get(spell.getName()) + 1);
-                    }else
+                    }else {
                         numberOfCards.put(spell.getName(), 1);
+                    }
+                    view.addToField(spell, i);
                     availablePlaces--;
                     break;
                 }
@@ -102,6 +109,7 @@ public class SpellField {
             else
                 numberOfCards.replace(spell.getName(),numberOfCards.get(spell.getName()) + 1);
             availablePlaces--;
+            view.addToField(spell, slotNum);
         }
         else {
             System.out.println("spellfield is full");
@@ -122,6 +130,7 @@ public class SpellField {
             for (int i = 0; i < 3; i++) {
                 if (slots.get(i) != null && slots.get(i).equals(spell)) {
                     slots.replace(i, null);
+                    view.removeFromField(spell, i);
                     break;
                 }
             }
@@ -144,13 +153,30 @@ public class SpellField {
         }
     }
 
+    public boolean isEnemy () {
+        return isEnemy;
+    }
+
+    public void setEnemy (boolean enemy) {
+        isEnemy = enemy;
+    }
+
+    public SpellFieldView getView () {
+        return view;
+    }
+
+    public void setView (HBox[] view) {
+        this.view.setSpells(view);
+    }
+
     /**
      * It will use the spells every turn and make the necessary changes
      */
-    public void changeTurnActions(){
-        for (Spell spell: this.spellCards){
-            if (spell.getSpellType() == SpellType.CONTINUOUS)
-                spell.castSpell();
-        }
+    public void changeTurnActions(boolean isMyTurn){
+        if (isMyTurn)
+            for (Spell spell: this.spellCards){
+                if (spell.getSpellType() == SpellType.CONTINUOUS)
+                    spell.castSpell();
+            }
     }
 }

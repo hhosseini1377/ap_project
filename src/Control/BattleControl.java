@@ -127,6 +127,11 @@ public class BattleControl {
         //setting monster field view up
         warrior[1].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP2"));
         warrior[0].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP1"));
+
+        //setting spell field view up
+        warrior[1].getSpellField().setView(Graphics.getInstance().getFspellField());
+        warrior[0].getSpellField().setView(Graphics.getInstance().getEspellField());
+
         Button doneButton = (Button) root.lookup("#changeTurn");
         String buttonStyle = "-fx-background-radius: 20;" +
                 "-fx-border-radius: 20;" +
@@ -211,8 +216,10 @@ public class BattleControl {
         warrior[turn % 2].setMaxManaPoint(warrior[turn % 2].getMaxManaPoint() + 1);
         //to do changes in sleeping status of monsters
         warrior[turn % 2].getMonsterField().changeTurnActions(true);
+        warrior[turn % 2].getSpellField().changeTurnActions(true);
         //to do changes in sleeping status of defensive monsters
         warrior[(turn + 1) % 2].getMonsterField().changeTurnActions(false);
+        warrior[(turn + 1) % 2].getSpellField().changeTurnActions(false);
         //drawing a card from deck to hand
         try {
             Card drawnCard = warrior[turn % 2].getDeck().takeCard();

@@ -227,7 +227,7 @@
                            fitWidth="50"
                            fitHeight="55"
                 >
-                    <Image url="Files/Images/Battle/goblin.png"/>
+                    <Image url="Files/Images/Battle/Oyabun.jpg"/>
                 </ImageView>
             </VBox>
             <VBox fx:id="frameContP1"
@@ -258,7 +258,7 @@
                            fitWidth="45"
                            fitHeight="50"
                 >
-                    <Image url="Files/Images/Battle/anonymous.png"/>
+                    <Image url="Files/Images/Battle/Arslan.jpg"/>
                 </ImageView>
             </VBox>
             <VBox fx:id="frameContP2"

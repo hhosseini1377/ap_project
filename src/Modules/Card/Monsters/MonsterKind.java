@@ -4,5 +4,6 @@ public enum MonsterKind {
         NORMAL,
         GENERAL,
         SPELL_CASTER,
-        HERO
+        HERO,
+        COMMANDER
 }

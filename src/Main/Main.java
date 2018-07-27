@@ -26,20 +26,20 @@ public class Main extends Application{
     public void start (Stage primaryStage) throws Exception{
         GameControl gameControl = new GameControl("./src/Files/save/");
         Graphics.getInstance().setStage(primaryStage);
-//        Menu.getInstance().startScreen(gameControl);
-        ItemInventoryView itemInventoryView = new ItemInventoryView();
-
-        ArrayList<Item> nonEquipped = new ArrayList<>();
-        GreaterRestorative greaterRestorative = new GreaterRestorative();
-        ArrayList<Item> equipped = new ArrayList<>();
-        LargeHPPotion largeHPPotion = new LargeHPPotion();
-
-        nonEquipped.add(greaterRestorative);
-        equipped.add(largeHPPotion);
-
-        itemInventoryView.viewItemInventory(nonEquipped, equipped);
-
-        primaryStage.show();
+        Menu.getInstance().startScreen(gameControl);
+//        ItemInventoryView itemInventoryView = new ItemInventoryView();
+//
+//        ArrayList<Item> nonEquipped = new ArrayList<>();
+//        GreaterRestorative greaterRestorative = new GreaterRestorative();
+//        ArrayList<Item> equipped = new ArrayList<>();
+//        LargeHPPotion largeHPPotion = new LargeHPPotion();
+//
+//        nonEquipped.add(greaterRestorative);
+//        equipped.add(largeHPPotion);
+//
+//        itemInventoryView.viewItemInventory(nonEquipped, equipped);
+//
+//        primaryStage.show();
     }
 
     public static void main(String[] args) {

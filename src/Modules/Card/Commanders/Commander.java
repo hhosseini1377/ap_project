@@ -1,18 +1,16 @@
 package Modules.Card.Commanders;
 
 import Modules.Card.Monsters.Monster;
+import Modules.Card.Monsters.MonsterKind;
 import Modules.Card.Monsters.MonsterTribe;
+import Modules.Graphic.Graphics;
+import View.ShopView.CardView;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public abstract class Commander extends Monster{
     protected double reductionCoefficiency = 1;
-    protected String name;
-    protected int HP;
-    protected int AP;
-    protected int initialHP;
-    protected int initialAP;
-    protected int manaPoint;
-    protected MonsterTribe monsterTribe;
-    protected boolean isDead = false;
 
     public void setReductionCoefficiency (double reductionCoefficiency) {
         this.reductionCoefficiency = reductionCoefficiency;
@@ -64,6 +62,7 @@ public abstract class Commander extends Monster{
 
     public void decreaseHP(int points){
         this.HP -= (int)(points * reductionCoefficiency);
+        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12, cardImage,this, 0, 0, true);
     }
 
     public void increaseAP(int points){
@@ -72,5 +71,17 @@ public abstract class Commander extends Monster{
 
     public void decreaseAP(int points){
         this.AP -= points;
+    }
+
+    @Override
+    public MonsterKind getMonsterKind () {
+        return MonsterKind.COMMANDER;
+    }
+
+    @Override
+    public CardView getCardViewBig () {
+        cardImage = new Image(new File("src/Files/Images/Battle/" + name + ".jpg").toURI().toString());
+        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12, cardImage,this, 0, 0, true);
+        return cardViewBig;
     }
 }

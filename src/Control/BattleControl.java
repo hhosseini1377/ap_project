@@ -128,6 +128,12 @@ public class BattleControl {
         warrior[1].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP2"));
         warrior[0].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP1"));
 
+        warrior[0].getMonsterField().getMonsterFieldView().setCommander(warrior[0].getCommander());
+        warrior[1].getMonsterField().getMonsterFieldView().setCommander(warrior[1].getCommander());
+
+        warrior[0].getMonsterField().getMonsterFieldView().setCommanderBox((VBox) root.lookup("#frameContP1"));
+        warrior[1].getMonsterField().getMonsterFieldView().setCommanderBox((VBox) root.lookup("#frameContP2"));
+
         //setting spell field view up
         warrior[1].getSpellField().setView(Graphics.getInstance().getFspellField());
         warrior[0].getSpellField().setView(Graphics.getInstance().getEspellField());

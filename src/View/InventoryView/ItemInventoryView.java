@@ -138,6 +138,26 @@ public class ItemInventoryView {
                 });
             }
 
+            returnButtonEquipped.setOnMouseClicked(event -> fullScreen.getChildren().remove(paneDetialEquipped));
+            returnButtonNonEquipped.setOnMouseClicked(event -> fullScreen.getChildren().remove(paneDetailNonEquipped));
+
+            equipButton.setOnMouseClicked(event -> {
+                equipped.add(nonEquipped.get(itemIndex));
+                nonEquipped.remove(itemIndex);
+
+                row2.getChildren().add(row1.getChildren().get(itemIndex));
+
+                fullScreen.getChildren().remove(paneDetailNonEquipped);
+            });
+            unEquipButton.setOnMouseClicked(event -> {
+                nonEquipped.add(equipped.get(itemIndex));
+                equipped.remove(itemIndex);
+
+                row1.getChildren().add(row2.getChildren().get(itemIndex));
+
+                fullScreen.getChildren().remove(paneDetialEquipped);
+            });
+
 
 
         });

@@ -131,7 +131,7 @@ public class Goblins extends Warrior {
         //you will decide to bring a monster to the field
         Card decidedCard = decideHandCard(enemy);
         if (decidedCard == null){
-            hasLost = true;
+//            hasLost = true;
         }
         while (manaPoint > 0 && decidedCard != null && this.getMonsterField().getAvailablePlaces() > 0) {
             try {

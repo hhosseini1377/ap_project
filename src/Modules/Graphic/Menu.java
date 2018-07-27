@@ -289,6 +289,9 @@ public class Menu {
                         case "Reset Game":
                             gameControl.resetGame();
                             break;
+                        case "Inventory":
+                            gameControl.startInventory();
+                            break;
                     }
                 }
             }

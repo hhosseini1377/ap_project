@@ -2,11 +2,13 @@ package Modules.User.Inventory;
 
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
+import View.InventoryView.CardInventoryView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CardInventory{
+    private CardInventoryView view;
     private ArrayList<Card> cards;
     private Deck deck;
     private HashMap<String, Card> cardMap;
@@ -17,6 +19,11 @@ public class CardInventory{
         this.cardMap = new HashMap<>();
         this.deck = deck;
         numberOfCards = new HashMap<>();
+        view = new CardInventoryView(this, deck);
+    }
+
+    public void start(){
+        view.viewInventory();
     }
 
     public ArrayList<Card> getCards() {

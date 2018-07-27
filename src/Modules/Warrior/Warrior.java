@@ -36,6 +36,7 @@ public class Warrior {
         graveYard = new GraveYard();
         monsterField = new MonsterField();
         spellField = new SpellField();
+        backPack = new BackPack();
         this.name = name;
         commander = new ArslanTheHero();
         try {

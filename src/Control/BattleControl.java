@@ -217,40 +217,42 @@ public class BattleControl {
      * to do the necessary changes in warriors status when Done is clicked
      */
     private void changeTurn () {
-        turn++;
-        //increase the mana point that the warrior has
-        warrior[turn % 2].setMaxManaPoint(warrior[turn % 2].getMaxManaPoint() + 1);
-        //to do changes in sleeping status of monsters
-        warrior[turn % 2].getMonsterField().changeTurnActions(true);
-        warrior[turn % 2].getSpellField().changeTurnActions(true);
-        //to do changes in sleeping status of defensive monsters
-        warrior[(turn + 1) % 2].getMonsterField().changeTurnActions(false);
-        warrior[(turn + 1) % 2].getSpellField().changeTurnActions(false);
-        //drawing a card from deck to hand
-        try {
-            Card drawnCard = warrior[turn % 2].getDeck().takeCard();
-            if (drawnCard != null) {
-                warrior[turn % 2].getHand().add(drawnCard);
+        if (!checkEndOfTheGame()) {
+            turn++;
+            //increase the mana point that the warrior has
+            warrior[turn % 2].setMaxManaPoint(warrior[turn % 2].getMaxManaPoint() + 1);
+            //to do changes in sleeping status of monsters
+            warrior[turn % 2].getMonsterField().changeTurnActions(true);
+            warrior[turn % 2].getSpellField().changeTurnActions(true);
+            //to do changes in sleeping status of defensive monsters
+            warrior[(turn + 1) % 2].getMonsterField().changeTurnActions(false);
+            warrior[(turn + 1) % 2].getSpellField().changeTurnActions(false);
+            //drawing a card from deck to hand
+            try {
+                Card drawnCard = warrior[turn % 2].getDeck().takeCard();
+                if (drawnCard != null) {
+                    warrior[turn % 2].getHand().add(drawnCard);
 
-                System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
-                if (turn % 2 == 1) {
-                    System.out.println(drawnCard.getName());
+                    System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
+                    if (turn % 2 == 1) {
+                        System.out.println(drawnCard.getName());
+                    }
+                    //this has to be written every time we enter this menu
+                    if (turn % 2 == 1)
+                        System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
+                                + warrior[turn % 2].getMaxManaPoint() + "]");
+                    if (turn % 2 == 0) {
+                        warrior[0].makeMove(warrior[1]);
+                        changeTurn();
+                    }
                 }
-                //this has to be written every time we enter this menu
-                if (turn % 2 == 1)
-                    System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
-                            + warrior[turn % 2].getMaxManaPoint() + "]");
+            } catch (NullPointerException e) {
+                System.out.println("No more cards in the deck!!!");
+                System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
                 if (turn % 2 == 0) {
                     warrior[0].makeMove(warrior[1]);
                     changeTurn();
                 }
-            }
-        }catch (NullPointerException e) {
-            System.out.println("No more cards in the deck!!!");
-            System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
-            if (turn % 2 == 0) {
-                warrior[0].makeMove(warrior[1]);
-                changeTurn();
             }
         }
     }
@@ -302,24 +304,26 @@ public class BattleControl {
         if (warrior[1].getBackPack().ContainsItem("Mystic HourGlass")){
             ((MysticHourglass)warrior[1].getBackPack().getItem("Mystic HourGlass")).castSpell();
             warrior[1].getBackPack().remove(warrior[1].getBackPack().getItem("Mystic HourGlass"));
-            System.out.println("now the game will be reset to the time before battle");
+            Graphics.getInstance().notifyMessage("now the game will be reset to the time before battle", "notify");
         }
-        System.out.println("Unfortunately the demons were too strong!!" +
-                "\nRegain power and challenge them again brave hero!");
+        Menu.getInstance().goBacktoMenu();
+        Graphics.getInstance().notifyMessage("Unfortunately the demons were too strong!!" +
+                "\nRegain power and challenge them\nagain brave hero!", "notify");
 
     }
 
     private void win () {
         warrior[1].getUser().setLevel(warrior[1].getUser().getLevel() + 1);
         warrior[1].getUser().setGills(warrior[1].getUser().getGills() + warrior[0].getWinPrize());
-        System.out.println("Congratulations\n" +
-                "With your skills and bravery " + warrior[0].getName() + " has been utterly defeated!!" +
-                "\nIt was right to request help from you brave warrior!");
+        Menu.getInstance().goBacktoMenu();
+        Graphics.getInstance().notifyMessage("Congratulations\n" +
+                "With your skills and bravery " + warrior[0].getName() + "\nhas been utterly defeated!!" +
+                "\nIt was right to request help from\nyou brave warrior!", "notify");
     }
 }
 
 class TurnException extends Exception {
     TurnException () {
-        System.out.println("not your turn\ntry again when its your turn");
+        Graphics.getInstance().notifyMessage("not your turn\ntry again when its your turn", "notify");
     }
 }

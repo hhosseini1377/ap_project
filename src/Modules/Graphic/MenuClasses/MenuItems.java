@@ -49,7 +49,8 @@ public class MenuItems{
                         case "Reset Game":
                             gameControl.resetGame();
                             break;
-                        case "About Game":
+                        case "Inventory":
+                            gameControl.startInventory();
                             break;
                         case "Sound":
                             if (!Graphics.isMute) {

@@ -76,7 +76,7 @@
                   -fx-font-family: Purisa;"
             />
             <Text fx:id="menuText7"
-                  text="About Game"
+                  text="Inventory"
                   fill="cornsilk"
                   style="-fx-font-size: 20;
                   -fx-font-family: Purisa;"

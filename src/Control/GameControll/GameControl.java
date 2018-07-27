@@ -213,20 +213,9 @@ public class GameControl {
         Menu.getInstance().mainMenu();
     }
 
-    /**
-     * prints available options for user
-     */
-    private String  help(){
-        System.out.println("1. Enter Shop:To enter shop and buy or sell cards and items\n" +
-                "2. Battle:To enter the next battle\n" +
-                "3. Edit Inventory:To edit your cards and amulets\n" +
-                "4. Exit: save and exit the game");
-        return "1. Enter Shop:To enter shop and buy or sell cards and items\n" +
-                "2. Battle:To enter the next battle\n" +
-                "3. Edit Inventory:To edit your cards and amulets\n" +
-                "4. Exit: save and exit the game";
+    public void startInventory(){
+        cardInventory.start();
     }
-
     public void saveGame() throws IOException {
         gameDetailController.saveGame();
     }

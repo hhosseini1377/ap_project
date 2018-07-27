@@ -12,6 +12,7 @@ import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -213,8 +214,11 @@ public class Graphics {
             assert dialogPage != null;
             Scene scene = Graphics.getInstance().getStage().getScene();
             ((Text) dialogPage.lookup("#dialog")).setText(message);
-            ((AnchorPane) scene.getRoot()).getChildren().add(dialogPage);
-            VBox box = (VBox) dialogPage.lookup("#dialogBox");
+            if (scene.getRoot() instanceof AnchorPane)
+                ((AnchorPane) scene.getRoot()).getChildren().add(dialogPage);
+            else
+                ((GridPane) scene.getRoot()).getChildren().add(dialogPage);
+        VBox box = (VBox) dialogPage.lookup("#dialogBox");
             box.maxWidthProperty().bind(Bindings.divide(dialogPage.widthProperty(), 2.2));
             box.minHeightProperty().bind(Bindings.divide(dialogPage.heightProperty(), 2));
             Button button = (Button) dialogPage.lookup("#button");
@@ -228,7 +232,10 @@ public class Graphics {
                     } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
                         button.setStyle(cssButton + "-fx-background-color:  #69443c; -fx-font-size: 23;");
                     } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-                        ((AnchorPane) scene.getRoot()).getChildren().remove(finalDialogPage);
+                        if (scene.getRoot() instanceof AnchorPane)
+                            ((AnchorPane) scene.getRoot()).getChildren().remove(finalDialogPage);
+                        else
+                            ((GridPane) scene.getRoot()).getChildren().remove(finalDialogPage);
                     }
                 }
             };

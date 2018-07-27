@@ -50,7 +50,10 @@ public class Graphics {
     private Scene shop;
     private Scene cardShopScene;
     private Scene cardInventoryScene;
+    private Scene itemInventoryScene;
+
     private Scene Inventory;
+
     private Scene mainScene;
     private Scene graveyard;
     private Stage stage;
@@ -61,6 +64,14 @@ public class Graphics {
     private HBox[] espellField = new HBox[3];
 
     private Graphics(){
+    }
+
+    public Scene getItemInventoryScene() {
+        return itemInventoryScene;
+    }
+
+    public void setItemInventoryScene(Scene itemInventoryScene) {
+        this.itemInventoryScene = itemInventoryScene;
     }
 
     public Scene getCardInventoryScene() {

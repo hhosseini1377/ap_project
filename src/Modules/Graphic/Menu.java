@@ -27,10 +27,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -361,7 +359,7 @@ public class Menu {
      */
     public void dynamicMenu() throws IOException {
         dynamicMenuStart();
-        hero = new Hero();
+        hero = new Hero(gameControl);
         Group root = (Group) Graphics.getInstance().getDynamicMenu().getRoot();
         root.getChildren().add(hero.getView());
         walkOperation(root);
@@ -376,6 +374,10 @@ public class Menu {
         Graphics.START_MUSIC_PLAYER.stop();
         Graphics.MAP_MUSIC_PLAYER.setCycleCount(Animation.INDEFINITE);
         Graphics.MAP_MUSIC_PLAYER.play();
+        String mapUrl = "url(Files/Images/Map/ProjectMap" + gameControl.getUser().getLevel() + ".png)";
+        ((GridPane) root.lookup("#gridPane")).setStyle("-fx-background-image: " + mapUrl + ";-fx-background-repeat: no-repeat;" +
+                "-fx-background-position: center;" +
+                "-fx-background-size: stretch;");
         Graphics.getInstance().setMusicPlayer(Graphics.MAP_MUSIC_PLAYER);
         Graphics.getInstance().setDynamicMenu(new Scene(root));
         ((GridPane)root.lookup("#gridPane")).minWidthProperty().bind(Bindings.divide(
@@ -438,6 +440,76 @@ public class Menu {
         };
         Graphics.getInstance().getDynamicMenu().addEventHandler(KeyEvent.ANY, walkEvent);
     }
+
+    public void castleMap() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Castle.fxml"));
+        String mapUrl = "url(Files/Images/Map/Castle" + gameControl.getUser().getLevel() + ".png)";
+        ((AnchorPane) root).setStyle("-fx-background-image: " + mapUrl + ";-fx-background-repeat: no-repeat;" +
+                "-fx-background-position: center;" +
+                "-fx-background-size: stretch;");
+
+        Graphics.getInstance().getStage().setScene(new Scene(root));
+        hero = new Hero();
+        ((AnchorPane) root).getChildren().add(hero.getView());
+        walkOperation((AnchorPane)root);
+    }
+    /**
+     * for handling the sprites walking
+     */
+    private void walkOperation(AnchorPane root){
+        EventHandler<KeyEvent> walkEvent = new EventHandler<KeyEvent>() {
+            @Override
+            public void handle (KeyEvent event) {
+                if (event.getCode() == KeyCode.DOWN ||
+                        event.getCode() == KeyCode.UP ||
+                        event.getCode() == KeyCode.LEFT ||
+                        event.getCode() == KeyCode.RIGHT) {
+                    hero.moveHero();
+                    root.getChildren().remove(hero.getView());
+                    if (event.getCode() == KeyCode.DOWN) {
+                        if (hero.getDirection() == 2) {
+                            //if the direction is the same as the key the walking posture will be added
+                            hero.setStateOfWalk(hero.getStateOfWalk() + 1);
+                        } else {
+                            hero.setDirection(2);
+                            hero.setStateOfWalk(0);
+                        }
+                    } else if (event.getCode() == KeyCode.LEFT) {
+                        if (hero.getDirection() == 1) {
+                            //if the direction is the same as the key the walking posture will be added
+                            hero.setStateOfWalk(hero.getStateOfWalk() + 1);
+                        } else {
+                            hero.setDirection(1);
+                            hero.setStateOfWalk(0);
+                        }
+                    } else if (event.getCode() == KeyCode.UP) {
+                        if (hero.getDirection() == 0) {
+                            //if the direction is the same as the key the walking posture will be added
+                            hero.setStateOfWalk(hero.getStateOfWalk() + 1);
+                        } else {
+                            hero.setDirection(0);
+                            hero.setStateOfWalk(0);
+                        }
+                    } else if (event.getCode() == KeyCode.RIGHT) {
+                        if (hero.getDirection() == 3) {
+                            //if the direction is the same as the key the walking posture will be added
+                            hero.setStateOfWalk(hero.getStateOfWalk() + 1);
+                        } else {
+                            hero.setDirection(3);
+                            hero.setStateOfWalk(0);
+                        }
+                    }
+                    try {
+                        root.getChildren().add(hero.getView());
+                    }catch (Exception e){
+                        System.out.println("duplicate children");
+                    }
+                }
+            }
+        };
+        Graphics.getInstance().getStage().getScene().addEventHandler(KeyEvent.ANY, walkEvent);
+    }
+
 
     public void settings() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Settings.fxml"));

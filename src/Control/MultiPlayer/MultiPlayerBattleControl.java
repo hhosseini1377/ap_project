@@ -1,6 +1,7 @@
-package Control;
+package Control.MultiPlayer;
 
 import Modules.Graphic.Graphics;
+import Modules.User.User;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,11 +23,17 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class MultiPlayerBattleControl {
+    private User user;
     private GridPane multiPlayerGamePane = new GridPane();
     private Scene multiPlayerScene = new Scene(multiPlayerGamePane);
+    private MultiBattleControl multiBattleControl = new MultiBattleControl();
     private int port;
     private String ip;
     private Socket s = new Socket();
+
+    public MultiPlayerBattleControl(User user){
+        this.user = user;
+    }
 
     public void multiPlayerEntrance(){
         multiPlayerGamePane.setAlignment(Pos.CENTER);

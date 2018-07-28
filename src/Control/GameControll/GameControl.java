@@ -2,7 +2,7 @@ package Control.GameControll;
 
 import Control.BattleControl;
 import Control.InventoryControl;
-import Control.MultiPlayerBattleControl;
+import Control.MultiPlayer.MultiPlayerBattleControl;
 import Control.ShopControl;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
@@ -21,21 +21,10 @@ import Modules.User.Inventory.ItemInventory;
 import Modules.User.User;
 import Modules.Warrior.BackPack;
 import javafx.beans.binding.Bindings;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Screen;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
@@ -130,7 +119,7 @@ public class GameControl {
         inventoryControl = new InventoryControl(user);
         shopControl = new ShopControl(cardShop, itemShop, amuletShop, user, inventoryControl);
         battleControl = new BattleControl();
-        multiPlayerBattleControl = new MultiPlayerBattleControl();
+        multiPlayerBattleControl = new MultiPlayerBattleControl(user);
     }
 
     public void startBattle(int level){

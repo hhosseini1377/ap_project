@@ -2,8 +2,11 @@ package Control.MultiPlayer;
 
 import Modules.Graphic.Graphics;
 import Modules.User.User;
+import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -16,10 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -195,22 +195,89 @@ public class MultiPlayerBattleControl {
             button.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    try {
-                        multiBattleControl = new MultiBattleControl(0, s,user);
-                        multiBattleControl.startBattle();
-                        dataOutputStream.writeUTF("game started");
-                        dataOutputStream.flush();
-                    }
-                    catch (Exception e){
+                    multiBattleControl = new MultiBattleControl(0, s,user);
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Battle.fxml"));
+                            Graphics.getInstance().setBattle(new Scene(root));
+                            Graphics.getInstance().getStage().setScene(Graphics.getInstance().getBattle());
+                            Graphics.getInstance().getStage().setFullScreen(true);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Parent root = Graphics.getInstance().getBattle().getRoot();
+                        assert root != null;
+                        Graphics.MAP_MUSIC_PLAYER.stop();
+                        Graphics.BATTLE_MUSIC_PLAYER.setCycleCount(-1);
+                        Graphics.BATTLE_MUSIC_PLAYER.play();
+                        Graphics.getInstance().setMusicPlayer(Graphics.BATTLE_MUSIC_PLAYER);
 
+
+                        playerPartControlSize();
+                        multiBattleControl.startBattle();
+                        try {
+                            dataOutputStream.writeUTF("game started");
+                            dataOutputStream.flush();
+                        }catch (Exception e){
+                            System.out.println(e);
+                        }
                     }
-                }
             });
         }
         catch(Exception e){
             System.out.println(e);
         }
     }
+
+    private void playerPartControlSize(){
+        double width = Graphics.SCREEN_WIDTH;
+        double height = Graphics.SCREEN_HEIGHT;
+        Parent root = Graphics.getInstance().getBattle().getRoot();
+        VBox playerPart1 = (VBox) root.lookup("#playerPart1");
+        VBox playerPart2 = (VBox) root.lookup("#playerPart2");
+
+        //fixing the size of parts according to the page
+        playerPart1.setMinHeight(height/2 - 20);
+        playerPart1.setMaxHeight(height/2 - 20);
+        playerPart2.setMinHeight(height/2 - 50);
+        playerPart2.setMaxHeight(height/2 - 50);
+        playerPart1.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        playerPart1.maxWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        playerPart2.minWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+        playerPart2.maxWidthProperty().bind(Bindings.divide(Graphics.getInstance().getStage().widthProperty(), 1));
+
+        //fixing size of fields
+        HBox field1 = (HBox) root.lookup("#fieldP1");
+        HBox field2 = (HBox) root.lookup("#fieldP2");
+        HBox detail1 = (HBox) root.lookup("#detailP1");
+        HBox detail2 = (HBox) root.lookup("#detailP2");
+        field1.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 3/2));
+        detail1.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 3));
+        field2.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 2));
+        detail2.minHeightProperty().bind(Bindings.divide(playerPart1.minHeightProperty(), 2));
+
+        //fixing size of hands
+        HBox hand1 = (HBox) root.lookup("#handP1");
+        hand1.minWidthProperty().bind(Bindings.divide(playerPart1.minWidthProperty(), 1.2));
+        hand1.maxWidthProperty().bind(Bindings.divide(playerPart1.minWidthProperty(), 1.2));
+        HBox hand2 = (HBox) root.lookup("#handP2");
+        hand2.minWidthProperty().bind(Bindings.divide(playerPart2.minWidthProperty(), 1.2));
+        hand2.maxWidthProperty().bind(Bindings.divide(playerPart2.minWidthProperty(), 1.2));
+
+        //fixing images
+        VBox pic1 = (VBox) root.lookup("#picContP1");
+        VBox frame1 = (VBox) root.lookup("#frameContP1");
+        VBox pic2 = (VBox) root.lookup("#picContP2");
+        VBox frame2 = (VBox) root.lookup("#frameContP2");
+        pic1.setLayoutY(60);
+        frame1.setLayoutY(60);
+        pic1.setLayoutX(width/2 - 40);
+        frame1.setLayoutX(width/2 - 40);
+        pic2.setLayoutY(height - 160);
+        frame2.setLayoutY(height - 160);
+        pic2.setLayoutX(width/2 - 40);
+        frame2.setLayoutX(width/2 - 40);
+    }
+
 
 
 }

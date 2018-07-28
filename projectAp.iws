@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="277dedb9-add2-4aee-affe-b988031365a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/projectAp.iws" afterPath="$PROJECT_DIR$/projectAp.iws" />
-      <change beforePath="$PROJECT_DIR$/src/Control/MultiPlayer/MultiBattleControl.java" afterPath="$PROJECT_DIR$/src/Control/MultiPlayer/MultiBattleControl.java" />
       <change beforePath="$PROJECT_DIR$/src/Control/MultiPlayer/MultiPlayerBattleControl.java" afterPath="$PROJECT_DIR$/src/Control/MultiPlayer/MultiPlayerBattleControl.java" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/User/User.java" afterPath="$PROJECT_DIR$/src/Modules/User/User.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +24,8 @@
       <file leaf-file-name="GameControl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Control/GameControll/GameControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="121" column="68" lean-forward="false" selection-start-line="121" selection-start-column="68" selection-end-line="121" selection-end-column="68" />
+            <state relative-caret-position="200">
+              <caret line="124" column="39" lean-forward="true" selection-start-line="124" selection-start-column="39" selection-end-line="124" selection-end-column="39" />
               <folding>
                 <element signature="e#5980#5981#0" expanded="true" />
                 <element signature="e#6027#6028#0" expanded="true" />
@@ -58,19 +56,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MultiPlayerBattleControl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MultiPlayerBattleControl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Control/MultiPlayer/MultiPlayerBattleControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="199" column="55" lean-forward="false" selection-start-line="199" selection-start-column="55" selection-end-line="199" selection-end-column="55" />
+            <state relative-caret-position="432">
+              <caret line="220" column="48" lean-forward="false" selection-start-line="220" selection-start-column="48" selection-end-line="220" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1082#1083#0" expanded="true" />
-                <element signature="e#1114#1115#0" expanded="true" />
-                <element signature="e#2579#2580#0" expanded="true" />
-                <element signature="e#2623#2624#0" expanded="true" />
-                <element signature="e#2777#2778#0" expanded="true" />
-                <element signature="e#2823#2824#0" expanded="true" />
+                <element signature="e#1064#1065#0" expanded="true" />
+                <element signature="e#1096#1097#0" expanded="true" />
+                <element signature="e#2561#2562#0" expanded="true" />
+                <element signature="e#2605#2606#0" expanded="true" />
+                <element signature="e#2759#2760#0" expanded="true" />
+                <element signature="e#2805#2806#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MultiBattleControl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MultiBattleControl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Control/MultiPlayer/MultiBattleControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state relative-caret-position="-3771">
+              <caret line="45" column="65" lean-forward="true" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -139,6 +137,9 @@
       <find>battleControl</find>
       <find>swit</find>
       <find>multi</find>
+      <find>start</find>
+      <find>playerpa</find>
+      <find>startG</find>
     </findStrings>
     <replaceStrings>
       <replace>-</replace>
@@ -218,8 +219,8 @@
         <option value="$PROJECT_DIR$/src/Control/GameControll/GameControl.java" />
         <option value="$PROJECT_DIR$/src/Control/BattleControl.java" />
         <option value="$PROJECT_DIR$/src/Modules/User/User.java" />
-        <option value="$PROJECT_DIR$/src/Control/MultiPlayer/MultiPlayerBattleControl.java" />
         <option value="$PROJECT_DIR$/src/Control/MultiPlayer/MultiBattleControl.java" />
+        <option value="$PROJECT_DIR$/src/Control/MultiPlayer/MultiPlayerBattleControl.java" />
       </list>
     </option>
   </component>
@@ -269,6 +270,21 @@
               <item name="ap_project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Control" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ap_project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Control" type="462c0819:PsiDirectoryNode" />
+              <item name="MultiPlayer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ap_project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Control" type="462c0819:PsiDirectoryNode" />
+              <item name="MultiPlayer" type="462c0819:PsiDirectoryNode" />
+              <item name="MultiBattleControl.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="projectAp" type="b2602c69:ProjectViewProjectNode" />
@@ -671,14 +687,7 @@
       <workItem from="1532802123644" duration="145000" />
       <workItem from="1532802366299" duration="563000" />
       <workItem from="1532805326816" duration="1030000" />
-      <workItem from="1532806403231" duration="5140000" />
-    </task>
-    <task id="LOCAL-00015" summary="changed battlecontrol">
-      <created>1526465794181</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1526465794181</updated>
+      <workItem from="1532806403231" duration="6297000" />
     </task>
     <task id="LOCAL-00016" summary="changed battlecontrol">
       <created>1526465819089</created>
@@ -1016,11 +1025,18 @@
       <option name="project" value="LOCAL" />
       <updated>1532811415474</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="started network">
+      <created>1532813689809</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1532813689809</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340864000" />
+    <option name="totallyTimeSpent" value="342021000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1540,19 +1556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Control/GameControll/GameControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="121" column="68" lean-forward="false" selection-start-line="121" selection-start-column="68" selection-end-line="121" selection-end-column="68" />
-          <folding>
-            <element signature="e#5980#5981#0" expanded="true" />
-            <element signature="e#6027#6028#0" expanded="true" />
-            <element signature="e#8805#8806#0" expanded="true" />
-            <element signature="e#8844#8845#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Control/BattleControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -1577,27 +1580,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Control/MultiPlayer/MultiPlayerBattleControl.java">
+    <entry file="file://$PROJECT_DIR$/src/Control/MultiPlayer/MultiBattleControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="199" column="55" lean-forward="false" selection-start-line="199" selection-start-column="55" selection-end-line="199" selection-end-column="55" />
+        <state relative-caret-position="-3771">
+          <caret line="45" column="65" lean-forward="true" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Control/GameControll/GameControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="124" column="39" lean-forward="true" selection-start-line="124" selection-start-column="39" selection-end-line="124" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1082#1083#0" expanded="true" />
-            <element signature="e#1114#1115#0" expanded="true" />
-            <element signature="e#2579#2580#0" expanded="true" />
-            <element signature="e#2623#2624#0" expanded="true" />
-            <element signature="e#2777#2778#0" expanded="true" />
-            <element signature="e#2823#2824#0" expanded="true" />
+            <element signature="e#5980#5981#0" expanded="true" />
+            <element signature="e#6027#6028#0" expanded="true" />
+            <element signature="e#8805#8806#0" expanded="true" />
+            <element signature="e#8844#8845#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Control/MultiPlayer/MultiBattleControl.java">
+    <entry file="file://$PROJECT_DIR$/src/Control/MultiPlayer/MultiPlayerBattleControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="432">
+          <caret line="220" column="48" lean-forward="false" selection-start-line="220" selection-start-column="48" selection-end-line="220" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1064#1065#0" expanded="true" />
+            <element signature="e#1096#1097#0" expanded="true" />
+            <element signature="e#2561#2562#0" expanded="true" />
+            <element signature="e#2605#2606#0" expanded="true" />
+            <element signature="e#2759#2760#0" expanded="true" />
+            <element signature="e#2805#2806#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

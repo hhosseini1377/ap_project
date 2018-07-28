@@ -28,7 +28,7 @@ public class Main extends Application{
         Graphics.getInstance().setStage(primaryStage);
         Menu.getInstance().startScreen(gameControl);
 //        ItemInventoryView itemInventoryView = new ItemInventoryView();
-////
+//
 //        ArrayList<Item> nonEquipped = new ArrayList<>();
 //        GreaterRestorative greaterRestorative = new GreaterRestorative();
 //        ArrayList<Item> equipped = new ArrayList<>();

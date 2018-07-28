@@ -32,8 +32,8 @@ public class CardView {
 
     public CardView(double width, double height, Image image, Card card, double x, double y, boolean isBig) {
         if (isBig){
-            width = width * 4/3;
-            height = height * 4/3;
+//            width = width * 4/3;
+//            height = height * 4/3;
         }
         this.card = card;
         frame.setPrefSize(width, height);

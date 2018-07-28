@@ -32,7 +32,7 @@ public class CardInventoryView {
         ArrayList<Card> nonEquipped = inventory.getCards();
         ArrayList<Card> equipped = deck.getCards();
 
-        HBox row1  = HBoxConstructor(nonEquipped , Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT * 2 / 12);
+        HBox row1  = HBoxConstructor(nonEquipped , Graphics.SCREEN_WIDTH * 2 / 18, 20);
         HBox row2 =  HBoxConstructor(equipped , Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT * 7 / 12);
 
 
@@ -92,7 +92,7 @@ public class CardInventoryView {
                 new CardsHandler(nonEquipped.get(i), row1, row2, paneBigCardNonEquipped, paneBigCardEquipped, fullScreen, i, true, deck);
             }
             for (int i = 0; i < row2.getChildren().size(); i++) {
-                new CardsHandler(nonEquipped.get(i), row1, row2, paneBigCardNonEquipped, paneBigCardEquipped, fullScreen, i, false, deck);
+                new CardsHandler(equipped.get(i), row1, row2, paneBigCardNonEquipped, paneBigCardEquipped, fullScreen, i, false, deck);
             }
 
 
@@ -124,28 +124,6 @@ class CardsHandler{
     int index;
 
     CardsHandler(Card card, HBox row1, HBox row2, Pane paneBigCardNonEquipped, Pane paneBigCardEquipped, Pane fullScreen, int index, boolean is1, Deck deck){
-        if (is1) {
-            int finalI = index;
-            row1.getChildren().get(index).setOnMouseClicked(event -> {
-                card.getCardViewBig().getMainVBox().setLayoutX(Graphics.SCREEN_WIDTH * 6 / 18);
-                card.getCardViewBig().getMainVBox().setLayoutY(0);
-
-                paneBigCardNonEquipped.getChildren().addAll(card.getCardViewBig().getMainVBox());
-                fullScreen.getChildren().add(paneBigCardNonEquipped);
-                this.index = finalI;
-            });
-        }
-        else {
-            int finalI = index;
-            row2.getChildren().get(index).setOnMouseClicked(event -> {
-                card.getCardViewBig().getMainVBox().setLayoutX(Graphics.SCREEN_WIDTH * 6 / 18);
-                card.getCardViewBig().getMainVBox().setLayoutY(0);
-
-                paneBigCardEquipped.getChildren().addAll(card.getCardViewBig().getMainVBox());
-                fullScreen.getChildren().add(paneBigCardEquipped);
-                this.index = finalI;
-            });
-        }
 
         Button returnButtonEquipped = new Button("Return");
         returnButtonEquipped.setPrefSize(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT / 12);
@@ -173,6 +151,29 @@ class CardsHandler{
 
         paneBigCardNonEquipped.getChildren().addAll(returnButtonNonEquipped, equipButton);
         paneBigCardEquipped.getChildren().addAll(returnButtonEquipped,unEquipButton);
+
+        if (is1) {
+            int finalI = index;
+            row1.getChildren().get(index).setOnMouseClicked(event -> {
+                card.getCardViewBig().getMainVBox().setLayoutX(Graphics.SCREEN_WIDTH * 6 / 18);
+                card.getCardViewBig().getMainVBox().setLayoutY(0);
+
+                paneBigCardNonEquipped.getChildren().addAll(card.getCardViewBig().getMainVBox());
+                fullScreen.getChildren().add(paneBigCardNonEquipped);
+                this.index = finalI;
+            });
+        }
+        else {
+            int finalI = index;
+            row2.getChildren().get(index).setOnMouseClicked(event -> {
+                card.getCardViewBig().getMainVBox().setLayoutX(Graphics.SCREEN_WIDTH * 6 / 18);
+                card.getCardViewBig().getMainVBox().setLayoutY(0);
+
+                paneBigCardEquipped.getChildren().addAll(card.getCardViewBig().getMainVBox());
+                fullScreen.getChildren().add(paneBigCardEquipped);
+                this.index = finalI;
+            });
+        }
 
         returnButtonNonEquipped.setOnMouseClicked(event -> {
             fullScreen.getChildren().remove(paneBigCardNonEquipped);

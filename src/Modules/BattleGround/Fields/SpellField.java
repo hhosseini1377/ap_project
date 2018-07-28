@@ -175,7 +175,7 @@ public class SpellField {
     public void changeTurnActions(boolean isMyTurn){
         if (isMyTurn)
             for (Spell spell: this.spellCards){
-                if (spell.getSpellType() == SpellType.CONTINUOUS)
+                if (spell.getSpellType().equals(SpellType.CONTINUOUS))
                     spell.castSpell();
             }
     }

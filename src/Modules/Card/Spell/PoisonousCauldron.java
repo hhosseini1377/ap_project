@@ -1,5 +1,6 @@
 package Modules.Card.Spell;
 
+import Modules.Card.Monsters.Monster;
 import Modules.Graphic.Graphics;
 import Modules.Warrior.Warrior;
 import View.ShopView.CardView;
@@ -25,7 +26,10 @@ public class PoisonousCauldron extends Spell{
 
     @Override
     public void castSpell() {
-        //TODO
+        for (Monster monster:enemy.getMonsterField().getMonsterCards()){
+            monster.decreaseHP(100);
+        }
+        enemy.getCommander().decreaseHP(100);
     }
 
     @Override

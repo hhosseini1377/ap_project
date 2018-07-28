@@ -2,6 +2,7 @@ package Control.GameControll;
 
 import Control.BattleControl;
 import Control.InventoryControl;
+import Control.MultiPlayerBattleControl;
 import Control.ShopControl;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
@@ -66,6 +67,7 @@ public class GameControl {
     private BattleControl battleControl;
     private GameDetailController gameDetailController;
     private InventoryControl inventoryControl;
+    private MultiPlayerBattleControl multiPlayerBattleControl;
 
 
     public GameControl(String fileDirectory){
@@ -128,6 +130,7 @@ public class GameControl {
         inventoryControl = new InventoryControl(user);
         shopControl = new ShopControl(cardShop, itemShop, amuletShop, user, inventoryControl);
         battleControl = new BattleControl();
+        multiPlayerBattleControl = new MultiPlayerBattleControl();
     }
 
     public void startBattle(int level){
@@ -153,6 +156,10 @@ public class GameControl {
         Graphics.getInstance().setBattle(new Scene(root));
         Graphics.getInstance().getStage().setScene(Graphics.getInstance().getBattle());
         Graphics.getInstance().getStage().setFullScreen(true);
+    }
+
+    public MultiPlayerBattleControl getMultiPlayerBattleControl() {
+        return multiPlayerBattleControl;
     }
 
     private void playerPartControlSize(){

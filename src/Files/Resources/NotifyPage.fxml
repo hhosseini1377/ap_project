@@ -23,7 +23,7 @@
     </fx:define>
     <VBox fx:id="dialogBox"
           spacing="50"
-          style="-fx-background-image: url(Files/Images/BackGround/DialogueBg.jpeg);
+          style="-fx-background-image: url(Files/Images/BackGround/DialogueBg.png);
           -fx-background-size: stretch;
           -fx-background-repeat: no-repeat;"
           alignment="CENTER"

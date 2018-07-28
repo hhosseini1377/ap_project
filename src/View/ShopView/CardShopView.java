@@ -217,7 +217,7 @@ public class CardShopView {
         gridPane.setStyle("-fx-background-image: url(/Files/Images/BackGround/cardShopBackGround.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat");
 
 
-        ImageView form = new ImageView(new Image("Files/Images/BackGround/DialogueBg.jpeg"));
+        ImageView form = new ImageView(new Image("Files/Images/BackGround/DialogueBg.png"));
         Text text = new Text("Are you sure you want to buy " + cardName + " from the Shop?");
         text.setFill(Color.WHITE);
         Button yesButton = new Button("Yes");
@@ -262,7 +262,7 @@ public class CardShopView {
         Text text = new Text("You don't have enough gills to buy " + cartName);
         text.setFill(Color.WHITE);
 
-        ImageView form = new ImageView(new Image("Files/Images/BackGround/DialogueBg.jpeg"));
+        ImageView form = new ImageView(new Image("Files/Images/BackGround/DialogueBg.png"));
         Button returnButton = new Button("return to Card Shop");
         returnButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         VBox vBox = new VBox(50);

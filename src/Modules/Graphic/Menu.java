@@ -83,8 +83,8 @@ public class Menu {
         Graphics.START_MUSIC_PLAYER.play();
         Graphics.getInstance().setMusicPlayer(Graphics.START_MUSIC_PLAYER);
 
-        ImageCursor imageCursor = new ImageCursor(Graphics.CURSOR_IMAGE, 30, 30);
-        Graphics.getInstance().getMainScene().setCursor(imageCursor);
+//        ImageCursor imageCursor = new ImageCursor(Graphics.CURSOR_IMAGE, 30, 30);
+//        Graphics.getInstance().getMainScene().setCursor(imageCursor);
 
         Parent root = Graphics.getInstance().getMainScene().getRoot();
         Text text = (Text)root.lookup("#beginText");
@@ -274,7 +274,7 @@ public class Menu {
                             }
                             break;
                         case "MultiPlayer":
-                            break;
+                            gameControl.getMultiPlayerBattleControl().multiPlayerEntrance();
                         case "Custom Game":
                             break;
                         case "Save Game":

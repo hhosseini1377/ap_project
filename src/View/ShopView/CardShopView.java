@@ -85,26 +85,11 @@ public class CardShopView {
 
         for(CardView cardView : cardImages) {
             if (cardView != null) {
-                cardView.getMainVBox().setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle (MouseEvent event) {
-                        buyCard(cardView.getCard());
-                    }
-                });
+                cardView.getMainVBox().setOnMouseClicked(event -> buyCard(cardView.getCard()));
 
-                cardView.getMainVBox().setOnMouseEntered(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle (MouseEvent event) {
-                        cardView.getMainVBox().setEffect(cardGlow);
-                    }
-                });
+                cardView.getMainVBox().setOnMouseEntered(event -> cardView.getMainVBox().setEffect(cardGlow));
 
-                cardView.getMainVBox().setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle (MouseEvent event) {
-                        cardView.getMainVBox().setEffect(null);
-                    }
-                });
+                cardView.getMainVBox().setOnMouseExited(event -> cardView.getMainVBox().setEffect(null));
             }
         }
 
@@ -155,12 +140,7 @@ public class CardShopView {
         sb.setLayoutX(0);
         sb.setPrefHeight(Graphics.getInstance().getStage().getHeight());
         sb.setMax(3000);
-        sb.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                screenVBox.setLayoutY(-newValue.doubleValue());
-            }
-        });
+        sb.valueProperty().addListener((observable, oldValue, newValue) -> screenVBox.setLayoutY(-newValue.doubleValue()));
 
         cardShopGroup.getChildren().addAll(screenVBox, sb);
         Graphics.getInstance().getStage().setScene(cardShopScene);
@@ -178,6 +158,8 @@ public class CardShopView {
         Button backButton = new Button("Back");
         backButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f; -fx-font-size: 18px;");
 
+        new CardEventButton(buyButton);
+        new CardEventButton(backButton);
         HBox hBox = new HBox(75);
         hBox.getChildren().addAll(buyButton,backButton);
         hBox.setAlignment(Pos.CENTER);
@@ -188,22 +170,16 @@ public class CardShopView {
 
         gridPane.getChildren().addAll(detailVBox);
 
-        buyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(shopControl.getUser().canBuy(card.getGillCost()))
-                    canBuy(card.getName());
-                else
-                    cantBuy(card.getName());
-            }
+        buyButton.setOnMouseClicked(event -> {
+            if (shopControl.getUser().canBuy(card.getGillCost()))
+                canBuy(card.getName());
+            else
+                cantBuy(card.getName());
         });
 
-        backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                cardShopGroup.getChildren().removeAll(detailVBox);
-                shopEntrance();
-            }
+        backButton.setOnMouseClicked(event -> {
+            cardShopGroup.getChildren().removeAll(detailVBox);
+            shopEntrance();
         });
     }
 
@@ -225,28 +201,24 @@ public class CardShopView {
         Button noButton = new Button("No");
         noButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         HBox askHBox = new HBox(50);
-        askHBox.getChildren().addAll(yesButton,noButton);
         askHBox.setAlignment(Pos.CENTER);
+        askHBox.getChildren().addAll(yesButton,noButton);
+
+        new CardEventButton(noButton);
+        new CardEventButton(yesButton);
 
         VBox vBox = new VBox(100);
         vBox.setAlignment(Pos.CENTER);
+        askHBox.setMinWidth(vBox.getPrefWidth());
         vBox.getChildren().addAll(text,askHBox);
 
         gridPane.getChildren().addAll(form,vBox);
 
-        noButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                shopEntrance();
-            }
-        });
+        noButton.setOnMouseClicked(event -> shopEntrance());
 
-        yesButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                shopControl.buyCard(cardName,1);
-                shopEntrance();
-            }
+        yesButton.setOnMouseClicked(event -> {
+            shopControl.buyCard(cardName,1);
+            shopEntrance();
         });
 
     }
@@ -266,18 +238,20 @@ public class CardShopView {
         Button returnButton = new Button("return to Card Shop");
         returnButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         VBox vBox = new VBox(50);
+        new CardEventButton(returnButton);
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(text,returnButton);
 
         gridPane.getChildren().addAll(form,vBox);
 
-        returnButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                shopEntrance();
-            }
-        });
+        returnButton.setOnMouseClicked(event -> shopEntrance());
     }
-
-
 }
+
+class CardEventButton{
+    CardEventButton(Button button){
+        button.setOnMouseEntered(event -> button.setEffect(new Glow(.4)));
+        button.setOnMouseExited(event -> button.setEffect(null));
+    }
+}
+

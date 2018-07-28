@@ -3,6 +3,7 @@ package View.InventoryView;
 import Modules.Card.Card;
 import Modules.Graphic.Graphics;
 import Modules.Graphic.Menu;
+import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
 import Modules.User.User;
 import javafx.event.EventHandler;
@@ -21,13 +22,13 @@ import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ItemInventoryView {
+public class AmuletInventoryView {
     private User user;
-    private ArrayList<ItemEventHandler> cardEvents = new ArrayList<>();
+    private ArrayList<AmuletEventHandler> cardEvents = new ArrayList<>();
     private ArrayList<HBox> cardBoxes = new ArrayList<>();
     private int index = 0;
 
-    public ItemInventoryView (User user) {
+    public AmuletInventoryView (User user) {
         this.user = user;
     }
 
@@ -39,13 +40,13 @@ public class ItemInventoryView {
 
         //adding every card to the specified hbox holding it and setting event handlers amidst that
         HBox cardBox = null;
-        for (int i = 0; i < user.getItemInventory().getItems().size(); i++){
-            setCardHandler(user.getItemInventory().getItems().get(i));
+        for (int i = 0; i < user.getAmuletInventory().getAmulets().size(); i++){
+            setCardHandler(user.getAmuletInventory().getAmulets().get(i));
             if (i % 4 == 0){
                 cardBox = new HBox(50);
                 cardBox.setAlignment(Pos.CENTER);
             }
-            cardBox.getChildren().add(user.getItemInventory().getItems().get(i).getItemImage());
+            cardBox.getChildren().add(user.getAmuletInventory().getAmulets().get(i).getAmuletImage());
             if (i % 4 == 3){
                 cardBoxes.add(cardBox);
             }
@@ -133,8 +134,8 @@ public class ItemInventoryView {
     /**
      * creates new handler for each item
      */
-    private void setCardHandler(Item item){
-        cardEvents.add(new ItemEventHandler(item));
+    private void setCardHandler(Amulet amulet){
+        cardEvents.add(new AmuletEventHandler(amulet));
     }
 
     /**
@@ -149,7 +150,7 @@ public class ItemInventoryView {
      * it's used for exiting the game
      */
     private void removeHandler(){
-        for (int i = 0; i < user.getItemInventory().getItems().size(); i++){
+        for (int i = 0; i < user.getAmuletInventory().getAmulets().size(); i++){
             cardEvents.get(i).remove();
         }
     }
@@ -157,7 +158,7 @@ public class ItemInventoryView {
     /**
      * a class which handles events for every item
      */
-    class ItemEventHandler {
+    class AmuletEventHandler {
         private EventHandler<MouseEvent> okHandler;
         private EventHandler<MouseEvent> moveHandler;
         private EventHandler<MouseEvent> diseqiupHandler;
@@ -167,34 +168,34 @@ public class ItemInventoryView {
         private Button equip;
         private Button disequip;
 
-        private Item item;
-        private ImageView itemBig;
+        private Amulet amulet;
+        private ImageView amuletBig;
 
         EventHandler<MouseEvent> getEvent(){
             return cardHandler;
         }
 
-        ItemEventHandler (Item item){
+        AmuletEventHandler (Amulet amulet){
             cardHandler = new EventHandler<MouseEvent>() {
                 @Override
                 public void handle (MouseEvent event) {
                     if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
-                        item.getItemImage().setEffect(new Glow(0.4));
+                        amulet.getAmuletImage().setEffect(new Glow(0.4));
                     } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
-                        item.getItemImage().setEffect(null);
+                        amulet.getAmuletImage().setEffect(null);
                     } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-                        cardInfo(item);
+                        cardInfo(amulet);
                     }
                 }
             };
-            this.item = item;
-            item.getItemImage().addEventHandler(MouseEvent.ANY, cardHandler);
+            this.amulet = amulet;
+            amulet.getAmuletImage().addEventHandler(MouseEvent.ANY, cardHandler);
         }
 
-        private void cardInfo(Item item){
-            itemBig = new ImageView(item.getItemImage().getImage());
-            itemBig.setFitHeight(200);
-            itemBig.setFitWidth(200);
+        private void cardInfo(Amulet amulet){
+            amuletBig = new ImageView(amulet.getAmuletImage().getImage());
+            amuletBig.setFitHeight(200);
+            amuletBig.setFitWidth(200);
             Parent root = null;
             try {
                 root = FXMLLoader.load(getClass().getResource("../../Files/Resources/CardInfoPage.fxml"));
@@ -203,7 +204,7 @@ public class ItemInventoryView {
             }
             assert root!=null;
             GridPane cardBox = (GridPane) root.lookup("#dialogBox");
-            cardBox.getChildren().add(itemBig);
+            cardBox.getChildren().add(amuletBig);
             ((AnchorPane)Graphics.getInstance().getStage().getScene().getRoot()).getChildren().add(root);
             okButton = new Button();
             okButton.setStyle("-fx-background-color: #69443c; " +
@@ -227,14 +228,9 @@ public class ItemInventoryView {
             disequip.setTextFill(Color.CORNSILK);
 
             HBox bHold = null;
-            if (user.getBackPack().getNumberOfItems(item.getName()) == user.getItemInventory().getNumberOfItem(item)) {
+            if (user.getBackPack().ContainsAmulet(amulet.getName())) {
                 bHold = new HBox(okButton, disequip);
                 bHold.setLayoutX(Graphics.SCREEN_WIDTH/2 - 100);
-                bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 60);
-            }
-            else if (user.getBackPack().ContainsItem(item.getName())){
-                bHold = new HBox(okButton, equip, disequip);
-                bHold.setLayoutX(Graphics.SCREEN_WIDTH/2 - 160);
                 bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 60);
             }else {
                 bHold = new HBox(okButton, equip);
@@ -263,7 +259,7 @@ public class ItemInventoryView {
                 @Override
                 public void handle (MouseEvent event) {
                     if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-                        user.getBackPack().add(item, 1);
+                        user.getBackPack().add(amulet);
                         removeCardInfo(finalBHold1, finalRoot);
                     }
                     if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
@@ -277,7 +273,7 @@ public class ItemInventoryView {
                 @Override
                 public void handle (MouseEvent event) {
                     if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-                        user.getBackPack().remove(item);
+                        user.getBackPack().remove();
                         removeCardInfo(finalBHold1, finalRoot);
                     }
                     if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
@@ -293,7 +289,7 @@ public class ItemInventoryView {
         }
 
         public void remove(){
-            item.getItemImage().removeEventHandler(MouseEvent.ANY, cardHandler);
+            amulet.getAmuletImage().removeEventHandler(MouseEvent.ANY, cardHandler);
         }
     }
 }

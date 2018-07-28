@@ -73,10 +73,8 @@ public class BackPack {
         return "";
     }
 
-    public boolean ContainsAmulet(String AmuletName){
-        if (isAmuletEquipped())
-            return amulet.getName().equals(AmuletName);
-        return false;
+    public boolean ContainsAmulet(String AmuletName) {
+        return isAmuletEquipped() && amulet.getName().equals(AmuletName);
     }
 
     public boolean ContainsItem(String ItemName){
@@ -84,7 +82,7 @@ public class BackPack {
     }
 
     public int getNumberOfItems(String itemName){
-        return numberOfItems.get(itemName);
+        return numberOfItems.getOrDefault(itemName, 0);
     }
 }
 

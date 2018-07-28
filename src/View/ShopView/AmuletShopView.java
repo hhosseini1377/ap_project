@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -144,11 +145,14 @@ public class AmuletShopView {
         text.setFill(Color.WHITE);
 
         Button buyButton = new Button("Buy");
+        new eventButton(buyButton);
         buyButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         Button backButton = new Button("Back");
+        new eventButton(backButton);
         backButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         HBox buttonHBox = new HBox(100);
         buttonHBox.getChildren().addAll(buyButton,backButton);
+        buttonHBox.setAlignment(Pos.CENTER);
 
         VBox vbox = new VBox(50);
         vbox.getChildren().addAll(text, buttonHBox);
@@ -187,8 +191,10 @@ public class AmuletShopView {
         Text text = new Text("Are you sure you want to buy " + amuletName + " from the Shop?");
         text.setFill(Color.WHITE);
         Button yesButton = new Button("Yes");
+        new eventButton(yesButton);
         yesButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         Button noButton = new Button("No");
+        new eventButton(noButton);
         noButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
         HBox askHBox = new HBox(50);
         askHBox.getChildren().addAll(yesButton,noButton);
@@ -241,5 +247,12 @@ public class AmuletShopView {
                 amuletShopEntrance();
             }
         });
+    }
+}
+
+class eventButton{
+    eventButton(Button button){
+        button.setOnMouseEntered(event -> button.setEffect(new Glow(.4)));
+        button.setOnMouseExited(event -> button.setEffect(null));
     }
 }

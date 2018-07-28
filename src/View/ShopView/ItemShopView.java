@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -147,7 +148,11 @@ public class ItemShopView {
             Button backButton = new Button("Back");
             backButton.setStyle("-fx-font-family: Purisa; -fx-font-weight: bold; -fx-background-color: #cea57f;");
             HBox buttonHBox = new HBox(100);
+            buttonHBox.setAlignment(Pos.CENTER);
             buttonHBox.getChildren().addAll(buyButton,backButton);
+
+            new ItemEventButton(buyButton);
+            new ItemEventButton(backButton);
 
             VBox vbox = new VBox(50);
             vbox.getChildren().addAll(text, buttonHBox);
@@ -193,9 +198,13 @@ public class ItemShopView {
             askHBox.getChildren().addAll(yesButton,noButton);
             askHBox.setAlignment(Pos.CENTER);
 
+            new ItemEventButton(noButton);
+            new ItemEventButton(yesButton);
+
             VBox vBox = new VBox(100);
             vBox.setAlignment(Pos.CENTER);
             vBox.getChildren().addAll(text,askHBox);
+            askHBox.setMinWidth(vBox.getPrefWidth());
 
             gridPane.getChildren().addAll(form,vBox);
 
@@ -232,6 +241,8 @@ public class ItemShopView {
             vBox.setAlignment(Pos.CENTER);
             vBox.getChildren().addAll(text,returnButton);
 
+            new ItemEventButton(returnButton);
+
             gridPane.getChildren().addAll(form,vBox);
 
             returnButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -241,4 +252,10 @@ public class ItemShopView {
                 }
             });
         }
+}
+class ItemEventButton{
+    ItemEventButton(Button button){
+        button.setOnMouseEntered(event -> button.setEffect(new Glow(.4)));
+        button.setOnMouseExited(event -> button.setEffect(null));
+    }
 }

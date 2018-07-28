@@ -125,14 +125,33 @@ public class MultiPlayerBattleControl {
                             text.setText("a player successfully joined the server \nwait until he starts the game" );
                         }
                         string = dis.readUTF();
-                        if(string.equals("game started"))
-                            System.out.println("salam");
+                        if(string.equals("game started")){
+                            multiBattleControl = new MultiBattleControl(1, s,user);
+                            try {
+                                Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Battle.fxml"));
+                                Graphics.getInstance().setBattle(new Scene(root));
+                                Graphics.getInstance().getStage().setScene(Graphics.getInstance().getBattle());
+                                Graphics.getInstance().getStage().setFullScreen(true);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Parent root = Graphics.getInstance().getBattle().getRoot();
+                            assert root != null;
+                            Graphics.MAP_MUSIC_PLAYER.stop();
+                            Graphics.BATTLE_MUSIC_PLAYER.setCycleCount(-1);
+                            Graphics.BATTLE_MUSIC_PLAYER.play();
+                            Graphics.getInstance().setMusicPlayer(Graphics.BATTLE_MUSIC_PLAYER);
+
+                            playerPartControlSize();
+                            multiBattleControl.startBattle();
+                        }
                     }
                     catch (Exception e){
                         System.out.println(e);
                     }
                 }
             }).start();
+
 
         }
         catch (Exception e){

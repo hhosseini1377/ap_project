@@ -220,20 +220,20 @@ class GameDetailController {
      * @throws IOException if the file input is wrong
      */
     // TODO needs to be completed
-    public void saveGame() throws IOException{
+    public void saveGame(String dir) throws IOException{
         FileWriter fileWriter = null;
-        saveBackPack();
-        saveDeck();
-        saveInventory();
-        saveShop();
-        fileWriter = new FileWriter(fileDirectory + "userInfo.txt", false);
+        saveBackPack(dir);
+        saveDeck(dir);
+        saveInventory(dir);
+        saveShop(dir);
+        fileWriter = new FileWriter(fileDirectory + dir + "/userInfo.txt", false);
         fileWriter.write("level:" + gameControl.user.getLevel());
         fileWriter.write("\ngills:" + gameControl.user.getGills());
         fileWriter.close();
     }
 
-    private void saveBackPack () throws IOException{
-        FileWriter fileWriter = new FileWriter (fileDirectory + "backPack.txt", false);
+    private void saveBackPack (String dir) throws IOException{
+        FileWriter fileWriter = new FileWriter (fileDirectory + dir + "/backPack.txt", false);
         for (Item item:gameControl.backPack.getItems()) {
             fileWriter.write(item.getName() + " -" + gameControl.backPack.getNumberOfItems(item.getName()) + "\n");
         }
@@ -243,8 +243,8 @@ class GameDetailController {
         fileWriter.close();
     }
 
-    private void saveDeck () throws IOException{
-        FileWriter fileWriter = new FileWriter (fileDirectory + "deck.txt", false);
+    private void saveDeck (String dir) throws IOException{
+        FileWriter fileWriter = new FileWriter (fileDirectory + dir + "/deck.txt", false);
         Card lastCard = null;
         for (Card card:gameControl.deck.getCards()) {
             if (lastCard == null || !card.getName().equals(lastCard.getName())) {
@@ -255,8 +255,8 @@ class GameDetailController {
         fileWriter.close();
     }
 
-    private void saveInventory () throws IOException{
-        FileWriter fileWriter = new FileWriter (fileDirectory + "inventory.txt", false);
+    private void saveInventory (String dir) throws IOException{
+        FileWriter fileWriter = new FileWriter (fileDirectory + dir + "/inventory.txt", false);
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemInventory.getItems()){
@@ -275,8 +275,8 @@ class GameDetailController {
         fileWriter.close();
     }
 
-    private void saveShop () throws IOException{
-        FileWriter fileWriter = new FileWriter (fileDirectory + "shop.txt");
+    private void saveShop (String dir) throws IOException{
+        FileWriter fileWriter = new FileWriter (fileDirectory + dir + "/shop.txt");
 
         fileWriter.write("items:\n");
         for (Item item:gameControl.itemShop.getItems()){

@@ -276,8 +276,14 @@ public class Menu {
                         case "MultiPlayer":
                             gameControl.getMultiPlayerBattleControl().multiPlayerEntrance();
                         case "Custom Game":
+
                             break;
                         case "Save Game":
+                            try {
+                                gameControl.saveGame();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
                         case "Settings":
                             try {

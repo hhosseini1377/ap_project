@@ -40,7 +40,7 @@ public class MenuItems{
                             break;
                         case "Save Game":
                             try {
-                                gameControl.saveGame();
+                                Menu.getInstance().saveGame();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

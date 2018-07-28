@@ -54,7 +54,6 @@
                       minWidth="1100"
                       maxWidth="1100"
                       alignment="CENTER"
-                      style="-fx-background-color: rgba(202,206,139,0.91)"
                 >
                 </HBox>
                 <ImageView fx:id="graveyardP1"
@@ -190,7 +189,6 @@
                       minWidth="1100"
                       maxWidth="1100"
                       alignment="CENTER"
-                      style="-fx-background-color: rgb(202,206,139, 0.91)"
                 >
 
                 </HBox>

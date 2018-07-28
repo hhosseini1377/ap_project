@@ -1,6 +1,7 @@
 package Modules.Graphic;
 
 import Control.GameControll.GameControl;
+import Modules.Card.Card;
 import Modules.Graphic.MenuClasses.Hero;
 import Modules.Graphic.MenuClasses.MenuItems;
 import javafx.animation.Animation;
@@ -36,10 +37,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 
@@ -280,7 +278,7 @@ public class Menu {
                             break;
                         case "Save Game":
                             try {
-                                gameControl.saveGame();
+                                saveGame();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -307,6 +305,31 @@ public class Menu {
             }
         };
         Graphics.getInstance().getStage().getScene().addEventHandler(KeyEvent.KEY_PRESSED, up_Down);
+    }
+
+    public void saveGame() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Save.fxml"));
+        Graphics.getInstance().getStage().setScene(new Scene(root));
+
+        String line;
+        BufferedReader fileReader = new BufferedReader(new FileReader("./src/Files/save/SaveCtrl"));
+        fileReader.readLine();
+        fileReader.readLine();
+        while((line = fileReader.readLine()) != null){
+            Text text = new Text(line);
+            new textStyler(text);
+            ((VBox) root.lookup("#saveBox")).getChildren().add(text);
+        }
+
+        EventHandler<MouseEvent> newSave = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+
+            }
+        };
+
+        Button newSaveBtn = (Button) root.lookup("#register");
+        newSaveBtn.addEventHandler(MouseEvent.ANY, newSave);
     }
 
     /**
@@ -354,7 +377,7 @@ public class Menu {
             @Override
             public void handle (MouseEvent event) {
                 try {
-                    gameControl.saveGame();
+                    gameControl.saveGame("s1");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -544,6 +567,30 @@ public class Menu {
             }
         };
         exit.addEventHandler(MouseEvent.ANY, mouseEvent);
+    }
+
+    class textStyler{
+
+        textStyler(Text text){
+            text.setStyle("-fx-font-size: 20; -fx-font-family: Purisa;");
+            text.setFill(Color.CORNSILK);
+            EventHandler<MouseEvent> onMouse = event -> {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    text.setStyle("-fx-font-size: 25; -fx-font-family: Purisa;");
+                    text.setFill(Color.rgb(229,223,160));
+                }else if(event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
+                    text.setStyle("-fx-font-size: 20; -fx-font-family: Purisa;");
+                    text.setFill(Color.CORNSILK);
+                }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                    try {
+                        gameControl.saveGame(text.getText());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            text.addEventHandler(MouseEvent.ANY, onMouse);
+        }
     }
 }
 

@@ -26,10 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -102,6 +99,7 @@ public class GameControl {
         amuletHashMap.put("Gold Ring", new GoldRing());
         amuletHashMap.put("Diamond Ring", new DiamondRing());
         amuletHashMap.put("Demon King's Crown", new DemonCrown());
+        gameDetailController.setDir();
         gameDetailController.backPackStart();
         gameDetailController.deckStart();
         gameDetailController.inventoryStart();
@@ -209,8 +207,27 @@ public class GameControl {
         Menu.getInstance().mainMenu();
     }
 
-    public void saveGame() throws IOException {
-        gameDetailController.saveGame();
+    public void saveGame(String dir) throws IOException {
+        File theDir = new File(fileDirectory + dir);
+
+        // if the directory does not exist, create it
+        if (!theDir.exists()) {
+            System.out.println("creating directory: " + theDir.getName());
+            boolean result = false;
+
+            try{
+                theDir.mkdir();
+                result = true;
+            }
+            catch(SecurityException se){
+            }
+            if(result) {
+                System.out.println("DIR created");
+            }
+        }
+
+
+        gameDetailController.saveGame(dir);
     }
 
     /**
@@ -267,6 +284,7 @@ public class GameControl {
     }
 
     public void reloadGame() throws IOException{
+        gameDetailController.setDir();
         gameDetailController.backPackStart();
         user.setBackPack(backPack);
         gameDetailController.deckStart();

@@ -27,14 +27,12 @@ import Modules.User.Inventory.CardInventory;
 import Modules.User.Inventory.ItemInventory;
 import Modules.Warrior.BackPack;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 class GameDetailController {
     private final String fileDirectory;
     private final GameControl gameControl;
+    private String saveDir = "";
 
     GameDetailController(String fileDirectory, GameControl gameControl){
         this.fileDirectory = fileDirectory;
@@ -110,7 +108,7 @@ class GameDetailController {
     //readying the backPack
     void backPackStart() throws IOException {
         String line;
-        BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "backPack.txt"));
+        BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + saveDir + "backPack.txt"));
         this.gameControl.backPack = new BackPack();
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
@@ -127,7 +125,7 @@ class GameDetailController {
     //readying the deck
     void deckStart()throws IOException{
         String line;
-        BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "deck.txt"));
+        BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + saveDir + "deck.txt"));
         this.gameControl.deck = new Deck();
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
@@ -152,7 +150,7 @@ class GameDetailController {
         gameControl.cardInventory = new CardInventory(gameControl.deck);
         String inventoryName = "items:";
         String line;
-        BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "inventory.txt"));
+        BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + saveDir + "inventory.txt"));
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
             if (!line.contains(":")){
@@ -187,7 +185,7 @@ class GameDetailController {
         gameControl.cardShop = new CardShop();
         String shopName = "items:";
         String line;
-        BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + "shop.txt"));
+        BufferedReader fileReader = new BufferedReader(new FileReader(fileDirectory + saveDir + "shop.txt"));
         while((line = fileReader.readLine()) != null){
             String parts[] = line.split(" -");
             if (!line.contains(":")){
@@ -213,6 +211,20 @@ class GameDetailController {
                 shopName = line;
             }
         }
+    }
+
+    public void setDir() throws IOException {
+        String line;
+        BufferedReader fileReader = null;
+        try {
+            fileReader = new BufferedReader(new FileReader(fileDirectory + "SaveCtrl"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        this.gameControl.backPack = new BackPack();
+        assert fileReader != null;
+        line = fileReader.readLine();
+        saveDir = line.split(":")[1] + "/";
     }
 
     /**

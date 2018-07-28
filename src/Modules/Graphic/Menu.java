@@ -290,7 +290,11 @@ public class Menu {
                             gameControl.resetGame();
                             break;
                         case "Inventory":
-                            gameControl.startInventory();
+                            try {
+                                gameControl.getInventory().mainThread();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
                     }
                 }

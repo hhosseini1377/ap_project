@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.stage.Screen?>
+<?import javafx.scene.text.Text?>
+<GridPane alignment="CENTER"
+          xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          minHeight="${screen.visualBounds.height}"
+          minWidth="${screen.visualBounds.width}"
+          style="-fx-background-image:url(Files/Images/BackGround/DragonWar1.jpg);
+          -fx-background-size: stretch;
+          -fx-background-repeat: no-repeat;
+          -fx-background-position: center;"
+>
+    <fx:define>
+        <Screen fx:id="screen" fx:factory="getPrimary"/>
+    </fx:define>
+    <rowConstraints/>
+    <rowConstraints/>
+    <rowConstraints/>
+    <rowConstraints/>
+    <rowConstraints/>
+
+    <VBox style="-fx-background-color: rgba(1,1,1,0.48);"
+          alignment="CENTER"
+          minHeight="${screen.visualBounds.height}"
+          minWidth="${screen.visualBounds.width}">
+
+    <Text fx:id="text1"
+          text="Card Inventory"
+          GridPane.rowIndex="2"
+          style="-fx-font-family: Purisa; -fx-font-size: 30;"
+          fill="cornsilk"
+          />
+    <Text fx:id="text2"
+          text="Item Inventory"
+          GridPane.rowIndex="3"
+          style="-fx-font-family: Purisa; -fx-font-size: 30;"
+          fill="cornsilk"
+    />
+    <Text fx:id="text3"
+          text="Amulet Inventory"
+          GridPane.rowIndex="4"
+          style="-fx-font-family: Purisa; -fx-font-size: 30;"
+          fill="cornsilk"
+    />
+    </VBox>
+
+</GridPane>

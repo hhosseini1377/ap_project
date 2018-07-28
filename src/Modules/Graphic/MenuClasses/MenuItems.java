@@ -50,7 +50,11 @@ public class MenuItems{
                             gameControl.resetGame();
                             break;
                         case "Inventory":
-                            gameControl.startInventory();
+                            try {
+                                gameControl.getInventory().mainThread();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
                         case "Sound":
                             if (!Graphics.isMute) {

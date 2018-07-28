@@ -3,204 +3,278 @@ package View.InventoryView;
 import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import Modules.Graphic.Graphics;
+import Modules.Graphic.Menu;
 import Modules.User.Inventory.CardInventory;
 import Modules.User.User;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CardInventoryView {
-    private CardInventory inventory;
-    private Deck deck;
-    private int bigCardIndex = 0;
+    private User user;
+    private ArrayList<CardEventHandler> cardEvents = new ArrayList<>();
+    private ArrayList<HBox> cardBoxes = new ArrayList<>();
+    private int index = 0;
 
-    public CardInventoryView (CardInventory inventory, Deck deck) {
-        this.inventory = inventory;
-        this.deck = deck;
+    public CardInventoryView (User user) {
+        this.user = user;
     }
 
-    public void viewInventory(){
+    public void viewInventory() throws IOException {
+        cardBoxes.clear();
+        Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/CardInventory.fxml"));
+        Graphics.getInstance().getStage().setScene(new Scene(root));
+        Graphics.getInstance().getStage().setFullScreen(true);
 
-        ArrayList<Card> nonEquipped = inventory.getCards();
-        ArrayList<Card> equipped = deck.getCards();
-
-        HBox row1  = HBoxConstructor(nonEquipped , Graphics.SCREEN_WIDTH * 2 / 18, 20);
-        HBox row2 =  HBoxConstructor(equipped , Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT * 7 / 12);
-
-
-
-        ImageView previousButtonUpper = new ImageView(new Image("Files/Images/viewInventory/previousButton.png"));
-        previousButtonUpper.setX(Graphics.SCREEN_WIDTH / 36);
-        previousButtonUpper.setY(Graphics.SCREEN_HEIGHT * 3 / 12);
-        previousButtonUpper.setFitHeight(Graphics.SCREEN_HEIGHT / 12);
-        previousButtonUpper.setFitWidth(Graphics.SCREEN_WIDTH / 18);
-        ImageView nextButtonUpper = new ImageView(new Image("Files/Images/viewInventory/nextButton.png"));
-        nextButtonUpper.setX(Graphics.SCREEN_WIDTH * 33 / 36);
-        nextButtonUpper.setY(Graphics.SCREEN_HEIGHT * 3 / 12);
-        nextButtonUpper.setFitHeight(Graphics.SCREEN_HEIGHT / 12);
-        nextButtonUpper.setFitWidth(Graphics.SCREEN_WIDTH / 18);
-
-        ImageView previousButtonLower = new ImageView(new Image("Files/Images/viewInventory/previousButton.png"));
-        previousButtonLower.setX(Graphics.SCREEN_WIDTH  / 36);
-        previousButtonLower.setY(Graphics.SCREEN_HEIGHT * 8 / 12);
-        previousButtonLower.setFitHeight(Graphics.SCREEN_HEIGHT / 12);
-        previousButtonLower.setFitWidth(Graphics.SCREEN_WIDTH /18);
-        ImageView nextButtonLower = new ImageView(new Image("Files/Images/viewInventory/nextButton.png"));
-        nextButtonLower.setX(Graphics.SCREEN_WIDTH * 33 / 36);
-        nextButtonLower.setY(Graphics.SCREEN_HEIGHT * 8 / 12);
-        nextButtonLower.setFitHeight(Graphics.SCREEN_HEIGHT / 12);
-        nextButtonLower.setFitWidth(Graphics.SCREEN_WIDTH / 18);
-
-
-        Pane fullScreen = new Pane(row1, row2, previousButtonLower, previousButtonUpper, nextButtonLower, nextButtonUpper);
-        fullScreen.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
-        fullScreen.setStyle("-fx-background-image: url(Files/Images/BackGround/cardShopBackGround.jpg); -fx-background-size: stretch; -fx-background-repeat: no-repeat;");
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        Pane paneBigCardNonEquipped = new Pane();
-        paneBigCardNonEquipped.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
-        paneBigCardNonEquipped.setStyle("-fx-background-image: url(Files/Images/viewInventory/backgroundBigCard.jpg);-fx-background-size: stretch; -fx-background-repeat: no-repeat; ");
-
-        Pane paneBigCardEquipped = new Pane();
-        paneBigCardEquipped.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
-        paneBigCardEquipped.setStyle("-fx-background-image: url(Files/Images/viewInventory/backgroundBigCard.jpg);-fx-background-size: stretch; -fx-background-repeat: no-repeat; ");
-
-
-        Timeline timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        KeyFrame keyFrame = new KeyFrame(Duration.millis(1), mainEvent -> {
-
-            previousButtonLower.setOnMouseClicked(event -> row2.setLayoutX(row2.getLayoutX() - 20));
-            nextButtonLower.setOnMouseClicked(event -> row2.setLayoutX(row2.getLayoutX() + 20));
-
-            previousButtonUpper.setOnMouseClicked(event -> row1.setLayoutX(row1.getLayoutX() - 20));
-            nextButtonUpper.setOnMouseClicked(event -> row1.setLayoutX(row1.getLayoutX() + 20));
-
-        });
-
-
-            for (int i = 0; i < row1.getChildren().size(); i++) {
-                new CardsHandler(nonEquipped.get(i), row1, row2, paneBigCardNonEquipped, paneBigCardEquipped, fullScreen, i, true, deck);
+        HBox cardBox = null;
+        for (int i = 0; i < user.getCardInventory().getCards().size(); i++){
+            setCardHandler(user.getCardInventory().getCards().get(i));
+            if (i % 4 == 0){
+                cardBox = new HBox(50);
+                cardBox.setAlignment(Pos.CENTER);
             }
-            for (int i = 0; i < row2.getChildren().size(); i++) {
-                new CardsHandler(equipped.get(i), row1, row2, paneBigCardNonEquipped, paneBigCardEquipped, fullScreen, i, false, deck);
+            cardBox.getChildren().add(user.getCardInventory().getCards().get(i).getCardView().getMainVBox());
+            if (i % 4 == 3){
+                cardBoxes.add(cardBox);
             }
-
-
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.play();
-
-        Graphics.getInstance().setCardInventoryScene(new Scene(fullScreen));
-
-        Graphics.getInstance().getStage().setScene(Graphics.getInstance().getCardInventoryScene());
-    }
-
-    public HBox HBoxConstructor (ArrayList<Card> cards, double x, double y){
-        HBox row = new HBox(Graphics.SCREEN_WIDTH / 18);
-        row.setLayoutX(x);
-        row.setLayoutY(y);
-        row.setPrefSize(Graphics.SCREEN_WIDTH * 14 / 18, Graphics.SCREEN_HEIGHT * 3 / 12);
-
-        for (Card card: cards) {
-            if (!row.getChildren().contains(card.getCardView().getMainVBox()))
-            row.getChildren().add(card.getCardView().getMainVBox());
+        }
+        for (int i = 0; i < 2; i++){
+            ((VBox)root.lookup("#vBox")).getChildren().add(cardBoxes.get(i));
         }
 
-        return row;
+        addHandlers(root);
+    }
+
+    private void addHandlers(Parent root){
+        ImageView up = (ImageView) root.lookup("#up");
+        ImageView down = (ImageView) root.lookup("#down");
+        Button change = (Button) root.lookup("#change");
+        VBox cardHolder = ((VBox)root.lookup("#vBox"));
+
+        EventHandler<MouseEvent> upHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+                    up.setFitHeight(55);
+                } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
+                    up.setFitHeight(50);
+                } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                    for (int i = 0; i < 2; i++){
+                        if (cardHolder.getChildren().size() >= 1)
+                            cardHolder.getChildren().remove(0);
+                    }
+                    index--;
+                    for (int i = 0; i < 2; i++){
+                        if (index >= 0);
+                            cardHolder.getChildren().add(cardBoxes.get(index + i));
+                    }
+                }
+            }
+        };
+        up.addEventHandler(MouseEvent.ANY, upHandler);
+
+        EventHandler<MouseEvent> downHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+                    down.setFitHeight(55);
+                } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
+                    down.setFitHeight(50);
+                } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                    for (int i = 0; i < 2; i++){
+                        if (cardHolder.getChildren().size() >= 1)
+                            cardHolder.getChildren().remove(0);
+                    }
+                    index++;
+                    for (int i = 0; i < 2; i++){
+                        if (cardBoxes.size() > index + i);
+                            cardHolder.getChildren().add(cardBoxes.get(index + i));
+                    }
+                }
+            }
+        };
+        down.addEventHandler(MouseEvent.ANY, downHandler);
+
+        EventHandler<MouseEvent> changeHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+                    change.setEffect(new Glow(.4));
+                } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
+                    change.setEffect(null);
+                } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                    removeHandler();
+                    Menu.getInstance().goBacktoMenu();
+                }
+            }
+        };
+        change.addEventHandler(MouseEvent.ANY, changeHandler);
+    }
+
+    private void setCardHandler(Card card){
+        cardEvents.add(new CardEventHandler(card));
+    }
+
+    private void removeCardInfo(HBox bHold, Parent finalRoot){
+        ((AnchorPane) Graphics.getInstance().getStage().getScene().getRoot()).getChildren()
+                .removeAll(bHold, finalRoot);
+    }
+
+    private void removeHandler(){
+        for (int i = 0; i < user.getCardInventory().getCards().size(); i++){
+            cardEvents.get(i).remove();
+        }
+    }
+
+    class CardEventHandler{
+        private EventHandler<MouseEvent> okHandler;
+        private EventHandler<MouseEvent> moveHandler;
+        private EventHandler<MouseEvent> diseqiupHandler;
+        private EventHandler<MouseEvent> cardHandler;
+
+        private Button okButton;
+        private Button equip;
+        private Button disequip;
+
+        private Card card;
+
+        EventHandler<MouseEvent> getEvent(){
+            return cardHandler;
+        }
+
+        CardEventHandler(Card card){
+            cardHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+                    card.getCardView().getMainVBox().setEffect(new Glow(0.4));
+                } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
+                    card.getCardView().getMainVBox().setEffect(null);
+                } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                    cardInfo(card);
+                }
+            }
+            };
+            this.card = card;
+            card.getCardView().getMainVBox().addEventHandler(MouseEvent.ANY, cardHandler);
+        }
+
+        private void cardInfo(Card card){
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("../../Files/Resources/CardInfoPage.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assert root!=null;
+            GridPane cardBox = (GridPane) root.lookup("#dialogBox");
+            cardBox.getChildren().add(card.getCardViewBig().getMainVBox());
+            ((AnchorPane)Graphics.getInstance().getStage().getScene().getRoot()).getChildren().add(root);
+            okButton = new Button();
+            okButton.setStyle("-fx-background-color: #69443c; " +
+                    "-fx-background-radius: 10px; " +
+                    "-fx-font-size: 23; -fx-font-family: Purisa;" +
+                    "-fx-font-weight: bold;");
+            okButton.setText("OK");
+            okButton.setTextFill(Color.CORNSILK);
+            equip = new Button("Equip");
+            equip.setStyle("-fx-background-color: #69443c; " +
+                    "-fx-background-radius: 10px; " +
+                    "-fx-font-size: 23; -fx-font-family: Purisa;" +
+                    "-fx-font-weight: bold;");
+            equip.setTextFill(Color.CORNSILK);
+
+            disequip = new Button("disequip");
+            disequip.setStyle("-fx-background-color: #69443c; " +
+                    "-fx-background-radius: 10px; " +
+                    "-fx-font-size: 23; -fx-font-family: Purisa;" +
+                    "-fx-font-weight: bold;");
+            disequip.setTextFill(Color.CORNSILK);
+
+            HBox bHold = null;
+            if (user.getDeck().getNumberOfCards(card) == user.getCardInventory().getNumberOfCards(card)) {
+                bHold = new HBox(okButton, disequip);
+                bHold.setLayoutX(Graphics.SCREEN_WIDTH/2 - 100);
+                bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 60);
+            }
+            else if (user.getDeck().contains(card.getName())){
+                bHold = new HBox(okButton, equip, disequip);
+                bHold.setLayoutX(Graphics.SCREEN_WIDTH/2 - 160);
+                bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 60);
+            }else {
+                bHold = new HBox(okButton, equip);
+                bHold.setLayoutX(Graphics.SCREEN_WIDTH/2 - 100);
+                bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 60);
+            }
+            bHold.setSpacing(50);
+            Effect glow = new Glow(.4);
+            ((AnchorPane) Graphics.getInstance().getStage().getScene().getRoot()).getChildren().add(bHold);
+
+            Parent finalRoot = root;
+            HBox finalBHold = bHold;
+            okHandler = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle (MouseEvent event) {
+                    if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+                        removeCardInfo(finalBHold, finalRoot);
+                    if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
+                        okButton.setEffect(glow);
+                    if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
+                        okButton.setEffect(null);
+                }
+            };
+            HBox finalBHold1 = bHold;
+            moveHandler = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle (MouseEvent event) {
+                    if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                        user.getDeck().add(card, 1);
+                        removeCardInfo(finalBHold1, finalRoot);
+                    }
+                    if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
+                        equip.setEffect(glow);
+                    if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
+                        equip.setEffect(null);
+                }
+            };
+
+            diseqiupHandler = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle (MouseEvent event) {
+                    if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                        user.getDeck().remove(card);
+                        removeCardInfo(finalBHold1, finalRoot);
+                    }
+                    if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED))
+                        disequip.setEffect(glow);
+                    if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
+                        disequip.setEffect(null);
+                }
+            };
+
+            okButton.addEventHandler(MouseEvent.ANY, okHandler);
+            equip.addEventHandler(MouseEvent.ANY, moveHandler);
+            disequip.addEventHandler(MouseEvent.ANY, diseqiupHandler);
+        }
+
+        public void remove(){
+            card.getCardView().getMainVBox().removeEventHandler(MouseEvent.ANY, cardHandler);
+        }
     }
 }
-
-
-class CardsHandler{
-    int index;
-
-    CardsHandler(Card card, HBox row1, HBox row2, Pane paneBigCardNonEquipped, Pane paneBigCardEquipped, Pane fullScreen, int index, boolean is1, Deck deck){
-
-        Button returnButtonEquipped = new Button("Return");
-        returnButtonEquipped.setPrefSize(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT / 12);
-        returnButtonEquipped.setStyle("-fx-background-color: #69443c; -fx-text-fill: cornsilk");
-        returnButtonEquipped.setLayoutX(Graphics.SCREEN_WIDTH * 13 / 36);
-        returnButtonEquipped.setLayoutY(Graphics.SCREEN_HEIGHT * 21 / 24);
-        Button returnButtonNonEquipped = new Button("Return");
-        returnButtonNonEquipped.setPrefSize(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT / 12);
-        returnButtonNonEquipped.setStyle("-fx-background-color: #69443c; -fx-text-fill: cornsilk");
-        returnButtonNonEquipped.setLayoutX(Graphics.SCREEN_WIDTH * 13 / 36);
-        returnButtonNonEquipped.setLayoutY(Graphics.SCREEN_HEIGHT * 21 / 24);
-
-        Button unEquipButton = new Button("unEquip");
-        unEquipButton.setPrefSize(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT / 12);
-        unEquipButton.setStyle("-fx-background-color: #69443c; -fx-text-fill: cornsilk");
-        unEquipButton.setLayoutX(Graphics.SCREEN_WIDTH * 19 / 36);
-        unEquipButton.setLayoutY(Graphics.SCREEN_HEIGHT * 21 / 24);
-        Button equipButton = new Button("Equip");
-        equipButton.setPrefSize(Graphics.SCREEN_WIDTH * 2 / 18, Graphics.SCREEN_HEIGHT / 12);
-        equipButton.setStyle("-fx-background-color: #69443c; -fx-text-fill: cornsilk");
-        equipButton.setLayoutX(Graphics.SCREEN_WIDTH * 19 / 36);
-        equipButton.setLayoutY(Graphics.SCREEN_HEIGHT * 21 / 24);
-
-
-
-        paneBigCardNonEquipped.getChildren().addAll(returnButtonNonEquipped, equipButton);
-        paneBigCardEquipped.getChildren().addAll(returnButtonEquipped,unEquipButton);
-
-        if (is1) {
-            int finalI = index;
-            row1.getChildren().get(index).setOnMouseClicked(event -> {
-                card.getCardViewBig().getMainVBox().setLayoutX(Graphics.SCREEN_WIDTH * 6 / 18);
-                card.getCardViewBig().getMainVBox().setLayoutY(0);
-
-                paneBigCardNonEquipped.getChildren().addAll(card.getCardViewBig().getMainVBox());
-                fullScreen.getChildren().add(paneBigCardNonEquipped);
-                this.index = finalI;
-            });
-        }
-        else {
-            int finalI = index;
-            row2.getChildren().get(index).setOnMouseClicked(event -> {
-                card.getCardViewBig().getMainVBox().setLayoutX(Graphics.SCREEN_WIDTH * 6 / 18);
-                card.getCardViewBig().getMainVBox().setLayoutY(0);
-
-                paneBigCardEquipped.getChildren().addAll(card.getCardViewBig().getMainVBox());
-                fullScreen.getChildren().add(paneBigCardEquipped);
-                this.index = finalI;
-            });
-        }
-
-        returnButtonNonEquipped.setOnMouseClicked(event -> {
-            fullScreen.getChildren().remove(paneBigCardNonEquipped);
-            paneBigCardNonEquipped.getChildren().remove(paneBigCardNonEquipped.getChildren().size() - 1);
-        });
-        returnButtonEquipped.setOnMouseClicked(event -> {
-            fullScreen.getChildren().remove(paneBigCardEquipped);
-            paneBigCardEquipped.getChildren().remove(paneBigCardEquipped.getChildren().size() - 1);
-        });
-
-        equipButton.setOnMouseClicked(event -> {
-
-            row2.getChildren().add(row1.getChildren().get(index));
-
-            fullScreen.getChildren().remove(paneBigCardNonEquipped);
-            paneBigCardNonEquipped.getChildren().remove(paneBigCardNonEquipped.getChildren().size() - 1);
-
-            deck.add(card, 1);
-        });
-        unEquipButton.setOnMouseClicked(event -> {
-            row1.getChildren().add(row2.getChildren().get(index));
-
-            fullScreen.getChildren().remove(paneBigCardEquipped);
-            paneBigCardEquipped.getChildren().remove(paneBigCardEquipped.getChildren().size() - 1);
-
-            deck.remove(card);
-        });
-
-    }
-    }

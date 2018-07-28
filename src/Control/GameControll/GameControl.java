@@ -213,9 +213,6 @@ public class GameControl {
         Menu.getInstance().mainMenu();
     }
 
-    public void startInventory(){
-        cardInventory.start();
-    }
     public void saveGame() throws IOException {
         gameDetailController.saveGame();
     }
@@ -247,6 +244,10 @@ public class GameControl {
             System.out.println("File not found!");
             e.printStackTrace();
         }
+    }
+
+    public InventoryControl getInventory(){
+        return inventoryControl;
     }
 
     public String getFileDirectory() {

@@ -4,6 +4,7 @@ import Modules.BattleGround.Deck;
 import Modules.Card.Card;
 import View.InventoryView.CardInventoryView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,10 +20,9 @@ public class CardInventory{
         this.cardMap = new HashMap<>();
         this.deck = deck;
         numberOfCards = new HashMap<>();
-        view = new CardInventoryView(this, deck);
     }
 
-    public void start(){
+    public void start() throws IOException {
         view.viewInventory();
     }
 

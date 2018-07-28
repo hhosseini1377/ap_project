@@ -26,6 +26,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -35,38 +38,40 @@ import java.util.regex.Pattern;
 public class MultiBattleControl {
     private int turn;
     private Warrior[] warrior;
+    private Socket socket;
+    private User user;
+    private ObjectOutputStream ios;
+    private ObjectInputStream ois;
 
-    public void startBattle (User user, int level) {
+    public MultiBattleControl(int turn,Socket socket,User user) {
+        this.turn = turn;
+        this.socket = socket;
+        this.user = user;
+    }
+
+    public void startBattle () {
         warrior = new Warrior[2];
 
-        //TODO needs to be handled with exception
-        if (!user.getDeck().isAcceptable()) {
-            Graphics.getInstance().notifyMessage("deck not acceptable!!\nfix it and try again", "notify");
-            return;
-        }
-        //doesn't let the cleared level to be repeated again
-        if (user.getLevel() > level){
-            Menu.getInstance().goBacktoMenu();
-        }
-
+        warrior[0] = new Goblins();
         warrior[1] = new Warrior(user.getDeck(), user.getName());
-        switch (level) {
-            case 1:
-                warrior[0] = new Goblins();
-                break;
-            case 2:
-                warrior[0] = new Ogres();
-                break;
-            case 3:
-                warrior[0] = new Vampires();
-                break;
-            case 4:
-                warrior[0] = new Lucifer();
-                break;
-            default:
-                Graphics.getInstance().notifyMessage("You've already completed the game", "notify");
-                return;
-        }
+
+//        try {
+//            ios = new ObjectOutputStream(socket.getOutputStream());
+//            ios.writeObject(warrior[1]);
+//            ios.flush();
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+//
+//        try {
+//            ois = new ObjectInputStream(socket.getInputStream());
+//            warrior[0] = (Warrior) ois.readObject();
+//
+//        }catch (Exception e){
+//
+//        }
+
+
 
         warrior[1].setUser(user);
         warrior[0].getHand().setEnemy(true);

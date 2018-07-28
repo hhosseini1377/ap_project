@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -26,7 +27,7 @@ public class MultiPlayerBattleControl {
     private User user;
     private GridPane multiPlayerGamePane = new GridPane();
     private Scene multiPlayerScene = new Scene(multiPlayerGamePane);
-    private MultiBattleControl multiBattleControl = new MultiBattleControl();
+    private MultiBattleControl multiBattleControl;
     private int port;
     private String ip;
     private Socket s = new Socket();
@@ -123,8 +124,9 @@ public class MultiPlayerBattleControl {
                         if(string.equals("start the game")) {
                             text.setText("a player successfully joined the server \nwait until he starts the game" );
                         }
-                        s.close();
-                        serverSocket.close();
+                        string = dis.readUTF();
+                        if(string.equals("game started"))
+                            System.out.println("salam");
                     }
                     catch (Exception e){
                         System.out.println(e);
@@ -185,12 +187,25 @@ public class MultiPlayerBattleControl {
             DataOutputStream dataOutputStream = new DataOutputStream(s.getOutputStream());
             dataOutputStream.writeUTF("start the game");
             dataOutputStream.flush();
-            dataOutputStream.close();
             Text text = new Text("Start the game");
             Button button = new Button("Start");
             HBox hBox = new HBox(text,button);
             multiPlayerGamePane.getChildren().addAll(hBox);
-            s.close();
+
+            button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    try {
+                        multiBattleControl = new MultiBattleControl(0, s,user);
+                        multiBattleControl.startBattle();
+                        dataOutputStream.writeUTF("game started");
+                        dataOutputStream.flush();
+                    }
+                    catch (Exception e){
+
+                    }
+                }
+            });
         }
         catch(Exception e){
             System.out.println(e);

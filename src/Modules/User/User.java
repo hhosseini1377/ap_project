@@ -6,7 +6,9 @@ import Modules.User.Inventory.CardInventory;
 import Modules.User.Inventory.ItemInventory;
 import Modules.Warrior.BackPack;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private final CardInventory cardInventory;
     private final ItemInventory itemInventory;
     private final AmuletInventory amuletInventory;

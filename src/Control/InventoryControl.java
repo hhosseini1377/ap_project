@@ -7,6 +7,7 @@ import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
 import Modules.User.Inventory.CardInventory;
 import Modules.User.User;
+import View.InventoryView.AmuletInventoryView;
 import View.InventoryView.CardInventoryView;
 import View.InventoryView.ItemInventoryView;
 import javafx.event.EventHandler;
@@ -23,11 +24,13 @@ public class InventoryControl {
     private final User user;
     private CardInventoryView cardView;
     private ItemInventoryView itemView;
+    private AmuletInventoryView amuletView;
 
     public InventoryControl (User user) {
         this.user = user;
         cardView = new CardInventoryView(user);
         itemView = new ItemInventoryView(user);
+        amuletView = new AmuletInventoryView(user);
     }
 
     public void mainThread () throws IOException {
@@ -63,9 +66,18 @@ public class InventoryControl {
                                 }
                                 break;
                             case "Item Inventory":
-                                itemView.viewItemInventory();
+                                try {
+                                    itemView.viewInventory();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             case "Amulet Inventory":
+                                try {
+                                    amuletView.viewInventory();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
 
                         }

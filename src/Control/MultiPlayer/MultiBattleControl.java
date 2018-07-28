@@ -97,7 +97,7 @@ public class MultiBattleControl {
 
     private void setDetails() {
         try {
-            Parent spellRoot = FXMLLoader.load(getClass().getResource("../Files/Resources/SpellField.fxml"));
+            Parent spellRoot = FXMLLoader.load(getClass().getResource("../../Files/Resources/SpellField.fxml"));
             HBox[] fspellField = new HBox[3];
             HBox[] espellField = new HBox[3];
             for(int i = 0; i < 3; i++){

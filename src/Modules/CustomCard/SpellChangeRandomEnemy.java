@@ -18,7 +18,7 @@ public class SpellChangeRandomEnemy extends Spell {
     public void doSpell(Warrior friendly, Warrior enemy) {
         Random random = new Random();
         int randomNumber;
-        randomNumber = random.nextInt(5);
+        randomNumber = (int)(Math.random() * enemy.getMonsterField().getMonsterCards().size());
         while(true){
             if (enemy.getMonsterField().getMonsterCards().get(randomNumber) != null){
                 enemy.getMonsterField().getMonsterCards().get(randomNumber).increaseHP(HPChange);

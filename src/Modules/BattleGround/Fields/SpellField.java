@@ -62,7 +62,7 @@ public class SpellField implements Serializable{
 
     private void useInstantSpell(Spell spell){
         spell.castSpell();
-        this.remove(spell);
+//        this.remove(spell);
     }
 
     private void useAuraSpell(Spell spell){
@@ -77,7 +77,7 @@ public class SpellField implements Serializable{
                 System.out.println("not enough space in the field");
                 return false;
             }
-            for (int i = 0; i < 5; i++){
+            for (int i = 0; i < 3; i++){
                 if (slots.get(i) == null){
                     slots.replace(i, spell);
                     spellCards.add(spell);

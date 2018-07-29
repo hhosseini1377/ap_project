@@ -2,7 +2,7 @@ package Modules.CustomCard;
 
 import Modules.Warrior.Warrior;
 
-public abstract class Spell {
+public abstract class Spell{
 
     private boolean isUsed = false;
     private String spellName;

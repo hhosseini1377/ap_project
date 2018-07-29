@@ -1,6 +1,7 @@
 package View.Custom;
 
 import Control.GameControll.GameControl;
+import Control.ShopControl;
 import Modules.Graphic.Graphics;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -56,7 +57,7 @@ public class MainPage {
             SpellCasterCardCreating.CreateScene(gameControl);
         });
         buttonItem.setOnMouseClicked(event -> {
-            gameControl.getUser().getItemInventory().add(ItemCreating.createScene());
+            ItemCreating.createScene(gameControl);
         });
 
         Graphics.getInstance().getStage().setScene(new Scene(gridPane));

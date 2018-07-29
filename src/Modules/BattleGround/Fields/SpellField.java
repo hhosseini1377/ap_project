@@ -73,7 +73,7 @@ public class SpellField implements Serializable{
 
     private void useInstantSpell(Spell spell){
         spell.castSpell();
-//        this.remove(spell);
+        this.remove(spell);
     }
 
     private void useAuraSpell(Spell spell){

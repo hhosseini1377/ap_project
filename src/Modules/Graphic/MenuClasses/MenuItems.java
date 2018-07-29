@@ -1,6 +1,7 @@
 package Modules.Graphic.MenuClasses;
 
 import Control.GameControll.GameControl;
+import Control.ShopControl;
 import Modules.Graphic.Graphics;
 import Modules.Graphic.Menu;
 import View.Custom.MainPage;

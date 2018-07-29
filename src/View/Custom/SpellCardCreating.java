@@ -1,6 +1,7 @@
 package View.Custom;
 
 import Control.GameControll.GameControl;
+import Control.ShopControl;
 import Modules.Card.Spell.Spell;
 import Modules.Card.Spell.SpellType;
 import Modules.CustomCard.CustomSpellCard;
@@ -21,6 +22,7 @@ import javafx.scene.text.Text;
 import java.io.File;
 
 public class SpellCardCreating {
+    private static boolean addToShop = false;
     private static CustomSpellCard spellCard;
     private static CustomSpellType customSpellType;
     private static SpellType spellType;
@@ -89,13 +91,23 @@ public class SpellCardCreating {
         randomF.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomFriendly);
 
         Button finish = new Button("finish");
-
         gridPane.add(finish,0 , 6);
+
+        Button buttonAddToShop = new Button("add to shop");
+        gridPane.add(buttonAddToShop,0, 7);
+
+        buttonAddToShop.setOnMouseClicked(event -> {
+            addToShop = true;
+        });
 
         finish.setOnMouseClicked(event -> {
             spellCard = new CustomSpellCard(textFieldSpellName.getText(), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()), spellType);
             SpellCreating.CreateScene("spell", customSpellType, spellCard, "spellCard:spell");
             gameControl.getUser().getCardInventory().add(spellCard);
+            if (addToShop){
+                gameControl.getShopControl().getCardShop().getCards().add(spellCard);
+            }
+            addToShop = false;
             spellCard.startViews();
             spellCard.setCardImage(new Image(new File("./src/Files/Images/Default.png").toURI().toString()));
         });

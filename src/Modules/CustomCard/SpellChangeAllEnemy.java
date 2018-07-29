@@ -14,7 +14,7 @@ public class SpellChangeAllEnemy extends Spell {
 
     @Override
     public void doSpell(Warrior friendly, Warrior enemy) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < enemy.getMonsterField().getMonsterCards().size(); i++) {
             if (enemy.getMonsterField().getMonsterCards().get(i) != null){
                 enemy.getMonsterField().getMonsterCards().get(i).increaseHP(HPChange);
                 enemy.getMonsterField().getMonsterCards().get(i).increaseAP(APChange);

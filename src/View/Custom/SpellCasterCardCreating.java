@@ -26,7 +26,7 @@ public class SpellCasterCardCreating {
         gridPane.setHgap(10);
         gridPane.setPadding(new Insets(10, 10, 10 , 10));
 
-        Text textTitle = new Text("NormalCard");
+        Text textTitle = new Text("SpellCasterCard");
         textTitle.setFont(Font.font("Tahoma", FontWeight.LIGHT, 25));
         gridPane.add(textTitle , 0 , 0);
 

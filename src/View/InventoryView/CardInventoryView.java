@@ -54,6 +54,8 @@ public class CardInventoryView {
                 cardBoxes.add(cardBox);
             }
         }
+        if (!cardBoxes.contains(cardBox))
+            cardBoxes.add(cardBox);
         for (int i = 0; i < 2; i++){
             ((VBox)root.lookup("#vBox")).getChildren().add(cardBoxes.get(i));
         }

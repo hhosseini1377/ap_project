@@ -1,4 +1,4 @@
-package View.Custom;
+package Modules.CustomCard;
 
 import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;

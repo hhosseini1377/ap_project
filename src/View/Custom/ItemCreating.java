@@ -1,7 +1,7 @@
 package View.Custom;
 
+import Modules.CustomCard.CustomItem;
 import Modules.Graphic.Graphics;
-import Modules.ItemAndAmulet.Item;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

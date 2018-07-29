@@ -4,38 +4,34 @@ import Modules.Card.Monsters.Hero;
 import Modules.Warrior.Warrior;
 
 public class CustomHeroCard extends Hero {
-    public CustomHeroCard() {
+    Spell battleCry;
+    Spell spell;
+    Spell will;
 
+    public CustomHeroCard(String name, int AP, int HP, int manaPoint, int gilPoint ,Spell battleCry, Spell spell, Spell will) {
+        this.name = name;
+        this.HP = HP;
+        this.AP = AP;
+        this.manaPoint = manaPoint;
+        this.gillCost = gilPoint;
+        this.battleCry = battleCry;
+        this.spell = spell;
+        this.will = will;
     }
 
     @Override
-    public String battleCryDetail () {
-        return super.battleCryDetail();
+    public void castSpell(Warrior enemy, Warrior friend) {
+        spell.doSpell(friend, enemy);
+        setCanCast(false);
     }
 
     @Override
-    public String willDetail () {
-        return super.willDetail();
+    public void will(Warrior enemy, Warrior friend) {
+        will.doSpell(friend, enemy);
     }
 
     @Override
-    public void will (Warrior enemy, Warrior friend) {
-
-    }
-
-    @Override
-    public void battleCry (Warrior enemy, Warrior friend) {
-
-    }
-
-    @Override
-    public void castSpell (Warrior enemy, Warrior friend) {
-        super.castSpell(enemy, friend);
-    }
-
-    @Override
-    public String toString () {
-        return super.toString();
+    public void battleCry(Warrior enemy, Warrior friend) {
+        battleCry.doSpell(friend, enemy);
     }
 }
-

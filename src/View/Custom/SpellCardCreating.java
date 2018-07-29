@@ -1,5 +1,6 @@
 package View.Custom;
 
+import Control.GameControll.GameControl;
 import Modules.Card.Spell.Spell;
 import Modules.Card.Spell.SpellType;
 import Modules.CustomCard.CustomSpellCard;
@@ -11,16 +12,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import java.io.File;
+
 public class SpellCardCreating {
     private static CustomSpellCard spellCard;
     private static CustomSpellType customSpellType;
     private static SpellType spellType;
-    public static CustomSpellCard CreateScene (){
+    public static void CreateScene (GameControl gameControl){
         GridPane gridPane = new GridPane();
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
@@ -90,12 +94,14 @@ public class SpellCardCreating {
 
         finish.setOnMouseClicked(event -> {
             spellCard = new CustomSpellCard(SpellCreating.CreateScene("spell", customSpellType) ,textFieldSpellName.getText(), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()), spellType);
+            gameControl.getUser().getCardInventory().add(spellCard);
+            spellCard.startViews();
+            spellCard.setCardImage(new Image(new File("./src/Files/Images/Default.png").toURI().toString()));
         });
 
 
         Graphics.getInstance().getStage().setScene(new Scene(gridPane));
 
-        return spellCard;
 
     }
 }

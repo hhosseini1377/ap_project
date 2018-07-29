@@ -1,5 +1,6 @@
 package View.Custom;
 
+import Control.GameControll.GameControl;
 import Modules.Card.Monsters.Monster;
 import Modules.CustomCard.CustomNormalCard;
 import Modules.Graphic.Graphics;
@@ -15,7 +16,7 @@ import javafx.scene.text.Text;
 
 public class NormalCardCreating {
     private static CustomNormalCard customNormalCard;
-    public static Monster CreateScene(){
+    public static void CreateScene(GameControl gameControl){
         GridPane gridPane = new GridPane();
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
@@ -67,9 +68,9 @@ public class NormalCardCreating {
 
         finishButton.setOnMouseClicked(event -> {
             customNormalCard = new CustomNormalCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()));
+            gameControl.getUser().getCardInventory().add(customNormalCard);
         });
 
-        return customNormalCard;
 
 
     }

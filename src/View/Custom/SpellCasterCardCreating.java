@@ -1,5 +1,6 @@
 package View.Custom;
 
+import Control.GameControll.GameControl;
 import Modules.Card.Monsters.Monster;
 import Modules.CustomCard.CustomNormalCard;
 import Modules.CustomCard.CustomSpellCasterCard;
@@ -18,7 +19,7 @@ import javafx.scene.text.Text;
 public class SpellCasterCardCreating {
     private static CustomSpellType customSpellType;
     private static CustomSpellCasterCard customSpellCasterCard;
-    public static Monster CreateScene(){
+    public static void CreateScene(GameControl gameControl){
         GridPane gridPane = new GridPane();
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
@@ -86,10 +87,10 @@ public class SpellCasterCardCreating {
 
         finishButton.setOnMouseClicked(event -> {
             customSpellCasterCard = new CustomSpellCasterCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()), SpellCreating.CreateScene("Spell", customSpellType));
+            gameControl.getUser().getCardInventory().add(customSpellCasterCard);
         });
 
 
-        return customSpellCasterCard;
 
     }
 }

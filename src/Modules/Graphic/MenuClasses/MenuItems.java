@@ -36,6 +36,7 @@ public class MenuItems{
                             break;
                         case "MultiPlayer":
                             gameControl.getMultiPlayerBattleControl().multiPlayerEntrance();
+                            break;
                         case "Custom Game":
                             MainPage.showMainPage(gameControl);
                             break;

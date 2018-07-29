@@ -1,47 +1,33 @@
 package Control.MultiPlayer;
 import Modules.Card.Card;
-import Modules.Card.Monsters.*;
-import Modules.Card.Spell.Spell;
-import Modules.Enemies.Goblins.Goblins;
-import Modules.Enemies.Lucifer.Lucifer;
-import Modules.Enemies.Ogres.Ogres;
-import Modules.Enemies.Vampires.Vampires;
 import Modules.Graphic.Graphics;
 import Modules.Graphic.Menu;
 import Modules.ItemAndAmulet.Items.MysticHourglass;
 import Modules.User.User;
 import Modules.Warrior.Warrior;
-import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Iterator;
-import java.util.Scanner;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MultiBattleControl {
     private int turn;
     private Warrior[] warrior;
     private Socket socket;
     private User user;
-    private ObjectOutputStream ios;
+    private ObjectOutputStream oos;
     private ObjectInputStream ois;
     private String cardName;
     private String attackingCard;
@@ -73,22 +59,25 @@ public class MultiBattleControl {
         @Override
         public void run () {
             try {
-                String string = ois.readUTF();
-                switch (string.split(":")[0]){
-                    case "next":
-                        break;
-                    case "takeCard":
-                        cardName = string.split(":")[1];
-                        semaphore.release();
-                        break;
-                    case "attack":
-                        attackingCard = string.split(":")[1];
-                        defendingCard = string.split(":")[2];
-                        break;
+//                while (true) {
+                    String string = ois.readUTF();
+                    switch (string.split(":")[0]) {
+                        case "next":
+                            semaphore.release();
+                            break;
+                        case "takeCard":
+                            cardName = string.split(":")[1];
+                            semaphore.release();
+                            break;
+                        case "attack":
+                            attackingCard = string.split(":")[1];
+                            defendingCard = string.split(":")[2];
+                            break;
+                    }
+//                }
+                } catch(IOException e){
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -99,9 +88,9 @@ public class MultiBattleControl {
         warrior[1] = new Warrior(user.getDeck(), user.getName());
 
         try {
-            ios = new ObjectOutputStream(socket.getOutputStream());
-            ios.writeUnshared(warrior[1]);
-            ios.flush();
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeUnshared(warrior[1]);
+            oos.flush();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -160,8 +149,8 @@ public class MultiBattleControl {
                 Card card = warrior[1].getDeck().takeCard();
                 warrior[1].getHand().add(card);
                 try {
-                    ios.writeUTF("takeCard:" + card.getName());
-                    ios.flush();
+                    oos.writeUTF("takeCard:" + card.getName());
+                    oos.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -172,6 +161,9 @@ public class MultiBattleControl {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+        }
+        if (!Graphics.isServer){
+            changeTurn();
         }
     }
 
@@ -184,20 +176,35 @@ public class MultiBattleControl {
      */
     private void changeTurn () {
         if (!checkEndOfTheGame()) {
+            if (turn != 0){
+                try {
+                    oos.writeUTF("next:change");
+                    oos.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            Thread t = new gameListener();
+            t.start();
+            try {
+                semaphore.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             turn++;
             //increase the mana point that the warrior has
-            warrior[turn % 2].setMaxManaPoint(warrior[turn % 2].getMaxManaPoint() + 1);
+            warrior[1].setMaxManaPoint(warrior[1].getMaxManaPoint() + 1);
             //to do changes in sleeping status of monsters
-            warrior[turn % 2].getMonsterField().changeTurnActions(true);
-            warrior[turn % 2].getSpellField().changeTurnActions(true);
+            warrior[1].getMonsterField().changeTurnActions(true);
+            warrior[1].getSpellField().changeTurnActions(true);
             //to do changes in sleeping status of defensive monsters
-            warrior[(turn + 1) % 2].getMonsterField().changeTurnActions(false);
-            warrior[(turn + 1) % 2].getSpellField().changeTurnActions(false);
+//            warrior[(turn + 1) % 2].getMonsterField().changeTurnActions(false);
+//            warrior[(turn + 1) % 2].getSpellField().changeTurnActions(false);
             //drawing a card from deck to hand
             try {
-                Card drawnCard = warrior[turn % 2].getDeck().takeCard();
+                Card drawnCard = warrior[1].getDeck().takeCard();
                 if (drawnCard != null) {
-                    warrior[turn % 2].getHand().add(drawnCard);
+                    warrior[1].getHand().add(drawnCard);
 
                     System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
                     if (turn % 2 == 1) {
@@ -205,24 +212,15 @@ public class MultiBattleControl {
                     }
                     //this has to be written every time we enter this menu
                     if (turn % 2 == 1)
-                        System.out.println("[" + warrior[turn % 2].getManaPoint() + ", "
-                                + warrior[turn % 2].getMaxManaPoint() + "]");
-                    if (turn % 2 == 0) {
-                        warrior[0].makeMove(warrior[1]);
-                        changeTurn();
-                    }
+                        System.out.println("[" + warrior[1].getManaPoint() + ", "
+                                + warrior[1].getMaxManaPoint() + "]");
                 }
             } catch (NullPointerException e) {
                 System.out.println("No more cards in the deck!!!");
-                System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
-                if (turn % 2 == 0) {
-                    warrior[0].makeMove(warrior[1]);
-                    changeTurn();
-                }
+                System.out.println("Turn " + turn + " started!\n" + warrior[1].getName() + "'s turn");
             }
         }
     }
-
     private void spellFieldScreen(){
         Parent root = Graphics.getInstance().getBattle().getRoot();
         if (Graphics.isMonsterField){
@@ -348,7 +346,7 @@ public class MultiBattleControl {
                 }else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
                     doneButton.setStyle(buttonStyle + "-fx-background-color: rgba(220,215,47,0.99);");
                 }else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
-                    if (turn % 2 == 1)
+//                    if (turn % 2 == 1)
                         changeTurn();
                 }
             }

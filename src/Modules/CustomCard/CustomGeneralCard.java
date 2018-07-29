@@ -12,7 +12,7 @@ public class CustomGeneralCard extends General {
         this.battleCry = battleCry;
     }
 
-    Spell battleCry;
+    private Spell battleCry;
 
     public Spell getWill() {
         return will;
@@ -22,7 +22,7 @@ public class CustomGeneralCard extends General {
         this.will = will;
     }
 
-    Spell will;
+    private Spell will;
 
     public CustomGeneralCard(String name, int AP, int HP, int manaPoint, int gilPoint) {
         this.name = name;
@@ -40,5 +40,14 @@ public class CustomGeneralCard extends General {
     @Override
     public void will(Warrior enemy, Warrior friend) {
         will.doSpell(friend, enemy);
+    }
+
+    @Override
+    public String toString () {
+        return "Name: " + name + "\nHP: " + HP + "\nAP: " + AP +
+                "\nMP cost: " + manaPoint +
+                "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType +
+                "\nWill detail: " + will.getSpellName() + ", " + will.getSpellDetails() +
+                "\nBattle cry detail: " + battleCry.getSpellName() + ", " + battleCry.getSpellDetails();
     }
 }

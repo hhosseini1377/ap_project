@@ -15,6 +15,8 @@ import javafx.scene.text.Text;
 public class MainPage {
     public static void showMainPage(GameControl gameControl){
         GridPane gridPane = new GridPane();
+        gridPane.setStyle("-fx-background-image: url(Files/Images/CardShopBackground.jpg);");
+
         gridPane.setMinSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);

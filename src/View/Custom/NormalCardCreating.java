@@ -24,6 +24,8 @@ public class NormalCardCreating {
     public static void CreateScene(GameControl gameControl){
 
         GridPane gridPane = new GridPane();
+        gridPane.setStyle("-fx-background-image: url(Files/Images/CardShopBackground.jpg);");
+
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setVgap(10);
@@ -84,13 +86,10 @@ public class NormalCardCreating {
                 gameControl.getShopControl().getCardShop().getCards().add(customNormalCard);
             }
             addToShop =false;
-            customNormalCard.startViews();
             customNormalCard.setCardImage(new Image(new File("./src/Files/Images/Default.png").toURI().toString()));
+            customNormalCard.startViews(customNormalCard.getCardImage());
         });
 
         Graphics.getInstance().getStage().setScene(new Scene(gridPane));
-
-
-
     }
 }

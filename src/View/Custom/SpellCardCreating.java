@@ -28,6 +28,8 @@ public class SpellCardCreating {
     private static SpellType spellType;
     public static void CreateScene (GameControl gameControl){
         GridPane gridPane = new GridPane();
+        gridPane.setStyle("-fx-background-image: url(Files/Images/CardShopBackground.jpg);");
+
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setVgap(10);
@@ -108,13 +110,9 @@ public class SpellCardCreating {
                 gameControl.getShopControl().getCardShop().getCards().add(spellCard);
             }
             addToShop = false;
-            spellCard.startViews();
             spellCard.setCardImage(new Image(new File("./src/Files/Images/Default.png").toURI().toString()));
+            spellCard.startViews(spellCard.getCardImage());
         });
-
-
         Graphics.getInstance().getStage().setScene(new Scene(gridPane));
-
-
     }
 }

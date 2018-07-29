@@ -4,9 +4,9 @@ import Modules.Card.Monsters.Hero;
 import Modules.Warrior.Warrior;
 
 public class CustomHeroCard extends Hero {
-    Spell battleCry;
-    Spell spell;
-    Spell will;
+    private Spell battleCry;
+    private Spell spell;
+    private Spell will;
 
 
     public Spell getBattleCry() {
@@ -55,5 +55,15 @@ public class CustomHeroCard extends Hero {
     @Override
     public void battleCry(Warrior enemy, Warrior friend) {
         battleCry.doSpell(friend, enemy);
+    }
+
+    @Override
+    public String toString () {
+        return "Name: " + name + "\nHP: " + HP + "\nAP: " + AP +
+                "\nMP cost: " + manaPoint +
+                "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType +
+                "\nSpell detail: " + spell.getSpellName() + ", " + spell.getSpellDetails() +
+                "\nWill detail: " + will.getSpellName() + ", " + will.getSpellDetails() +
+                "\nBattle cry detail: " + battleCry.getSpellName() + ", " + battleCry.getSpellDetails();
     }
 }

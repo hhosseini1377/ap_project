@@ -5,10 +5,9 @@ import Modules.Card.Spell.SpellType;
 import Modules.Warrior.Warrior;
 
 public class CustomSpellCard extends Modules.Card.Spell.Spell {
-    Spell spell = null;
+    private Spell spell = null;
 
     public CustomSpellCard( String name, int manaPoint, int gilCost, SpellType spellType) {
-//        this.spell = spell;
         this.name = name;
         this.manaPoint = manaPoint;
         this.gillCost = gilCost;
@@ -35,5 +34,11 @@ public class CustomSpellCard extends Modules.Card.Spell.Spell {
             spell.doSpell(getFriend(), getEnemy());
             canCast = false;
         }
+    }
+
+    @Override
+    public String toString () {
+        return " Name: " + this.name + "\n MP cost: " + this.manaPoint +
+                "\n Spell Name: " + spell.getSpellName() + "\n Details: " + spell.getSpellDetails();
     }
 }

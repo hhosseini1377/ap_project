@@ -4,8 +4,8 @@ import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.Warrior;
 
 public class CustomItem extends Item {
-    int manaChange;
-    int friendlyHPChange;
+    private int manaChange;
+    private int friendlyHPChange;
 
     public CustomItem(int manaChange, int friendlyHPChange, int gilCost, String name) {
         this.manaChange = manaChange;

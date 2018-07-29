@@ -3,9 +3,11 @@ package View.BattleGroundView;
 import Control.MultiPlayer.MultiBattleControl;
 import Modules.Card.Card;
 import Modules.Card.Commanders.Commander;
+import Modules.Card.Monsters.Hero;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Monsters.SpellCaster;
 import Modules.Card.Spell.Spell;
+import Modules.CustomCard.CustomHeroCard;
 import Modules.CustomCard.CustomSpellCasterCard;
 import Modules.Graphic.Graphics;
 import View.ShopView.CardView;
@@ -165,7 +167,9 @@ public class MonsterFieldView {
                     if ((card instanceof SpellCaster)){
                         ((CustomSpellCasterCard) card).castSpell(card.getEnemy(), card.getFriend());
                     }
-
+                    if (card instanceof Hero){
+                        ((CustomHeroCard) card).castSpell(card.getEnemy(), card.getFriend());
+                    }
                 }
             }
         };

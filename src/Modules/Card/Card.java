@@ -25,6 +25,11 @@ public class Card implements Cloneable, Serializable{
         cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12, cardImage,this, 0, 0, true);
     }
 
+    public void startViews(Image image){
+        cardView = new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,image,this,0,0,false);
+        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12, image,this, 0, 0, true);
+    }
+
     public CardView getCardViewBig() {
         return cardViewBig;
     }

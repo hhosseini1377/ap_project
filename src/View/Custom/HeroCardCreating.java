@@ -8,21 +8,28 @@ import Modules.CustomCard.Spell;
 import Modules.Graphic.Graphics;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import java.io.File;
+
 public class HeroCardCreating {
+    private static boolean addToShop = false;
     private static CustomHeroCard customHeroCard;
     private static CustomSpellType battleCryType;
     private static CustomSpellType willType;
     private static CustomSpellType spellType;
     public static void CreateScene(GameControl gameControl){
         GridPane gridPane = new GridPane();
+        gridPane.setStyle("-fx-background-image: url(Files/Images/CardShopBackground.jpg);");
+
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setVgap(10);
@@ -62,11 +69,11 @@ public class HeroCardCreating {
         gridPane.add(textFieldAP, 1, 4);
 
         Label labelHP = new Label("HP");
-        gridPane.add(labelHP,0, 4);
+        gridPane.add(labelHP,0, 5);
 
         TextField textFieldHP = new TextField();
         textFieldHP.setPromptText("hp");
-        gridPane.add(textFieldHP, 1, 4);
+        gridPane.add(textFieldHP, 1, 5);
 
         Button allFBattleCry = new Button("all friendly battleCry");
         Button allEBattleCry = new Button("all enemy battleCry");
@@ -74,10 +81,10 @@ public class HeroCardCreating {
         Button randomEBattleCry = new Button("random enemy battleCry");
 
 
-        gridPane.add(allFBattleCry, 0 ,5);
-        gridPane.add(allEBattleCry, 1, 5);
-        gridPane.add(randomFBattleCry, 2,5);
-        gridPane.add(randomEBattleCry, 3, 5);
+        gridPane.add(allFBattleCry, 0 ,6);
+        gridPane.add(allEBattleCry, 1, 6);
+        gridPane.add(randomFBattleCry, 2,6);
+        gridPane.add(randomEBattleCry, 3, 6);
 
         allEBattleCry.setOnMouseClicked(event -> battleCryType = CustomSpellType.ChangeAllEnemy);
         allFBattleCry.setOnMouseClicked(event -> battleCryType = CustomSpellType.ChangeAllFriendly);
@@ -90,10 +97,10 @@ public class HeroCardCreating {
         Button randomEWill = new Button("random enemy battleCry");
 
 
-        gridPane.add(allFWill, 0 ,5);
-        gridPane.add(allEWill, 1, 5);
-        gridPane.add(randomFWill, 2,5);
-        gridPane.add(randomEWill, 3, 5);
+        gridPane.add(allFWill, 0 ,7);
+        gridPane.add(allEWill, 1, 7);
+        gridPane.add(randomFWill, 2,7);
+        gridPane.add(randomEWill, 3, 7);
 
         allEWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeAllEnemy);
         allFWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeAllFriendly);
@@ -106,10 +113,10 @@ public class HeroCardCreating {
         Button randomE = new Button("random enemy battleCry");
 
 
-        gridPane.add(allF, 0 ,6);
-        gridPane.add(allE, 1, 6);
-        gridPane.add(randomF, 2,6);
-        gridPane.add(randomE, 3, 6);
+        gridPane.add(allF, 0 ,8);
+        gridPane.add(allE, 1, 8);
+        gridPane.add(randomF, 2,8);
+        gridPane.add(randomE, 3, 8);
 
         allEWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeAllEnemy);
         allFWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeAllFriendly);
@@ -117,7 +124,14 @@ public class HeroCardCreating {
         randomFWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeRandomFriendly);
 
         Button finishButton = new Button("finished");
-        gridPane.add(finishButton, 0,6);
+        gridPane.add(finishButton, 0,9);
+
+        Button buttonAddToShop = new Button("add to shop");
+        gridPane.add(buttonAddToShop,0, 10);
+
+        buttonAddToShop.setOnMouseClicked(event -> {
+            addToShop = true;
+        });
 
         finishButton.setOnMouseClicked(event -> {
             customHeroCard = new CustomHeroCard(textFieldName.getText(),Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()),Integer.parseInt(textFieldManaPoint.getText()),Integer.parseInt(textFieldGilCost.getText()));
@@ -126,9 +140,13 @@ public class HeroCardCreating {
             SpellCreating.CreateScene("will", willType, customHeroCard, "hero:will");
 
             gameControl.getUser().getCardInventory().add(customHeroCard);
+            if (addToShop){
+                gameControl.getShopControl().getCardShop().getCards().add(customHeroCard);
+            }
+            addToShop = false;
+            customHeroCard.setCardImage(new Image(new File("./src/Files/Images/Default.png").toURI().toString()));
+            customHeroCard.startViews(customHeroCard.getCardImage());
         });
-
-
-
+        Graphics.getInstance().getStage().setScene(new Scene(gridPane));
     }
 }

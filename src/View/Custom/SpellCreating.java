@@ -21,6 +21,7 @@ public class SpellCreating {
 
     public static Spell CreateScene (String title, CustomSpellType customSpellType, Card card, String type){
         GridPane gridPane = new GridPane();
+        gridPane.setStyle("-fx-background-image: url(Files/Images/CardShopBackground.jpg);");
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setVgap(10);
@@ -68,80 +69,63 @@ public class SpellCreating {
         finishButton.setOnMouseClicked(e ->{
             switch (customSpellType){
                 case ChangeAllEnemy:
-                    spell = new SpellChangeAllEnemy(Integer.parseInt(textFieldAPChange.getText()), Integer.parseInt(textFieldHPChange.getText()), textFieldSpellName.getText(), textFieldSpellDetail.getText());
-                    switch (type.split(":")[0]){
-                        case "spellCard":
-                            ((CustomSpellCard) card).setSpell(spell);
-                            break;
-                        case "hero":
-                            break;
-                        case "general":
-                            break;
-                        case "spellCaster":
-                            ((CustomSpellCasterCard)card).setSpell(spell);
-
-                            break;
-                    }
+                    spell = new SpellChangeAllEnemy(Integer.parseInt(textFieldAPChange.getText()),
+                            Integer.parseInt(textFieldHPChange.getText()),
+                            textFieldSpellName.getText(),
+                            textFieldSpellDetail.getText());
+                    checkCardSpellType(type, card, spell);
                     break;
                 case ChangeAllFriendly:
-                    spell = new SpellChangeAllFriendly(Integer.parseInt(textFieldAPChange.getText()), Integer.parseInt(textFieldHPChange.getText()), textFieldSpellName.getText(), textFieldSpellDetail.getText());
-
-                    switch (type.split(":")[0]){
-                        case "spellCard":
-                            ((CustomSpellCard) card).setSpell(spell);
-                            break;
-                        case "hero":
-                            break;
-                        case "general":
-                            break;
-                        case "spellCaster":
-                            ((CustomSpellCasterCard)card).setSpell(spell);
-                            break;
-                    }
-
+                    spell = new SpellChangeAllFriendly(Integer.parseInt(textFieldAPChange.getText()),
+                            Integer.parseInt(textFieldHPChange.getText()),
+                            textFieldSpellName.getText(),
+                            textFieldSpellDetail.getText());
+                    checkCardSpellType(type, card, spell);
                     break;
                 case ChangeRandomEnemy:
-                    spell = new SpellChangeRandomEnemy(Integer.parseInt(textFieldAPChange.getText()), Integer.parseInt(textFieldHPChange.getText()), textFieldSpellName.getText(), textFieldSpellDetail.getText());
-
-                    switch (type.split(":")[0]){
-                        case "spellCard":
-                            ((CustomSpellCard) card).setSpell(spell);
-                            break;
-                        case "hero":
-                            break;
-                        case "general":
-                            break;
-                        case "spellCaster":
-                            ((CustomSpellCasterCard)card).setSpell(spell);
-
-                            break;
-                    }
-
+                    spell = new SpellChangeRandomEnemy(Integer.parseInt(textFieldAPChange.getText()),
+                            Integer.parseInt(textFieldHPChange.getText()),
+                            textFieldSpellName.getText(),
+                            textFieldSpellDetail.getText());
+                    checkCardSpellType(type, card, spell);
                     break;
                 case ChangeRandomFriendly:
-                    spell = new SpellChangeRandomFriendly(Integer.parseInt(textFieldAPChange.getText()), Integer.parseInt(textFieldHPChange.getText()), textFieldSpellName.getText(), textFieldSpellDetail.getText());
-
-                    switch (type.split(":")[0]){
-                        case "spellCard":
-                            ((CustomSpellCard) card).setSpell(spell);
-                            break;
-                        case "hero":
-                            break;
-                        case "general":
-                            break;
-                        case "spellCaster":
-                            ((CustomSpellCasterCard)card).setSpell(spell);
-
-                            break;
-                    }
-
+                    spell = new SpellChangeRandomFriendly(Integer.parseInt(textFieldAPChange.getText()),
+                            Integer.parseInt(textFieldHPChange.getText()),
+                            textFieldSpellName.getText(),
+                            textFieldSpellDetail.getText());
+                    checkCardSpellType(type, card, spell);
                     break;
             }
         });
-
-
-
         return spell;
+
+    }
+
+    private static void checkCardSpellType(String type, Card card, Spell spell){
+        switch (type.split(":")[0]){
+            case "spellCard":
+                ((CustomSpellCard) card).setSpell(spell);
+                break;
+            case "hero":
+                if (type.split(":")[1].equals("will"))
+                    ((CustomHeroCard) card).setWill(spell);
+                else if (type.split(":")[1].equals("battleCry"))
+                    ((CustomHeroCard) card).setBattleCry(spell);
+                else
+                    ((CustomHeroCard) card).setSpell(spell);
+                break;
+            case "general":
+                if (type.split(":")[1].equals("will"))
+                    ((CustomGeneralCard) card).setWill(spell);
+                else
+                    ((CustomGeneralCard) card).setBattleCry(spell);
+                break;
+            case "spellCaster":
+                ((CustomSpellCasterCard)card).setSpell(spell);
+
+                break;
+        }
 
     }
 

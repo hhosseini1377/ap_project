@@ -23,6 +23,7 @@ public class ItemCreating {
     private static CustomItem customItem;
     public static void createScene(GameControl gameControl){
         GridPane gridPane = new GridPane();
+        gridPane.setStyle("-fx-background-image: url(Files/Images/CardShopBackground.jpg);");
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setVgap(10);
@@ -67,13 +68,9 @@ public class ItemCreating {
         buttonFinish.setOnMouseClicked(event -> {
           customItem = new CustomItem(Integer.parseInt(textFieldManaChange.getText()), Integer.parseInt(textFieldHPChange.getText()), Integer.parseInt(textFieldGilCost.getText()), textFieldName.getText());
           gameControl.getUser().getItemInventory().add(customItem);
-          customItem.startViews();
-          customItem.setItemImage(new ImageView(new Image(new File("./src/Files/Images/Default.png").toURI().toString())));
+            customItem.setItemImage(new ImageView(new Image(new File("./src/Files/Images/Default.png").toURI().toString())));
         });
 
         Graphics.getInstance().getStage().setScene(new Scene(gridPane));
-
-
-
     }
 }

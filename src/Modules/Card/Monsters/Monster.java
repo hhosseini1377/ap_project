@@ -119,6 +119,7 @@ public abstract class Monster extends Card{
 
     public void increaseHP(int points){
         this.HP += points;
+        friend.getMonsterField().update(this);
     }
 
     public void decreaseHP(int points){
@@ -135,43 +136,12 @@ public abstract class Monster extends Card{
 
     public void increaseAP(int points){
         this.AP += points;
+        friend.getMonsterField().update(this);
     }
 
     public void decreaseAP(int points){
         this.AP -= points;
-    }
-
-    public void attack(Warrior enemy, Scanner scan){
-        if (!this.canAttack()){
-            System.out.println("this monster cannot attack the opponent!!");
-            return;
-        }
-        if (isSleeping() && !isNimble()){
-            System.out.println("this monster cannot attack right now");
-            return;
-        }
-        Monster targeted;
-        //checks if there are any defensive cards in the enemy field and if there was the defender will stop the combatant
-        if (enemy.getMonsterField().containDefensiveCard()){
-            targeted = enemy.getMonsterField().getDefensiveCard();
-            this.attack(targeted);
-            return;
-        }
-        String target = scan.next();
-        if ((target.equals("Commander"))) {
-            targeted = enemy.getCommander();
-            this.attack(enemy.getCommander());
-        }
-        else{
-            targeted = enemy.getMonsterField().getSlot(Integer.parseInt(target));
-            this.attack(targeted);
-        }
-        System.out.println(this.getName() + " clashed with " + targeted.getName());
-    }
-
-    private void attack(Monster other){
-        other.decreaseHP(this.AP);
-        this.decreaseHP(other.getAP());
+        friend.getMonsterField().update(this);
     }
 
     public boolean isDead(){

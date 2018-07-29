@@ -22,6 +22,14 @@ public class Deck implements Cloneable, Serializable{
         }
     }
 
+    public Card getCard(String name){
+        for (Card card:cards){
+            if (card.getName().equals(name))
+                return card;
+        }
+        return null;
+    }
+
     public Deck() {
         cards = new ArrayList<>();
         numberOfCards = new HashMap<>();

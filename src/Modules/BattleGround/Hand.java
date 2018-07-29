@@ -24,6 +24,10 @@ public class Hand implements Serializable{
 		}
 	}
 
+	public void add(String cardName){
+		add(cardHashMap.get(cardName));
+	}
+
 	public void setEnemy (boolean enemy) {
 		isEnemy = enemy;
 	}

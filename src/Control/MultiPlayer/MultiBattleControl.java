@@ -43,6 +43,9 @@ public class MultiBattleControl {
     private User user;
     private ObjectOutputStream ios;
     private ObjectInputStream ois;
+    private String cardName;
+    private String attackingCard;
+    private String defendingCard;
     private Semaphore semaphore = new Semaphore(0);
 
     public MultiBattleControl(int turn,Socket socket,User user) {
@@ -54,7 +57,6 @@ public class MultiBattleControl {
     class listenServer extends Thread{
         @Override
         public void run () {
-            while(true){
                 try {
                     warrior[0] = (Warrior) ois.readUnshared();
                     if (warrior[0] != null){
@@ -64,7 +66,28 @@ public class MultiBattleControl {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+        }
+    }
 
+    class gameListener extends Thread{
+        @Override
+        public void run () {
+            try {
+                String string = ois.readUTF();
+                switch (string.split(":")[0]){
+                    case "next":
+                        break;
+                    case "takeCard":
+                        cardName = string.split(":")[1];
+                        semaphore.release();
+                        break;
+                    case "attack":
+                        attackingCard = string.split(":")[1];
+                        defendingCard = string.split(":")[2];
+                        break;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -79,7 +102,7 @@ public class MultiBattleControl {
             ios = new ObjectOutputStream(socket.getOutputStream());
             ios.writeUnshared(warrior[1]);
             ios.flush();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -119,109 +142,6 @@ public class MultiBattleControl {
         battle();
     }
 
-    private void setDetails() {
-        try {
-            Parent spellRoot = FXMLLoader.load(getClass().getResource("../../Files/Resources/SpellField.fxml"));
-            HBox[] fspellField = new HBox[3];
-            HBox[] espellField = new HBox[3];
-            for(int i = 0; i < 3; i++){
-                fspellField[i] = (HBox) ((HBox) spellRoot.lookup("#friendField")).getChildren().get(i);
-                espellField[i] = (HBox) ((HBox) spellRoot.lookup("#enemyField")).getChildren().get(i);
-            }
-            Graphics.getInstance().setFspellField(fspellField);
-            Graphics.getInstance().setEspellField(espellField);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = Graphics.getInstance().getStage().getScene().getRoot();
-
-        //saving monster hbox
-        HBox[] fmonsters = new HBox[5];
-        HBox[] emonsters = new HBox[5];
-        for (int i = 0; i < 5; i++){
-            emonsters[i] = (HBox) ((HBox)root.lookup("#monsterFieldP1")).getChildren().get(i);
-            fmonsters[i] = (HBox) ((HBox)root.lookup("#monsterFieldP2")).getChildren().get(i);
-        }
-        Graphics.getInstance().setFmonsterField(fmonsters);
-        Graphics.getInstance().setEmonsterField(emonsters);
-
-        ImageView spellField = (ImageView) root.lookup("#spellField");
-        spellField.setOnMouseClicked(event -> {spellFieldScreen();});
-
-        //setting hand view up
-        warrior[1].getHand().setHandView((HBox) root.lookup("#handP2"));
-        warrior[0].getHand().setHandView((HBox) root.lookup("#handP1"));
-
-        //setting monster field view up
-        warrior[1].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP2"));
-        warrior[0].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP1"));
-
-        warrior[0].getMonsterField().getMonsterFieldView().setCommander(warrior[0].getCommander());
-        warrior[1].getMonsterField().getMonsterFieldView().setCommander(warrior[1].getCommander());
-
-        warrior[0].getMonsterField().getMonsterFieldView().setCommanderBox((VBox) root.lookup("#frameContP1"));
-        warrior[1].getMonsterField().getMonsterFieldView().setCommanderBox((VBox) root.lookup("#frameContP2"));
-
-        //setting spell field view up
-        warrior[1].getSpellField().setView(Graphics.getInstance().getFspellField());
-        warrior[0].getSpellField().setView(Graphics.getInstance().getEspellField());
-
-        Button doneButton = (Button) root.lookup("#changeTurn");
-        String buttonStyle = "-fx-background-radius: 20;" +
-                "-fx-border-radius: 20;" +
-                "-fx-border-width: 2;" +
-                "-fx-border-color: rgb(99,85,44);";
-        EventHandler<MouseEvent> onButton = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
-                    doneButton.setStyle(buttonStyle + "-fx-background-color: rgb(189,171,22);");
-                }else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
-                    doneButton.setStyle(buttonStyle + "-fx-background-color: rgba(220,215,47,0.99);");
-                }else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
-                    if (turn % 2 == 1)
-                        changeTurn();
-                }
-            }
-        };
-        doneButton.addEventHandler(MouseEvent.ANY, onButton);
-        ImageView graveyard1 = (ImageView) root.lookup("#graveyardP1");
-        ImageView graveyard2 = (ImageView) root.lookup("#graveyardP2");
-        //setting up necessary details for graveyard objects
-        warrior[0].getGraveYard().setGraveyardView(graveyard1);
-        warrior[0].getGraveYard().setOwner(warrior[0]);
-        warrior[1].getGraveYard().setGraveyardView(graveyard2);
-        warrior[1].getGraveYard().setOwner(warrior[1]);
-        EventHandler<MouseEvent> graveHandler1 = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
-                    graveyard1.setEffect(new Glow(.4));
-                }
-                if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
-                    graveyard1.setEffect(null);
-                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
-                    warrior[0].getGraveYard().viewGraveyard();
-
-            }
-        };
-        EventHandler<MouseEvent> graveHandler2 = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle (MouseEvent event) {
-                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
-                    graveyard2.setEffect(new Glow(.4));
-                }
-                if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
-                    graveyard2.setEffect(null);
-                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
-                    warrior[1].getGraveYard().viewGraveyard();
-
-            }
-        };
-        graveyard1.addEventHandler(MouseEvent.ANY, graveHandler1);
-        graveyard2.addEventHandler(MouseEvent.ANY, graveHandler2);
-    }
-
     /**
      * the bulk of the battle
      * checking user's inputs and deciding according to them
@@ -237,13 +157,26 @@ public class MultiBattleControl {
 
         //giving 5 cards to each combatant
         for (int i = 0; i < 5; i++) {
-            if (player == 1)
-                warrior[player].getHand().add(warrior[player].getDeck().takeCard());
-            else {
-
-            }
-//            warrior[(player + 1) % 2].getHand().add(warrior[(player + 1) % 2].getDeck().takeCard());
+                Card card = warrior[1].getDeck().takeCard();
+                warrior[1].getHand().add(card);
+                try {
+                    ios.writeUTF("takeCard:" + card.getName());
+                    ios.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    new gameListener().start();
+                    semaphore.acquire();
+                    warrior[0].getHand().add(warrior[0].getDeck().getCard(cardName));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
         }
+    }
+
+    private void takeCard(){
+
     }
 
     /**
@@ -352,6 +285,110 @@ public class MultiBattleControl {
         Graphics.getInstance().notifyMessage("Congratulations\n" +
                 "With your skills and bravery " + warrior[0].getName() + "\nhas been utterly defeated!!" +
                 "\nIt was right to request help from\nyou brave warrior!", "notify");
+    }
+
+
+    private void setDetails() {
+        try {
+            Parent spellRoot = FXMLLoader.load(getClass().getResource("../../Files/Resources/SpellField.fxml"));
+            HBox[] fspellField = new HBox[3];
+            HBox[] espellField = new HBox[3];
+            for(int i = 0; i < 3; i++){
+                fspellField[i] = (HBox) ((HBox) spellRoot.lookup("#friendField")).getChildren().get(i);
+                espellField[i] = (HBox) ((HBox) spellRoot.lookup("#enemyField")).getChildren().get(i);
+            }
+            Graphics.getInstance().setFspellField(fspellField);
+            Graphics.getInstance().setEspellField(espellField);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = Graphics.getInstance().getStage().getScene().getRoot();
+
+        //saving monster hbox
+        HBox[] fmonsters = new HBox[5];
+        HBox[] emonsters = new HBox[5];
+        for (int i = 0; i < 5; i++){
+            emonsters[i] = (HBox) ((HBox)root.lookup("#monsterFieldP1")).getChildren().get(i);
+            fmonsters[i] = (HBox) ((HBox)root.lookup("#monsterFieldP2")).getChildren().get(i);
+        }
+        Graphics.getInstance().setFmonsterField(fmonsters);
+        Graphics.getInstance().setEmonsterField(emonsters);
+
+        ImageView spellField = (ImageView) root.lookup("#spellField");
+        spellField.setOnMouseClicked(event -> {spellFieldScreen();});
+
+        //setting hand view up
+        warrior[1].getHand().setHandView((HBox) root.lookup("#handP2"));
+        warrior[0].getHand().setHandView((HBox) root.lookup("#handP1"));
+
+        //setting monster field view up
+        warrior[1].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP2"));
+        warrior[0].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP1"));
+
+        warrior[0].getMonsterField().getMonsterFieldView().setCommander(warrior[0].getCommander());
+        warrior[1].getMonsterField().getMonsterFieldView().setCommander(warrior[1].getCommander());
+
+        warrior[0].getMonsterField().getMonsterFieldView().setCommanderBox((VBox) root.lookup("#frameContP1"));
+        warrior[1].getMonsterField().getMonsterFieldView().setCommanderBox((VBox) root.lookup("#frameContP2"));
+
+        //setting spell field view up
+        warrior[1].getSpellField().setView(Graphics.getInstance().getFspellField());
+        warrior[0].getSpellField().setView(Graphics.getInstance().getEspellField());
+
+        Button doneButton = (Button) root.lookup("#changeTurn");
+        String buttonStyle = "-fx-background-radius: 20;" +
+                "-fx-border-radius: 20;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-color: rgb(99,85,44);";
+        EventHandler<MouseEvent> onButton = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    doneButton.setStyle(buttonStyle + "-fx-background-color: rgb(189,171,22);");
+                }else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
+                    doneButton.setStyle(buttonStyle + "-fx-background-color: rgba(220,215,47,0.99);");
+                }else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                    if (turn % 2 == 1)
+                        changeTurn();
+                }
+            }
+        };
+        doneButton.addEventHandler(MouseEvent.ANY, onButton);
+        ImageView graveyard1 = (ImageView) root.lookup("#graveyardP1");
+        ImageView graveyard2 = (ImageView) root.lookup("#graveyardP2");
+        //setting up necessary details for graveyard objects
+        warrior[0].getGraveYard().setGraveyardView(graveyard1);
+        warrior[0].getGraveYard().setOwner(warrior[0]);
+        warrior[1].getGraveYard().setGraveyardView(graveyard2);
+        warrior[1].getGraveYard().setOwner(warrior[1]);
+        EventHandler<MouseEvent> graveHandler1 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    graveyard1.setEffect(new Glow(.4));
+                }
+                if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
+                    graveyard1.setEffect(null);
+                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+                    warrior[0].getGraveYard().viewGraveyard();
+
+            }
+        };
+        EventHandler<MouseEvent> graveHandler2 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    graveyard2.setEffect(new Glow(.4));
+                }
+                if (event.getEventType().equals(MouseEvent.MOUSE_EXITED))
+                    graveyard2.setEffect(null);
+                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+                    warrior[1].getGraveYard().viewGraveyard();
+
+            }
+        };
+        graveyard1.addEventHandler(MouseEvent.ANY, graveHandler1);
+        graveyard2.addEventHandler(MouseEvent.ANY, graveHandler2);
     }
 }
 

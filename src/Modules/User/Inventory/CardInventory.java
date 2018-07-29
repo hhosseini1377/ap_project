@@ -5,10 +5,11 @@ import Modules.Card.Card;
 import View.InventoryView.CardInventoryView;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CardInventory{
+public class CardInventory implements Serializable{
     private transient CardInventoryView view;
     private ArrayList<Card> cards;
     private Deck deck;

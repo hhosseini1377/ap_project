@@ -15,7 +15,7 @@ import java.io.Serializable;
 
 public class Warrior implements Serializable{
     private transient WarriorView warriorView = new WarriorView();
-    private User user;
+    private transient User user;
     protected Commander commander;
     protected String name;
     protected Deck deck;
@@ -33,6 +33,7 @@ public class Warrior implements Serializable{
         warriorView = new WarriorView();
 //        user.startViews();
         hand.startViews();
+        deck.startViews();
         graveYard.startViews();
         monsterField.startViews();
         spellField.startViews();
@@ -155,6 +156,7 @@ public class Warrior implements Serializable{
 
     public void setSpellField(SpellField spellField) {
         this.spellField = spellField;
+
     }
 
     public void setBackPack(BackPack backPack) {

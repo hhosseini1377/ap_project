@@ -4,11 +4,12 @@ import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.BackPack;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AmuletInventory {
+public class AmuletInventory implements Serializable{
     private BackPack backPack;
     private HashMap<String, Amulet> amuletMap;
     private HashMap<String, Integer> numberOfAmulet;

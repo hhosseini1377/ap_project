@@ -1,6 +1,7 @@
 package Modules.BattleGround.Fields;
 
 import Modules.Card.Card;
+import Modules.Card.Monsters.Monster;
 import Modules.Card.Spell.Spell;
 import Modules.Card.Spell.SpellType;
 import View.BattleGroundView.SpellFieldView;
@@ -18,6 +19,16 @@ public class SpellField implements Serializable{
     private HashMap<Integer, Spell> slots = new HashMap<>();//a map of every card and its slot number
     private ArrayList<Spell> spellCards = new ArrayList<>();
     private int availablePlaces=3;
+
+    public void addToView(){
+//        startViews();
+        for (Card card:spellCards){
+            for (int i = 0; i < 3; i++){
+                if (slots.get(i).equals((Spell) card));
+                view.addToField(card, i);
+            }
+        }
+    }
 
     public void startViews(){
         view = new SpellFieldView();
@@ -171,6 +182,7 @@ public class SpellField implements Serializable{
     }
 
     public void setView (HBox[] view) {
+        this.view = new SpellFieldView();
         this.view.setSpells(view);
     }
 

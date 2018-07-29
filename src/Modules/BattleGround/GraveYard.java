@@ -1,6 +1,7 @@
 package Modules.BattleGround;
 
 import Modules.Card.Card;
+import Modules.Card.Monsters.Monster;
 import Modules.Warrior.Warrior;
 import View.BattleGroundView.GraveYardView;
 import javafx.scene.image.ImageView;

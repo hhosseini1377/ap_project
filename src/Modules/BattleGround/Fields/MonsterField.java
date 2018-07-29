@@ -24,6 +24,15 @@ public class MonsterField implements Serializable{
         monsterFieldView = new MonsterFieldView();
     }
 
+    public void addToView(){
+//        startViews();
+        for (Card card:monsterCards){
+            for (int i = 0; i < 5; i++){
+                if (slots.get(i).equals((Monster)card));
+                monsterFieldView.addToField(card, i);
+            }
+        }
+    }
     public MonsterField(){
         for (int i = 0; i < 5; i++)
             slots.put(i, null);
@@ -189,6 +198,7 @@ public class MonsterField implements Serializable{
     }
 
     public void setFieldView(HBox view){
+        monsterFieldView = new MonsterFieldView();
         HBox[] monsters = new HBox[5];
         int index = 0;
         for (Node hBox:view.getChildren()){

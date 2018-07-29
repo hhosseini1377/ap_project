@@ -3,10 +3,11 @@ package Modules.User.Inventory;
 import Modules.ItemAndAmulet.Item;
 import Modules.Warrior.BackPack;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ItemInventory {
+public class ItemInventory implements Serializable{
     private ArrayList<Item> items;
     private BackPack backPack;
     private HashMap<String, Item> itemMap;

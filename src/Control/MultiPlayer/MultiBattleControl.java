@@ -1,5 +1,7 @@
 package Control.MultiPlayer;
+import Control.Detail;
 import Modules.Card.Card;
+import Modules.Card.Monsters.Monster;
 import Modules.Graphic.Graphics;
 import Modules.Graphic.Menu;
 import Modules.ItemAndAmulet.Items.MysticHourglass;
@@ -33,6 +35,7 @@ public class MultiBattleControl {
     private String attackingCard;
     private String defendingCard;
     private Semaphore semaphore = new Semaphore(0);
+    public static Detail detail = new Detail();
 
     public MultiBattleControl(int turn,Socket socket,User user) {
         this.turn = turn;
@@ -60,24 +63,56 @@ public class MultiBattleControl {
         public void run () {
             try {
 //                while (true) {
-                    String string = ois.readUTF();
-                    switch (string.split(":")[0]) {
-                        case "next":
-                            semaphore.release();
-                            break;
-                        case "takeCard":
-                            cardName = string.split(":")[1];
-                            semaphore.release();
-                            break;
-                        case "attack":
-                            attackingCard = string.split(":")[1];
-                            defendingCard = string.split(":")[2];
-                            break;
-                    }
-//                }
-                } catch(IOException e){
-                    e.printStackTrace();
+
+                Detail obj = (Detail) ois.readUnshared();
+                String string = obj.detail;
+                switch (string.split(":")[0]) {
+                    case "next":
+                        detail = obj;
+                        semaphore.release();
+                        break;
+                    case "takeCard":
+                        cardName = string.split(":")[1];
+                        semaphore.release();
+                        break;
+//                    case "attack":
+//                        attackingCard = string.split(":")[1];
+//                        defendingCard = string.split(":")[2];
+//                        break;
                 }
+//                }
+            } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        }
+    }
+
+    private void warriorUpdater(){
+        for (String string:detail.actions){
+            switch (string.split(":")[0]){
+                case "move":
+                    warrior[0].getHand().add(warrior[0].getDeck().getCard(string.split(":")[1]));
+                    warrior[0].getDeck().remove(warrior[0].getDeck().getCard(string.split(":")[1]));
+                    break;
+                case "attack":
+                    Monster enemyC = ((Monster)warrior[0].getMonsterField().getCard(string.split(":")[1]));
+                    Monster friendC = ((Monster)warrior[1].getMonsterField().getCard(string.split(":")[2]));
+                    enemyC.decreaseHP(friendC.getAP());
+                    friendC.decreaseHP(enemyC.getAP());
+                    break;
+                case "attackCom":
+                    Monster enemy = ((Monster)warrior[0].getMonsterField().getCard(string.split(":")[1]));
+                    Monster friend = ((Monster)warrior[1].getCommander());
+                    enemy.decreaseHP(friend.getAP());
+                    friend.decreaseHP(enemy.getAP());
+                    break;
+                case "field":
+                    warrior[0].getMonsterField().add((Monster) warrior[0].getHand().getCard(string.split(":")[1]), Integer.parseInt(string.split(":")[2]));
+                    warrior[0].getHand().remove(warrior[0].getHand().getCard(string.split(":")[1]));
+                    break;
+            }
         }
     }
 
@@ -149,7 +184,9 @@ public class MultiBattleControl {
                 Card card = warrior[1].getDeck().takeCard();
                 warrior[1].getHand().add(card);
                 try {
-                    oos.writeUTF("takeCard:" + card.getName());
+                    Detail dtl = new Detail();
+                    dtl.detail = "takeCard:" + card.getName();
+                    oos.writeUnshared(dtl);
                     oos.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -178,7 +215,8 @@ public class MultiBattleControl {
         if (!checkEndOfTheGame()) {
             if (turn != 0){
                 try {
-                    oos.writeUTF("next:change");
+                    detail.detail = "next:change";
+                    oos.writeUnshared(detail);
                     oos.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -188,6 +226,9 @@ public class MultiBattleControl {
             t.start();
             try {
                 semaphore.acquire();
+
+                warriorUpdater();
+                detail = new Detail();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -205,6 +246,9 @@ public class MultiBattleControl {
                 Card drawnCard = warrior[1].getDeck().takeCard();
                 if (drawnCard != null) {
                     warrior[1].getHand().add(drawnCard);
+                    //TODO
+                    detail.actions.add("move:"+drawnCard.getName());
+
 
                     System.out.println("Turn " + turn + " started!\n" + warrior[turn % 2].getName() + "'s turn");
                     if (turn % 2 == 1) {
@@ -387,6 +431,54 @@ public class MultiBattleControl {
         };
         graveyard1.addEventHandler(MouseEvent.ANY, graveHandler1);
         graveyard2.addEventHandler(MouseEvent.ANY, graveHandler2);
+    }
+
+    public void setHanddd(){
+        try {
+            Parent spellRoot = FXMLLoader.load(getClass().getResource("../../Files/Resources/SpellField.fxml"));
+            HBox[] fspellField = new HBox[3];
+            HBox[] espellField = new HBox[3];
+            for(int i = 0; i < 3; i++){
+                fspellField[i] = (HBox) ((HBox) spellRoot.lookup("#friendField")).getChildren().get(i);
+                espellField[i] = (HBox) ((HBox) spellRoot.lookup("#enemyField")).getChildren().get(i);
+            }
+            Graphics.getInstance().setFspellField(fspellField);
+            Graphics.getInstance().setEspellField(espellField);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = Graphics.getInstance().getStage().getScene().getRoot();
+
+        //saving monster hbox
+        HBox[] fmonsters = new HBox[5];
+        HBox[] emonsters = new HBox[5];
+        for (int i = 0; i < 5; i++){
+            emonsters[i] = (HBox) ((HBox)root.lookup("#monsterFieldP1")).getChildren().get(i);
+            fmonsters[i] = (HBox) ((HBox)root.lookup("#monsterFieldP2")).getChildren().get(i);
+        }
+        Graphics.getInstance().setFmonsterField(fmonsters);
+        Graphics.getInstance().setEmonsterField(emonsters);
+
+        ImageView spellField = (ImageView) root.lookup("#spellField");
+        spellField.setOnMouseClicked(event -> {spellFieldScreen();});
+
+        //setting hand view up
+        warrior[1].getHand().setHandView((HBox) root.lookup("#handP2"));
+        warrior[0].getHand().setHandView((HBox) root.lookup("#handP1"));
+
+        //setting monster field view up
+        warrior[1].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP2"));
+        warrior[0].getMonsterField().setFieldView((HBox) root.lookup("#monsterFieldP1"));
+
+        warrior[0].getMonsterField().getMonsterFieldView().setCommander(warrior[0].getCommander());
+        warrior[1].getMonsterField().getMonsterFieldView().setCommander(warrior[1].getCommander());
+
+        warrior[0].getMonsterField().getMonsterFieldView().setCommanderBox((VBox) root.lookup("#frameContP1"));
+        warrior[1].getMonsterField().getMonsterFieldView().setCommanderBox((VBox) root.lookup("#frameContP2"));
+
+        //setting spell field view up
+        warrior[1].getSpellField().setView(Graphics.getInstance().getFspellField());
+        warrior[0].getSpellField().setView(Graphics.getInstance().getEspellField());
     }
 }
 

@@ -1,5 +1,6 @@
 package View.BattleGroundView;
 
+import Control.MultiPlayer.MultiBattleControl;
 import Modules.Card.Card;
 import Modules.Card.Commanders.Commander;
 import Modules.Card.Monsters.Monster;
@@ -262,7 +263,8 @@ public class MonsterFieldView {
                             slot.setStyle("-fx-background-color: rgba(28,26,18,0.74);");
                         } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
                             removeEventHandlers();
-                            Card enemySelectedCard = card.getEnemy().getMonsterField().getMonsterCards().get(finalI);
+                            Card enemySelectedCard = card.getEnemy().getMonsterField().getSlot(finalI + 1);
+                            MultiBattleControl.detail.actions.add("attack:"+card.getName()+":"+enemySelectedCard.getName());
                             ((Monster) enemySelectedCard).decreaseHP(((Monster) card).getAP());
                             ((Monster) card).decreaseHP(((Monster) enemySelectedCard).getAP());
                         }
@@ -278,6 +280,7 @@ public class MonsterFieldView {
                     if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
                         removeEventHandlers();
                         Card enemySelectedCard = card.getEnemy().getCommander();
+                        MultiBattleControl.detail.actions.add("attackCom:"+card.getName());
                         ((Monster) enemySelectedCard).decreaseHP(((Monster) card).getAP());
                         ((Monster) card).decreaseHP(((Monster) enemySelectedCard).getAP());
                     }

@@ -1,5 +1,7 @@
 package View.BattleGroundView;
 
+import Control.Detail;
+import Control.MultiPlayer.MultiBattleControl;
 import Modules.Card.Card;
 import Modules.Card.Monsters.Monster;
 import Modules.Card.Spell.Spell;
@@ -27,6 +29,10 @@ public class HandView {
 
     public HBox getHand () {
         return hand;
+    }
+
+    public void remove(){
+        hand.getChildren().clear();
     }
 
     public void setHand (HBox hand) {
@@ -225,6 +231,7 @@ class FieldSlotController {
                                     card.getFriend().setManaPoint(card.getFriend().getManaPoint() - card.getManaPoint());
                                     //removing from hand
                                     card.getFriend().getHand().remove(card);
+                                    MultiBattleControl.detail.actions.add("field:"+card.getName()+":"+(finalI+1));
                                 }
                             }
                         }

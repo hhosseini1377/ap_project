@@ -24,6 +24,14 @@ public class Hand implements Serializable{
 		}
 	}
 
+	public void addToView(){
+//		startViews();
+		for (Card card:cards){
+			handView.remove();
+			handView.addToHand(card, isEnemy);
+		}
+	}
+
 	public void add(String cardName){
 		add(cardHashMap.get(cardName));
 	}
@@ -61,6 +69,7 @@ public class Hand implements Serializable{
 	}
 
 	public void setHandView(HBox view){
+		handView = new HandView();
 		handView.setHand(view);
 	}
 

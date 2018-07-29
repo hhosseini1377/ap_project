@@ -26,6 +26,8 @@
     <rowConstraints/>
     <rowConstraints/>
     <rowConstraints/>
+    <rowConstraints/>
+    <rowConstraints/>
     <fx:define>
         <Screen fx:id="screen"
                 fx:factory="getPrimary"
@@ -40,16 +42,10 @@
     >
     </VBox>
 
-    <HBox   spacing="50"
-            GridPane.rowIndex="6">
-
-        <ImageView fx:id="exit"
-                   fitHeight="100"
-                   fitWidth="100"
-        >
-            <Image url="Files/Images/Icons/homeIcon.png"/>
-        </ImageView>
-
+    <HBox spacing="50"
+          GridPane.rowIndex="5"
+          alignment="CENTER"
+    >
         <Button text="new"
                 fx:id="register"
                 style="-fx-background-color: rgba(115,115,115,0.75);
@@ -59,5 +55,22 @@
             -fx-min-height: 35px;
             -fx-font-weight: bold;"
                 textFill="aliceblue"/>
+        <TextField fx:id="textfield"
+                   promptText="Enter Saved Game Name"
+                   style="-fx-background-color: white;
+                -fx-border-radius: 5px;
+                -fx-min-height: 35px;
+                -fx-min-width: 180px;
+                -fx-font-weight: bold;"
+                   GridPane.columnIndex="0"/>
+    </HBox>
+    <HBox fx:id="exit" GridPane.rowIndex="8">
+    <ImageView
+               fitHeight="100"
+               fitWidth="100"
+               GridPane.rowIndex="8"
+    >
+        <Image url="Files/Images/Icons/homeIcon.png"/>
+    </ImageView>
     </HBox>
 </GridPane>

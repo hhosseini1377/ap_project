@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -39,6 +40,7 @@ import javafx.util.Duration;
 
 import java.io.*;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -311,25 +313,68 @@ public class Menu {
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Save.fxml"));
         Graphics.getInstance().getStage().setScene(new Scene(root));
 
+        HBox exit = (HBox) root.lookup("#exit");
+        EventHandler<MouseEvent> mouseEvent = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                    goBacktoMenu();
+                }
+            }
+        };
+        exit.addEventHandler(MouseEvent.ANY, mouseEvent);
+
         String line;
         BufferedReader fileReader = new BufferedReader(new FileReader("./src/Files/save/SaveCtrl"));
-        fileReader.readLine();
         fileReader.readLine();
         while((line = fileReader.readLine()) != null){
             Text text = new Text(line);
             new textStyler(text);
             ((VBox) root.lookup("#saveBox")).getChildren().add(text);
         }
+        fileReader.close();
 
+        Button newSaveBtn = (Button) root.lookup("#register");
         EventHandler<MouseEvent> newSave = new EventHandler<MouseEvent>() {
             @Override
             public void handle (MouseEvent event) {
-
+                if (event.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
+                    newSaveBtn.setEffect(new Glow(.4));
+                }else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)){
+                    newSaveBtn.setEffect(null);
+                }else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                    try {
+                        String name = ((TextField) root.lookup("#textfield")).getText();
+                        writeSavedGameName(name);
+                        Text text = new Text(name);
+                        new textStyler(text);
+                        ((VBox) root.lookup("#saveBox")).getChildren().add(text);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         };
 
-        Button newSaveBtn = (Button) root.lookup("#register");
         newSaveBtn.addEventHandler(MouseEvent.ANY, newSave);
+    }
+
+    private void writeSavedGameName(String name) throws IOException {
+        String line;
+        ArrayList<String> fileData = new ArrayList<>();
+        BufferedReader fileReader = new BufferedReader(new FileReader("./src/Files/save/SaveCtrl"));
+        fileReader.readLine();
+        while((line = fileReader.readLine()) != null){
+            fileData.add(line);
+        }
+        fileReader.close();
+        FileWriter fileWriter = new FileWriter ("./src/Files/save/SaveCtrl", false);
+        fileWriter.write("main:"+name);
+        for (String st:fileData){
+            fileWriter.write("\n"+st);
+        }
+        fileWriter.write("\n" + name);
+        fileWriter.close();
     }
 
     /**
@@ -549,9 +594,9 @@ public class Menu {
 
     public void settings() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Settings.fxml"));
-        ImageView exit = (ImageView) root.lookup("#exit");
         Graphics.getInstance().getStage().setScene(new Scene(root));
         new MenuItems((Text) root.lookup("#sound"), gameControl);
+        ImageView exit = (ImageView) root.lookup("#exit");
         EventHandler<MouseEvent> mouseEvent = new EventHandler<MouseEvent>() {
             @Override
             public void handle (MouseEvent event) {
@@ -583,7 +628,24 @@ public class Menu {
                     text.setFill(Color.CORNSILK);
                 }else if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
                     try {
+                        String name = text.getText();
                         gameControl.saveGame(text.getText());
+                        String line;
+                        ArrayList<String> fileData = new ArrayList<>();
+                        BufferedReader fileReader = new BufferedReader(new FileReader("./src/Files/save/SaveCtrl"));
+                        fileReader.readLine();
+                        while((line = fileReader.readLine()) != null){
+                            fileData.add(line);
+                        }
+                        fileReader.close();
+                        FileWriter fileWriter = new FileWriter ("./src/Files/save/SaveCtrl", false);
+                        fileWriter.write("main:"+name);
+                        for (String st:fileData){
+                            if (!st.equals(name))
+                            fileWriter.write("\n"+st);
+                        }
+                        fileWriter.write("\n" + name);
+                        fileWriter.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

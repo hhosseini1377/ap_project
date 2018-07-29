@@ -232,14 +232,14 @@ public class MultiPlayerBattleControl {
 
 
                         playerPartControlSize();
-                        multiBattleControl.startBattle();
                         try {
                             dataOutputStream.writeUTF("game started");
                             dataOutputStream.flush();
                         }catch (Exception e){
                             System.out.println(e);
                         }
-                    }
+                    multiBattleControl.startBattle();
+                }
             });
         }
         catch(Exception e){

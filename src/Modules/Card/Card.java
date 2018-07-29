@@ -7,16 +7,23 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class Card implements Cloneable{
+public class Card implements Cloneable, Serializable{
     protected String name;
     protected int gillCost;
     protected int manaPoint;
     protected Warrior enemy;
     protected Warrior friend;
-    protected Image cardImage;
-    protected CardView cardView;
-    protected CardView cardViewBig;
+    protected transient Image cardImage;
+    protected transient CardView cardView;
+    protected transient CardView cardViewBig;
+
+    public void startViews(){
+        cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
+        cardView = new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,cardImage,this,0,0,false);
+        cardViewBig = new CardView(Graphics.SCREEN_WIDTH * 6 / 18, Graphics.SCREEN_HEIGHT * 9 /12, cardImage,this, 0, 0, true);
+    }
 
     public CardView getCardViewBig() {
         return cardViewBig;

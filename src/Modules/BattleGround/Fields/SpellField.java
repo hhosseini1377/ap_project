@@ -7,16 +7,21 @@ import View.BattleGroundView.SpellFieldView;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SpellField {
+public class SpellField implements Serializable{
     private boolean isEnemy = false;
-    private SpellFieldView view = new SpellFieldView();
+    private transient SpellFieldView view = new SpellFieldView();
     private HashMap<String,Integer> numberOfCards = new HashMap<>();
     private HashMap<Integer, Spell> slots = new HashMap<>();//a map of every card and its slot number
     private ArrayList<Spell> spellCards = new ArrayList<>();
     private int availablePlaces=3;
+
+    public void startViews(){
+        view = new SpellFieldView();
+    }
 
     public SpellField(){
         for (int i = 0; i < 3; i++)

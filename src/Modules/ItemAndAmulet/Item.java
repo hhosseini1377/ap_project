@@ -4,12 +4,19 @@ import Modules.Warrior.Warrior;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
+import java.io.Serializable;
 
-public abstract class Item implements Cloneable{
+
+public abstract class Item implements Cloneable, Serializable{
     protected String name;
     protected int gillCost;
     protected boolean isUsed = false;
     protected ImageView itemImage;
+
+    public void startViews(){
+        itemImage = new ImageView(new Image(new File("./src/Files/Images/Items/" + this.name + ".png").toURI().toString()));
+    }
 
     public ImageView getItemImage() {
         return itemImage;

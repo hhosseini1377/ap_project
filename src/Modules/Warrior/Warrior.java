@@ -11,8 +11,10 @@ import Modules.Card.Commanders.Commander;
 import Modules.User.User;
 import View.BattleGroundView.WarriorView;
 
-public class Warrior {
-    private WarriorView warriorView = new WarriorView();
+import java.io.Serializable;
+
+public class Warrior implements Serializable{
+    private transient WarriorView warriorView = new WarriorView();
     private User user;
     protected Commander commander;
     protected String name;
@@ -26,6 +28,15 @@ public class Warrior {
     protected int maxManaPoint;
     protected int winPrize;
     protected boolean hasLost = false;
+
+    public void startViews(){
+        warriorView = new WarriorView();
+//        user.startViews();
+        hand.startViews();
+        graveYard.startViews();
+        monsterField.startViews();
+        spellField.startViews();
+    }
 
     public Warrior(Deck deck, String name) {
         this.deck = new Deck();

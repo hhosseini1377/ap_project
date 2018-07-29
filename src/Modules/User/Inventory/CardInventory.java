@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CardInventory{
-    private CardInventoryView view;
+    private transient CardInventoryView view;
     private ArrayList<Card> cards;
     private Deck deck;
     private HashMap<String, Card> cardMap;

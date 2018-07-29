@@ -6,15 +6,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Hand {
+public class Hand implements Serializable{
 	private boolean isEnemy = false;
-	private HandView handView = new HandView();
+	private transient HandView handView = new HandView();
 	private ArrayList<Card> cards = new ArrayList<>();
 	private HashMap<String,Integer> numberOfCards = new HashMap<>();
 	private HashMap<String, Card> cardHashMap = new HashMap<>();
+
+	public void startViews(){
+		handView = new HandView();
+		for (Card card:cards){
+			card.startViews();
+		}
+	}
 
 	public void setEnemy (boolean enemy) {
 		isEnemy = enemy;

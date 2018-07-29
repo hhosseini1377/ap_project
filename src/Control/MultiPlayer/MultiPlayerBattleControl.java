@@ -22,6 +22,7 @@ import javafx.scene.text.Text;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.Semaphore;
 
 public class MultiPlayerBattleControl {
     private User user;
@@ -31,6 +32,7 @@ public class MultiPlayerBattleControl {
     private int port;
     private String ip;
     private Socket s = new Socket();
+    private Semaphore semaphore = new Semaphore(0);
 
     public MultiPlayerBattleControl(User user){
         this.user = user;
@@ -83,6 +85,7 @@ public class MultiPlayerBattleControl {
     }
 
     private void playAsHost(){
+        Graphics.isServer = true;
         multiPlayerGamePane= new GridPane();
         multiPlayerScene.setRoot(multiPlayerGamePane);
         multiPlayerGamePane.setAlignment(Pos.CENTER);
@@ -103,6 +106,12 @@ public class MultiPlayerBattleControl {
                 port = Integer.parseInt(textField.getCharacters().toString());
                 multiPlayerGamePane.getChildren().remove(hBox);
                 startServer();
+                try {
+                    semaphore.acquire();
+                    start();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         Graphics.getInstance().getStage().setScene(multiPlayerScene);
@@ -126,24 +135,7 @@ public class MultiPlayerBattleControl {
                         }
                         string = dis.readUTF();
                         if(string.equals("game started")){
-                            multiBattleControl = new MultiBattleControl(1, s,user);
-                            try {
-                                Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Battle.fxml"));
-                                Graphics.getInstance().setBattle(new Scene(root));
-                                Graphics.getInstance().getStage().setScene(Graphics.getInstance().getBattle());
-                                Graphics.getInstance().getStage().setFullScreen(true);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            Parent root = Graphics.getInstance().getBattle().getRoot();
-                            assert root != null;
-                            Graphics.MAP_MUSIC_PLAYER.stop();
-                            Graphics.BATTLE_MUSIC_PLAYER.setCycleCount(-1);
-                            Graphics.BATTLE_MUSIC_PLAYER.play();
-                            Graphics.getInstance().setMusicPlayer(Graphics.BATTLE_MUSIC_PLAYER);
-
-                            playerPartControlSize();
-                            multiBattleControl.startBattle();
+                            semaphore.release();
                         }
                     }
                     catch (Exception e){
@@ -247,6 +239,28 @@ public class MultiPlayerBattleControl {
         }
     }
 
+    private void start(){
+        multiBattleControl = new MultiBattleControl(1, s,user);
+
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("../../Files/Resources/Battle.fxml"));
+            Graphics.getInstance().setBattle(new Scene(root));
+            Graphics.getInstance().getStage().setScene(Graphics.getInstance().getBattle());
+            Graphics.getInstance().getStage().setFullScreen(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = Graphics.getInstance().getBattle().getRoot();
+        assert root != null;
+        Graphics.MAP_MUSIC_PLAYER.stop();
+        Graphics.BATTLE_MUSIC_PLAYER.setCycleCount(-1);
+        Graphics.BATTLE_MUSIC_PLAYER.play();
+        Graphics.getInstance().setMusicPlayer(Graphics.BATTLE_MUSIC_PLAYER);
+
+        playerPartControlSize();
+        multiBattleControl.startBattle();
+    }
     private void playerPartControlSize(){
         double width = Graphics.SCREEN_WIDTH;
         double height = Graphics.SCREEN_HEIGHT;

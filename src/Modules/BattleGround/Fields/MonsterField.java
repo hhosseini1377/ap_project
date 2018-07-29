@@ -7,17 +7,22 @@ package Modules.BattleGround.Fields;
         import javafx.scene.image.ImageView;
         import javafx.scene.layout.HBox;
 
+        import java.io.Serializable;
         import java.util.ArrayList;
         import java.util.HashMap;
 
-public class MonsterField {
+public class MonsterField implements Serializable{
     private boolean isEnemy = false;
-    private MonsterFieldView monsterFieldView = new MonsterFieldView();
+    private transient MonsterFieldView monsterFieldView = new MonsterFieldView();
     private HashMap<String,Integer> numberOfCards = new HashMap<>();
     private HashMap<Integer, Monster> slots = new HashMap<>();//a map of every card and its slot number
     private ArrayList<Monster> monsterCards = new ArrayList<>();
     private ArrayList<Monster> defensiveCards = new ArrayList<>();
     private int availablePlaces=5;
+
+    public void startViews(){
+        monsterFieldView = new MonsterFieldView();
+    }
 
     public MonsterField(){
         for (int i = 0; i < 5; i++)

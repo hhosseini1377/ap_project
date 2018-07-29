@@ -32,7 +32,7 @@ public class Main extends Application{
     public void start (Stage primaryStage) throws Exception{
         GameControl gameControl = new GameControl("./src/Files/save/");
         Graphics.getInstance().setStage(primaryStage);
-//        Menu.getInstance().startScreen(gameControl);
+        Menu.getInstance().startScreen(gameControl);
 //        CardInventoryView cardInventoryView = new CardInventoryView();
 //
 //        BlueDragon blueDragon = new BlueDragon();
@@ -64,10 +64,9 @@ public class Main extends Application{
 
 //        itemInventoryView.viewItemInventory(arrayList1, arrayList2);
 
-        MainPage.showMainPage();
+//        MainPage.showMainPage();
 
-
-        primaryStage.show();
+//        primaryStage.show();
     }
 
     public static void main(String[] args) {

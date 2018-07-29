@@ -3,14 +3,22 @@ package Modules.Warrior;
 import Modules.ItemAndAmulet.Amulet;
 import Modules.ItemAndAmulet.Item;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BackPack {
+public class BackPack implements Serializable{
     private ArrayList<Item> items = new ArrayList<>();
     private Amulet amulet ;
     private HashMap<String, Item> itemMap = new HashMap<>();
     private HashMap<String, Integer> numberOfItems = new HashMap<>();
+
+    public void startViews(){
+        for (Item item:items){
+            item.startViews();
+        }
+        amulet.startViews();
+    }
 
     public BackPack() {
         items = new ArrayList<>();

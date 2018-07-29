@@ -1,13 +1,22 @@
 package Modules.ItemAndAmulet;
 
 import Modules.Warrior.Warrior;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
+import java.io.Serializable;
 
-public abstract class Amulet {
+
+public abstract class Amulet implements Serializable {
     protected int gillCost;
     protected String name;
     protected ImageView amuletImage;
+
+    public void startViews(){
+        amuletImage = new ImageView(new Image(new File("./src/Files/Images/Amulets/" + this.name + ".jpeg").toURI().toString()));
+
+    }
 
     public ImageView getAmuletImage() {
         return amuletImage;

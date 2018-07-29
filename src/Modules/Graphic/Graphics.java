@@ -40,8 +40,9 @@ public class Graphics {
     public static final double SCREEN_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
     public static final double SCREEN_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
     public static boolean isMute = false;
-    public static boolean isMonsterField = true;
     public static final Image CARD_BACK = new Image(new File("./src/Files/Images/Battle/cardBack.jpeg").toURI().toString());
+    public static boolean isServer = false;
+    public static boolean isMonsterField = true;
 
 
     private static Graphics graphics = new Graphics();

@@ -31,6 +31,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,6 +43,7 @@ public class MultiBattleControl {
     private User user;
     private ObjectOutputStream ios;
     private ObjectInputStream ois;
+    private Semaphore semaphore = new Semaphore(0);
 
     public MultiBattleControl(int turn,Socket socket,User user) {
         this.turn = turn;
@@ -49,29 +51,51 @@ public class MultiBattleControl {
         this.user = user;
     }
 
+    class listenServer extends Thread{
+        @Override
+        public void run () {
+            while(true){
+                try {
+                    warrior[0] = (Warrior) ois.readUnshared();
+                    if (warrior[0] != null){
+                        semaphore.release();
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+
     public void startBattle () {
         warrior = new Warrior[2];
 
-        warrior[0] = new Goblins();
+//        warrior[0] = new Goblins();
         warrior[1] = new Warrior(user.getDeck(), user.getName());
 
-//        try {
-//            ios = new ObjectOutputStream(socket.getOutputStream());
-//            ios.writeObject(warrior[1]);
-//            ios.flush();
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-//
-//        try {
-//            ois = new ObjectInputStream(socket.getInputStream());
-//            warrior[0] = (Warrior) ois.readObject();
-//
-//        }catch (Exception e){
-//
-//        }
+        try {
+            ios = new ObjectOutputStream(socket.getOutputStream());
+            ios.writeUnshared(warrior[1]);
+            ios.flush();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-
+        try {
+            ois = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Thread server = new listenServer();
+        server.start();
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        warrior[0].startViews();
 
         warrior[1].setUser(user);
         warrior[0].getHand().setEnemy(true);
@@ -204,16 +228,21 @@ public class MultiBattleControl {
      */
     private void battle () {
         //randomly starting the game
-        int player = (int) (Math.random() * 2);
-        player = 1;
+        int player = 0;
+        if (Graphics.isServer)
+            player = 1;
 
         Graphics.getInstance().notifyMessage(warrior[player].getName() + " starts the battle", "notify");
         turn = player;
 
         //giving 5 cards to each combatant
         for (int i = 0; i < 5; i++) {
-            warrior[player].getHand().add(warrior[player].getDeck().takeCard());
-            warrior[(player + 1) % 2].getHand().add(warrior[(player + 1) % 2].getDeck().takeCard());
+            if (player == 1)
+                warrior[player].getHand().add(warrior[player].getDeck().takeCard());
+            else {
+
+            }
+//            warrior[(player + 1) % 2].getHand().add(warrior[(player + 1) % 2].getDeck().takeCard());
         }
     }
 

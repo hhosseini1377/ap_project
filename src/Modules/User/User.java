@@ -18,6 +18,11 @@ public class User implements Serializable {
     private Deck deck;
     private BackPack backPack;
 
+    public void startViews(){
+        deck.startViews();
+        backPack.startViews();
+    }
+
     public User(CardInventory cardInventory, ItemInventory itemInventory, AmuletInventory amuletInventory, Deck deck, int gills, int level, String name,BackPack backPack) {
         this.backPack = backPack;
         this.deck = deck;

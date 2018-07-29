@@ -5,15 +5,20 @@ import Modules.Warrior.Warrior;
 import View.BattleGroundView.GraveYardView;
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GraveYard {
-    private GraveYardView view = new GraveYardView();
+public class GraveYard implements Serializable{
+    private transient GraveYardView view = new GraveYardView();
     private ArrayList<Card> destroyedCards = new ArrayList<>();
     private HashMap<String, Card> cardMap = new HashMap<>();
     private HashMap<String, Integer> numberOfCards = new HashMap<>();
     private Warrior owner;
+
+    public void startViews(){
+        view = new GraveYardView();
+    }
 
     public ArrayList<Card> getDestroyedCards() {
         return destroyedCards;

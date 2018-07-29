@@ -4,15 +4,23 @@ import Modules.Card.Card;
 import View.BattleGroundView.DeckView;
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Deck implements Cloneable{
-    private DeckView deckView = new DeckView();
+public class Deck implements Cloneable, Serializable{
+    private transient DeckView deckView = new DeckView();
     private int maxNumber = 30;
     private int minNumber = 25;
     private ArrayList<Card> cards;
     private HashMap<String, Integer> numberOfCards;
+
+    public void startViews(){
+        deckView = new DeckView();
+        for (Card card:cards){
+            card.startViews();
+        }
+    }
 
     public Deck() {
         cards = new ArrayList<>();

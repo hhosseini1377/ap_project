@@ -8,6 +8,7 @@ import Modules.CustomCard.CustomSpellType;
 import Modules.Graphic.Graphics;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -64,11 +65,11 @@ public class SpellCasterCardCreating {
         gridPane.add(textFieldAP, 1, 4);
 
         Label labelHP = new Label("HP");
-        gridPane.add(labelHP,0, 4);
+        gridPane.add(labelHP,0, 5);
 
         TextField textFieldHP = new TextField();
         textFieldHP.setPromptText("hp");
-        gridPane.add(textFieldHP, 1, 4);
+        gridPane.add(textFieldHP, 1, 5);
 
         Button allF = new Button("all friendly");
         Button allE = new Button("all enemy");
@@ -76,10 +77,10 @@ public class SpellCasterCardCreating {
         Button randomE = new Button("random enemy");
 
 
-        gridPane.add(allF, 0 ,5);
-        gridPane.add(allE, 1, 5);
-        gridPane.add(randomF, 2,5);
-        gridPane.add(randomE, 3, 5);
+        gridPane.add(allF, 0 ,6);
+        gridPane.add(allE, 1, 6);
+        gridPane.add(randomF, 2,6);
+        gridPane.add(randomE, 3, 6);
 
         allE.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeAllEnemy);
         allF.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeAllFriendly);
@@ -87,10 +88,10 @@ public class SpellCasterCardCreating {
         randomF.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomFriendly);
 
         Button finishButton = new Button("finished");
-        gridPane.add(finishButton, 0,5);
+        gridPane.add(finishButton, 0,7);
 
         Button buttonAddToShop = new Button("add to shop");
-        gridPane.add(buttonAddToShop,0,6);
+        gridPane.add(buttonAddToShop,0,8);
 
         buttonAddToShop.setOnMouseClicked(event -> addToShop = true);
 
@@ -105,9 +106,10 @@ public class SpellCasterCardCreating {
             customSpellCasterCard.startViews();
             customSpellCasterCard.setCardImage(new Image(new File("./src/Files/Images/Default.png").toURI().toString()));
 
-
         });
 
+
+        Graphics.getInstance().getStage().setScene(new Scene(gridPane));
 
 
     }

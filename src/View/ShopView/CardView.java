@@ -160,7 +160,9 @@ public class CardView {
         if (card instanceof Spell){
             return "SpellCard";
         }else {
-            return ((Monster) card).getMonsterKind().toString();
+            if (((Monster) card).getMonsterKind() == null)
+                return "Normal";
+            else return ((Monster) card).getMonsterKind().toString();
         }
     }
 

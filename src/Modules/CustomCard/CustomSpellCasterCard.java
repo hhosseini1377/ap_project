@@ -16,5 +16,16 @@ public class CustomSpellCasterCard extends SpellCaster {
         this.gillCost = gilPoint;
     }
 
+    public Spell getSpell () {
+        return spell;
+    }
 
+    public void setSpell (Spell spell) {
+        this.spell = spell;
+    }
+
+    @Override
+    public void castSpell (Warrior enemy, Warrior friend) {
+        spell.doSpell(enemy, friend);
+    }
 }

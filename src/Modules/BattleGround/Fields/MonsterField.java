@@ -167,6 +167,9 @@ public class MonsterField implements Serializable{
                     monster.setSleeping(false);
                     monster.setCanAttack(true);
                 }
+                if (!monster.canAttack()){
+                    monster.setCanAttack(true);
+                }
             }
         else
             for (Monster monster: defensiveCards){

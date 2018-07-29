@@ -4,6 +4,9 @@ import Control.MultiPlayer.MultiBattleControl;
 import Modules.Card.Card;
 import Modules.Card.Commanders.Commander;
 import Modules.Card.Monsters.Monster;
+import Modules.Card.Monsters.SpellCaster;
+import Modules.Card.Spell.Spell;
+import Modules.CustomCard.CustomSpellCasterCard;
 import Modules.Graphic.Graphics;
 import View.ShopView.CardView;
 import javafx.event.EventHandler;
@@ -121,6 +124,8 @@ public class MonsterFieldView {
         ((AnchorPane) Graphics.getInstance().getBattle().getRoot()).getChildren().add(bHold);
         bHold.setLayoutX(Graphics.SCREEN_WIDTH / 2 - 130);
         bHold.setLayoutY(Graphics.SCREEN_HEIGHT - 60);
+        Button cast = new Button("cast");
+        bHold.getChildren().add(cast);
 
         Parent finalRoot = root;
         EventHandler<MouseEvent> okHandler = new EventHandler<MouseEvent>() {
@@ -152,6 +157,19 @@ public class MonsterFieldView {
                     moveToField.setEffect(null);
             }
         };
+
+        EventHandler<MouseEvent> castspell = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle (MouseEvent event) {
+                if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                    if ((card instanceof SpellCaster)){
+                        ((CustomSpellCasterCard) card).castSpell(card.getEnemy(), card.getFriend());
+                    }
+
+                }
+            }
+        };
+        cast.addEventHandler(MouseEvent.ANY, castspell);
         okButton.addEventHandler(MouseEvent.ANY, okHandler);
         moveToField.addEventHandler(MouseEvent.ANY, moveHandler);
     }

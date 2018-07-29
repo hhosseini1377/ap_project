@@ -78,6 +78,8 @@ public class SpellCreating {
                         case "general":
                             break;
                         case "spellCaster":
+                            ((CustomSpellCasterCard)card).setSpell(spell);
+
                             break;
                     }
                     break;
@@ -93,6 +95,7 @@ public class SpellCreating {
                         case "general":
                             break;
                         case "spellCaster":
+                            ((CustomSpellCasterCard)card).setSpell(spell);
                             break;
                     }
 
@@ -109,6 +112,8 @@ public class SpellCreating {
                         case "general":
                             break;
                         case "spellCaster":
+                            ((CustomSpellCasterCard)card).setSpell(spell);
+
                             break;
                     }
 
@@ -125,6 +130,8 @@ public class SpellCreating {
                         case "general":
                             break;
                         case "spellCaster":
+                            ((CustomSpellCasterCard)card).setSpell(spell);
+
                             break;
                     }
 

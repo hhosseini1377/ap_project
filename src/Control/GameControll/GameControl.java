@@ -290,6 +290,10 @@ public class GameControl {
         gameDetailController.deckStart();
         user.setDeck(deck);
     }
+
+    public ShopControl getShopControl() {
+        return shopControl;
+    }
 }
 
 class CardException extends Exception{

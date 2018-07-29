@@ -70,4 +70,7 @@ public abstract class Item implements Cloneable, Serializable{
         return super.clone();
     }
 
+    public void setItemImage(ImageView itemImage) {
+        this.itemImage = itemImage;
+    }
 }

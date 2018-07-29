@@ -11,12 +11,16 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import java.io.File;
+
 public class SpellCasterCardCreating {
+    private static boolean addToShop;
     private static CustomSpellType customSpellType;
     private static CustomSpellCasterCard customSpellCasterCard;
     public static void CreateScene(GameControl gameControl){
@@ -85,10 +89,23 @@ public class SpellCasterCardCreating {
         Button finishButton = new Button("finished");
         gridPane.add(finishButton, 0,5);
 
+        Button buttonAddToShop = new Button("add to shop");
+        gridPane.add(buttonAddToShop,0,6);
+
+        buttonAddToShop.setOnMouseClicked(event -> addToShop = true);
+
         finishButton.setOnMouseClicked(event -> {
             customSpellCasterCard = new CustomSpellCasterCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()));
             SpellCreating.CreateScene("Spell", customSpellType, customSpellCasterCard, "spellCaster:spell");
             gameControl.getUser().getCardInventory().add(customSpellCasterCard);
+            if (addToShop){
+                gameControl.getShopControl().getCardShop().getCards().add(customSpellCasterCard);
+            }
+            addToShop = false;
+            customSpellCasterCard.startViews();
+            customSpellCasterCard.setCardImage(new Image(new File("./src/Files/Images/Default.png").toURI().toString()));
+
+
         });
 
 

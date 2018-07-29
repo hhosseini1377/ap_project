@@ -6,17 +6,23 @@ import Modules.CustomCard.CustomNormalCard;
 import Modules.Graphic.Graphics;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import java.io.File;
+
 public class NormalCardCreating {
+    private static boolean addToShop = false;
     private static CustomNormalCard customNormalCard;
     public static void CreateScene(GameControl gameControl){
+
         GridPane gridPane = new GridPane();
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
@@ -57,19 +63,32 @@ public class NormalCardCreating {
         gridPane.add(textFieldAP, 1, 4);
 
         Label labelHP = new Label("HP");
-        gridPane.add(labelHP,0, 4);
+        gridPane.add(labelHP,0, 5);
 
         TextField textFieldHP = new TextField();
         textFieldHP.setPromptText("hp");
-        gridPane.add(textFieldHP, 1, 4);
+        gridPane.add(textFieldHP, 1, 5);
 
         Button finishButton = new Button("finished");
-        gridPane.add(finishButton, 0,5);
+        gridPane.add(finishButton, 0,6);
+
+        Button buttonAddToShop =  new Button("add to shop");
+        gridPane.add(buttonAddToShop, 0, 7);
+
+        buttonAddToShop.setOnMouseClicked(event -> addToShop = true);
 
         finishButton.setOnMouseClicked(event -> {
             customNormalCard = new CustomNormalCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()));
             gameControl.getUser().getCardInventory().add(customNormalCard);
+            if (addToShop){
+                gameControl.getShopControl().getCardShop().getCards().add(customNormalCard);
+            }
+            addToShop =false;
+            customNormalCard.startViews();
+            customNormalCard.setCardImage(new Image(new File("./src/Files/Images/Default.png").toURI().toString()));
         });
+
+        Graphics.getInstance().getStage().setScene(new Scene(gridPane));
 
 
 

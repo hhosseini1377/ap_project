@@ -19,11 +19,11 @@ public class SpellChangeRandomEnemy extends Spell {
         Random random = new Random();
         int randomNumber;
         randomNumber = (int)(Math.random() * enemy.getMonsterField().getMonsterCards().size());
-        while(true){
+
             if (enemy.getMonsterField().getMonsterCards().get(randomNumber) != null){
                 enemy.getMonsterField().getMonsterCards().get(randomNumber).increaseHP(HPChange);
                 enemy.getMonsterField().getMonsterCards().get(randomNumber).increaseAP(APChange);
             }
-        }
+
     }
 }

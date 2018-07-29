@@ -1,22 +1,26 @@
 package View.Custom;
 
+import Control.GameControll.GameControl;
 import Modules.Graphic.Graphics;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
 public class MainPage {
-    public static void showMainPage(){
+    public static void showMainPage(GameControl gameControl){
         GridPane gridPane = new GridPane();
+        gridPane.setMinSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setVgap(10);
         gridPane.setHgap(10);
         gridPane.setPadding(new Insets(10, 10, 10 , 10));
+
 
         Text textCardType = new Text("Card Type");
         gridPane.add(textCardType,0, 0);
@@ -31,24 +35,31 @@ public class MainPage {
         gridPane.add(buttonGeneralCard, 0, 4);
         Button buttonNormalCard = new Button("CustomNormalCard");
         gridPane.add(buttonNormalCard,0 , 5);
+        Button buttonItem = new Button("CustomItem");
+        gridPane.add(buttonItem,0,6);
+        Button buttonAmulet = new Button("CustomAmulet");
+        gridPane.add(buttonAmulet, 0, 7);
 
         buttonSpellCard.setOnMouseClicked(event -> {
-            SpellCardCreating.CreateScene();
-            //TODO
+            SpellCardCreating.CreateScene(gameControl);
         });
         buttonGeneralCard.setOnMouseClicked(event -> {
-
+            GeneralCardCreating.CreateScene(gameControl);
         });
         buttonHeroCard.setOnMouseClicked(event -> {
-
+            HeroCardCreating.CreateScene(gameControl);
         });
         buttonNormalCard.setOnMouseClicked(event -> {
-            NormalCardCreating.CreateScene();
+            NormalCardCreating.CreateScene(gameControl);
         });
         buttonSpellCasterCard.setOnMouseClicked(event -> {
-
+            SpellCasterCardCreating.CreateScene(gameControl);
+        });
+        buttonItem.setOnMouseClicked(event -> {
+            gameControl.getUser().getItemInventory().add(ItemCreating.createScene());
         });
 
         Graphics.getInstance().getStage().setScene(new Scene(gridPane));
+        Graphics.getInstance().getStage().setFullScreen(true);
     }
 }

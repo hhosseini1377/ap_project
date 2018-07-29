@@ -1,9 +1,10 @@
 package View.Custom;
 
 import Control.GameControll.GameControl;
-import Modules.Card.Monsters.General;
 import Modules.CustomCard.CustomGeneralCard;
+import Modules.CustomCard.CustomHeroCard;
 import Modules.CustomCard.CustomSpellType;
+import Modules.CustomCard.Spell;
 import Modules.Graphic.Graphics;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,10 +16,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class GeneralCardCreating {
-    private static CustomGeneralCard customGeneralCard;
+public class HeroCardCreating {
+    private static CustomHeroCard customHeroCard;
     private static CustomSpellType battleCryType;
     private static CustomSpellType willType;
+    private static CustomSpellType spellType;
     public static void CreateScene(GameControl gameControl){
         GridPane gridPane = new GridPane();
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
@@ -98,12 +100,28 @@ public class GeneralCardCreating {
         randomEWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeRandomEnemy);
         randomFWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeRandomFriendly);
 
+        Button allF = new Button("all friendly battleCry");
+        Button allE = new Button("all enemy battleCry");
+        Button randomF = new Button ("random friendly battleCry");
+        Button randomE = new Button("random enemy battleCry");
+
+
+        gridPane.add(allF, 0 ,6);
+        gridPane.add(allE, 1, 6);
+        gridPane.add(randomF, 2,6);
+        gridPane.add(randomE, 3, 6);
+
+        allEWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeAllEnemy);
+        allFWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeAllFriendly);
+        randomEWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeRandomEnemy);
+        randomFWill.setOnMouseClicked(event -> willType = CustomSpellType.ChangeRandomFriendly);
+
         Button finishButton = new Button("finished");
         gridPane.add(finishButton, 0,6);
 
         finishButton.setOnMouseClicked(event -> {
-            customGeneralCard = new CustomGeneralCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()), SpellCreating.CreateScene("battleCry",battleCryType), SpellCreating.CreateScene("Will", willType));
-            gameControl.getUser().getCardInventory().add(customGeneralCard);
+            customHeroCard = new CustomHeroCard(textFieldName.getText(),Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()),Integer.parseInt(textFieldManaPoint.getText()),Integer.parseInt(textFieldGilCost.getText()),SpellCreating.CreateScene("battleCry", battleCryType), SpellCreating.CreateScene("spell", spellType), SpellCreating.CreateScene("will", willType));
+            gameControl.getUser().getCardInventory().add(customHeroCard);
         });
 
 

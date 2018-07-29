@@ -4,6 +4,7 @@ import Control.GameControll.GameControl;
 import Modules.Card.Card;
 import Modules.Graphic.MenuClasses.Hero;
 import Modules.Graphic.MenuClasses.MenuItems;
+import View.Custom.MainPage;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -276,7 +277,7 @@ public class Menu {
                         case "MultiPlayer":
                             gameControl.getMultiPlayerBattleControl().multiPlayerEntrance();
                         case "Custom Game":
-
+                            MainPage.showMainPage(gameControl);
                             break;
                         case "Save Game":
                             try {

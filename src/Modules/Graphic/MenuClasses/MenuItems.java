@@ -3,6 +3,7 @@ package Modules.Graphic.MenuClasses;
 import Control.GameControll.GameControl;
 import Modules.Graphic.Graphics;
 import Modules.Graphic.Menu;
+import View.Custom.MainPage;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -36,7 +37,7 @@ public class MenuItems{
                         case "MultiPlayer":
                             gameControl.getMultiPlayerBattleControl().multiPlayerEntrance();
                         case "Custom Game":
-
+                            MainPage.showMainPage(gameControl);
                             break;
                         case "Save Game":
                             try {

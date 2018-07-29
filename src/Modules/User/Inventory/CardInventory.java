@@ -48,6 +48,7 @@ public class CardInventory{
     }
 
     public void add(Card card){
+        System.out.println(card.getName());
         if (numberOfCards.containsKey(card.getName()))
             numberOfCards.replace(card.getName(), numberOfCards.get(card.getName()) + 1);
         else {

@@ -12,7 +12,7 @@ public class GreaterPurge extends Spell{
     name = "Greater Purge";
     manaPoint = 7;
     gillCost = 700 * manaPoint;
-    spellDetail = "Remove all spell catds on field\nfrom both sides and move them to hand";
+    spellDetail = "Remove all spell cards on field\nfrom both sides and move them to hand";
     spellType = SpellType.INSTANT;
     cardImage = new Image(new File("./src/Files/Images/CardImages/"+name+".jpg").toURI().toString());
     cardView = new CardView(Graphics.SCREEN_WIDTH * 3 / 18,Graphics.SCREEN_HEIGHT * 5 / 12,cardImage,this,0,0,false);

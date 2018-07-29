@@ -43,7 +43,7 @@ public class MainPage {
 
         });
         buttonNormalCard.setOnMouseClicked(event -> {
-
+            NormalCardCreating.CreateScene();
         });
         buttonSpellCasterCard.setOnMouseClicked(event -> {
 

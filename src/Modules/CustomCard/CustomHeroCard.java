@@ -1,4 +1,10 @@
 package Modules.CustomCard;
 
-public class CustomHeroCard {
+import Modules.Card.Monsters.Hero;
+
+public class CustomHeroCard extends Hero {
+    public CustomHeroCard() {
+
+    }
 }
+

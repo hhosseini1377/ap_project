@@ -2,6 +2,8 @@ package View.Custom;
 
 import Modules.Card.Monsters.Monster;
 import Modules.CustomCard.CustomNormalCard;
+import Modules.CustomCard.CustomSpellCasterCard;
+import Modules.CustomCard.CustomSpellType;
 import Modules.Graphic.Graphics;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,8 +15,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class NormalCardCreating {
-    private static CustomNormalCard customNormalCard;
+public class SpellCasterCardCreating {
+    private static CustomSpellType customSpellType;
+    private static CustomSpellCasterCard customSpellCasterCard;
     public static Monster CreateScene(){
         GridPane gridPane = new GridPane();
         gridPane.setPrefSize(Graphics.SCREEN_WIDTH, Graphics.SCREEN_HEIGHT);
@@ -62,15 +65,31 @@ public class NormalCardCreating {
         textFieldHP.setPromptText("hp");
         gridPane.add(textFieldHP, 1, 4);
 
+        Button allF = new Button("all friendly");
+        Button allE = new Button("all enemy");
+        Button randomF = new Button ("random friendly");
+        Button randomE = new Button("random enemy");
+
+
+        gridPane.add(allF, 0 ,5);
+        gridPane.add(allE, 1, 5);
+        gridPane.add(randomF, 2,5);
+        gridPane.add(randomE, 3, 5);
+
+        allE.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeAllEnemy);
+        allF.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeAllFriendly);
+        randomE.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomEnemy);
+        randomF.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomFriendly);
+
         Button finishButton = new Button("finished");
         gridPane.add(finishButton, 0,5);
 
         finishButton.setOnMouseClicked(event -> {
-            customNormalCard = new CustomNormalCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()));
+            customSpellCasterCard = new CustomSpellCasterCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()), SpellCreating.CreateScene("Spell", customSpellType));
         });
 
-        return customNormalCard;
 
+        return customSpellCasterCard;
 
     }
 }

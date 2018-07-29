@@ -11,8 +11,8 @@ public class CustomSpellCard extends Modules.Card.Spell.Spell {
         this.spell = spell;
         this.name = name;
         this.manaPoint = manaPoint;
-        this.spellType = spellType;
         this.gillCost = gilCost;
+        this.spellType = spellType;
 
     }
 

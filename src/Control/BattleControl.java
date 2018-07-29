@@ -50,6 +50,7 @@ public class BattleControl {
             Menu.getInstance().goBacktoMenu();
         }
 
+
         warrior[1] = new Warrior(user.getDeck(), user.getName());
         switch (level) {
             case 1:

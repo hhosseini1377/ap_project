@@ -7,8 +7,8 @@ import Modules.Warrior.Warrior;
 public class CustomSpellCard extends Modules.Card.Spell.Spell {
     Spell spell = null;
 
-    public CustomSpellCard(Spell spell, String name, int manaPoint, int gilCost, SpellType spellType) {
-        this.spell = spell;
+    public CustomSpellCard( String name, int manaPoint, int gilCost, SpellType spellType) {
+//        this.spell = spell;
         this.name = name;
         this.manaPoint = manaPoint;
         this.gillCost = gilCost;

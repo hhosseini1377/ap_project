@@ -86,7 +86,8 @@ public class SpellCasterCardCreating {
         gridPane.add(finishButton, 0,5);
 
         finishButton.setOnMouseClicked(event -> {
-            customSpellCasterCard = new CustomSpellCasterCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()), SpellCreating.CreateScene("Spell", customSpellType));
+            customSpellCasterCard = new CustomSpellCasterCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()));
+            SpellCreating.CreateScene("Spell", customSpellType, customSpellCasterCard, "spellCaster:spell");
             gameControl.getUser().getCardInventory().add(customSpellCasterCard);
         });
 

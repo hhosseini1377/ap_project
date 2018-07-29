@@ -120,7 +120,11 @@ public class HeroCardCreating {
         gridPane.add(finishButton, 0,6);
 
         finishButton.setOnMouseClicked(event -> {
-            customHeroCard = new CustomHeroCard(textFieldName.getText(),Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()),Integer.parseInt(textFieldManaPoint.getText()),Integer.parseInt(textFieldGilCost.getText()),SpellCreating.CreateScene("battleCry", battleCryType), SpellCreating.CreateScene("spell", spellType), SpellCreating.CreateScene("will", willType));
+            customHeroCard = new CustomHeroCard(textFieldName.getText(),Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()),Integer.parseInt(textFieldManaPoint.getText()),Integer.parseInt(textFieldGilCost.getText()));
+            SpellCreating.CreateScene("battleCry", battleCryType, customHeroCard, "hero:battleCry");
+            SpellCreating.CreateScene("spell", spellType, customHeroCard, "hero:spell");
+            SpellCreating.CreateScene("will", willType, customHeroCard, "hero:will");
+
             gameControl.getUser().getCardInventory().add(customHeroCard);
         });
 

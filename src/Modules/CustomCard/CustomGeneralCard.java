@@ -4,17 +4,32 @@ import Modules.Card.Monsters.General;
 import Modules.Warrior.Warrior;
 
 public class CustomGeneralCard extends General {
+    public Spell getBattleCry() {
+        return battleCry;
+    }
+
+    public void setBattleCry(Spell battleCry) {
+        this.battleCry = battleCry;
+    }
+
     Spell battleCry;
+
+    public Spell getWill() {
+        return will;
+    }
+
+    public void setWill(Spell will) {
+        this.will = will;
+    }
+
     Spell will;
 
-    public CustomGeneralCard(String name, int AP, int HP, int manaPoint, int gilPoint, Spell battleCry, Spell will) {
+    public CustomGeneralCard(String name, int AP, int HP, int manaPoint, int gilPoint) {
         this.name = name;
         this.HP = HP;
         this.AP = AP;
         this.manaPoint = manaPoint;
         this.gillCost = gilPoint;
-        this.battleCry = battleCry;
-        this.will = will;
     }
 
     @Override

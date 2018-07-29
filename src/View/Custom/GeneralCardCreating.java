@@ -102,7 +102,9 @@ public class GeneralCardCreating {
         gridPane.add(finishButton, 0,6);
 
         finishButton.setOnMouseClicked(event -> {
-            customGeneralCard = new CustomGeneralCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()), SpellCreating.CreateScene("battleCry",battleCryType), SpellCreating.CreateScene("Will", willType));
+            customGeneralCard = new CustomGeneralCard(textFieldName.getText(), Integer.parseInt(textFieldAP.getText()), Integer.parseInt(textFieldHP.getText()), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()));
+            SpellCreating.CreateScene("battleCry",battleCryType, customGeneralCard, "general:battleCry");
+            SpellCreating.CreateScene("Will", willType, customGeneralCard, "general:will");
             gameControl.getUser().getCardInventory().add(customGeneralCard);
         });
 

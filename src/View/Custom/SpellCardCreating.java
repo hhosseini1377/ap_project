@@ -93,7 +93,8 @@ public class SpellCardCreating {
         gridPane.add(finish,0 , 6);
 
         finish.setOnMouseClicked(event -> {
-            spellCard = new CustomSpellCard(SpellCreating.CreateScene("spell", customSpellType) ,textFieldSpellName.getText(), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()), spellType);
+            spellCard = new CustomSpellCard(textFieldSpellName.getText(), Integer.parseInt(textFieldManaPoint.getText()), Integer.parseInt(textFieldGilCost.getText()), spellType);
+            SpellCreating.CreateScene("spell", customSpellType, spellCard, "spellCard:spell");
             gameControl.getUser().getCardInventory().add(spellCard);
             spellCard.startViews();
             spellCard.setCardImage(new Image(new File("./src/Files/Images/Default.png").toURI().toString()));

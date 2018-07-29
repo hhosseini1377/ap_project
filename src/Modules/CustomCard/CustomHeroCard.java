@@ -8,15 +8,37 @@ public class CustomHeroCard extends Hero {
     Spell spell;
     Spell will;
 
-    public CustomHeroCard(String name, int AP, int HP, int manaPoint, int gilPoint ,Spell battleCry, Spell spell, Spell will) {
+
+    public Spell getBattleCry() {
+        return battleCry;
+    }
+
+    public void setBattleCry(Spell battleCry) {
+        this.battleCry = battleCry;
+    }
+
+    public Spell getSpell() {
+        return spell;
+    }
+
+    public void setSpell(Spell spell) {
+        this.spell = spell;
+    }
+
+    public Spell getWill() {
+        return will;
+    }
+
+    public void setWill(Spell will) {
+        this.will = will;
+    }
+
+    public CustomHeroCard(String name, int AP, int HP, int manaPoint, int gilPoint) {
         this.name = name;
         this.HP = HP;
         this.AP = AP;
         this.manaPoint = manaPoint;
         this.gillCost = gilPoint;
-        this.battleCry = battleCry;
-        this.spell = spell;
-        this.will = will;
     }
 
     @Override

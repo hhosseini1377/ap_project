@@ -49,6 +49,7 @@ public class SpellCreating {
         Label APChange = new Label("AP Change");
         gridPane.add(APChange, 0, 3);
 
+
         TextField textFieldAPChange = new TextField();
         textFieldAPChange.setPromptText("ap change");
         gridPane.add(textFieldAPChange, 1, 3);
@@ -59,6 +60,7 @@ public class SpellCreating {
         TextField textFieldHPChange = new TextField();
         textFieldHPChange.setPromptText("hp change");
         gridPane.add(textFieldHPChange, 1, 4);
+
 
         Button finishButton = new Button("Finished");
         gridPane.add(finishButton, 0, 5);
@@ -104,6 +106,10 @@ public class SpellCreating {
                             textFieldSpellDetail.getText());
                     checkCardSpellType(type, card, spell);
                     break;
+                case MoveToGraveyard:
+                    spell = new SpellMoveToGraveEnemy(textFieldSpellName.getText(),
+                            textFieldSpellDetail.getText());
+                    checkCardSpellType(type, card, spell);
             }
         });
         return spell;

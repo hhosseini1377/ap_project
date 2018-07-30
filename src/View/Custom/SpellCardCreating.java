@@ -81,6 +81,7 @@ public class SpellCardCreating {
         Button randomF = new Button ("random friendly");
         Button randomE = new Button("random enemy");
         Button randomAmount = new Button ("randomAmount");
+        Button moveToGraveyard = new Button("move to graveyard");
 
 
         gridPane.add(allF, 0 ,5);
@@ -88,12 +89,14 @@ public class SpellCardCreating {
         gridPane.add(randomF, 2,5);
         gridPane.add(randomE, 3, 5);
         gridPane.add(randomAmount, 4, 5);
+        gridPane.add(moveToGraveyard, 5, 5);
 
         allE.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeAllEnemy);
         allF.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeAllFriendly);
         randomE.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomEnemy);
         randomF.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomFriendly);
         randomAmount.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomAmount);
+        moveToGraveyard.setOnMouseClicked(event -> customSpellType = CustomSpellType.MoveToGraveyard);
 
         Button finish = new Button("finish");
         gridPane.add(finish,0 , 6);

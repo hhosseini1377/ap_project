@@ -11,7 +11,8 @@ public class SpellChangeRandomAmount extends Spell{
     public SpellChangeRandomAmount(int APMaxChange, int HPMaxChange, String SpellName, String SpellDetail) {
         this.APMaxChange = APMaxChange;
         this.HPMaxChange = HPMaxChange;
-
+        setSpellName(SpellName);
+        setSpellDetails(SpellDetail);
     }
 
 

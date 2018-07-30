@@ -38,7 +38,7 @@ public class CustomSpellCard extends Modules.Card.Spell.Spell {
 
     @Override
     public String toString () {
-        return " Name: " + this.name + "\n MP cost: " + this.manaPoint +
-                "\n Spell Name: " + spell.getSpellName() + "\n Details: " + spell.getSpellDetails();
+        return " Name: " + this.name + "\n MP cost: " + this.manaPoint ;
+//                "\n Spell Name: " + spell.getSpellName() + "\n Details: " + spell.getSpellDetails();
     }
 }

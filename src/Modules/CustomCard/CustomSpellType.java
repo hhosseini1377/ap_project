@@ -1,5 +1,5 @@
 package Modules.CustomCard;
 
 public enum CustomSpellType {
-    ChangeAllEnemy,ChangeRandomEnemy,ChangeAllFriendly, ChangeRandomFriendly
+    ChangeAllEnemy,ChangeRandomEnemy,ChangeAllFriendly, ChangeRandomFriendly, ChangeRandomAmount
 }

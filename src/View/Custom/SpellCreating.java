@@ -73,6 +73,7 @@ public class SpellCreating {
                             Integer.parseInt(textFieldHPChange.getText()),
                             textFieldSpellName.getText(),
                             textFieldSpellDetail.getText());
+                    spell.setSpellDetails(textFieldSpellDetail.getText());
                     checkCardSpellType(type, card, spell);
                     break;
                 case ChangeAllFriendly:
@@ -91,6 +92,13 @@ public class SpellCreating {
                     break;
                 case ChangeRandomFriendly:
                     spell = new SpellChangeRandomFriendly(Integer.parseInt(textFieldAPChange.getText()),
+                            Integer.parseInt(textFieldHPChange.getText()),
+                            textFieldSpellName.getText(),
+                            textFieldSpellDetail.getText());
+                    checkCardSpellType(type, card, spell);
+                    break;
+                case ChangeRandomAmount:
+                    spell = new SpellChangeRandomAmount(Integer.parseInt(textFieldAPChange.getText()),
                             Integer.parseInt(textFieldHPChange.getText()),
                             textFieldSpellName.getText(),
                             textFieldSpellDetail.getText());

@@ -46,8 +46,8 @@ public class CustomGeneralCard extends General {
     public String toString () {
         return "Name: " + name + "\nHP: " + HP + "\nAP: " + AP +
                 "\nMP cost: " + manaPoint +
-                "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType +
-                "\nWill detail: " + will.getSpellName() + ", " + will.getSpellDetails() +
-                "\nBattle cry detail: " + battleCry.getSpellName() + ", " + battleCry.getSpellDetails();
+                "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType ;
+//                "\nWill detail: " + will.getSpellName() + ", " + will.getSpellDetails() +
+//                "\nBattle cry detail: " + battleCry.getSpellName() + ", " + battleCry.getSpellDetails();
     }
 }

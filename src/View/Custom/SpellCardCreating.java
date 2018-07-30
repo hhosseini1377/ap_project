@@ -80,17 +80,20 @@ public class SpellCardCreating {
         Button allE = new Button("all enemy");
         Button randomF = new Button ("random friendly");
         Button randomE = new Button("random enemy");
+        Button randomAmount = new Button ("randomAmount");
 
 
         gridPane.add(allF, 0 ,5);
         gridPane.add(allE, 1, 5);
         gridPane.add(randomF, 2,5);
         gridPane.add(randomE, 3, 5);
+        gridPane.add(randomAmount, 4, 5);
 
         allE.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeAllEnemy);
         allF.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeAllFriendly);
         randomE.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomEnemy);
         randomF.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomFriendly);
+        randomAmount.setOnMouseClicked(event -> customSpellType = CustomSpellType.ChangeRandomAmount);
 
         Button finish = new Button("finish");
         gridPane.add(finish,0 , 6);

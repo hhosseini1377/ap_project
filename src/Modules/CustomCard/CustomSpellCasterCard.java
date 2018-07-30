@@ -33,7 +33,7 @@ public class CustomSpellCasterCard extends SpellCaster {
         return " Name: " + name + "\n HP: " + HP + "\n AP: " + AP +
                 "\n MP cost: " + manaPoint +
                 "\n Is Nimble: " + isNimble + "\n Is Defensive: " + !offenseType +
-                "\n Monster Kind: " + monsterKind + "\n Tribe: " + monsterTribe +
-                "\n Spell detail: " + spell.getSpellName() + ", " + spell.getSpellDetails();
+                "\n Monster Kind: " + monsterKind + "\n Tribe: " + monsterTribe ;
+//                "\n Spell detail: " + spell.getSpellName() + ", " + spell.getSpellDetails();
     }
 }

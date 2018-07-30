@@ -61,9 +61,9 @@ public class CustomHeroCard extends Hero {
     public String toString () {
         return "Name: " + name + "\nHP: " + HP + "\nAP: " + AP +
                 "\nMP cost: " + manaPoint +
-                "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType +
-                "\nSpell detail: " + spell.getSpellName() + ", " + spell.getSpellDetails() +
-                "\nWill detail: " + will.getSpellName() + ", " + will.getSpellDetails() +
-                "\nBattle cry detail: " + battleCry.getSpellName() + ", " + battleCry.getSpellDetails();
+                "\nIs Nimble: " + isNimble + "\nIs Defensive: " + !offenseType ;
+//                "\nSpell detail: " + spell.getSpellName() + ", " + spell.getSpellDetails() +
+//                "\nWill detail: " + will.getSpellName() + ", " + will.getSpellDetails() +
+//                "\nBattle cry detail: " + battleCry.getSpellName() + ", " + battleCry.getSpellDetails();
     }
 }

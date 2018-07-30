@@ -49,4 +49,8 @@ public class Spell extends Card {
         return "Name: " + this.name + "\nMP cost: " + this.manaPoint +
                 "\nCard Type: " + this.spellType + "\nDetails: " + spellDetail;
     }
+
+    public void setSpellDetail(String spellDetail) {
+        this.spellDetail = spellDetail;
+    }
 }
